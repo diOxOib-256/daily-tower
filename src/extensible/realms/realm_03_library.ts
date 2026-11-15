@@ -114,10 +114,10 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     title: '第105層：禁書庫の封印門',
     subtitle: '虚空の図書館の中層へと続く重厚な扉の前に、巨大な甲冑の番人が立ち塞がる',
     encounters: [
-      { type: 'battle', enemyId: 'chronos_moth', enemyStatScale: 1.221 },
+      { type: 'battle', enemyId: 'chronos_moth', enemyStatScale: 0.95 },
       { type: 'event', eventId: 'catalog_pedestal' },
-      { type: 'battle', enemyIds: ['brass_astrolabe', 'astral_owl'], enemyStatScale: 1.221 },
-      { type: 'miniboss', enemyId: 'tome_warden', enemyStatScale: 1.338 },
+      { type: 'battle', enemyIds: ['brass_astrolabe', 'astral_owl'], enemyStatScale: 0.95 },
+      { type: 'miniboss', enemyId: 'tome_warden', enemyStatScale: 1.00 },
     ],
     rewardPool: {
       equipmentIds: ['starlight_robe', 'astral_quill', 'stargazer_silver_sword', 'librarian_robe'],
