@@ -6776,5 +6776,65 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  glass_sentinel: {
+    id: 'glass_sentinel',
+    name: '硝子の番兵',
+    spriteId: 'glass_sentinel',
+    palette: 'glass_sentinel',
+    hp: 72,
+    atk: 17,
+    def: 5,
+    goldReward: 23,
+    weakness: 'fire',
+    resistance: 'physical',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '硝子刃の斬撃',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '硝子の番兵が透き通る結晶の刃で斬りかかった！',
+          },
+          {
+            name: '屈折の構え',
+            type: 'buff',
+            weight: 40,
+            statusId: 'def_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '硝子の番兵が体表を硬化させ、防御力を高めた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: '破砕の乱撃',
+            type: 'debuff',
+            weight: 70,
+            damageMultiplier: 1.4,
+            statusId: 'def_debuff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '硝子の番兵が鋭利な破片を浴びせ、防御を砕いた！',
+          },
+          {
+            name: '魔力反射膜',
+            type: 'buff',
+            weight: 30,
+            statusId: 'shield',
+            statusValue: 14,
+            statusDuration: 2,
+            logMessage: '硝子の番兵が光の膜を張り、強固なシールドを展開した！',
+          },
+        ],
+      },
+    ],
+  },
 };
 

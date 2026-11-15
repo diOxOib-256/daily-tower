@@ -133,4 +133,28 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       consumableIds: ['chronos_hourglass'],
     },
   },
+  {
+    floor: 106,
+    realm: 3,
+    title: '第106層：硝子鏡の書庫',
+    subtitle: '結晶化した硝子の番兵が巡回し、虚空の光を屈折させながら中層への侵入者を阻む階層',
+    encounters: [
+      { type: 'battle', enemyId: 'glass_sentinel', enemyStatScale: 1.00 },
+      { type: 'battle', enemyIds: ['void_scribe', 'glass_sentinel'], enemyStatScale: 1.00 },
+      { type: 'event', eventId: 'catalog_pedestal' },
+      { type: 'battle', enemyIds: ['astral_owl', 'glass_sentinel'], enemyStatScale: 1.00 },
+    ],
+    rewardPool: {
+      equipmentIds: ['starlight_robe', 'astral_quill', 'stargazer_silver_sword', 'librarian_robe'],
+      skillIds: ['void_barrier', 'void_spark', 'star_rend', 'arcane_ward', 'ink_burst', 'chrono_flip', 'flame_wave', 'frost_lance', 'aegis_stance'],
+      utilityIds: [
+        'guardian_crest_relic',
+        'bookmark_charm_relic',
+        'vampiric_fang_relic',
+        'berserker_idol_relic',
+        'venom_gland_relic',
+        'golden_compass_relic',
+      ],
+    },
+  },
 ];

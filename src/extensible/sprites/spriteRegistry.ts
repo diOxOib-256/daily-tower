@@ -1527,6 +1527,16 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '虚空の火花',
     colors: ['transparent', '#2b193d', '#e76f51', '#f4a261'],
   },
+  glass_sentinel: {
+    id: 'glass_sentinel',
+    name: '硝子の番兵',
+    colors: ['transparent', '#1a2238', '#9daaf2', '#ffffff'],
+  },
+  item_void_barrier: {
+    id: 'item_void_barrier',
+    name: '虚空の障壁',
+    colors: ['transparent', '#1b263b', '#778da9', '#e0e1dd'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1837,6 +1847,8 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   tome_warden: { id: 'tome_warden', matrixId: 'tome_warden', defaultPalette: 'tome_warden' },
   item_chronos_hourglass: { id: 'item_chronos_hourglass', matrixId: 'item_chronos_hourglass', defaultPalette: 'item_chronos_hourglass' },
   item_void_spark: { id: 'item_void_spark', matrixId: 'item_void_spark', defaultPalette: 'item_void_spark' },
+  glass_sentinel: { id: 'glass_sentinel', matrixId: 'glass_sentinel', defaultPalette: 'glass_sentinel' },
+  item_void_barrier: { id: 'item_void_barrier', matrixId: 'item_void_barrier', defaultPalette: 'item_void_barrier' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

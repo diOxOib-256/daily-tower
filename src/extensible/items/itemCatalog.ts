@@ -2025,6 +2025,23 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     salvageGold: 6,
     description: '虚空から小さな火種を呼び出し、敵を焼く。序盤から扱いやすい燃焼系スキルの基本型。',
   },
+  void_barrier: {
+    id: 'void_barrier',
+    name: '虚空の障壁',
+    kind: 'skill',
+    spriteId: 'item_void_barrier',
+    category: 'buff',
+    maxChargesPerBattle: 2,
+    healPercent: 20,
+    applyStatus: {
+      target: 'self',
+      statusId: 'shield',
+      value: 20,
+      duration: 2,
+    },
+    salvageGold: 6,
+    description: '虚空の魔力を凝縮して傷を癒やしつつ、強固な光の障壁を展開する中層向けの防御術。最大HPの20%を回復し、自身に20ダメージを吸収する障壁(2T)を展開（1戦2回）。',
+  },
 };
 
 export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
