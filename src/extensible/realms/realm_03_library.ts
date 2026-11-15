@@ -139,10 +139,10 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     title: '第106層：硝子鏡の書庫',
     subtitle: '結晶化した硝子の番兵が巡回し、虚空の光を屈折させながら中層への侵入者を阻む階層',
     encounters: [
-      { type: 'battle', enemyId: 'glass_sentinel', enemyStatScale: 1.00 },
-      { type: 'battle', enemyIds: ['void_scribe', 'glass_sentinel'], enemyStatScale: 1.00 },
+      { type: 'battle', enemyId: 'glass_sentinel', enemyStatScale: 0.85 },
+      { type: 'battle', enemyIds: ['void_scribe', 'glass_sentinel'], enemyStatScale: 0.85 },
       { type: 'event', eventId: 'catalog_pedestal' },
-      { type: 'battle', enemyIds: ['astral_owl', 'glass_sentinel'], enemyStatScale: 1.00 },
+      { type: 'battle', enemyIds: ['astral_owl', 'glass_sentinel'], enemyStatScale: 0.85 },
     ],
     rewardPool: {
       equipmentIds: ['starlight_robe', 'astral_quill', 'stargazer_silver_sword', 'librarian_robe'],
