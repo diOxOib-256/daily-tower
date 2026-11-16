@@ -1757,6 +1757,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '胞子王マイコニド',
     colors: ['#00000000', '#240046', '#9d4edd', '#ff9ebb'],
   },
+  verdant_battleaxe: {
+    id: 'verdant_battleaxe',
+    name: '深緑の戦斧',
+    colors: ['#00000000', '#1f2421', '#6c757d', '#e9ecef'],
+  },
+  ancient_staff: {
+    id: 'ancient_staff',
+    name: '古樹の魔杖',
+    colors: ['#00000000', '#241914', '#6b4423', '#95d5b2'],
+  },
+  carapace_cuirass: {
+    id: 'carapace_cuirass',
+    name: '甲殻の胸甲',
+    colors: ['#00000000', '#1a1817', '#6b4423', '#ddb892'],
+  },
+  deepwood_plate: {
+    id: 'deepwood_plate',
+    name: '深緑の重鎧',
+    colors: ['#00000000', '#1c2220', '#4f6d7a', '#dee2e6'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2112,6 +2132,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   rime_sprite: { id: 'rime_sprite', matrixId: 'rime_sprite', defaultPalette: 'rime_sprite' },
   blighted_lizard: { id: 'blighted_lizard', matrixId: 'blighted_lizard', defaultPalette: 'blighted_lizard' },
   myconid_sovereign: { id: 'myconid_sovereign', matrixId: 'myconid_sovereign', defaultPalette: 'myconid_sovereign' },
+  verdant_battleaxe: { id: 'verdant_battleaxe', matrixId: 'verdant_battleaxe', defaultPalette: 'verdant_battleaxe' },
+  ancient_staff: { id: 'ancient_staff', matrixId: 'ancient_staff', defaultPalette: 'ancient_staff' },
+  carapace_cuirass: { id: 'carapace_cuirass', matrixId: 'carapace_cuirass', defaultPalette: 'carapace_cuirass' },
+  deepwood_plate: { id: 'deepwood_plate', matrixId: 'deepwood_plate', defaultPalette: 'deepwood_plate' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

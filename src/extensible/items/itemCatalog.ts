@@ -423,6 +423,26 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     salvageGold: 20,
     description: 'しなやかな古樹の枝で作られた長弓。自然の魔力を矢に乗せて射抜く。',
   },
+  verdant_battleaxe: {
+    id: 'verdant_battleaxe',
+    name: '深緑の戦斧',
+    kind: 'weapon',
+    spriteId: 'verdant_battleaxe',
+    atk: 20,
+    element: 'physical',
+    salvageGold: 22,
+    description: '樹海の硬木を柄に使い、分厚い鉄刃を備えた大型の戦斧。',
+  },
+  ancient_staff: {
+    id: 'ancient_staff',
+    name: '古樹の魔杖',
+    kind: 'weapon',
+    spriteId: 'ancient_staff',
+    atk: 21,
+    element: 'nature',
+    salvageGold: 24,
+    description: '長年魔力を吸い込んだ古樹の枝に、緑の宝玉を嵌め込んだ魔杖。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -736,6 +756,26 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     maxHpBonus: 40,
     salvageGold: 20,
     description: '鉄木の小片を鎖で繋ぎ合わせた重厚な鎧。最大HPを大きく引き上げる。',
+  },
+  carapace_cuirass: {
+    id: 'carapace_cuirass',
+    name: '甲殻の胸甲',
+    kind: 'armor',
+    spriteId: 'carapace_cuirass',
+    def: 7,
+    maxHpBonus: 42,
+    salvageGold: 22,
+    description: '大型甲虫の硬質な外殻を継ぎ合わせて作られた頑丈な胸甲。',
+  },
+  deepwood_plate: {
+    id: 'deepwood_plate',
+    name: '深緑の重鎧',
+    kind: 'armor',
+    spriteId: 'deepwood_plate',
+    def: 7,
+    maxHpBonus: 46,
+    salvageGold: 24,
+    description: '黒鉄の板金に霊木の芯材を仕込み、耐久力を極限まで高めた重鎧。',
   },
 };
 
