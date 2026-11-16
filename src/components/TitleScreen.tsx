@@ -64,7 +64,7 @@ export function TitleScreen({
 
       <div className="anim-rise-in relative z-10 flex w-full max-w-xl flex-col items-center text-center">
         <div className="rpg-actor mb-2">
-          <PixelSpriteCanvas spriteId={playerSpriteId} paletteId={playerPaletteId} scale={9} />
+          <PixelSpriteCanvas spriteId={playerSpriteId} paletteId={playerPaletteId} scale={9} className="h-[72px] w-[72px]" />
         </div>
 
         <p className="text-[11px] font-bold tracking-[0.35em] text-indigo-300">
