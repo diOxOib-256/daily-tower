@@ -463,6 +463,26 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     salvageGold: 28,
     description: '精霊樹の力を宿した長柄の戦戟。自然の魔力を纏った刃が敵を断つ。',
   },
+  worldtree_greatsword: {
+    id: 'worldtree_greatsword',
+    name: '世界樹の断罪剣',
+    kind: 'weapon',
+    spriteId: 'worldtree_greatsword',
+    atk: 24,
+    element: 'physical',
+    salvageGold: 30,
+    description: '鋼鉄と世界樹の芯材を鍛え上げた大剣。Realm 1 における物理武器の到達点。',
+  },
+  primordial_spear: {
+    id: 'primordial_spear',
+    name: '原初樹の霊槍',
+    kind: 'weapon',
+    spriteId: 'primordial_spear',
+    atk: 25,
+    element: 'nature',
+    salvageGold: 32,
+    description: '原初の霊木から削り出された聖なる長槍。濃密な自然魔力を纏い敵を貫く。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -816,6 +836,26 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     maxHpBonus: 55,
     salvageGold: 28,
     description: '鉄木と霊石を融合させて作られた最高峰の重鎧。耐久力を大幅に高める。',
+  },
+  paladin_verdant_armor: {
+    id: 'paladin_verdant_armor',
+    name: '近衛の翠鋼鎧',
+    kind: 'armor',
+    spriteId: 'paladin_verdant_armor',
+    def: 9,
+    maxHpBonus: 60,
+    salvageGold: 30,
+    description: '世界樹の近衛騎士が纏う翠鋼の板金鎧。高い防御力と強靭な生命力を授ける。',
+  },
+  primordial_aegis_plate: {
+    id: 'primordial_aegis_plate',
+    name: '原初樹の聖鎧',
+    kind: 'armor',
+    spriteId: 'primordial_aegis_plate',
+    def: 9,
+    maxHpBonus: 65,
+    salvageGold: 32,
+    description: '原初樹の加護を宿した最高峰の聖鎧。過酷な頂上決戦をも耐え抜く鉄壁の守り。',
   },
 };
 

@@ -1972,6 +1972,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '始原の世界樹',
     colors: ['#00000000', '#0d1f16', '#1e5631', '#ffd166'],
   },
+  worldtree_greatsword: {
+    id: 'worldtree_greatsword',
+    name: '世界樹の断罪剣',
+    colors: ['#00000000', '#1f2421', '#8d99ae', '#ffd166'],
+  },
+  primordial_spear: {
+    id: 'primordial_spear',
+    name: '原初樹の霊槍',
+    colors: ['#00000000', '#14211d', '#2d6a4f', '#b7e4c7'],
+  },
+  paladin_verdant_armor: {
+    id: 'paladin_verdant_armor',
+    name: '近衛の翠鋼鎧',
+    colors: ['#00000000', '#14211d', '#2d6a4f', '#ffd166'],
+  },
+  primordial_aegis_plate: {
+    id: 'primordial_aegis_plate',
+    name: '原初樹の聖鎧',
+    colors: ['#00000000', '#1b263b', '#4ea8de', '#e0fbfc'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2370,6 +2390,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   leylines_wyvern: { id: 'leylines_wyvern', matrixId: 'leylines_wyvern', defaultPalette: 'leylines_wyvern' },
   worldtree_paladin: { id: 'worldtree_paladin', matrixId: 'worldtree_paladin', defaultPalette: 'worldtree_paladin' },
   primordial_treant: { id: 'primordial_treant', matrixId: 'primordial_treant', defaultPalette: 'primordial_bark' },
+  worldtree_greatsword: { id: 'worldtree_greatsword', matrixId: 'worldtree_greatsword', defaultPalette: 'worldtree_greatsword' },
+  primordial_spear: { id: 'primordial_spear', matrixId: 'primordial_spear', defaultPalette: 'primordial_spear' },
+  paladin_verdant_armor: { id: 'paladin_verdant_armor', matrixId: 'paladin_verdant_armor', defaultPalette: 'paladin_verdant_armor' },
+  primordial_aegis_plate: { id: 'primordial_aegis_plate', matrixId: 'primordial_aegis_plate', defaultPalette: 'primordial_aegis_plate' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
