@@ -653,10 +653,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第41層：霊気満ちる世界樹の麓',
     subtitle: '翠色の霊気が立ち込め、樹海の最深部へと足を踏み入れる最終区画の入口',
     encounters: [
-      { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 1.199 },
+      { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 0.62 },
       { type: 'event', eventId: 'worldtree_font' },
-      { type: 'battle', enemyId: 'amber_scarab', enemyStatScale: 1.199 },
-      { type: 'battle', enemyIds: ['abyssal_moss_slime', 'fungal_shaman'], enemyStatScale: 1.199 },
+      { type: 'battle', enemyId: 'amber_scarab', enemyStatScale: 0.62 },
+      { type: 'battle', enemyIds: ['abyssal_moss_slime', 'fungal_shaman'], enemyStatScale: 0.62 },
     ],
   },
   {
@@ -665,10 +665,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第42層：凍霧と古狼の樹廊',
     subtitle: '冷気を纏う古狼と深淵の苔スライムが縄張りを守り、厳しい連戦が始まる回廊',
     encounters: [
-      { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 1.5 },
-      { type: 'battle', enemyId: 'abyssal_moss_slime', enemyStatScale: 1.5 },
+      { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 0.7 },
+      { type: 'battle', enemyId: 'abyssal_moss_slime', enemyStatScale: 0.7 },
       { type: 'event', eventId: 'elder_reliquary' },
-      { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 1.5 },
+      { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 0.7 },
     ],
   },
   {
@@ -677,10 +677,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第43層：聖域の根の野営地',
     subtitle: '38F以来の安息の空間。近衛騎士の関門を前に、体力と消耗品を整える階層',
     encounters: [
-      { type: 'battle', enemyId: 'amber_scarab', enemyStatScale: 1.169 },
-      { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 1.169 },
+      { type: 'battle', enemyId: 'amber_scarab', enemyStatScale: 0.7 },
+      { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 0.7 },
       { type: 'event', eventId: 'worldtree_sanctuary_camp' },
-      { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 1.169 },
+      { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 0.7 },
     ],
   },
   {
@@ -689,11 +689,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第44層：尖兵と奇術師の防衛線',
     subtitle: '世界樹の尖兵と呪胞子の奇術師が連携し、近衛騎士への道を固める防衛階層',
     encounters: [
-      { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 1.232 },
-      { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 1.232 },
+      { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 0.88 },
+      { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 0.88 },
       { type: 'event', eventId: 'worldtree_font' },
-      { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 1.232 },
-      { type: 'battle', enemyId: 'amber_scarab', enemyStatScale: 1.232 },
+      { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 0.88 },
+      { type: 'battle', enemyId: 'amber_scarab', enemyStatScale: 0.88 },
     ],
   },
   {
@@ -702,10 +702,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第45層：世界樹の近衛聖殿',
     subtitle: '頂点への最後の門番「世界樹の近衛騎士」が長槍と大盾を構えて立ち塞がる聖殿',
     encounters: [
-      { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 0.72 },
       { type: 'event', eventId: 'elder_reliquary' },
-      { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 1.45 },
-      { type: 'miniboss', enemyId: 'worldtree_paladin', enemyStatScale: 1.94 },
+      { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 0.72 },
+      { type: 'miniboss', enemyId: 'worldtree_paladin', enemyStatScale: 0.95 },
     ],
   },
   {
@@ -714,10 +714,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第46層：紅蓮と霊脈の深奥',
     subtitle: '灼熱の樹皮獣と霊脈を駆ける翼竜が現れ、Realm 1 最上位武具の力が試される階層',
     encounters: [
-      { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 1.442 },
+      { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 0.6 },
       { type: 'event', eventId: 'worldtree_font' },
-      { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 1.442 },
-      { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 1.442 },
+      { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 0.6 },
+      { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 0.6 },
     ],
   },
   {
@@ -726,11 +726,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第47層：飛竜と呪胞子の空廊',
     subtitle: '霊脈の翼竜が上空から襲い、呪胞子の奇術師が瘴気を操る過酷な連戦地帯',
     encounters: [
-      { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 1.45 },
-      { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 0.6 },
+      { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 0.6 },
       { type: 'event', eventId: 'elder_reliquary' },
-      { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 1.45 },
-      { type: 'battle', enemyId: 'abyssal_moss_slime', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 0.6 },
+      { type: 'battle', enemyId: 'abyssal_moss_slime', enemyStatScale: 0.6 },
     ],
   },
   {
@@ -739,10 +739,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第48層：原初前夜の聖域野営',
     subtitle: '43F以来の安息の空間。50Fの原初のトレントとの決戦に向け、最後の休息をとる階層',
     encounters: [
-      { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 1.401 },
-      { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 1.401 },
+      { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 0.72 },
+      { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 0.72 },
       { type: 'event', eventId: 'worldtree_sanctuary_camp' },
-      { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 1.401 },
+      { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 0.72 },
     ],
   },
   {
@@ -751,11 +751,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第49層：世界樹の王冠回廊',
     subtitle: '原初のトレントが座す頂上直下の回廊。樹海の精鋭たちが最後の抵抗を見せる階層',
     encounters: [
-      { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 1.185 },
-      { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 1.185 },
+      { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 0.9 },
+      { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 0.9 },
       { type: 'event', eventId: 'worldtree_font' },
-      { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 1.185 },
-      { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 1.185 },
+      { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 0.9 },
+      { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 0.9 },
     ],
   },
   {
@@ -764,9 +764,9 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第50層：原初樹の頂',
     subtitle: '樹海の塔の最上階。領域の主「原初のトレント」が立ち塞がる Realm 1 頂上決戦',
     encounters: [
-      { type: 'battle', enemyId: 'abyssal_moss_slime', enemyStatScale: 1.201 },
+      { type: 'battle', enemyId: 'abyssal_moss_slime', enemyStatScale: 0.70 },
       { type: 'event', eventId: 'elder_reliquary' },
-      { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 0.697 },
+      { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 0.52 },
     ],
   },
 ];
