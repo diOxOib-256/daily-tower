@@ -420,6 +420,32 @@ logs: [...session.logs],
       return next;
     }
 
+    // Trigger turn_start effects from all equipped gear
+    for (const eff of collectEquippedEffects(loadout)) {
+      if (eff.trigger !== 'turn_start') continue;
+      const res = eff.handler({
+        playerCurrentHp: next.player.currentHp,
+        playerMaxHp: next.player.maxHp,
+        playerAtk: next.player.baseAtk,
+        playerDef: loadout.armor.def,
+        enemyCurrentHp: primary.currentHp,
+        enemyMaxHp: primary.maxHp,
+        turnNumber: next.turn,
+      });
+      if (res.applyStatusToPlayer) {
+        const applied = StatusEngine.applyStatus(next.player.statuses, res.applyStatusToPlayer);
+        next.player.statuses = applied.nextList;
+      }
+      if (res.applyStatusToEnemy) {
+        const applied = StatusEngine.applyStatus(primary.statuses, res.applyStatusToEnemy);
+        primary.statuses = applied.nextList;
+      }
+      if (res.healPlayer) {
+        next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + res.healPlayer);
+      }
+      if (res.logMessage) next.logs.push(res.logMessage);
+    }
+
     // 2. Player pre_action
     const pPreAction = StatusEngine.runPhase('pre_action', next.player.statuses, {
       ownerCurrentHp: next.player.currentHp,

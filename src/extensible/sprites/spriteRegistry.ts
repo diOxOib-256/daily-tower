@@ -1812,6 +1812,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '腐食の霧',
     colors: ['#00000000', '#1e162b', '#7209b7', '#e0aaff'],
   },
+  mycelial_crystal: {
+    id: 'mycelial_crystal',
+    name: '菌糸の結晶',
+    colors: ['#00000000', '#240046', '#9d4edd', '#f3c4fb'],
+  },
+  spirit_crest: {
+    id: 'spirit_crest',
+    name: '精霊樹の紋章',
+    colors: ['#00000000', '#1b2e1b', '#52b788', '#fefae0'],
+  },
+  sovereign_nectar: {
+    id: 'sovereign_nectar',
+    name: '森王の蜜薬',
+    colors: ['#00000000', '#2b1b12', '#f59e0b', '#fef3c7'],
+  },
+  colossus_draught: {
+    id: 'colossus_draught',
+    name: '巨像の活力剤',
+    colors: ['#00000000', '#1b263b', '#2ec4b6', '#cbf3f0'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2178,6 +2198,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   shell_fortress: { id: 'shell_fortress', matrixId: 'shell_fortress', defaultPalette: 'shell_fortress' },
   verdant_war_cry: { id: 'verdant_war_cry', matrixId: 'verdant_war_cry', defaultPalette: 'verdant_war_cry' },
   corrosive_haze: { id: 'corrosive_haze', matrixId: 'corrosive_haze', defaultPalette: 'corrosive_haze' },
+  mycelial_crystal: { id: 'mycelial_crystal', matrixId: 'mycelial_crystal', defaultPalette: 'mycelial_crystal' },
+  spirit_crest: { id: 'spirit_crest', matrixId: 'spirit_crest', defaultPalette: 'spirit_crest' },
+  sovereign_nectar: { id: 'sovereign_nectar', matrixId: 'sovereign_nectar', defaultPalette: 'sovereign_nectar' },
+  colossus_draught: { id: 'colossus_draught', matrixId: 'colossus_draught', defaultPalette: 'colossus_draught' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

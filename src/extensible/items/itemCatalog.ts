@@ -2897,6 +2897,31 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     cleanse: true,
     description: '朽木の精霊が守り続けてきた聖なる雫。深手を大きく癒やしあらゆる弱体を払う。',
   },
+  sovereign_nectar: {
+    id: 'sovereign_nectar',
+    name: '森王の蜜薬',
+    kind: 'consumable',
+    spriteId: 'sovereign_nectar',
+    maxCharges: 2,
+    healPercent: 40,
+    cleanse: true,
+    description: '胞子王が秘蔵していた濃厚な蜜薬。深い傷とあらゆる弱体を瞬時に癒やす。',
+  },
+  colossus_draught: {
+    id: 'colossus_draught',
+    name: '巨像の活力剤',
+    kind: 'consumable',
+    spriteId: 'colossus_draught',
+    maxCharges: 2,
+    healPercent: 50,
+    applyStatus: {
+      target: 'self',
+      statusId: 'shield',
+      value: 15,
+      duration: 2,
+    },
+    description: '巨像の核から抽出された高純度の霊液。体力を大きく回復し強固な障壁を張る。',
+  },
 };
 
 export const RELIC_CATALOG: Record<string, RelicItem> = {
@@ -3169,6 +3194,24 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     effectId: 'amber_heart',
     salvageGold: 22,
     description: '温かな光を宿した琥珀の結晶。戦闘に勝利するたび、わずかに体力を癒やす。',
+  },
+  mycelial_crystal: {
+    id: 'mycelial_crystal',
+    name: '菌糸の結晶',
+    kind: 'relic',
+    spriteId: 'mycelial_crystal',
+    effectId: 'mycelial_crystal',
+    salvageGold: 22,
+    description: '魔力を蓄えた菌糸の結晶。戦闘が長引くほど持ち主の攻撃力を引き上げる。',
+  },
+  spirit_crest: {
+    id: 'spirit_crest',
+    name: '精霊樹の紋章',
+    kind: 'relic',
+    spriteId: 'spirit_crest',
+    effectId: 'spirit_crest',
+    salvageGold: 24,
+    description: '古樹の加護が刻まれた翠の紋章。スキルを放つたび、癒しの力が数ターンにわたり傷を癒やす。',
   },
 };
 

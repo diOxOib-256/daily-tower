@@ -415,6 +415,37 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:琥珀の核] 温かな光が傷を癒やした！`,
     }),
   },
+  mycelial_crystal: {
+    id: 'mycelial_crystal',
+    name: '菌糸の結晶',
+    trigger: 'turn_start',
+    handler: (ctx) => {
+      if (ctx.turnNumber !== 3) {
+        return { logMessage: '' };
+      }
+      return {
+        applyStatusToPlayer: {
+          statusId: 'atk_buff',
+          value: 15,
+          duration: 2,
+        },
+        logMessage: `[レリック:菌糸の結晶] 蓄えた魔力が解き放たれ、攻撃力が15%上昇(2T)！`,
+      };
+    },
+  },
+  spirit_crest: {
+    id: 'spirit_crest',
+    name: '精霊樹の紋章',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'regen',
+        value: 4,
+        duration: 2,
+      },
+      logMessage: `[レリック:精霊樹の紋章] 若葉の癒しが傷を包み始めた！`,
+    }),
+  },
 };
 
 
