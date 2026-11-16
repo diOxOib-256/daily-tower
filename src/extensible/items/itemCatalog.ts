@@ -403,6 +403,26 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     salvageGold: 15,
     description: '硬質な樹木の穂先に魔力を宿した槍。自然属性に弱い敵へ高い威力を発揮する。',
   },
+  iron_hatchet: {
+    id: 'iron_hatchet',
+    name: '鉄の木こり斧',
+    kind: 'weapon',
+    spriteId: 'iron_hatchet',
+    atk: 18,
+    element: 'physical',
+    salvageGold: 18,
+    description: '硬い樹皮や甲羅を叩き割るために鍛えられた鉄製の戦斧。',
+  },
+  elder_bow: {
+    id: 'elder_bow',
+    name: '古樹の長弓',
+    kind: 'weapon',
+    spriteId: 'elder_bow',
+    atk: 19,
+    element: 'nature',
+    salvageGold: 20,
+    description: 'しなやかな古樹の枝で作られた長弓。自然の魔力を矢に乗せて射抜く。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -696,6 +716,26 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     maxHpBonus: 25,
     salvageGold: 15,
     description: '弾力のある樹海の苔繊維を編み込んだ胸当て。衝撃を吸収し生存力を高める。',
+  },
+  spider_silk_cloak: {
+    id: 'spider_silk_cloak',
+    name: '樹冠糸の外套',
+    kind: 'armor',
+    spriteId: 'spider_silk_cloak',
+    def: 6,
+    maxHpBonus: 35,
+    salvageGold: 18,
+    description: '樹冠グモの強靭な糸で織り上げた軽量の外套。高い魔力耐性と丈夫さを持つ。',
+  },
+  ironbark_mail: {
+    id: 'ironbark_mail',
+    name: '鉄樹の鎖帷子',
+    kind: 'armor',
+    spriteId: 'ironbark_mail',
+    def: 6,
+    maxHpBonus: 40,
+    salvageGold: 20,
+    description: '鉄木の小片を鎖で繋ぎ合わせた重厚な鎧。最大HPを大きく引き上げる。',
   },
 };
 

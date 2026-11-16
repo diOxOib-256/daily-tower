@@ -1657,6 +1657,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '古の鬼火王',
     colors: ['#00000000', '#1a1423', '#b5179e', '#f72585'],
   },
+  iron_hatchet: {
+    id: 'iron_hatchet',
+    name: '鉄の木こり斧',
+    colors: ['#00000000', '#1f2421', '#6c757d', '#dee2e6'],
+  },
+  elder_bow: {
+    id: 'elder_bow',
+    name: '古樹の長弓',
+    colors: ['#00000000', '#241914', '#6b4423', '#d4e09b'],
+  },
+  spider_silk_cloak: {
+    id: 'spider_silk_cloak',
+    name: '樹冠糸の外套',
+    colors: ['#00000000', '#1a1829', '#4a4e69', '#c9ada7'],
+  },
+  ironbark_mail: {
+    id: 'ironbark_mail',
+    name: '鉄樹の鎖帷子',
+    colors: ['#00000000', '#1c2220', '#5b6e67', '#dee2e6'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1992,6 +2012,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   mossy_gargoyle: { id: 'mossy_gargoyle', matrixId: 'mossy_gargoyle', defaultPalette: 'mossy_gargoyle' },
   deepwood_viper: { id: 'deepwood_viper', matrixId: 'deepwood_viper', defaultPalette: 'deepwood_viper' },
   ancient_wisp_lord: { id: 'ancient_wisp_lord', matrixId: 'ancient_wisp_lord', defaultPalette: 'ancient_wisp_lord' },
+  iron_hatchet: { id: 'iron_hatchet', matrixId: 'iron_hatchet', defaultPalette: 'iron_hatchet' },
+  elder_bow: { id: 'elder_bow', matrixId: 'elder_bow', defaultPalette: 'elder_bow' },
+  spider_silk_cloak: { id: 'spider_silk_cloak', matrixId: 'spider_silk_cloak', defaultPalette: 'spider_silk_cloak' },
+  ironbark_mail: { id: 'ironbark_mail', matrixId: 'ironbark_mail', defaultPalette: 'ironbark_mail' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
