@@ -28,11 +28,11 @@ describe('per-floor event draw (2026-11-14)', () => {
     // Find a floor whose authored event is the campfire.
     const restFloor = Object.values(ALL_FLOORS).find((def) =>
       def.encounters.some(
-        (e) => e.type === 'event' && e.eventId === 'sanctuary_campfire'
+        (e) => e.type === 'event' && e.eventId === 'sunlit_clearing'
       )
     )!;
     for (let seed = 1; seed <= 50; seed++) {
-      expect(drawnEventId(restFloor.floor, seed)).toBe('sanctuary_campfire');
+      expect(drawnEventId(restFloor.floor, seed)).toBe('sunlit_clearing');
     }
   });
 

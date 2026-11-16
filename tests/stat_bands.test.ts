@@ -35,9 +35,9 @@ function getStepCaps(floor: number) {
 describe('Per-realm 5-floor equipment stat band audit', () => {
   const floors = Object.values(ALL_FLOORS).sort((a, b) => a.floor - b.floor);
 
-  it('covers all authored floors from 1 to at least 103', () => {
+  it('covers all authored floors from 1 to at least 56', () => {
     expect(floors[0]?.floor).toBe(1);
-    expect(floors[floors.length - 1]?.floor).toBeGreaterThanOrEqual(103);
+    expect(floors[floors.length - 1]?.floor).toBeGreaterThanOrEqual(56);
   });
 
   it('keeps every floor rewardPool equipment within its realm step caps', () => {

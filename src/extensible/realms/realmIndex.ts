@@ -30,25 +30,10 @@ export const REALM_METADATA: Record<number, RealmMetadata> = {
   },
   2: {
     realm: 2,
-    name: '黄昏の製鉄所',
-    englishName: 'The Sunken Foundry',
-    startFloor: 51,
-    endFloor: 100,
-    bossName: '灰燼の巨神・ヴルカン (The Ashen Colossus)',
-    environmentalRuleDescription: '灼熱環境：3ターンごとに敵味方へ火傷(5%)が発生',
-    environmentalStatus: {
-      everyNTurns: 3,
-      statusId: 'burn',
-      value: 5,
-      duration: 2,
-    },
-  },
-  3: {
-    realm: 3,
     name: '虚空の図書館',
     englishName: 'The Starless Library',
-    startFloor: 101,
-    endFloor: 150,
+    startFloor: 51,
+    endFloor: 100,
     bossName: '時詠みの司書 (The Chrono Archivist)',
     environmentalRuleDescription: '静寂の書架：3ターンごとに敵味方へシールド(8)が発生',
     environmentalStatus: {

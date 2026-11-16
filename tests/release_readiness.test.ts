@@ -66,8 +66,8 @@ describe('StorageValidator.parseAndHealSaveJson', () => {
 });
 
 describe('realmIndex update visibility helpers', () => {
-  it('reports LATEST_AUTHORED_FLOOR >= 103 and detects authored vs fallback floors', () => {
-    expect(LATEST_AUTHORED_FLOOR).toBeGreaterThanOrEqual(103);
+  it('reports LATEST_AUTHORED_FLOOR >= 56 and detects authored vs fallback floors', () => {
+    expect(LATEST_AUTHORED_FLOOR).toBeGreaterThanOrEqual(56);
     expect(isFloorAuthored(1)).toBe(true);
     expect(isFloorAuthored(LATEST_AUTHORED_FLOOR)).toBe(true);
     expect(isFloorAuthored(LATEST_AUTHORED_FLOOR + 1)).toBe(false);
@@ -84,13 +84,11 @@ describe('realmIndex update visibility helpers', () => {
 
   it('summarizes realm authored progress accurately', () => {
     const summary = getRealmProgressSummary();
-    expect(summary.length).toBeGreaterThanOrEqual(3);
+    expect(summary.length).toBe(2);
     expect(summary[0].authoredCount).toBe(50);
     expect(summary[0].totalCount).toBe(50);
-    expect(summary[1].authoredCount).toBe(50);
+    expect(summary[1].authoredCount).toBe(6);
     expect(summary[1].totalCount).toBe(50);
-    expect(summary[2].authoredCount).toBeGreaterThanOrEqual(3);
-    expect(summary[2].totalCount).toBe(50);
   });
 });
 

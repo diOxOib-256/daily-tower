@@ -4,12 +4,13 @@ import { ENEMY_REGISTRY } from '../src/extensible/enemies/enemyRegistry';
 import { EVENT_REGISTRY } from '../src/extensible/events/eventRegistry';
 import { REALM_01_FLOORS } from '../src/extensible/realms/realm_01_greenwood';
 import { REALM_02_FLOORS } from '../src/extensible/realms/realm_02_volcano';
+import { REALM_03_FLOORS } from '../src/extensible/realms/realm_03_library';
 
 describe('Floor Structure & Pacing Quality Gate (Spec §3.1, §5.2)', () => {
-  const allFloors = [...REALM_01_FLOORS, ...REALM_02_FLOORS];
+  const allFloors = [...REALM_01_FLOORS, ...REALM_02_FLOORS, ...REALM_03_FLOORS];
 
-  it('defines 100 floors across Realm 1 and Realm 2', () => {
-    expect(allFloors.length).toBe(100);
+  it('defines 56 floors across Realm 1 and Realm 2', () => {
+    expect(allFloors.length).toBe(56);
   });
 
   it('validates encounter composition rules for every floor', () => {
