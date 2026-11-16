@@ -33,6 +33,7 @@ import {
 } from '../core/StorageValidator';
 import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
 import { EVENT_REGISTRY } from '../extensible/events/eventRegistry';
+import { resolveRewardPool } from '../extensible/items/rewardPoolDerivation';
 import { AnyCatalogItem } from '../extensible/items/itemCatalog';
 import { SKILL_CATALOG, SkillItem } from '../extensible/items/itemCatalog';
 import { REALM_METADATA } from '../extensible/realms/realmIndex';
@@ -398,7 +399,7 @@ export function simulateMixedRun(
 export function obtainableItemIds(maxFloor = 103): Set<string> {
   const ids = new Set<string>();
   for (let f = 1; f <= maxFloor; f++) {
-    const pool = FloorRunner.getFloor(f).rewardPool;
+    const pool = resolveRewardPool(FloorRunner.getFloor(f));
     for (const id of pool.equipmentIds) ids.add(id);
     for (const id of pool.skillIds) ids.add(id);
     for (const id of pool.utilityIds) ids.add(id);

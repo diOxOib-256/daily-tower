@@ -28,7 +28,8 @@ export interface EnemyDefinition {
   hp: number;
   atk: number;
   def: number;
-  goldReward: number;
+  /** Optional: when omitted, gold is derived from stats (see enemyGold.ts). */
+  goldReward?: number;
   isBoss?: boolean;
   weakness?: ElementType;
   resistance?: ElementType;

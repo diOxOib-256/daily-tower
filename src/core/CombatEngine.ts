@@ -1,4 +1,5 @@
 import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
+import { enemyGoldReward } from '../extensible/enemies/enemyGold';
 import { EnemyAction, EnemyDefinition, EnemyPhase } from '../extensible/enemies/types';
 import {
   ArmorItem,
@@ -159,7 +160,7 @@ baseDef: scaled[i].def,
 statuses: enemyStatusesList[i],
 })),
     enemyDefs: defs,
-    totalGoldReward: defs.reduce((sum, d) => sum + d.goldReward, 0),
+    totalGoldReward: defs.reduce((sum, d) => sum + enemyGoldReward(d), 0),
     skillCharges,
     consumableCharges,
     logs,

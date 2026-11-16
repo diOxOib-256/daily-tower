@@ -7,6 +7,7 @@ import {
   SKILL_CATALOG,
   WEAPON_CATALOG,
 } from '../extensible/items/itemCatalog';
+import { resolveRewardPool } from '../extensible/items/rewardPoolDerivation';
 import { ALL_FLOORS } from '../extensible/realms/realmIndex';
 
 export interface EventExecutionState {
@@ -132,7 +133,7 @@ export class EventEngine {
     const ids = new Set<string>();
     for (const [num, def] of Object.entries(ALL_FLOORS)) {
       if (Number(num) > maxFloor) continue;
-      const pool = def.rewardPool;
+      const pool = resolveRewardPool(def);
       for (const id of pool.equipmentIds) ids.add(id);
       for (const id of pool.skillIds) ids.add(id);
       for (const id of pool.utilityIds) ids.add(id);

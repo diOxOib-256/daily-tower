@@ -9,6 +9,7 @@ import {
   WEAPON_CATALOG,
   WeaponItem,
 } from '../extensible/items/itemCatalog';
+import { resolveRewardPool } from '../extensible/items/rewardPoolDerivation';
 import { FloorDefinition } from '../extensible/realms/realm_01_greenwood';
 
 export interface RewardCard {
@@ -76,6 +77,7 @@ export class DropPacingEngine {
     rng: () => number = Math.random,
     owned?: OwnedRewardInfo
   ): [RewardCard, RewardCard, RewardCard] {
+    const pool = resolveRewardPool(floorDef);
     const isApex = floorDef.floor % 50 === 0;
     const isMiniboss = !isApex && floorDef.floor % 5 === 0;
     const goldBonusAmount = 40 + floorDef.floor;
@@ -97,7 +99,7 @@ export class DropPacingEngine {
     });
 
     // Card 1: Equipment
-    const rawEquipPool: (WeaponItem | ArmorItem)[] = floorDef.rewardPool.equipmentIds
+    const rawEquipPool: (WeaponItem | ArmorItem)[] = pool.equipmentIds
       .map((id): WeaponItem | ArmorItem | undefined => WEAPON_CATALOG[id] ?? ARMOR_CATALOG[id])
       .filter((x): x is WeaponItem | ArmorItem => Boolean(x));
 
@@ -163,7 +165,7 @@ export class DropPacingEngine {
     }
 
     // Card 2: Skill
-    const rawSkillPool = floorDef.rewardPool.skillIds
+    const rawSkillPool = pool.skillIds
       .map((id) => SKILL_CATALOG[id])
       .filter(Boolean);
 
@@ -225,10 +227,10 @@ export class DropPacingEngine {
         potionRefillAmount: 1,
       };
     } else if (owned) {
-      const filteredRelicPool = floorDef.rewardPool.utilityIds
+      const filteredRelicPool = pool.utilityIds
         .map((id) => RELIC_CATALOG[id])
         .filter((r) => Boolean(r) && r.id !== owned.relicId);
-      const filteredConsumablePool = (floorDef.rewardPool.consumableIds ?? [])
+      const filteredConsumablePool = (pool.consumableIds ?? [])
         .map((id) => CONSUMABLE_CATALOG[id])
         .filter((c) => Boolean(c) && c.id !== owned.consumableId);
 
@@ -258,7 +260,7 @@ export class DropPacingEngine {
         card3 = makeGoldCard(3);
       }
     } else {
-      const relicPool = floorDef.rewardPool.utilityIds
+      const relicPool = pool.utilityIds
         .map((id) => RELIC_CATALOG[id])
         .filter(Boolean);
       const chosenRelic =

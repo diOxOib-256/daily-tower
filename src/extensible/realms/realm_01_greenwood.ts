@@ -26,7 +26,11 @@ export interface FloorDefinition {
   title: string;
   subtitle: string;
   encounters: Encounter[];
-  rewardPool: FloorRewardPool;
+  /**
+   * Optional: when omitted, the pool is derived from item debut floors
+   * (own block + previous block, band-filtered) by rewardPoolDerivation.
+   */
+  rewardPool?: FloorRewardPool;
 }
 
 /**

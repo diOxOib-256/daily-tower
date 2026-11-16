@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ARMOR_CATALOG, WEAPON_CATALOG } from '../src/extensible/items/itemCatalog';
+import { resolveRewardPool } from '../src/extensible/items/rewardPoolDerivation';
 import { ALL_FLOORS } from '../src/extensible/realms/realmIndex';
 
 /**
@@ -43,7 +44,7 @@ describe('Per-realm 5-floor equipment stat band audit', () => {
     const violations: string[] = [];
     for (const floorDef of floors) {
       const caps = getStepCaps(floorDef.floor);
-      for (const id of floorDef.rewardPool.equipmentIds) {
+      for (const id of resolveRewardPool(floorDef).equipmentIds) {
         const weapon = WEAPON_CATALOG[id];
         if (weapon) {
           if (weapon.atk > caps.maxAtk) {
@@ -76,7 +77,7 @@ describe('Per-realm 5-floor equipment stat band audit', () => {
   it('excludes dimensional-leap starter gear (verdant_blade / bark_cuirass) from all reward pools', () => {
     const found: string[] = [];
     for (const floorDef of floors) {
-      for (const id of floorDef.rewardPool.equipmentIds) {
+      for (const id of resolveRewardPool(floorDef).equipmentIds) {
         if (LEAP_ONLY_STARTER_IDS.has(id)) {
           found.push(`F${floorDef.floor}: ${id}`);
         }

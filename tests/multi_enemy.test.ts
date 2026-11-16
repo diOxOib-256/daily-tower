@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { CombatEngine, PlayerLoadout } from '../src/core/CombatEngine';
 import { FloorRunner } from '../src/core/FloorRunner';
+import { enemyGoldReward } from '../src/extensible/enemies/enemyGold';
 import { ENEMY_REGISTRY } from '../src/extensible/enemies/enemyRegistry';
 import {
   ARMOR_CATALOG,
@@ -27,7 +28,8 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
     expect(session.enemies[0].name).toBe(ENEMY_REGISTRY.moss_slime.name);
     expect(session.enemies[1].name).toBe(ENEMY_REGISTRY.venom_slime.name);
     expect(session.totalGoldReward).toBe(
-      ENEMY_REGISTRY.moss_slime.goldReward + ENEMY_REGISTRY.venom_slime.goldReward
+      enemyGoldReward(ENEMY_REGISTRY.moss_slime) +
+        enemyGoldReward(ENEMY_REGISTRY.venom_slime)
     );
   });
 
