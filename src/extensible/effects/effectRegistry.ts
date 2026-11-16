@@ -446,6 +446,37 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:精霊樹の紋章] 若葉の癒しが傷を包み始めた！`,
     }),
   },
+  hornet_stinger: {
+    id: 'hornet_stinger',
+    name: '大蜂の毒針',
+    trigger: 'on_attack',
+    handler: (ctx) => {
+      if (ctx.turnNumber !== 1) {
+        return { logMessage: '' };
+      }
+      return {
+        applyStatusToEnemy: {
+          statusId: 'poison',
+          value: 5,
+          duration: 2,
+        },
+        logMessage: '[レリック:大蜂の毒針] 最初の攻撃に乗せて毒針の毒(5)を流し込んだ！',
+      };
+    },
+  },
+  root_medallion: {
+    id: 'root_medallion',
+    name: '古根のメダル',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'regen',
+        value: 5,
+        duration: 3,
+      },
+      logMessage: '[レリック:古根のメダル] 古根の生命力が宿り、数ターンにわたり傷を癒やす(5%/3T)！',
+    }),
+  },
 };
 
 

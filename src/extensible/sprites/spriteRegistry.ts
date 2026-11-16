@@ -1922,6 +1922,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '怨霊の凍気',
     colors: ['#00000000', '#161925', '#48cae4', '#e0fbfc'],
   },
+  hornet_stinger: {
+    id: 'hornet_stinger',
+    name: '大蜂の毒針',
+    colors: ['#00000000', '#2b1b12', '#e09f3e', '#fff3b0'],
+  },
+  root_medallion: {
+    id: 'root_medallion',
+    name: '古根のメダル',
+    colors: ['#00000000', '#1c2220', '#5b6e67', '#a7c4b5'],
+  },
+  royal_amber_jelly: {
+    id: 'royal_amber_jelly',
+    name: '女王の琥珀蜜',
+    colors: ['#00000000', '#2b1b12', '#f59e0b', '#fef3c7'],
+  },
+  warden_sap_vial: {
+    id: 'warden_sap_vial',
+    name: '魔導樹の霊液',
+    colors: ['#00000000', '#1b263b', '#00b4d8', '#caf0f8'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2310,6 +2330,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   amber_aegis: { id: 'amber_aegis', matrixId: 'amber_aegis', defaultPalette: 'amber_aegis' },
   primal_surge: { id: 'primal_surge', matrixId: 'primal_surge', defaultPalette: 'primal_surge' },
   wraith_chill: { id: 'wraith_chill', matrixId: 'wraith_chill', defaultPalette: 'wraith_chill' },
+  hornet_stinger: { id: 'hornet_stinger', matrixId: 'hornet_stinger', defaultPalette: 'hornet_stinger' },
+  root_medallion: { id: 'root_medallion', matrixId: 'root_medallion', defaultPalette: 'root_medallion' },
+  royal_amber_jelly: { id: 'royal_amber_jelly', matrixId: 'royal_amber_jelly', defaultPalette: 'royal_amber_jelly' },
+  warden_sap_vial: { id: 'warden_sap_vial', matrixId: 'warden_sap_vial', defaultPalette: 'warden_sap_vial' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

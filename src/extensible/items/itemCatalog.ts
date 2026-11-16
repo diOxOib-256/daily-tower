@@ -3081,6 +3081,31 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     },
     description: '巨像の核から抽出された高純度の霊液。体力を大きく回復し強固な障壁を張る。',
   },
+  royal_amber_jelly: {
+    id: 'royal_amber_jelly',
+    name: '女王の琥珀蜜',
+    kind: 'consumable',
+    spriteId: 'royal_amber_jelly',
+    maxCharges: 2,
+    healPercent: 55,
+    cleanse: true,
+    description: '琥珀の女王バチが蓄えていた最高純度の蜜。深手を大きく癒やし弱体を浄化する。',
+  },
+  warden_sap_vial: {
+    id: 'warden_sap_vial',
+    name: '魔導樹の霊液',
+    kind: 'consumable',
+    spriteId: 'warden_sap_vial',
+    maxCharges: 2,
+    healPercent: 60,
+    applyStatus: {
+      target: 'self',
+      statusId: 'shield',
+      value: 20,
+      duration: 2,
+    },
+    description: '古根の魔導樹の核から滴る蒼い霊液。体力を大幅に回復し強固な魔力障壁を張る。',
+  },
 };
 
 export const RELIC_CATALOG: Record<string, RelicItem> = {
@@ -3371,6 +3396,24 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     effectId: 'spirit_crest',
     salvageGold: 24,
     description: '古樹の加護が刻まれた翠の紋章。スキルを放つたび、癒しの力が数ターンにわたり傷を癒やす。',
+  },
+  hornet_stinger: {
+    id: 'hornet_stinger',
+    name: '大蜂の毒針',
+    kind: 'relic',
+    spriteId: 'hornet_stinger',
+    effectId: 'hornet_stinger',
+    salvageGold: 26,
+    description: '琥珀バチの鋭い毒針を加工した護符。戦闘中の最初の攻撃時、敵に毒を付与する。',
+  },
+  root_medallion: {
+    id: 'root_medallion',
+    name: '古根のメダル',
+    kind: 'relic',
+    spriteId: 'root_medallion',
+    effectId: 'root_medallion',
+    salvageGold: 28,
+    description: '古代樹の年輪が刻まれた石のメダル。戦闘が始まると古根の生命力が宿り、数ターンにわたり傷を癒やす。',
   },
 };
 
