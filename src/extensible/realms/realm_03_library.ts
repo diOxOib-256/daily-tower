@@ -163,11 +163,11 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     title: '第57層：羊皮紙の吹き溜まり',
     subtitle: '剥がれ落ちた禁書の頁が渦を巻き、古の知識の残滓が亡霊となって漂う回廊',
     encounters: [
-      { type: 'battle', enemyId: 'parchment_wraith', enemyStatScale: 0.75 },
-      { type: 'battle', enemyIds: ['glass_sentinel', 'parchment_wraith'], enemyStatScale: 0.75 },
+      { type: 'battle', enemyId: 'parchment_wraith', enemyStatScale: 0.60 },
+      { type: 'battle', enemyIds: ['glass_sentinel', 'parchment_wraith'], enemyStatScale: 0.60 },
       { type: 'event', eventId: 'forgotten_scriptorium' },
-      { type: 'battle', enemyIds: ['parchment_wraith', 'parchment_wraith'], enemyStatScale: 0.75 },
-      { type: 'battle', enemyId: 'parchment_wraith', enemyStatScale: 0.75 },
+      { type: 'battle', enemyIds: ['parchment_wraith', 'parchment_wraith'], enemyStatScale: 0.60 },
+      { type: 'battle', enemyId: 'parchment_wraith', enemyStatScale: 0.60 },
     ],
   },
 ];
