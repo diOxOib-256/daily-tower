@@ -1942,6 +1942,36 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '魔導樹の霊液',
     colors: ['#00000000', '#1b263b', '#00b4d8', '#caf0f8'],
   },
+  elderwood_specter: {
+    id: 'elderwood_specter',
+    name: '古樹の守護霊',
+    colors: ['#00000000', '#14211d', '#2a9d8f', '#b7e4c7'],
+  },
+  amber_scarab: {
+    id: 'amber_scarab',
+    name: '琥珀晶の甲虫',
+    colors: ['#00000000', '#2b1b12', '#b5651d', '#ffd166'],
+  },
+  pyrebark_beast: {
+    id: 'pyrebark_beast',
+    name: '紅蓮の樹皮獣',
+    colors: ['#00000000', '#24140e', '#9b2226', '#ff9f1c'],
+  },
+  leylines_wyvern: {
+    id: 'leylines_wyvern',
+    name: '霊脈の翼竜',
+    colors: ['#00000000', '#132a13', '#2b9348', '#80ffdb'],
+  },
+  worldtree_paladin: {
+    id: 'worldtree_paladin',
+    name: '世界樹の近衛騎士',
+    colors: ['#00000000', '#14211d', '#2d6a4f', '#ffd166'],
+  },
+  primordial_bark: {
+    id: 'primordial_bark',
+    name: '始原の世界樹',
+    colors: ['#00000000', '#0d1f16', '#1e5631', '#ffd166'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2334,6 +2364,12 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   root_medallion: { id: 'root_medallion', matrixId: 'root_medallion', defaultPalette: 'root_medallion' },
   royal_amber_jelly: { id: 'royal_amber_jelly', matrixId: 'royal_amber_jelly', defaultPalette: 'royal_amber_jelly' },
   warden_sap_vial: { id: 'warden_sap_vial', matrixId: 'warden_sap_vial', defaultPalette: 'warden_sap_vial' },
+  elderwood_specter: { id: 'elderwood_specter', matrixId: 'elderwood_specter', defaultPalette: 'elderwood_specter' },
+  amber_scarab: { id: 'amber_scarab', matrixId: 'amber_scarab', defaultPalette: 'amber_scarab' },
+  pyrebark_beast: { id: 'pyrebark_beast', matrixId: 'pyrebark_beast', defaultPalette: 'pyrebark_beast' },
+  leylines_wyvern: { id: 'leylines_wyvern', matrixId: 'leylines_wyvern', defaultPalette: 'leylines_wyvern' },
+  worldtree_paladin: { id: 'worldtree_paladin', matrixId: 'worldtree_paladin', defaultPalette: 'worldtree_paladin' },
+  primordial_treant: { id: 'primordial_treant', matrixId: 'primordial_treant', defaultPalette: 'primordial_bark' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
