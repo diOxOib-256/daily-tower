@@ -3265,6 +3265,31 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     },
     description: '古根の魔導樹の核から滴る蒼い霊液。体力を大幅に回復し強固な魔力障壁を張る。',
   },
+  paladin_cordial: {
+    id: 'paladin_cordial',
+    name: '近衛の聖薬',
+    kind: 'consumable',
+    spriteId: 'paladin_cordial',
+    maxCharges: 2,
+    healPercent: 60,
+    cleanse: true,
+    description: '世界樹の近衛騎士団に伝わる秘伝の霊薬。重傷を瞬時に癒やしあらゆる弱体を浄化する。',
+  },
+  worldtree_ambrosia: {
+    id: 'worldtree_ambrosia',
+    name: '世界樹の霊露',
+    kind: 'consumable',
+    spriteId: 'worldtree_ambrosia',
+    maxCharges: 2,
+    healPercent: 65,
+    applyStatus: {
+      target: 'self',
+      statusId: 'shield',
+      value: 22,
+      duration: 2,
+    },
+    description: '世界樹の頂から採取された至高の霊露。体力を大きく回復し鉄壁の障壁を纏わせる。',
+  },
 };
 
 export const RELIC_CATALOG: Record<string, RelicItem> = {
@@ -3573,6 +3598,24 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     effectId: 'root_medallion',
     salvageGold: 28,
     description: '古代樹の年輪が刻まれた石のメダル。戦闘が始まると古根の生命力が宿り、数ターンにわたり傷を癒やす。',
+  },
+  worldtree_dewstone: {
+    id: 'worldtree_dewstone',
+    name: '世界樹の雫石',
+    kind: 'relic',
+    spriteId: 'worldtree_dewstone',
+    effectId: 'worldtree_dewstone',
+    salvageGold: 30,
+    description: '世界樹の朝露が結晶化した翠の宝玉。戦闘中、雫の霊力が絶えず染み出し、傷を癒やし続ける。',
+  },
+  leyline_astrolabe: {
+    id: 'leyline_astrolabe',
+    name: '霊脈の羅針盤',
+    kind: 'relic',
+    spriteId: 'leyline_astrolabe',
+    effectId: 'leyline_astrolabe',
+    salvageGold: 32,
+    description: '樹海の魔力脈を指し示す黄金の天球儀。戦闘中、2ターン目の開始時に攻撃力を底上げする。',
   },
 };
 

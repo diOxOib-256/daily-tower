@@ -477,6 +477,39 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: '[レリック:古根のメダル] 古根の生命力が宿り、数ターンにわたり傷を癒やす(5%/3T)！',
     }),
   },
+  worldtree_dewstone: {
+    id: 'worldtree_dewstone',
+    name: '世界樹の雫石',
+    trigger: 'turn_start',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'regen',
+        value: 3,
+        duration: 2,
+      },
+      logMessage: '[レリック:世界樹の雫石] 雫の霊力が染み出し、再生(3%)を付与！',
+    }),
+  },
+  leyline_astrolabe: {
+    id: 'leyline_astrolabe',
+    name: '霊脈の羅針盤',
+    trigger: 'turn_start',
+    handler: (ctx) => {
+      if (ctx.turnNumber !== 2) {
+        return {
+          logMessage: '',
+        };
+      }
+      return {
+        applyStatusToPlayer: {
+          statusId: 'flat_atk_up',
+          value: 4,
+          duration: 3,
+        },
+        logMessage: '[レリック:霊脈の羅針盤] 羅針盤が霊脈を指し、攻撃力+4！',
+      };
+    },
+  },
 };
 
 

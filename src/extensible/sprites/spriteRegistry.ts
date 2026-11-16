@@ -2027,6 +2027,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '氷結の呪縛',
     colors: ['#00000000', '#1b263b', '#48cae4', '#f8f9fa'],
   },
+  worldtree_dewstone: {
+    id: 'worldtree_dewstone',
+    name: '世界樹の雫石',
+    colors: ['#00000000', '#14211d', '#40916c', '#d8f3dc'],
+  },
+  leyline_astrolabe: {
+    id: 'leyline_astrolabe',
+    name: '霊脈の羅針盤',
+    colors: ['#00000000', '#2b1b12', '#e09f3e', '#fef3c7'],
+  },
+  paladin_cordial: {
+    id: 'paladin_cordial',
+    name: '近衛の聖薬',
+    colors: ['#00000000', '#14211d', '#2a9d8f', '#fefae0'],
+  },
+  worldtree_ambrosia: {
+    id: 'worldtree_ambrosia',
+    name: '世界樹の霊露',
+    colors: ['#00000000', '#1b263b', '#48cae4', '#f8f9fa'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2436,6 +2456,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   primordial_bastion: { id: 'primordial_bastion', matrixId: 'primordial_bastion', defaultPalette: 'primordial_bastion' },
   apex_overdrive: { id: 'apex_overdrive', matrixId: 'apex_overdrive', defaultPalette: 'apex_overdrive' },
   glacial_shackle: { id: 'glacial_shackle', matrixId: 'glacial_shackle', defaultPalette: 'glacial_shackle' },
+  worldtree_dewstone: { id: 'worldtree_dewstone', matrixId: 'worldtree_dewstone', defaultPalette: 'worldtree_dewstone' },
+  leyline_astrolabe: { id: 'leyline_astrolabe', matrixId: 'leyline_astrolabe', defaultPalette: 'leyline_astrolabe' },
+  paladin_cordial: { id: 'paladin_cordial', matrixId: 'paladin_cordial', defaultPalette: 'paladin_cordial' },
+  worldtree_ambrosia: { id: 'worldtree_ambrosia', matrixId: 'worldtree_ambrosia', defaultPalette: 'worldtree_ambrosia' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
