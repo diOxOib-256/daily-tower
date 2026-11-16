@@ -1617,6 +1617,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '毒針の一突き',
     colors: ['#00000000', '#1e162b', '#7209b7', '#e0aaff'],
   },
+  hunters_badge: {
+    id: 'hunters_badge',
+    name: '狩人の徽章',
+    colors: ['#00000000', '#261c15', '#a47148', '#f3d5b5'],
+  },
+  verdant_brooch: {
+    id: 'verdant_brooch',
+    name: '若葉のブローチ',
+    colors: ['#00000000', '#1b2e1b', '#52b788', '#d8f3dc'],
+  },
+  herbal_poultice: {
+    id: 'herbal_poultice',
+    name: '森の薬草湿布',
+    colors: ['#00000000', '#1b2e1b', '#52b788', '#d8f3dc'],
+  },
+  amber_tonic: {
+    id: 'amber_tonic',
+    name: '琥珀の霊薬',
+    colors: ['#00000000', '#2b1b12', '#f59e0b', '#fef3c7'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1944,6 +1964,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   bark_guard: { id: 'bark_guard', matrixId: 'bark_guard', defaultPalette: 'bark_guard' },
   sap_shot: { id: 'sap_shot', matrixId: 'sap_shot', defaultPalette: 'sap_shot' },
   venom_sting: { id: 'venom_sting', matrixId: 'venom_sting', defaultPalette: 'venom_sting' },
+  hunters_badge: { id: 'hunters_badge', matrixId: 'hunters_badge', defaultPalette: 'hunters_badge' },
+  verdant_brooch: { id: 'verdant_brooch', matrixId: 'verdant_brooch', defaultPalette: 'verdant_brooch' },
+  herbal_poultice: { id: 'herbal_poultice', matrixId: 'herbal_poultice', defaultPalette: 'herbal_poultice' },
+  amber_tonic: { id: 'amber_tonic', matrixId: 'amber_tonic', defaultPalette: 'amber_tonic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

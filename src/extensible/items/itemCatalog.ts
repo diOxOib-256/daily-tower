@@ -2554,6 +2554,25 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     },
     description: '逆回転する星砂を封じた小さな砂時計。使用者の傷を巻き戻し、光の障壁を纏わせる。',
   },
+  herbal_poultice: {
+    id: 'herbal_poultice',
+    name: '森の薬草湿布',
+    kind: 'consumable',
+    spriteId: 'herbal_poultice',
+    maxCharges: 2,
+    healPercent: 25,
+    description: '樹海で採れた薬草を練り上げた携帯用の湿布。使用すると体力を回復する。',
+  },
+  amber_tonic: {
+    id: 'amber_tonic',
+    name: '琥珀の霊薬',
+    kind: 'consumable',
+    spriteId: 'amber_tonic',
+    maxCharges: 2,
+    healPercent: 30,
+    cleanse: true,
+    description: '樹液が結晶化した琥珀を溶かした小瓶。傷を癒やし、あらゆる毒や弱体を浄化する。',
+  },
 };
 
 export const RELIC_CATALOG: Record<string, RelicItem> = {
@@ -2790,6 +2809,24 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     effectId: 'doomsday_slag_core',
     salvageGold: 16,
     description: 'スキルを使用するたび、敵の防御力を3ターンの間25%低下させる。',
+  },
+  hunters_badge: {
+    id: 'hunters_badge',
+    name: '狩人の徽章',
+    kind: 'relic',
+    spriteId: 'hunters_badge',
+    effectId: 'hunters_badge',
+    salvageGold: 14,
+    description: '樹海の狩人が持つ小さな木彫りの徽章。戦闘開始時、わずかに攻撃力を高める。',
+  },
+  verdant_brooch: {
+    id: 'verdant_brooch',
+    name: '若葉のブローチ',
+    kind: 'relic',
+    spriteId: 'verdant_brooch',
+    effectId: 'verdant_brooch',
+    salvageGold: 16,
+    description: '若葉を象った魔力のブローチ。スキルを使用するたび、わずかな障壁を得る。',
   },
 };
 

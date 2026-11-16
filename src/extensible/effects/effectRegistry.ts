@@ -367,6 +367,32 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       };
     },
   },
+  hunters_badge: {
+    id: 'hunters_badge',
+    name: '狩人の徽章',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'flat_atk_up',
+        value: 2,
+        duration: 2,
+      },
+      logMessage: `[レリック:狩人の徽章] 戦闘開始時に2ターンの間攻撃力が +2 上昇した！`,
+    }),
+  },
+  verdant_brooch: {
+    id: 'verdant_brooch',
+    name: '若葉のブローチ',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'shield',
+        value: 4,
+        duration: 1,
+      },
+      logMessage: `[レリック:若葉のブローチ] 若葉の魔力が身を包み、障壁(4/1T)を展開した！`,
+    }),
+  },
 };
 
 
