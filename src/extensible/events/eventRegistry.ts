@@ -1476,6 +1476,104 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  sylvan_basin: {
+    id: 'sylvan_basin',
+    title: '森の霊泉',
+    category: 'shrine',
+    description:
+      '静かな森の窪地に、淡く光る水が満ちた石造りの泉がある。泉の縁には先人たちが置いた硬貨が並んでいる。',
+    speakerSpriteId: 'shrine',
+    palette: 'frost_blue',
+    options: [
+      {
+        id: 'pick_basin_coins',
+        label: '泉の縁に残された硬貨を拾う',
+        description: '水には触れず、縁に落ちている硬貨だけを回収する。',
+        outcome: {
+          grantGold: 7,
+          logMessage: '泉の縁に落ちていた硬貨を回収し、7 G を手に入れた！',
+        },
+      },
+      {
+        id: 'drink_basin_water',
+        label: '金貨を捧げて霊泉の水を飲む',
+        description: '泉に金貨を投げ入れ、清浄な水で体力を癒やす。',
+        cost: {
+          gold: 14,
+        },
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '金貨を捧げて霊泉の水を飲み、HPが35%回復した！',
+        },
+      },
+    ],
+  },
+
+  hollow_armory: {
+    id: 'hollow_armory',
+    title: '古樹の武器庫',
+    category: 'forge',
+    description:
+      '巨大な空洞の中に、かつての探索者たちが残した武具や砥石が保管されている。',
+    speakerSpriteId: 'shrine',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'collect_metal_scraps',
+        label: '残された金属片を集めて換金する',
+        description: 'まだ価値のある部品だけを選び出し、資金として持ち歩く。',
+        outcome: {
+          grantGold: 9,
+          logMessage: '価値のある金属片を集めて換金し、9 G を手に入れた！',
+        },
+      },
+      {
+        id: 'sharpen_ancient_weapon',
+        label: '生気を注いで古の武器を研ぎ直す',
+        description: '自身の体力を対価に魔力を込め、残されていた武器を一つ入手する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'weapon',
+          grantGold: 4,
+          logMessage: '生気を注いで古の武器を研ぎ直し、武器と +4 G を手に入れた！',
+        },
+      },
+    ],
+  },
+
+  canopy_camp: {
+    id: 'canopy_camp',
+    title: '緑陰のキャンプ',
+    category: 'rest',
+    isRestEvent: true,
+    description:
+      '大きな樹冠が外敵の目を遮る安全な野営地を見つけた。ここで休息をとるか、手持ちの道具を整えることができる。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'rest_under_canopy',
+        label: '木陰で深い休息をとる',
+        description: '穏やかな空気の中で体を休め、体力を大きく回復する。',
+        outcome: {
+          healHpPercent: 50,
+          logMessage: '木陰で深い休息をとり、HPが50%回復した！',
+        },
+      },
+      {
+        id: 'restock_camp_supplies',
+        label: '携帯用の回復具を補充する',
+        description: '荷物を点検し、消耗品チャージを1回分補充する。',
+        outcome: {
+          refillConsumable: 1,
+          logMessage: '荷物を点検して回復具を整え、消耗品チャージを 1回分 補充した！',
+        },
+      },
+    ],
+  },
 };
 
 

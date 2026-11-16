@@ -18,7 +18,23 @@ import { FloorDefinition, FloorRewardPool } from '../realms/realm_01_greenwood';
  * Items that appear in no pool yet (brand-new content) can declare their
  * debut here instead — one line per item:
  */
-export const ITEM_DEBUT_OVERRIDES: Record<string, number> = {};
+export const ITEM_DEBUT_OVERRIDES: Record<string, number> = {
+  verdant_battleaxe: 21,
+  rending_cleave: 21,
+  mycelial_crystal: 21,
+  carapace_cuirass: 22,
+  whirlwind_slash: 22,
+  elder_regrowth: 23,
+  spirit_crest: 23,
+  spore_ignition: 24,
+  ancient_staff: 25,
+  shell_fortress: 25,
+  sovereign_nectar: 25,
+  verdant_war_cry: 26,
+  deepwood_plate: 27,
+  corrosive_haze: 27,
+  colossus_draught: 30,
+};
 
 let debutCache: Map<string, number> | null = null;
 
