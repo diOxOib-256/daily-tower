@@ -556,7 +556,7 @@ export function App() {
             <PixelSpriteCanvas
               spriteId={saveData.inventory.weapon.spriteId}
               scale={3}
-              className="shrink-0"
+              className="h-6 w-6 shrink-0"
             />
             <span className="truncate">{saveData.inventory.weapon.name}</span>
           </span>
@@ -571,7 +571,7 @@ export function App() {
             <PixelSpriteCanvas
               spriteId={saveData.inventory.armor.spriteId}
               scale={3}
-              className="shrink-0"
+              className="h-6 w-6 shrink-0"
             />
             <span className="truncate">{saveData.inventory.armor.name}</span>
           </span>
@@ -591,7 +591,7 @@ export function App() {
                 <PixelSpriteCanvas
                   spriteId={saveData.inventory.relic.spriteId}
                   scale={3}
-                  className="shrink-0"
+                  className="h-6 w-6 shrink-0"
                 />
               )}
               <span className="truncate">{saveData.inventory.relic?.name ?? 'なし'}</span>
@@ -849,7 +849,7 @@ export function App() {
                           <PixelSpriteCanvas
                             spriteId={saveData.inventory.weapon.spriteId}
                             scale={3}
-                            className="shrink-0"
+                            className="h-6 w-6 shrink-0"
                           />
                           <div className="min-w-0">
                             <span className="block font-extrabold text-sm text-amber-300">
@@ -897,7 +897,7 @@ export function App() {
                                   <PixelSpriteCanvas
                                     spriteId={skill.spriteId}
                                     scale={3}
-                                    className="shrink-0"
+                                    className="h-6 w-6 shrink-0"
                                   />
                                 )}
                                 <span className="truncate">{skill ? skill.name : '―'}</span>
@@ -947,7 +947,7 @@ export function App() {
                               <PixelSpriteCanvas
                                 spriteId={saveData.inventory.consumable.spriteId}
                                 scale={3}
-                                className="shrink-0"
+                                className="h-6 w-6 shrink-0"
                               />
                             )}
                             <span className="truncate">
@@ -1084,7 +1084,7 @@ export function App() {
                       <div>
                         {card.item && (
                           <div className="mb-2 flex justify-center">
-                            <PixelSpriteCanvas spriteId={card.item.spriteId} scale={6} />
+                            <PixelSpriteCanvas spriteId={card.item.spriteId} scale={6} className="h-12 w-12" />
                           </div>
                         )}
                         <h3 className="text-center text-xs font-extrabold text-slate-100">
@@ -1144,7 +1144,7 @@ export function App() {
                     <PixelSpriteCanvas
                       spriteId={pendingSkillToEquip.spriteId}
                       scale={3}
-                      className="shrink-0"
+                      className="h-6 w-6 shrink-0"
                     />
                     <span>
                       新スキル：<strong className="text-amber-300">{pendingSkillToEquip.name}</strong>（{pendingSkillToEquip.description}）
@@ -1170,7 +1170,7 @@ export function App() {
                             <PixelSpriteCanvas
                               spriteId={existing.spriteId}
                               scale={3}
-                              className="mt-0.5 shrink-0"
+                              className="mt-0.5 h-6 w-6 shrink-0"
                             />
                           )}
                           <div className="min-w-0">
