@@ -1732,6 +1732,31 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '精霊の秘薬',
     colors: ['#00000000', '#1b2e1b', '#52b788', '#fefae0'],
   },
+  fungal_shaman: {
+    id: 'fungal_shaman',
+    name: 'キノコ・シャマン',
+    colors: ['#00000000', '#1e162b', '#7b2cbf', '#e0aaff'],
+  },
+  stag_carapace: {
+    id: 'stag_carapace',
+    name: '大顎のクワガタ',
+    colors: ['#00000000', '#1a1817', '#4a3f35', '#d4a373'],
+  },
+  rime_sprite: {
+    id: 'rime_sprite',
+    name: '霧氷の精',
+    colors: ['#00000000', '#1b263b', '#48cae4', '#e0fbfc'],
+  },
+  blighted_lizard: {
+    id: 'blighted_lizard',
+    name: '呪木のトカゲ',
+    colors: ['#00000000', '#1b2e1b', '#588157', '#dad7cd'],
+  },
+  myconid_sovereign: {
+    id: 'myconid_sovereign',
+    name: '胞子王マイコニド',
+    colors: ['#00000000', '#240046', '#9d4edd', '#ff9ebb'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2082,6 +2107,11 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   amber_heart: { id: 'amber_heart', matrixId: 'amber_heart', defaultPalette: 'amber_heart' },
   frost_draught: { id: 'frost_draught', matrixId: 'frost_draught', defaultPalette: 'frost_draught' },
   dryad_elixir: { id: 'dryad_elixir', matrixId: 'dryad_elixir', defaultPalette: 'dryad_elixir' },
+  fungal_shaman: { id: 'fungal_shaman', matrixId: 'fungal_shaman', defaultPalette: 'fungal_shaman' },
+  stag_carapace: { id: 'stag_carapace', matrixId: 'stag_carapace', defaultPalette: 'stag_carapace' },
+  rime_sprite: { id: 'rime_sprite', matrixId: 'rime_sprite', defaultPalette: 'rime_sprite' },
+  blighted_lizard: { id: 'blighted_lizard', matrixId: 'blighted_lizard', defaultPalette: 'blighted_lizard' },
+  myconid_sovereign: { id: 'myconid_sovereign', matrixId: 'myconid_sovereign', defaultPalette: 'myconid_sovereign' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
