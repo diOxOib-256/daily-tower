@@ -1311,6 +1311,104 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  verdant_shrine: {
+    id: 'verdant_shrine',
+    title: '樹海の古祠',
+    category: 'shrine',
+    description:
+      '巨木の根元に、苔むした小さな石造りの祠が佇んでいる。賽銭箱の脇には古びた武具の紋章が刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'clean_shrine_coins',
+        label: '祠の苔を払い、供えられた銀貨を受け取る',
+        description: '丁寧に掃除をした礼として、わずかな資金を得る。',
+        outcome: {
+          grantGold: 8,
+          logMessage: '祠の苔を払い、供えられた銀貨（+8 G）を受け取った！',
+        },
+      },
+      {
+        id: 'offer_vitality_weapon',
+        label: '生気を捧げて古い武具の加護を得る',
+        description: '自身の体力を対価に、祠に宿る武器を一つ授かる。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'weapon',
+          grantGold: 4,
+          logMessage: '生気を捧げ、祠に宿る武器と +4 G を授かった！',
+        },
+      },
+    ],
+  },
+
+  wandering_herbalist: {
+    id: 'wandering_herbalist',
+    title: '森の薬草商',
+    category: 'merchant',
+    description:
+      '大きな背負い籠を抱えた旅の薬草商と出会った。珍しい森の薬草や古い護符を取り扱っているようだ。',
+    speakerSpriteId: 'shrine',
+    palette: 'golden_shrine',
+    options: [
+      {
+        id: 'sell_herb_pouch',
+        label: '薬草の小袋を譲って対価を得る',
+        description: '商人が欲しがっていた乾燥薬草を譲り、わずかな金貨を得る。',
+        outcome: {
+          grantGold: 7,
+          logMessage: '乾燥薬草の小袋を譲り、7 G を得た！',
+        },
+      },
+      {
+        id: 'buy_herbalist_relic',
+        label: '秘蔵の護符を買い取る',
+        description: '手持ちの金貨を支払い、商人が見つけた珍しいレリックを購入する。',
+        cost: {
+          gold: 15,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '金貨を支払い、珍しいレリックを買い取った！',
+        },
+      },
+    ],
+  },
+
+  sunlit_clearing: {
+    id: 'sunlit_clearing',
+    title: '木漏れ日の空き地',
+    category: 'rest',
+    isRestEvent: true,
+    description:
+      '樹海の奥に、柔らかな木漏れ日が差し込む静かな空き地を見つけた。ここで一息つき、旅支度を整えることができる。',
+    speakerSpriteId: 'shrine',
+    palette: 'golden_shrine',
+    options: [
+      {
+        id: 'rest_in_shade',
+        label: '木陰で深い休息をとる',
+        description: '穏やかな光の中で体を休め、体力を大きく回復する。',
+        outcome: {
+          healHpPercent: 50,
+          logMessage: '木陰で深い休息をとり、HPが50%回復した！',
+        },
+      },
+      {
+        id: 'refill_consumable_kit',
+        label: '携帯用の回復具を補充する',
+        description: '荷物を点検し、消耗品チャージを1回分補充する。',
+        outcome: {
+          refillConsumable: 1,
+          logMessage: '旅支度を整え、消耗品チャージを 1回分 補充した！',
+        },
+      },
+    ],
+  },
 };
 
 
