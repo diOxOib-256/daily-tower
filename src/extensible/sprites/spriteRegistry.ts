@@ -304,8 +304,8 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
   },
   canopy_spider: {
     id: 'canopy_spider',
-    name: 'キャノピー・スパイダー',
-    colors: ['transparent', '#18181b', '#047857', '#ef4444'],
+    name: '樹冠グモ',
+    colors: ['#00000000', '#1a1829', '#4a4e69', '#c9ada7'],
   },
   thorn_trapper: {
     id: 'thorn_trapper',
@@ -1637,6 +1637,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '琥珀の霊薬',
     colors: ['#00000000', '#2b1b12', '#f59e0b', '#fef3c7'],
   },
+  hollow_dryad: {
+    id: 'hollow_dryad',
+    name: '朽木の精霊',
+    colors: ['#00000000', '#222034', '#639bff', '#cbdbfc'],
+  },
+  mossy_gargoyle: {
+    id: 'mossy_gargoyle',
+    name: '苔のガーゴイル',
+    colors: ['#00000000', '#1c2220', '#5b6e67', '#a7c4b5'],
+  },
+  deepwood_viper: {
+    id: 'deepwood_viper',
+    name: '深緑の大蛇',
+    colors: ['#00000000', '#132a13', '#31572c', '#ecf39e'],
+  },
+  ancient_wisp_lord: {
+    id: 'ancient_wisp_lord',
+    name: '古の鬼火王',
+    colors: ['#00000000', '#1a1423', '#b5179e', '#f72585'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1968,6 +1988,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   verdant_brooch: { id: 'verdant_brooch', matrixId: 'verdant_brooch', defaultPalette: 'verdant_brooch' },
   herbal_poultice: { id: 'herbal_poultice', matrixId: 'herbal_poultice', defaultPalette: 'herbal_poultice' },
   amber_tonic: { id: 'amber_tonic', matrixId: 'amber_tonic', defaultPalette: 'amber_tonic' },
+  hollow_dryad: { id: 'hollow_dryad', matrixId: 'hollow_dryad', defaultPalette: 'hollow_dryad' },
+  mossy_gargoyle: { id: 'mossy_gargoyle', matrixId: 'mossy_gargoyle', defaultPalette: 'mossy_gargoyle' },
+  deepwood_viper: { id: 'deepwood_viper', matrixId: 'deepwood_viper', defaultPalette: 'deepwood_viper' },
+  ancient_wisp_lord: { id: 'ancient_wisp_lord', matrixId: 'ancient_wisp_lord', defaultPalette: 'ancient_wisp_lord' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
