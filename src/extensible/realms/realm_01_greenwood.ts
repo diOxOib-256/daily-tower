@@ -407,10 +407,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第21層：菌糸の広がる深林',
     subtitle: '紫の胞子が静かに舞い、古樹の迷宮の深層へと足を踏み入れる階層',
     encounters: [
-      { type: 'battle', enemyId: 'fungal_shaman', enemyStatScale: 0.932 },
+      { type: 'battle', enemyId: 'fungal_shaman', enemyStatScale: 0.55 },
       { type: 'event', eventId: 'sylvan_basin' },
-      { type: 'battle', enemyId: 'humus_slime', enemyStatScale: 0.932 },
-      { type: 'battle', enemyIds: ['stag_carapace', 'humus_slime'], enemyStatScale: 0.932 },
+      { type: 'battle', enemyId: 'humus_slime', enemyStatScale: 0.55 },
+      { type: 'battle', enemyIds: ['stag_carapace', 'humus_slime'], enemyStatScale: 0.55 },
     ],
   },
   {
@@ -419,10 +419,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第22層：冷霧と甲殻の谷',
     subtitle: '凍てつく霧氷の精と硬い甲殻を持つ大顎のクワガタが縄張りを争う冷涼な谷間',
     encounters: [
-      { type: 'battle', enemyId: 'rime_sprite', enemyStatScale: 1.06 },
-      { type: 'battle', enemyId: 'stag_carapace', enemyStatScale: 1.06 },
+      { type: 'battle', enemyId: 'rime_sprite', enemyStatScale: 0.52 },
+      { type: 'battle', enemyId: 'stag_carapace', enemyStatScale: 0.52 },
       { type: 'event', eventId: 'hollow_armory' },
-      { type: 'battle', enemyIds: ['fungal_shaman', 'rime_sprite'], enemyStatScale: 1.06 },
+      { type: 'battle', enemyIds: ['fungal_shaman', 'rime_sprite'], enemyStatScale: 0.52 },
     ],
   },
   {
@@ -431,10 +431,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第23層：緑陰の野営地',
     subtitle: '樹冠に守られた静かな野営地で、中盤の連戦に備えて体力を整える安息の階層',
     encounters: [
-      { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 1.02 },
-      { type: 'battle', enemyId: 'humus_slime', enemyStatScale: 1.02 },
+      { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.6 },
+      { type: 'battle', enemyId: 'humus_slime', enemyStatScale: 0.6 },
       { type: 'event', eventId: 'canopy_camp' },
-      { type: 'battle', enemyId: 'rime_sprite', enemyStatScale: 1.02 },
+      { type: 'battle', enemyId: 'rime_sprite', enemyStatScale: 0.6 },
     ],
   },
   {
@@ -443,11 +443,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第24層：哨兵の巡回廊',
     subtitle: '巨木の哨兵と飢えた野犬が巡回し、胞子王の玉座が近づく緊張感漂う回廊',
     encounters: [
-      { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.966 },
-      { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.966 },
+      { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.6 },
+      { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.6 },
       { type: 'event', eventId: 'sylvan_basin' },
-      { type: 'battle', enemyIds: ['fungal_shaman', 'stag_carapace'], enemyStatScale: 0.966 },
-      { type: 'battle', enemyId: 'hollow_dryad', enemyStatScale: 0.966 },
+      { type: 'battle', enemyIds: ['fungal_shaman', 'stag_carapace'], enemyStatScale: 0.6 },
+      { type: 'battle', enemyId: 'hollow_dryad', enemyStatScale: 0.6 },
     ],
   },
   {
@@ -456,10 +456,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第25層：胞子王の菌殿',
     subtitle: '発光する菌糸に覆われた広間にて、胞子王マイコニドが挑戦者を待ち受ける第一の関門',
     encounters: [
-      { type: 'battle', enemyIds: ['fungal_shaman', 'humus_slime'], enemyStatScale: 1.02 },
+      { type: 'battle', enemyIds: ['fungal_shaman', 'humus_slime'], enemyStatScale: 0.6 },
       { type: 'event', eventId: 'hollow_armory' },
-      { type: 'battle', enemyId: 'rime_sprite', enemyStatScale: 1.02 },
-      { type: 'miniboss', enemyId: 'myconid_sovereign', enemyStatScale: 1.0 },
+      { type: 'battle', enemyId: 'rime_sprite', enemyStatScale: 0.6 },
+      { type: 'miniboss', enemyId: 'myconid_sovereign', enemyStatScale: 0.55 },
     ],
   },
   {
@@ -468,10 +468,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第26層：霊木と野犬の密林',
     subtitle: '古樹の魔力が濃くなり、新たな魔杖と重鎧の力が試される後半戦の入口',
     encounters: [
-      { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.95 },
+      { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.42 },
       { type: 'event', eventId: 'sylvan_basin' },
-      { type: 'battle', enemyIds: ['ancient_watchman', 'mist_wolf'], enemyStatScale: 0.95 },
-      { type: 'battle', enemyId: 'deepwood_viper', enemyStatScale: 0.95 },
+      { type: 'battle', enemyIds: ['ancient_watchman', 'mist_wolf'], enemyStatScale: 0.42 },
+      { type: 'battle', enemyId: 'deepwood_viper', enemyStatScale: 0.42 },
     ],
   },
   {
@@ -480,11 +480,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第27層：暗殺者と呪木の道',
     subtitle: '茂みに潜む深緑の暗殺者と火炎を吐く呪木のトカゲが交錯する危険な密林',
     encounters: [
-      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 1.01 },
-      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 1.01 },
+      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.42 },
+      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.42 },
       { type: 'event', eventId: 'hollow_armory' },
-      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 1.01 },
-      { type: 'battle', enemyId: 'stag_carapace', enemyStatScale: 1.01 },
+      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.42 },
+      { type: 'battle', enemyId: 'stag_carapace', enemyStatScale: 0.42 },
     ],
   },
   {
@@ -493,10 +493,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第28層：木漏れ日の隠れ家',
     subtitle: '23F以来の安息の野営地。30Fの巨像との決戦に向け、消耗品と体力を万全に整える階層',
     encounters: [
-      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.817 },
-      { type: 'battle', enemyId: 'frost_slime', enemyStatScale: 0.817 },
+      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.52 },
+      { type: 'battle', enemyId: 'frost_slime', enemyStatScale: 0.52 },
       { type: 'event', eventId: 'canopy_camp' },
-      { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.817 },
+      { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.52 },
     ],
   },
   {
@@ -505,11 +505,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第29層：巨像前夜の樹海',
     subtitle: '深緑の巨像の足音が響く、決戦直前の過酷な連戦地帯',
     encounters: [
-      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.698 },
-      { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.698 },
+      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.65 },
+      { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.65 },
       { type: 'event', eventId: 'sylvan_basin' },
-      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.698 },
-      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.698 },
+      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.65 },
+      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.65 },
     ],
   },
   {
@@ -518,10 +518,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第30層：深緑の巨像殿',
     subtitle: 'Block 3 を締めくくる古代の番人「深緑の巨像」が立ち塞がる試練の聖域',
     encounters: [
-      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.9 },
+      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.65 },
       { type: 'event', eventId: 'canopy_camp' },
-      { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.9 },
-      { type: 'miniboss', enemyId: 'verdant_colossus', enemyStatScale: 1.0 },
+      { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.65 },
+      { type: 'miniboss', enemyId: 'verdant_colossus', enemyStatScale: 1.1 },
     ],
   },
   {
