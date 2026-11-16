@@ -408,6 +408,7 @@ export function BattleStage2D({
   const bossKind =
     encounterType === 'apex_boss' ? 'apex' : encounterType === 'miniboss' ? 'mini' : null;
   const encounterKey = `${floor}-${currentEncounterIndex}`;
+  const hasBoss = battleSession?.enemyDefs.some((d) => d.isBoss) ?? false;
   const [introKey, setIntroKey] = useState<string | null>(null);
   useEffect(() => {
     if (!bossKind || !battleSession) return;
@@ -445,7 +446,11 @@ export function BattleStage2D({
   return (
     <div
       key={encounterKey}
-      className={`anim-stage-enter relative w-full h-72 sm:h-84 md:h-96 lg:h-[clamp(26rem,52dvh,36rem)] rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
+      className={`anim-stage-enter relative w-full ${
+        hasBoss
+          ? 'h-[24rem] sm:h-[26rem] md:h-[26rem] lg:h-[clamp(30rem,58dvh,40rem)]'
+          : 'h-[21rem] sm:h-[22rem] md:h-96 lg:h-[clamp(26rem,52dvh,36rem)]'
+      } rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
         hitFx?.some(
           (f) =>
             f.side === 'player' &&
@@ -650,7 +655,7 @@ export function BattleStage2D({
       {/* 2D STAGE ACTORS: PLAYER (LEFT) FACING ENEMY/EVENT (RIGHT) */}
       <div className="relative z-10 flex h-[calc(100%-3rem)] items-end justify-between px-2 pb-6 sm:pb-8 sm:px-[max(3rem,calc((100%-64rem)/2))]">
         {/* LEFT ACTOR: PLAYER */}
-        <div className="anim-actor-enter-left flex flex-col items-center">
+        <div className="anim-actor-enter-left flex shrink-0 flex-col items-center">
           {/* Player Floating HUD */}
           <div className="mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 lg:p-3 shadow-xl backdrop-blur-xs">
             <div className="flex items-center justify-between gap-1">
@@ -703,15 +708,16 @@ export function BattleStage2D({
           {/* Player Character Sprite on Floor Platform */}
           <div className="relative flex flex-col items-center">
             <FxLayer fx={(hitFx ?? []).filter((f) => f.side === 'player')} align="player" />
-            <div className={`rpg-actor ${playerMotionClass}`}>
+            <div className={`rpg-actor h-24 w-24 sm:h-36 sm:w-36 lg:h-44 lg:w-44 ${playerMotionClass}`}>
               <PixelSpriteCanvas
                 spriteId={playerSpriteId}
                 paletteId={playerPaletteId}
                 scale={10}
+                className="h-full w-full"
               />
             </div>
             {/* Ground Shadow Oval */}
-            <div className="-mt-1.5 h-3 w-20 sm:w-24 rounded-full bg-black/55 blur-[1px]" />
+            <div className="-mt-1.5 h-3 w-4/5 rounded-full bg-black/55 blur-[1px]" />
           </div>
         </div>
 
@@ -726,7 +732,7 @@ export function BattleStage2D({
 
         {/* RIGHT ACTOR: ENEMY OR EVENT OBJECT */}
         {battleSession ? (
-          <div className="flex items-end gap-2 sm:gap-4">
+          <div className="flex min-w-0 flex-1 items-end justify-end gap-2 sm:gap-4">
             {battleSession.enemies.map((enemy, idx) => {
               const def = battleSession.enemyDefs[idx];
               const isDead = enemy.currentHp <= 0;
@@ -741,7 +747,7 @@ export function BattleStage2D({
               return (
                 <div
                   key={idx}
-                  className={`anim-actor-enter-right flex flex-col items-center ${isDead ? 'opacity-40 grayscale' : ''}`}
+                  className={`anim-actor-enter-right flex flex-col items-center ${isMulti ? 'min-w-0 flex-1' : ''} ${isDead ? 'opacity-40 grayscale' : ''}`}
                   onClick={() => {
                     if (!isDead && battleSession.status === 'ongoing') onSelectTarget?.(idx);
                   }}
@@ -749,7 +755,7 @@ export function BattleStage2D({
                   {/* Enemy Floating HUD */}
                   <div
                     className={`mb-2 ${
-                      isMulti ? 'w-24 sm:w-36' : 'w-40 sm:w-52 md:w-56'
+                      isMulti ? 'w-full' : 'w-40 sm:w-52 md:w-56'
                     } rounded-xl border ${
                       isTarget
                         ? 'border-amber-400 ring-2 ring-amber-400/60'
@@ -866,6 +872,12 @@ export function BattleStage2D({
                     <div
                       className={`${
                         def.isBoss ? 'rpg-actor-boss' : 'rpg-actor'
+                      } ${
+                        def.isBoss
+                          ? 'h-28 w-28 sm:h-40 sm:w-40 lg:h-52 lg:w-52'
+                          : isMulti
+                            ? 'h-14 w-14 sm:h-24 sm:w-24 lg:h-32 lg:w-32'
+                            : 'h-24 w-24 sm:h-36 sm:w-36 lg:h-44 lg:w-44'
                       } ${isDead ? 'motion-defeat' : enemyMotionClass}`}
                     >
                       <PixelSpriteCanvas
@@ -873,13 +885,10 @@ export function BattleStage2D({
                         paletteId={def.palette}
                         scale={def.isBoss ? 12 : isMulti ? 8 : 10}
                         flipHorizontal={def.spriteId === 'goblin'}
+                        className="h-full w-full"
                       />
                     </div>
-                    <div
-                      className={`-mt-1.5 h-3 rounded-full bg-black/55 blur-[1px] ${
-                        def.isBoss ? 'w-28 sm:w-32' : 'w-20 sm:w-24'
-                      }`}
-                    />
+                    <div className="-mt-1.5 h-3 w-4/5 rounded-full bg-black/55 blur-[1px]" />
                   </div>
                   {isTarget && (
                     <span className="mt-1 text-[10px] font-extrabold text-amber-300">
@@ -900,15 +909,16 @@ export function BattleStage2D({
               </span>
             </div>
             <div className="relative flex flex-col items-center">
-              <div className="rpg-actor">
+              <div className="rpg-actor h-24 w-24 sm:h-36 sm:w-36 lg:h-44 lg:w-44">
                 <PixelSpriteCanvas
                   spriteId={activeEvent.speakerSpriteId ?? 'shrine'}
                   paletteId={activeEvent.palette ?? 'golden_shrine'}
                   scale={11}
                   flipHorizontal={activeEvent.speakerSpriteId === 'hero_knight'}
+                  className="h-full w-full"
                 />
               </div>
-              <div className="-mt-1.5 h-3 w-20 sm:w-24 rounded-full bg-amber-500/25 blur-[2px]" />
+              <div className="-mt-1.5 h-3 w-4/5 rounded-full bg-amber-500/25 blur-[2px]" />
             </div>
           </div>
         ) : null}
