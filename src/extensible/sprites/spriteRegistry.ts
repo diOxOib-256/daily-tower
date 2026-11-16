@@ -1562,6 +1562,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '深紅の頭領',
     colors: ['#00000000', '#450a0a', '#dc2626', '#fde047'],
   },
+  hunters_shortblade: {
+    id: 'hunters_shortblade',
+    name: '狩人の短剣',
+    colors: ['#00000000', '#1f2421', '#8d99ae', '#edf2f4'],
+  },
+  thornwood_spear: {
+    id: 'thornwood_spear',
+    name: '棘木の槍',
+    colors: ['#00000000', '#1b2e1b', '#4f9d69', '#d4e09b'],
+  },
+  travelers_leather: {
+    id: 'travelers_leather',
+    name: '旅人の革鎧',
+    colors: ['#00000000', '#261c15', '#7f5539', '#ddb892'],
+  },
+  mossweave_vest: {
+    id: 'mossweave_vest',
+    name: '苔織りの胸当て',
+    colors: ['#00000000', '#1b2e1b', '#4f9d69', '#a3b18a'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1878,6 +1898,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   bark_beetle: { id: 'bark_beetle', matrixId: 'bark_beetle', defaultPalette: 'bark_beetle' },
   forest_wisp: { id: 'forest_wisp', matrixId: 'forest_wisp', defaultPalette: 'forest_wisp' },
   amber_golem: { id: 'amber_golem', matrixId: 'amber_golem', defaultPalette: 'amber_golem' },
+  hunters_shortblade: { id: 'hunters_shortblade', matrixId: 'hunters_shortblade', defaultPalette: 'hunters_shortblade' },
+  thornwood_spear: { id: 'thornwood_spear', matrixId: 'thornwood_spear', defaultPalette: 'thornwood_spear' },
+  travelers_leather: { id: 'travelers_leather', matrixId: 'travelers_leather', defaultPalette: 'travelers_leather' },
+  mossweave_vest: { id: 'mossweave_vest', matrixId: 'mossweave_vest', defaultPalette: 'mossweave_vest' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

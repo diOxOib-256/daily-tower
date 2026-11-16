@@ -383,6 +383,26 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     effectId: 'dewdrinker',
     description: '雫を吸って輝く細剣。HPが半分未満のとき、通常攻撃のたびHPを3回復する。',
   },
+  hunters_shortblade: {
+    id: 'hunters_shortblade',
+    name: '狩人の短剣',
+    kind: 'weapon',
+    spriteId: 'hunters_shortblade',
+    atk: 14,
+    element: 'physical',
+    salvageGold: 12,
+    description: '樹海の狩人が携帯する取り回しの良い鉄製短剣。癖がなく扱いやすい。',
+  },
+  thornwood_spear: {
+    id: 'thornwood_spear',
+    name: '棘木の槍',
+    kind: 'weapon',
+    spriteId: 'thornwood_spear',
+    atk: 16,
+    element: 'nature',
+    salvageGold: 15,
+    description: '硬質な樹木の穂先に魔力を宿した槍。自然属性に弱い敵へ高い威力を発揮する。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -656,6 +676,26 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     salvageGold: 10,
     atkDelta: -5,
     description: '誓いに縛られた重鎧。屈強な守りを誇るが、その重さが腕を引くため、装備している間は攻撃力が5低下する。',
+  },
+  travelers_leather: {
+    id: 'travelers_leather',
+    name: '旅人の革鎧',
+    kind: 'armor',
+    spriteId: 'travelers_leather',
+    def: 4,
+    maxHpBonus: 15,
+    salvageGold: 12,
+    description: '丈夫な獣革を縫い合わせた軽量な防具。初期装備からの乗り換えに適している。',
+  },
+  mossweave_vest: {
+    id: 'mossweave_vest',
+    name: '苔織りの胸当て',
+    kind: 'armor',
+    spriteId: 'mossweave_vest',
+    def: 6,
+    maxHpBonus: 25,
+    salvageGold: 15,
+    description: '弾力のある樹海の苔繊維を編み込んだ胸当て。衝撃を吸収し生存力を高める。',
   },
 };
 
