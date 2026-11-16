@@ -34,6 +34,21 @@ export const ITEM_DEBUT_OVERRIDES: Record<string, number> = {
   deepwood_plate: 27,
   corrosive_haze: 27,
   colossus_draught: 30,
+  rootbreaker_mace: 31,
+  earthshatter_blow: 31,
+  hornet_stinger: 31,
+  amber_scale_mail: 32,
+  briar_tempest: 32,
+  warden_vitality: 33,
+  root_medallion: 33,
+  cinder_burst: 34,
+  verdant_halberd: 35,
+  amber_aegis: 35,
+  royal_amber_jelly: 35,
+  primal_surge: 36,
+  rootguard_plate: 37,
+  wraith_chill: 37,
+  warden_sap_vial: 40,
 };
 
 let debutCache: Map<string, number> | null = null;

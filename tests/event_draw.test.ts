@@ -21,7 +21,7 @@ describe('per-floor event draw (2026-11-14)', () => {
     const def = ALL_FLOORS[31];
     const res = FloorRunner.resolveEncounter(def, eventIndexOf(31));
     if (res.kind !== 'event') throw new Error('not an event encounter');
-    expect(res.eventDef.id).toBe('mossy_ruin_tablet');
+    expect(res.eventDef.id).toBe('amber_spring');
   });
 
   it('rest slots always keep the authored rest event', () => {

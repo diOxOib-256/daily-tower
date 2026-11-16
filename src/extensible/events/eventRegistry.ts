@@ -1574,6 +1574,104 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  amber_spring: {
+    id: 'amber_spring',
+    title: '琥珀の聖泉',
+    category: 'shrine',
+    description:
+      '樹液が長い年月をかけて澄み渡った、黄金色に輝く小さな泉を見つけた。底には先人たちが捧げた硬貨が沈んでいる。',
+    speakerSpriteId: 'shrine',
+    palette: 'molten_iron',
+    options: [
+      {
+        id: 'collect_amber_coins',
+        label: '泉の縁にこぼれた硬貨を拾う',
+        description: '泉の周囲に落ちている硬貨だけを静かに回収する。',
+        outcome: {
+          grantGold: 8,
+          logMessage: '泉の周囲にこぼれていた硬貨を拾い、8 G を手に入れた！',
+        },
+      },
+      {
+        id: 'offer_gold_for_amber_water',
+        label: '金貨を捧げて黄金の聖水を飲む',
+        description: '泉に金貨を捧げ、澄んだ聖水で深い傷を癒やす。',
+        cost: {
+          gold: 16,
+        },
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '金貨を捧げて黄金の聖水を飲み、HPが35%回復した！',
+        },
+      },
+    ],
+  },
+
+  root_altar: {
+    id: 'root_altar',
+    title: '根圏の古祭壇',
+    category: 'lore',
+    description:
+      '巨木の根が絡み合ってできた自然の祭壇に、古い時代から遺された護符と金貨が供えられている。',
+    speakerSpriteId: 'shrine',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'take_altar_offerings',
+        label: '供え物の傍らの金貨を譲り受ける',
+        description: '祭壇に礼をして、旅の資金として金貨だけを受け取る。',
+        outcome: {
+          grantGold: 10,
+          logMessage: '祭壇に一礼し、供え物の傍らの 10 G を受け取った！',
+        },
+      },
+      {
+        id: 'offer_vitality_for_relic',
+        label: '生気を捧げて古代の護符を授かる',
+        description: '自身の体力を対価に祈りを捧げ、祭壇に宿るレリックを一つ入手する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          grantGold: 4,
+          logMessage: '生気を捧げて祈りを捧げ、古代の護符と +4 G を授かった！',
+        },
+      },
+    ],
+  },
+
+  root_hollow_camp: {
+    id: 'root_hollow_camp',
+    title: '根洞の休息地',
+    category: 'rest',
+    isRestEvent: true,
+    description:
+      '巨大な木の根がアーチ状に組まれた、雨風も外敵も届かない静かな空洞を見つけた。ここで態勢を立て直すことができる。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'rest_in_root_hollow',
+        label: '根洞の奥で深い休息をとる',
+        description: '静寂の中で体を休め、体力を大きく回復する。',
+        outcome: {
+          healHpPercent: 50,
+          logMessage: '根洞の奥で深い休息をとり、HPが50%回復した！',
+        },
+      },
+      {
+        id: 'refill_root_hollow_supplies',
+        label: '携帯用の回復具を補充する',
+        description: '荷物を整え、消耗品チャージを1回分補充する。',
+        outcome: {
+          refillConsumable: 1,
+          logMessage: '荷物を整えて回復具を補充し、消耗品チャージを 1回分 回復した！',
+        },
+      },
+    ],
+  },
 };
 
 
