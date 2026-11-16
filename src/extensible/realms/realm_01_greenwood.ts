@@ -227,10 +227,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '霧立ち込める樹林',
     subtitle: '冷たい朝霧が視界を遮り、Block 1 の魔物たちが最後の縄張り争いを繰り広げる中盤の入口',
     encounters: [
-      { type: 'battle', enemyIds: ['moss_slime', 'forest_goblin'], enemyStatScale: 0.757 },
+      { type: 'battle', enemyIds: ['moss_slime', 'forest_goblin'], enemyStatScale: 0.55 },
       { type: 'event', eventId: 'forest_spring' },
-      { type: 'battle', enemyIds: ['mist_wolf'], enemyStatScale: 0.757 },
-      { type: 'battle', enemyIds: ['thorn_sprout', 'toxic_slime'], enemyStatScale: 0.757 },
+      { type: 'battle', enemyIds: ['mist_wolf'], enemyStatScale: 0.55 },
+      { type: 'battle', enemyIds: ['thorn_sprout', 'toxic_slime'], enemyStatScale: 0.55 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak'],
@@ -245,10 +245,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '胞子舞う古鍛冶跡',
     subtitle: '毒胞子を撒くゴブリンや霧オオカミが徘徊し、打ち捨てられた鍛冶場の跡が点在する階層',
     encounters: [
-      { type: 'battle', enemyIds: ['bark_beetle', 'shadow_wolf'], enemyStatScale: 0.81 },
-      { type: 'battle', enemyIds: ['spore_goblin'], enemyStatScale: 0.81 },
+      { type: 'battle', enemyIds: ['bark_beetle', 'shadow_wolf'], enemyStatScale: 0.47 },
+      { type: 'battle', enemyIds: ['spore_goblin'], enemyStatScale: 0.47 },
       { type: 'event', eventId: 'mossy_forge' },
-      { type: 'battle', enemyIds: ['mist_wolf', 'spore_goblin'], enemyStatScale: 0.81 },
+      { type: 'battle', enemyIds: ['mist_wolf', 'spore_goblin'], enemyStatScale: 0.47 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak'],
@@ -263,10 +263,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '木漏れ日の小休止',
     subtitle: '8F以来の安息の空き地。Block 1 最後のカメオ敵を退け、後半戦へ向けて態勢を立て直す階層',
     encounters: [
-      { type: 'battle', enemyIds: ['forest_wisp', 'vine_stalker'], enemyStatScale: 0.775 },
-      { type: 'battle', enemyIds: ['canopy_spider'], enemyStatScale: 0.775 },
+      { type: 'battle', enemyIds: ['forest_wisp', 'vine_stalker'], enemyStatScale: 0.52 },
+      { type: 'battle', enemyIds: ['canopy_spider'], enemyStatScale: 0.52 },
       { type: 'event', eventId: 'sunlit_clearing' },
-      { type: 'battle', enemyIds: ['frost_slime'], enemyStatScale: 0.775 },
+      { type: 'battle', enemyIds: ['frost_slime'], enemyStatScale: 0.52 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak'],
@@ -281,10 +281,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '朽木と焦土の境界',
     subtitle: '蒼い霊気を放つ朽木の精霊と焦げ木の幼体が縄張りを接し、15Fの関門が迫る密林',
     encounters: [
-      { type: 'battle', enemyIds: ['hollow_dryad'], enemyStatScale: 0.844 },
+      { type: 'battle', enemyIds: ['hollow_dryad'], enemyStatScale: 0.65 },
       { type: 'event', eventId: 'verdant_shrine' },
-      { type: 'battle', enemyIds: ['charred_sapling'], enemyStatScale: 0.844 },
-      { type: 'battle', enemyIds: ['canopy_spider', 'frost_slime'], enemyStatScale: 0.844 },
+      { type: 'battle', enemyIds: ['charred_sapling'], enemyStatScale: 0.65 },
+      { type: 'battle', enemyIds: ['canopy_spider', 'frost_slime'], enemyStatScale: 0.65 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak'],
@@ -299,10 +299,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '紅蓮鬼火の玉座',
     subtitle: '紅蓮の炎を纏う古の鬼火王が、石像の守護者と大蛇を従えて待ち受ける中盤の関門',
     encounters: [
-      { type: 'battle', enemyIds: ['mossy_gargoyle', 'spore_goblin'], enemyStatScale: 0.92 },
+      { type: 'battle', enemyIds: ['mossy_gargoyle', 'spore_goblin'], enemyStatScale: 0.52 },
       { type: 'event', eventId: 'wandering_herbalist' },
-      { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.92 },
-      { type: 'miniboss', enemyIds: ['ancient_wisp_lord'], enemyStatScale: 1.0 },
+      { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.52 },
+      { type: 'miniboss', enemyIds: ['ancient_wisp_lord'], enemyStatScale: 0.5 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak'],
@@ -317,10 +317,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '霊気と焦熱の密林',
     subtitle: '精霊の魔力と焦げ木の火の粉が交錯し、step 4 の新たな武具とスキルが解禁される階層',
     encounters: [
-      { type: 'battle', enemyIds: ['hollow_dryad', 'frost_slime'], enemyStatScale: 0.82 },
+      { type: 'battle', enemyIds: ['hollow_dryad', 'frost_slime'], enemyStatScale: 0.4 },
       { type: 'event', eventId: 'forest_spring' },
-      { type: 'battle', enemyIds: ['charred_sapling', 'spore_goblin'], enemyStatScale: 0.82 },
-      { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.82 },
+      { type: 'battle', enemyIds: ['charred_sapling', 'spore_goblin'], enemyStatScale: 0.4 },
+      { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.4 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak', 'elder_bow', 'ironbark_mail'],
@@ -335,10 +335,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '大蛇の潜む古道',
     subtitle: '深緑の大蛇や樹冠グモが獲物を待ち構え、持久戦への備えが試される密林の奥地',
     encounters: [
-      { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.828 },
-      { type: 'battle', enemyIds: ['canopy_spider', 'mist_wolf'], enemyStatScale: 0.828 },
+      { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.36 },
+      { type: 'battle', enemyIds: ['canopy_spider', 'mist_wolf'], enemyStatScale: 0.36 },
       { type: 'event', eventId: 'mossy_forge' },
-      { type: 'battle', enemyIds: ['hollow_dryad', 'frost_slime'], enemyStatScale: 0.828 },
+      { type: 'battle', enemyIds: ['hollow_dryad', 'frost_slime'], enemyStatScale: 0.36 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak', 'elder_bow', 'ironbark_mail'],
@@ -353,10 +353,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '木漏れ日の隠れ里',
     subtitle: '13F以来の安息の空き地。20Fの鉄樹の守護者との決戦に備え、消耗品と体力を整える階層',
     encounters: [
-      { type: 'battle', enemyIds: ['charred_sapling'], enemyStatScale: 0.97 },
-      { type: 'battle', enemyIds: ['hollow_dryad'], enemyStatScale: 0.97 },
+      { type: 'battle', enemyIds: ['charred_sapling'], enemyStatScale: 0.48 },
+      { type: 'battle', enemyIds: ['hollow_dryad'], enemyStatScale: 0.48 },
       { type: 'event', eventId: 'sunlit_clearing' },
-      { type: 'battle', enemyIds: ['mist_wolf', 'canopy_spider'], enemyStatScale: 0.97 },
+      { type: 'battle', enemyIds: ['mist_wolf', 'canopy_spider'], enemyStatScale: 0.48 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak', 'elder_bow', 'ironbark_mail'],
@@ -371,10 +371,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '鉄樹の回廊',
     subtitle: '鋼のように硬い樹根が通路を覆い、守護者の気配が色濃く漂う決戦前夜の回廊',
     encounters: [
-      { type: 'battle', enemyIds: ['charred_sapling'], enemyStatScale: 0.844 },
+      { type: 'battle', enemyIds: ['charred_sapling'], enemyStatScale: 0.65 },
       { type: 'event', eventId: 'verdant_shrine' },
-      { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.844 },
-      { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.844 },
+      { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.65 },
+      { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.65 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak', 'elder_bow', 'ironbark_mail'],
@@ -389,10 +389,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '鉄樹の聖域',
     subtitle: 'Block 2 を締めくくる鉄樹の守護者が、聖域の最奥で挑戦者を待ち受ける決戦の場',
     encounters: [
-      { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.921 },
+      { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.55 },
       { type: 'event', eventId: 'wandering_herbalist' },
-      { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.921 },
-      { type: 'miniboss', enemyIds: ['ironbark_sentinel'], enemyStatScale: 1.0 },
+      { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.55 },
+      { type: 'miniboss', enemyIds: ['ironbark_sentinel'], enemyStatScale: 0.5 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'iron_hatchet', 'travelers_leather', 'mossweave_vest', 'spider_silk_cloak', 'elder_bow', 'ironbark_mail'],
