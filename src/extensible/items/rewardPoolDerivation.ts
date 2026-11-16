@@ -64,6 +64,7 @@ export const ITEM_DEBUT_OVERRIDES: Record<string, number> = {
   primordial_aegis_plate: 47,
   glacial_shackle: 47,
   worldtree_ambrosia: 50,
+  astral_storm: 57,
 };
 
 let debutCache: Map<string, number> | null = null;

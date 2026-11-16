@@ -7,15 +7,16 @@ import {
   WEAPON_CATALOG,
 } from '../src/extensible/items/itemCatalog';
 import {
+  ITEM_DEBUT_OVERRIDES,
   equipmentCaps,
   resolveRewardPool,
 } from '../src/extensible/items/rewardPoolDerivation';
 import { FloorDefinition } from '../src/extensible/realms/realm_01_greenwood';
 import { ALL_FLOORS } from '../src/extensible/realms/realmIndex';
 
-/** Debut floor recomputed independently from authored pools. */
+/** Debut floor recomputed independently from authored pools and overrides. */
 function debutOf(id: string): number | undefined {
-  let best: number | undefined;
+  let best: number | undefined = ITEM_DEBUT_OVERRIDES[id];
   for (const [num, def] of Object.entries(ALL_FLOORS)) {
     const pool = def.rewardPool;
     if (!pool) continue;

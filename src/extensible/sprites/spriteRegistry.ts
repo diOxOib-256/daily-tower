@@ -2047,6 +2047,16 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '世界樹の霊露',
     colors: ['#00000000', '#1b263b', '#48cae4', '#f8f9fa'],
   },
+  parchment_wraith: {
+    id: 'parchment_wraith',
+    name: '羊皮紙の亡霊',
+    colors: ['transparent', '#1e162b', '#d4c5a9', '#c77dff'],
+  },
+  item_astral_storm: {
+    id: 'item_astral_storm',
+    name: '星屑の嵐',
+    colors: ['transparent', '#0d1b2a', '#48cae4', '#e0fbfc'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2460,6 +2470,8 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   leyline_astrolabe: { id: 'leyline_astrolabe', matrixId: 'leyline_astrolabe', defaultPalette: 'leyline_astrolabe' },
   paladin_cordial: { id: 'paladin_cordial', matrixId: 'paladin_cordial', defaultPalette: 'paladin_cordial' },
   worldtree_ambrosia: { id: 'worldtree_ambrosia', matrixId: 'worldtree_ambrosia', defaultPalette: 'worldtree_ambrosia' },
+  parchment_wraith: { id: 'parchment_wraith', matrixId: 'parchment_wraith', defaultPalette: 'parchment_wraith' },
+  item_astral_storm: { id: 'item_astral_storm', matrixId: 'item_astral_storm', defaultPalette: 'item_astral_storm' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

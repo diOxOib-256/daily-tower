@@ -9532,5 +9532,64 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  parchment_wraith: {
+    id: 'parchment_wraith',
+    name: '羊皮紙の亡霊',
+    spriteId: 'parchment_wraith',
+    palette: 'parchment_wraith',
+    hp: 68,
+    atk: 15,
+    def: 4,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '紙片の旋風',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '羊皮紙の亡霊が鋭利な紙片を飛ばして切り裂いた！',
+          },
+          {
+            name: '魔導インクの呪縛',
+            type: 'debuff',
+            weight: 40,
+            statusId: 'def_debuff',
+            statusValue: 15,
+            statusDuration: 2,
+            logMessage: '羊皮紙の亡霊が呪いの文字を浮かび上がらせ、防御力を下げた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: '禁書乱舞',
+            type: 'debuff',
+            weight: 70,
+            damageMultiplier: 1.35,
+            statusId: 'poison',
+            statusValue: 3,
+            statusDuration: 2,
+            logMessage: '羊皮紙の亡霊が毒を帯びた古文書で連続攻撃を仕掛けた！',
+          },
+          {
+            name: '頁の防壁',
+            type: 'buff',
+            weight: 30,
+            statusId: 'shield',
+            statusValue: 12,
+            statusDuration: 2,
+            logMessage: '羊皮紙の亡霊が幾重にも頁を折り重ね、障壁を張った！',
+          },
+        ],
+      },
+    ],
+  },
 };
 

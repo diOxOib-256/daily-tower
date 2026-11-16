@@ -2806,6 +2806,24 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     salvageGold: 10,
     description: '凍てつく霊気の鎖で敵全体を縛り上げ、ダメージを与えつつ攻撃力を大きく削ぐ範囲弱体奥義。',
   },
+  astral_storm: {
+    id: 'astral_storm',
+    name: '星屑の嵐',
+    kind: 'skill',
+    spriteId: 'item_astral_storm',
+    category: 'attack',
+    targetScope: 'all_enemies',
+    maxChargesPerBattle: 2,
+    damageMultiplier: 0.85,
+    applyStatus: {
+      target: 'enemy',
+      statusId: 'def_debuff',
+      value: 20,
+      duration: 2,
+    },
+    salvageGold: 8,
+    description: '虚空から無数の星屑を降り注がせ、敵全体に0.85倍ダメージを与え防御力を20%低下(2T)させる範囲攻撃（1戦2回）。',
+  },
 };
 
 export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
