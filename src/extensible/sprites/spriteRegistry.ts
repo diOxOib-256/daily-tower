@@ -1677,6 +1677,41 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '鉄樹の鎖帷子',
     colors: ['#00000000', '#1c2220', '#5b6e67', '#dee2e6'],
   },
+  iron_cleave: {
+    id: 'iron_cleave',
+    name: '鉄斧の叩き割り',
+    colors: ['#00000000', '#1f2421', '#6c757d', '#f8f9fa'],
+  },
+  gale_sweep: {
+    id: 'gale_sweep',
+    name: '嵐の薙ぎ払い',
+    colors: ['#00000000', '#1b3a4b', '#48cae4', '#caf0f8'],
+  },
+  crimson_fireball: {
+    id: 'crimson_fireball',
+    name: '紅蓮の火球',
+    colors: ['#00000000', '#370617', '#dc2f02', '#ffba08'],
+  },
+  spirit_breeze: {
+    id: 'spirit_breeze',
+    name: '精霊の癒し風',
+    colors: ['#00000000', '#1b4332', '#52b788', '#d8f3dc'],
+  },
+  ironbark_ward: {
+    id: 'ironbark_ward',
+    name: '鉄樹の守護',
+    colors: ['#00000000', '#1c2220', '#5b6e67', '#dee2e6'],
+  },
+  verdant_focus: {
+    id: 'verdant_focus',
+    name: '樹海の闘気',
+    colors: ['#00000000', '#2b1912', '#e76f51', '#fde68a'],
+  },
+  toxic_mist: {
+    id: 'toxic_mist',
+    name: '猛毒の霧',
+    colors: ['#00000000', '#1e162b', '#7209b7', '#e0aaff'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2016,6 +2051,13 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   elder_bow: { id: 'elder_bow', matrixId: 'elder_bow', defaultPalette: 'elder_bow' },
   spider_silk_cloak: { id: 'spider_silk_cloak', matrixId: 'spider_silk_cloak', defaultPalette: 'spider_silk_cloak' },
   ironbark_mail: { id: 'ironbark_mail', matrixId: 'ironbark_mail', defaultPalette: 'ironbark_mail' },
+  iron_cleave: { id: 'iron_cleave', matrixId: 'iron_cleave', defaultPalette: 'iron_cleave' },
+  gale_sweep: { id: 'gale_sweep', matrixId: 'gale_sweep', defaultPalette: 'gale_sweep' },
+  crimson_fireball: { id: 'crimson_fireball', matrixId: 'crimson_fireball', defaultPalette: 'crimson_fireball' },
+  spirit_breeze: { id: 'spirit_breeze', matrixId: 'spirit_breeze', defaultPalette: 'spirit_breeze' },
+  ironbark_ward: { id: 'ironbark_ward', matrixId: 'ironbark_ward', defaultPalette: 'ironbark_ward' },
+  verdant_focus: { id: 'verdant_focus', matrixId: 'verdant_focus', defaultPalette: 'verdant_focus' },
+  toxic_mist: { id: 'toxic_mist', matrixId: 'toxic_mist', defaultPalette: 'toxic_mist' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
