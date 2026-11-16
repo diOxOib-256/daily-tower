@@ -1409,6 +1409,73 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  forest_spring: {
+    id: 'forest_spring',
+    title: '樹海の湧水',
+    category: 'shrine',
+    description:
+      '清らかな水が湧き出る小さな泉を見つけた。泉の底には旅人たちが投げ入れた硬貨がわずかに光っている。',
+    speakerSpriteId: 'shrine',
+    palette: 'frost_blue',
+    options: [
+      {
+        id: 'pick_spring_coins',
+        label: '泉の縁に落ちた小銭を拾う',
+        description: '水を汚さないよう縁に落ちた硬貨だけを拾い集める。',
+        outcome: {
+          grantGold: 6,
+          logMessage: '泉の縁から小銭を拾い集め、6 G を手に入れた！',
+        },
+      },
+      {
+        id: 'drink_spring_water',
+        label: '金貨を捧げて湧水を飲む',
+        description: '泉の精霊に金貨を捧げ、清らかな水で傷を癒やす。',
+        cost: {
+          gold: 12,
+        },
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '金貨を捧げて湧水を飲み、HPが35%回復した！',
+        },
+      },
+    ],
+  },
+
+  mossy_forge: {
+    id: 'mossy_forge',
+    title: '苔むした古鍛冶場',
+    category: 'forge',
+    description:
+      '森の中に打ち捨てられた古い鍛冶場の跡。炉の傍らにはまだ使えそうな鉄材や防具の欠片が残っている。',
+    speakerSpriteId: 'shrine',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'collect_iron_scrap',
+        label: '使えそうな鉄屑を集めて換金する',
+        description: '傷んでいない金属部品を回収し、手堅く資金にする。',
+        outcome: {
+          grantGold: 8,
+          logMessage: '使えそうな鉄屑を回収し、8 G に換金した！',
+        },
+      },
+      {
+        id: 'reforge_ancient_armor',
+        label: '生気を注いで古炉の防具を鍛え直す',
+        description: '自身の体力を対価に、残されていた防具を一つ修復して入手する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'armor',
+          grantGold: 4,
+          logMessage: '生気を注いで古炉の防具を鍛え直し、防具と +4 G を手に入れた！',
+        },
+      },
+    ],
+  },
 };
 
 
