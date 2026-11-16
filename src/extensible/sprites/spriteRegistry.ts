@@ -1867,6 +1867,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '古根の魔導樹',
     colors: ['#00000000', '#1b263b', '#415a77', '#48cae4'],
   },
+  rootbreaker_mace: {
+    id: 'rootbreaker_mace',
+    name: '根砕きの戦槌',
+    colors: ['#00000000', '#1f2421', '#6c757d', '#f8f9fa'],
+  },
+  verdant_halberd: {
+    id: 'verdant_halberd',
+    name: '深緑の戟',
+    colors: ['#00000000', '#1b2e1b', '#40916c', '#b7e4c7'],
+  },
+  amber_scale_mail: {
+    id: 'amber_scale_mail',
+    name: '琥珀鱗の鎧',
+    colors: ['#00000000', '#2b1b12', '#d97706', '#fde68a'],
+  },
+  rootguard_plate: {
+    id: 'rootguard_plate',
+    name: '古根の重装鎧',
+    colors: ['#00000000', '#1b263b', '#415a77', '#90e0ef'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2244,6 +2264,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   root_centipede: { id: 'root_centipede', matrixId: 'root_centipede', defaultPalette: 'root_centipede' },
   amber_queen: { id: 'amber_queen', matrixId: 'amber_queen', defaultPalette: 'amber_queen' },
   ancient_root_warden: { id: 'ancient_root_warden', matrixId: 'ancient_root_warden', defaultPalette: 'ancient_root_warden' },
+  rootbreaker_mace: { id: 'rootbreaker_mace', matrixId: 'rootbreaker_mace', defaultPalette: 'rootbreaker_mace' },
+  verdant_halberd: { id: 'verdant_halberd', matrixId: 'verdant_halberd', defaultPalette: 'verdant_halberd' },
+  amber_scale_mail: { id: 'amber_scale_mail', matrixId: 'amber_scale_mail', defaultPalette: 'amber_scale_mail' },
+  rootguard_plate: { id: 'rootguard_plate', matrixId: 'rootguard_plate', defaultPalette: 'rootguard_plate' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

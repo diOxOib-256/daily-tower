@@ -443,6 +443,26 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     salvageGold: 24,
     description: '長年魔力を吸い込んだ古樹の枝に、緑の宝玉を嵌め込んだ魔杖。',
   },
+  rootbreaker_mace: {
+    id: 'rootbreaker_mace',
+    name: '根砕きの戦槌',
+    kind: 'weapon',
+    spriteId: 'rootbreaker_mace',
+    atk: 22,
+    element: 'physical',
+    salvageGold: 26,
+    description: '古代樹の硬い根をも叩き砕くために鍛えられた重厚な戦槌。',
+  },
+  verdant_halberd: {
+    id: 'verdant_halberd',
+    name: '深緑の戟',
+    kind: 'weapon',
+    spriteId: 'verdant_halberd',
+    atk: 23,
+    element: 'nature',
+    salvageGold: 28,
+    description: '精霊樹の力を宿した長柄の戦戟。自然の魔力を纏った刃が敵を断つ。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -776,6 +796,26 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     maxHpBonus: 46,
     salvageGold: 24,
     description: '黒鉄の板金に霊木の芯材を仕込み、耐久力を極限まで高めた重鎧。',
+  },
+  amber_scale_mail: {
+    id: 'amber_scale_mail',
+    name: '琥珀鱗の鎧',
+    kind: 'armor',
+    spriteId: 'amber_scale_mail',
+    def: 8,
+    maxHpBonus: 50,
+    salvageGold: 26,
+    description: '結晶化した琥珀の鱗を幾重にも重ねた堅牢な鎧。',
+  },
+  rootguard_plate: {
+    id: 'rootguard_plate',
+    name: '古根の重装鎧',
+    kind: 'armor',
+    spriteId: 'rootguard_plate',
+    def: 8,
+    maxHpBonus: 55,
+    salvageGold: 28,
+    description: '鉄木と霊石を融合させて作られた最高峰の重鎧。耐久力を大幅に高める。',
   },
 };
 
