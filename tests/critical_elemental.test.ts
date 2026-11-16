@@ -151,14 +151,14 @@ describe('Critical Hits and Elemental Affinities (Spec 2/3)', () => {
   });
 
   it('records lastActionFx and outputs descriptive logs in executeTurn', () => {
-    // Fire weapon against moss_slime (weakness: fire, resistance: ice)
-    const fireWeapon = {
+    // Physical weapon against moss_slime (weakness: physical, resistance: ice)
+    const physicalWeapon = {
       ...WEAPON_CATALOG.rusty_shortsword,
       atk: 20,
-      element: 'fire' as const,
+      element: 'physical' as const,
     };
     const loadout: PlayerLoadout = {
-      weapon: fireWeapon,
+      weapon: physicalWeapon,
       armor: ARMOR_CATALOG.leather_tunic,
       skills: [SKILL_CATALOG.power_slash, null, null],
       consumable: CONSUMABLE_CATALOG.crimson_vial,

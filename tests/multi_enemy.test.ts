@@ -67,7 +67,7 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
       undefined,
       () => 0.5
     );
-    expect(session.enemies[0].currentHp).toBe(session.enemies[0].maxHp - 8);
+    expect(session.enemies[0].currentHp).toBe(session.enemies[0].maxHp - 10);
     expect(session.enemies[1].currentHp).toBe(session.enemies[1].maxHp - 8);
   });
 

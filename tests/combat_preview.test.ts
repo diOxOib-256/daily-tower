@@ -23,8 +23,8 @@ describe('computeActionPreview', () => {
   it('previews single-target skill damage, weakness, and lethal status', () => {
     const fireWeapon = Object.values(WEAPON_CATALOG).find((w) => w.element === 'fire')!;
     const lo = makeLoadout({ weapon: fireWeapon });
-    // moss_slime has weakness: 'fire'
-    const session = CombatEngine.createBattleSession(120, 120, 2, lo, ENEMY_REGISTRY.moss_slime);
+    // shadow_wolf has weakness: 'fire'
+    const session = CombatEngine.createBattleSession(120, 120, 2, lo, ENEMY_REGISTRY.shadow_wolf);
     session.enemies[0].currentHp = 10; // low enough to be lethal
 
     const preview = computeActionPreview(

@@ -424,8 +424,8 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
   },
   vine_stalker: {
     id: 'vine_stalker',
-    name: 'ヴァイン・ストーカー',
-    colors: ['transparent', '#052e16', '#15803d', '#86efac'],
+    name: '蔦の徘徊者',
+    colors: ['#00000000', '#1c2618', '#588157', '#a3b18a'],
   },
   moss_gargoyle: {
     id: 'moss_gargoyle',
@@ -1537,6 +1537,31 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '虚空の障壁',
     colors: ['transparent', '#1b263b', '#778da9', '#e0e1dd'],
   },
+  thorn_sprout: {
+    id: 'thorn_sprout',
+    name: '棘の新芽',
+    colors: ['#00000000', '#1b2e1b', '#4f9d69', '#d4e09b'],
+  },
+  bark_beetle: {
+    id: 'bark_beetle',
+    name: '樹皮カブト',
+    colors: ['#00000000', '#241914', '#6b4423', '#b88b4a'],
+  },
+  forest_wisp: {
+    id: 'forest_wisp',
+    name: '森の鬼火',
+    colors: ['#00000000', '#112a26', '#2ec4b6', '#cbf3f0'],
+  },
+  amber_golem: {
+    id: 'amber_golem',
+    name: '琥珀の巨兵',
+    colors: ['#00000000', '#2b1b12', '#d97706', '#fde68a'],
+  },
+  crimson_chieftain: {
+    id: 'crimson_chieftain',
+    name: '深紅の頭領',
+    colors: ['#00000000', '#450a0a', '#dc2626', '#fde047'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1849,6 +1874,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_void_spark: { id: 'item_void_spark', matrixId: 'item_void_spark', defaultPalette: 'item_void_spark' },
   glass_sentinel: { id: 'glass_sentinel', matrixId: 'glass_sentinel', defaultPalette: 'glass_sentinel' },
   item_void_barrier: { id: 'item_void_barrier', matrixId: 'item_void_barrier', defaultPalette: 'item_void_barrier' },
+  thorn_sprout: { id: 'thorn_sprout', matrixId: 'thorn_sprout', defaultPalette: 'thorn_sprout' },
+  bark_beetle: { id: 'bark_beetle', matrixId: 'bark_beetle', defaultPalette: 'bark_beetle' },
+  forest_wisp: { id: 'forest_wisp', matrixId: 'forest_wisp', defaultPalette: 'forest_wisp' },
+  amber_golem: { id: 'amber_golem', matrixId: 'amber_golem', defaultPalette: 'amber_golem' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
