@@ -43,10 +43,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '苔むした樹海の入口',
     subtitle: '木漏れ日が差す石畳の回廊で、樹海に住まう小動物やスライムと初めて対峙する導入階',
     encounters: [
-      { type: 'battle', enemyIds: ['moss_slime'], enemyStatScale: 0.78 },
+      { type: 'battle', enemyIds: ['moss_slime'], enemyStatScale: 1.08 },
       { type: 'event', eventId: 'verdant_shrine' },
-      { type: 'battle', enemyIds: ['forest_goblin'], enemyStatScale: 0.78 },
-      { type: 'battle', enemyIds: ['moss_slime', 'thorn_sprout'], enemyStatScale: 0.78 },
+      { type: 'battle', enemyIds: ['forest_goblin'], enemyStatScale: 1.08 },
+      { type: 'battle', enemyIds: ['moss_slime', 'thorn_sprout'], enemyStatScale: 1.08 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'travelers_leather'],
@@ -115,10 +115,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: 'ゴブリン頭領の砦',
     subtitle: '樹海の第一関門を統べる森ゴブリンの頭領が、配下を従えて待ち受ける木造の砦',
     encounters: [
-      { type: 'battle', enemyIds: ['forest_goblin', 'moss_slime'], enemyStatScale: 0.86 },
+      { type: 'battle', enemyIds: ['forest_goblin', 'moss_slime'], enemyStatScale: 0.62 },
       { type: 'event', eventId: 'wandering_herbalist' },
-      { type: 'battle', enemyIds: ['thorn_sprout', 'bark_beetle'], enemyStatScale: 0.86 },
-      { type: 'miniboss', enemyIds: ['goblin_chieftain'], enemyStatScale: 1.2 },
+      { type: 'battle', enemyIds: ['thorn_sprout', 'bark_beetle'], enemyStatScale: 0.62 },
+      { type: 'miniboss', enemyIds: ['goblin_chieftain'], enemyStatScale: 0.62 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'travelers_leather'],
@@ -133,10 +133,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '棘木の深道',
     subtitle: '樹皮カブトと棘の新芽が道を塞ぎ、新たな自然属性の武具が解禁される中盤の入口',
     encounters: [
-      { type: 'battle', enemyIds: ['toxic_slime'], enemyStatScale: 0.9 },
+      { type: 'battle', enemyIds: ['toxic_slime'], enemyStatScale: 0.67 },
       { type: 'event', eventId: 'verdant_shrine' },
-      { type: 'battle', enemyIds: ['forest_wisp'], enemyStatScale: 0.9 },
-      { type: 'battle', enemyIds: ['vine_stalker'], enemyStatScale: 0.9 },
+      { type: 'battle', enemyIds: ['forest_wisp'], enemyStatScale: 0.67 },
+      { type: 'battle', enemyIds: ['vine_stalker'], enemyStatScale: 0.67 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'travelers_leather', 'mossweave_vest'],
@@ -151,10 +151,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '樹液滴る古道',
     subtitle: '毒と妖光が交錯する薄暗い古道で、状態異常への対処力が試される階層',
     encounters: [
-      { type: 'battle', enemyIds: ['moss_slime'], enemyStatScale: 0.85 },
+      { type: 'battle', enemyIds: ['moss_slime'], enemyStatScale: 0.67 },
       { type: 'event', eventId: 'wandering_herbalist' },
-      { type: 'battle', enemyIds: ['bark_beetle'], enemyStatScale: 0.85 },
-      { type: 'battle', enemyIds: ['shadow_wolf'], enemyStatScale: 0.85 },
+      { type: 'battle', enemyIds: ['bark_beetle'], enemyStatScale: 0.67 },
+      { type: 'battle', enemyIds: ['shadow_wolf'], enemyStatScale: 0.67 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'travelers_leather', 'mossweave_vest'],
@@ -187,10 +187,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '琥珀の回廊',
     subtitle: '樹液が結晶化した琥珀が壁面を覆い、Block 1 の集大成となる関門が近づく回廊',
     encounters: [
-      { type: 'battle', enemyIds: ['shadow_wolf'], enemyStatScale: 0.581 },
+      { type: 'battle', enemyIds: ['shadow_wolf'], enemyStatScale: 0.72 },
       { type: 'event', eventId: 'verdant_shrine' },
-      { type: 'battle', enemyIds: ['forest_wisp'], enemyStatScale: 0.581 },
-      { type: 'battle', enemyIds: ['vine_stalker'], enemyStatScale: 0.581 },
+      { type: 'battle', enemyIds: ['forest_wisp'], enemyStatScale: 0.72 },
+      { type: 'battle', enemyIds: ['vine_stalker'], enemyStatScale: 0.72 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'travelers_leather', 'mossweave_vest'],
@@ -208,7 +208,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['forest_wisp'], enemyStatScale: 0.86 },
       { type: 'event', eventId: 'wandering_herbalist' },
       { type: 'battle', enemyIds: ['vine_stalker'], enemyStatScale: 0.86 },
-      { type: 'miniboss', enemyIds: ['amber_golem'], enemyStatScale: 1.15 },
+      { type: 'miniboss', enemyIds: ['amber_golem'], enemyStatScale: 0.58 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'thornwood_spear', 'travelers_leather', 'mossweave_vest'],

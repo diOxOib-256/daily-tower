@@ -827,7 +827,7 @@ export function App() {
                           🔮 プレビュー（{actionPreview.label}）：{actionPreview.summaryText}
                         </span>
                       ) : (
-                        <span className="text-[11px] text-slate-400">
+                        <span className="rounded-md border border-transparent px-2 py-0.5 text-[11px] text-slate-400">
                           {isAnimating ? '行動中…' : '行動を選択してください（カーソルで効果プレビュー）'}
                         </span>
                       )}
