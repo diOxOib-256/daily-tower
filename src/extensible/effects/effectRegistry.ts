@@ -393,6 +393,28 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:若葉のブローチ] 若葉の魔力が身を包み、障壁(4/1T)を展開した！`,
     }),
   },
+  mist_charm: {
+    id: 'mist_charm',
+    name: '霧の護符',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'def_debuff',
+        value: 10,
+        duration: 2,
+      },
+      logMessage: `[レリック:霧の護符] 霧が敵を包み、防御力を10%低下(2T)させた！`,
+    }),
+  },
+  amber_heart: {
+    id: 'amber_heart',
+    name: '琥珀の核',
+    trigger: 'battle_victory',
+    handler: (ctx) => ({
+      healPlayer: Math.max(1, Math.floor(ctx.playerMaxHp * 0.08)),
+      logMessage: `[レリック:琥珀の核] 温かな光が傷を癒やした！`,
+    }),
+  },
 };
 
 

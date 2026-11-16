@@ -480,6 +480,7 @@ function syncAchievements(save: SaveData): SaveData {
     if (!battleSession || battleSession.status !== 'victory') return;
 
     let bonusGold = battleSession.totalGoldReward;
+    let bonusHeal = 0;
     for (const eff of collectEquippedEffects(saveData.inventory)) {
       if (eff.trigger !== 'battle_victory') continue;
       const res = eff.handler({
@@ -492,6 +493,7 @@ function syncAchievements(save: SaveData): SaveData {
         turnNumber: battleSession.turn,
       });
       if (res.grantGold) bonusGold += res.grantGold;
+      if (res.healPlayer) bonusHeal += res.healPlayer;
     }
 
     const updatedSave: SaveData = {
@@ -499,7 +501,7 @@ function syncAchievements(save: SaveData): SaveData {
       gold: saveData.gold + bonusGold,
       midFloor: {
         ...saveData.midFloor,
-        playerCurrentHp: battleSession.player.currentHp,
+        playerCurrentHp: Math.min(battleSession.player.maxHp, battleSession.player.currentHp + bonusHeal),
         consumableCharges: battleSession.consumableCharges,
       },
     };

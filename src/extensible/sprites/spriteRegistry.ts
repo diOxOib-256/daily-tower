@@ -1712,6 +1712,26 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '猛毒の霧',
     colors: ['#00000000', '#1e162b', '#7209b7', '#e0aaff'],
   },
+  mist_charm: {
+    id: 'mist_charm',
+    name: '霧の護符',
+    colors: ['#00000000', '#222034', '#639bff', '#cbdbfc'],
+  },
+  amber_heart: {
+    id: 'amber_heart',
+    name: '琥珀の核',
+    colors: ['#00000000', '#2b1b12', '#f59e0b', '#fef3c7'],
+  },
+  frost_draught: {
+    id: 'frost_draught',
+    name: '氷霧の霊水',
+    colors: ['#00000000', '#1b263b', '#4ea8de', '#caf0f8'],
+  },
+  dryad_elixir: {
+    id: 'dryad_elixir',
+    name: '精霊の秘薬',
+    colors: ['#00000000', '#1b2e1b', '#52b788', '#fefae0'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2058,6 +2078,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   ironbark_ward: { id: 'ironbark_ward', matrixId: 'ironbark_ward', defaultPalette: 'ironbark_ward' },
   verdant_focus: { id: 'verdant_focus', matrixId: 'verdant_focus', defaultPalette: 'verdant_focus' },
   toxic_mist: { id: 'toxic_mist', matrixId: 'toxic_mist', defaultPalette: 'toxic_mist' },
+  mist_charm: { id: 'mist_charm', matrixId: 'mist_charm', defaultPalette: 'mist_charm' },
+  amber_heart: { id: 'amber_heart', matrixId: 'amber_heart', defaultPalette: 'amber_heart' },
+  frost_draught: { id: 'frost_draught', matrixId: 'frost_draught', defaultPalette: 'frost_draught' },
+  dryad_elixir: { id: 'dryad_elixir', matrixId: 'dryad_elixir', defaultPalette: 'dryad_elixir' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

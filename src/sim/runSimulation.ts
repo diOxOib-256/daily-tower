@@ -206,6 +206,9 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
             turnNumber: session.turn,
           });
           if (res.grantGold) gold += res.grantGold;
+          if (res.healPlayer) {
+            session.player.currentHp = Math.min(session.player.maxHp, session.player.currentHp + res.healPlayer);
+          }
         }
         save.gold += gold;
         result.goldEarned += gold;

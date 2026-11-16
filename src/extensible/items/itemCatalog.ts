@@ -2719,6 +2719,31 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     cleanse: true,
     description: '樹液が結晶化した琥珀を溶かした小瓶。傷を癒やし、あらゆる毒や弱体を浄化する。',
   },
+  frost_draught: {
+    id: 'frost_draught',
+    name: '氷霧の霊水',
+    kind: 'consumable',
+    spriteId: 'frost_draught',
+    maxCharges: 2,
+    healPercent: 35,
+    applyStatus: {
+      target: 'self',
+      statusId: 'shield',
+      value: 10,
+      duration: 2,
+    },
+    description: '冷気を帯びた清らかな霊水。傷を癒やし同時に氷の障壁を展開する。',
+  },
+  dryad_elixir: {
+    id: 'dryad_elixir',
+    name: '精霊の秘薬',
+    kind: 'consumable',
+    spriteId: 'dryad_elixir',
+    maxCharges: 2,
+    healPercent: 45,
+    cleanse: true,
+    description: '朽木の精霊が守り続けてきた聖なる雫。深手を大きく癒やしあらゆる弱体を払う。',
+  },
 };
 
 export const RELIC_CATALOG: Record<string, RelicItem> = {
@@ -2973,6 +2998,24 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     effectId: 'verdant_brooch',
     salvageGold: 16,
     description: '若葉を象った魔力のブローチ。スキルを使用するたび、わずかな障壁を得る。',
+  },
+  mist_charm: {
+    id: 'mist_charm',
+    name: '霧の護符',
+    kind: 'relic',
+    spriteId: 'mist_charm',
+    effectId: 'mist_charm',
+    salvageGold: 18,
+    description: '冷たい樹海の霧を封じた護符。戦闘開始時、敵全体の防御力をわずかに削ぐ。',
+  },
+  amber_heart: {
+    id: 'amber_heart',
+    name: '琥珀の核',
+    kind: 'relic',
+    spriteId: 'amber_heart',
+    effectId: 'amber_heart',
+    salvageGold: 22,
+    description: '温かな光を宿した琥珀の結晶。戦闘に勝利するたび、わずかに体力を癒やす。',
   },
 };
 
