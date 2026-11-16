@@ -1992,6 +1992,41 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '原初樹の聖鎧',
     colors: ['#00000000', '#1b263b', '#4ea8de', '#e0fbfc'],
   },
+  celestial_cleave: {
+    id: 'celestial_cleave',
+    name: '天断の聖剣撃',
+    colors: ['#00000000', '#1f2421', '#ffd166', '#f8f9fa'],
+  },
+  leyline_storm: {
+    id: 'leyline_storm',
+    name: '霊脈の嵐刃',
+    colors: ['#00000000', '#14211d', '#2ec4b6', '#e0fbfc'],
+  },
+  inferno_verdict: {
+    id: 'inferno_verdict',
+    name: '業火の審判',
+    colors: ['#00000000', '#370617', '#e63946', '#fff3b0'],
+  },
+  worldtree_grace: {
+    id: 'worldtree_grace',
+    name: '世界樹の恩寵',
+    colors: ['#00000000', '#14211d', '#52b788', '#fefae0'],
+  },
+  primordial_bastion: {
+    id: 'primordial_bastion',
+    name: '原初樹の聖壁',
+    colors: ['#00000000', '#14211d', '#e09f3e', '#d8f3dc'],
+  },
+  apex_overdrive: {
+    id: 'apex_overdrive',
+    name: '限界突破の闘気',
+    colors: ['#00000000', '#370617', '#dc2f02', '#fef3c7'],
+  },
+  glacial_shackle: {
+    id: 'glacial_shackle',
+    name: '氷結の呪縛',
+    colors: ['#00000000', '#1b263b', '#48cae4', '#f8f9fa'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2394,6 +2429,13 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   primordial_spear: { id: 'primordial_spear', matrixId: 'primordial_spear', defaultPalette: 'primordial_spear' },
   paladin_verdant_armor: { id: 'paladin_verdant_armor', matrixId: 'paladin_verdant_armor', defaultPalette: 'paladin_verdant_armor' },
   primordial_aegis_plate: { id: 'primordial_aegis_plate', matrixId: 'primordial_aegis_plate', defaultPalette: 'primordial_aegis_plate' },
+  celestial_cleave: { id: 'celestial_cleave', matrixId: 'celestial_cleave', defaultPalette: 'celestial_cleave' },
+  leyline_storm: { id: 'leyline_storm', matrixId: 'leyline_storm', defaultPalette: 'leyline_storm' },
+  inferno_verdict: { id: 'inferno_verdict', matrixId: 'inferno_verdict', defaultPalette: 'inferno_verdict' },
+  worldtree_grace: { id: 'worldtree_grace', matrixId: 'worldtree_grace', defaultPalette: 'worldtree_grace' },
+  primordial_bastion: { id: 'primordial_bastion', matrixId: 'primordial_bastion', defaultPalette: 'primordial_bastion' },
+  apex_overdrive: { id: 'apex_overdrive', matrixId: 'apex_overdrive', defaultPalette: 'apex_overdrive' },
+  glacial_shackle: { id: 'glacial_shackle', matrixId: 'glacial_shackle', defaultPalette: 'glacial_shackle' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
