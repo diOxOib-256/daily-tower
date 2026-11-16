@@ -1777,6 +1777,41 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '深緑の重鎧',
     colors: ['#00000000', '#1c2220', '#4f6d7a', '#dee2e6'],
   },
+  rending_cleave: {
+    id: 'rending_cleave',
+    name: '裂空斬',
+    colors: ['#00000000', '#1f2421', '#4ea8de', '#f8f9fa'],
+  },
+  whirlwind_slash: {
+    id: 'whirlwind_slash',
+    name: '旋風刃',
+    colors: ['#00000000', '#1b3a4b', '#48cae4', '#caf0f8'],
+  },
+  spore_ignition: {
+    id: 'spore_ignition',
+    name: '胞子火炎',
+    colors: ['#00000000', '#370617', '#dc2f02', '#ffba08'],
+  },
+  elder_regrowth: {
+    id: 'elder_regrowth',
+    name: '古樹の再生',
+    colors: ['#00000000', '#1b4332', '#52b788', '#d8f3dc'],
+  },
+  shell_fortress: {
+    id: 'shell_fortress',
+    name: '甲殻の陣',
+    colors: ['#00000000', '#241914', '#6b4423', '#ddb892'],
+  },
+  verdant_war_cry: {
+    id: 'verdant_war_cry',
+    name: '深緑の咆哮',
+    colors: ['#00000000', '#370617', '#e76f51', '#fde68a'],
+  },
+  corrosive_haze: {
+    id: 'corrosive_haze',
+    name: '腐食の霧',
+    colors: ['#00000000', '#1e162b', '#7209b7', '#e0aaff'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2136,6 +2171,13 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   ancient_staff: { id: 'ancient_staff', matrixId: 'ancient_staff', defaultPalette: 'ancient_staff' },
   carapace_cuirass: { id: 'carapace_cuirass', matrixId: 'carapace_cuirass', defaultPalette: 'carapace_cuirass' },
   deepwood_plate: { id: 'deepwood_plate', matrixId: 'deepwood_plate', defaultPalette: 'deepwood_plate' },
+  rending_cleave: { id: 'rending_cleave', matrixId: 'rending_cleave', defaultPalette: 'rending_cleave' },
+  whirlwind_slash: { id: 'whirlwind_slash', matrixId: 'whirlwind_slash', defaultPalette: 'whirlwind_slash' },
+  spore_ignition: { id: 'spore_ignition', matrixId: 'spore_ignition', defaultPalette: 'spore_ignition' },
+  elder_regrowth: { id: 'elder_regrowth', matrixId: 'elder_regrowth', defaultPalette: 'elder_regrowth' },
+  shell_fortress: { id: 'shell_fortress', matrixId: 'shell_fortress', defaultPalette: 'shell_fortress' },
+  verdant_war_cry: { id: 'verdant_war_cry', matrixId: 'verdant_war_cry', defaultPalette: 'verdant_war_cry' },
+  corrosive_haze: { id: 'corrosive_haze', matrixId: 'corrosive_haze', defaultPalette: 'corrosive_haze' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
