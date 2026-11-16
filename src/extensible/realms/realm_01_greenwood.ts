@@ -530,10 +530,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第31層：琥珀の羽音鳴る樹洞',
     subtitle: '黄金の樹液が壁を伝い、大型の琥珀バチが縄張りを飛び回る深奥の入口',
     encounters: [
-      { type: 'battle', enemyId: 'amber_hornet', enemyStatScale: 0.97 },
+      { type: 'battle', enemyId: 'amber_hornet', enemyStatScale: 0.55 },
       { type: 'event', eventId: 'amber_spring' },
-      { type: 'battle', enemyId: 'sap_ooze', enemyStatScale: 0.97 },
-      { type: 'battle', enemyIds: ['amber_hornet', 'sap_ooze'], enemyStatScale: 0.97 },
+      { type: 'battle', enemyId: 'sap_ooze', enemyStatScale: 0.55 },
+      { type: 'battle', enemyIds: ['amber_hornet', 'sap_ooze'], enemyStatScale: 0.55 },
     ],
   },
   {
@@ -542,10 +542,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第32層：亡霊と岩苔の廃道',
     subtitle: '古い根に縛られた亡霊と苔むした岩の巨兵が道を塞ぐ静かな廃道',
     encounters: [
-      { type: 'battle', enemyId: 'rootbound_wraith', enemyStatScale: 0.85 },
-      { type: 'battle', enemyId: 'moss_golem', enemyStatScale: 0.85 },
+      { type: 'battle', enemyId: 'rootbound_wraith', enemyStatScale: 0.52 },
+      { type: 'battle', enemyId: 'moss_golem', enemyStatScale: 0.52 },
       { type: 'event', eventId: 'root_altar' },
-      { type: 'battle', enemyIds: ['moss_golem', 'sap_ooze'], enemyStatScale: 0.85 },
+      { type: 'battle', enemyIds: ['moss_golem', 'sap_ooze'], enemyStatScale: 0.52 },
     ],
   },
   {
@@ -554,10 +554,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第33層：根洞の安息所',
     subtitle: '巨木の根が組まれた安全な空洞。前半の消耗を癒やし、女王バチの領域へ備える階層',
     encounters: [
-      { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 0.89 },
-      { type: 'battle', enemyIds: ['rootbound_wraith', 'sap_ooze'], enemyStatScale: 0.89 },
+      { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 0.55 },
+      { type: 'battle', enemyIds: ['rootbound_wraith', 'sap_ooze'], enemyStatScale: 0.55 },
       { type: 'event', eventId: 'root_hollow_camp' },
-      { type: 'battle', enemyIds: ['amber_hornet', 'moss_golem'], enemyStatScale: 0.89 },
+      { type: 'battle', enemyIds: ['amber_hornet', 'moss_golem'], enemyStatScale: 0.55 },
     ],
   },
   {
@@ -566,11 +566,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第34層：焦土と大狼の境界',
     subtitle: '燻る焦土の樹精と飢えた深森のオオカミが交錯し、女王の巣が近づく階層',
     encounters: [
-      { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 1.099 },
-      { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 1.099 },
+      { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 0.75 },
+      { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 0.75 },
       { type: 'event', eventId: 'amber_spring' },
-      { type: 'battle', enemyId: 'rootbound_wraith', enemyStatScale: 1.099 },
-      { type: 'battle', enemyId: 'amber_hornet', enemyStatScale: 1.099 },
+      { type: 'battle', enemyId: 'rootbound_wraith', enemyStatScale: 0.75 },
+      { type: 'battle', enemyId: 'amber_hornet', enemyStatScale: 0.75 },
     ],
   },
   {
@@ -579,10 +579,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第35層：琥珀女王の巣窟',
     subtitle: '黄金の巣の奥にて、琥珀の女王バチが配下を従えて挑戦者を待ち受ける関門',
     encounters: [
-      { type: 'battle', enemyId: 'moss_golem', enemyStatScale: 1.121 },
+      { type: 'battle', enemyId: 'moss_golem', enemyStatScale: 0.65 },
       { type: 'event', eventId: 'root_altar' },
-      { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 1.121 },
-      { type: 'miniboss', enemyId: 'amber_queen', enemyStatScale: 1.288 },
+      { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 0.65 },
+      { type: 'miniboss', enemyId: 'amber_queen', enemyStatScale: 1.0 },
     ],
   },
   {
@@ -591,10 +591,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第36層：茨と大ムカデの深淵',
     subtitle: '鋭い茨の狩人と巨大なムカデが潜み、後半の新たな武具の力が試される深層',
     encounters: [
-      { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 1.132 },
+      { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 0.52 },
       { type: 'event', eventId: 'amber_spring' },
-      { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 1.132 },
-      { type: 'battle', enemyId: 'rootbound_wraith', enemyStatScale: 1.132 },
+      { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 0.52 },
+      { type: 'battle', enemyId: 'rootbound_wraith', enemyStatScale: 0.52 },
     ],
   },
   {
@@ -603,11 +603,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第37層：焦熱樹と狩人の密林',
     subtitle: '炎を纏う樹精と猛毒の狩人が絶え間なく襲いかける過酷な連戦地帯',
     encounters: [
-      { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 1.132 },
-      { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 1.132 },
+      { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 0.47 },
+      { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 0.47 },
       { type: 'event', eventId: 'root_altar' },
-      { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 1.132 },
-      { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 1.132 },
+      { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 0.47 },
+      { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.47 },
     ],
   },
   {
@@ -616,10 +616,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第38層：深根の隠れ洞',
     subtitle: '33F以来の安息の空洞。40Fの魔導樹との決戦に向け、体力と消耗品を整える階層',
     encounters: [
-      { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 1.154 },
-      { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 1.154 },
+      { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 0.55 },
+      { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 0.55 },
       { type: 'event', eventId: 'root_hollow_camp' },
-      { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 1.154 },
+      { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 0.55 },
     ],
   },
   {
@@ -628,11 +628,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第39層：魔導樹前の試練廊',
     subtitle: '古代の魔力が濃密に渦巻き、聖域の番人へ挑む前の最終関門となる回廊',
     encounters: [
-      { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 1.45 },
-      { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 0.8 },
+      { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 0.8 },
       { type: 'event', eventId: 'amber_spring' },
-      { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 1.45 },
-      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 0.8 },
+      { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.8 },
     ],
   },
   {
@@ -641,10 +641,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第40層：古根の魔導聖域',
     subtitle: 'Block 4 を締めくくる古代の守護者「古根の魔導樹」が鎮座する蒼き聖域',
     encounters: [
-      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 1.42 },
+      { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.62 },
       { type: 'event', eventId: 'root_altar' },
-      { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 1.42 },
-      { type: 'miniboss', enemyId: 'ancient_root_warden', enemyStatScale: 1.85 },
+      { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 0.62 },
+      { type: 'miniboss', enemyId: 'ancient_root_warden', enemyStatScale: 0.88 },
     ],
   },
   {
