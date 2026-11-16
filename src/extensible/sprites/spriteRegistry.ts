@@ -1887,6 +1887,41 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '古根の重装鎧',
     colors: ['#00000000', '#1b263b', '#415a77', '#90e0ef'],
   },
+  earthshatter_blow: {
+    id: 'earthshatter_blow',
+    name: '大地砕き',
+    colors: ['#00000000', '#1f2421', '#f4a261', '#f8f9fa'],
+  },
+  briar_tempest: {
+    id: 'briar_tempest',
+    name: '茨の嵐',
+    colors: ['#00000000', '#1b2e1b', '#40916c', '#e0aaff'],
+  },
+  cinder_burst: {
+    id: 'cinder_burst',
+    name: '焦熱爆砕',
+    colors: ['#00000000', '#370617', '#dc2f02', '#fff3b0'],
+  },
+  warden_vitality: {
+    id: 'warden_vitality',
+    name: '古代樹の活気',
+    colors: ['#00000000', '#1b4332', '#52b788', '#d8f3dc'],
+  },
+  amber_aegis: {
+    id: 'amber_aegis',
+    name: '琥珀の霊盾',
+    colors: ['#00000000', '#2b1b12', '#f59e0b', '#fef3c7'],
+  },
+  primal_surge: {
+    id: 'primal_surge',
+    name: '原初の闘気',
+    colors: ['#00000000', '#370617', '#e63946', '#ffba08'],
+  },
+  wraith_chill: {
+    id: 'wraith_chill',
+    name: '怨霊の凍気',
+    colors: ['#00000000', '#161925', '#48cae4', '#e0fbfc'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2268,6 +2303,13 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   verdant_halberd: { id: 'verdant_halberd', matrixId: 'verdant_halberd', defaultPalette: 'verdant_halberd' },
   amber_scale_mail: { id: 'amber_scale_mail', matrixId: 'amber_scale_mail', defaultPalette: 'amber_scale_mail' },
   rootguard_plate: { id: 'rootguard_plate', matrixId: 'rootguard_plate', defaultPalette: 'rootguard_plate' },
+  earthshatter_blow: { id: 'earthshatter_blow', matrixId: 'earthshatter_blow', defaultPalette: 'earthshatter_blow' },
+  briar_tempest: { id: 'briar_tempest', matrixId: 'briar_tempest', defaultPalette: 'briar_tempest' },
+  cinder_burst: { id: 'cinder_burst', matrixId: 'cinder_burst', defaultPalette: 'cinder_burst' },
+  warden_vitality: { id: 'warden_vitality', matrixId: 'warden_vitality', defaultPalette: 'warden_vitality' },
+  amber_aegis: { id: 'amber_aegis', matrixId: 'amber_aegis', defaultPalette: 'amber_aegis' },
+  primal_surge: { id: 'primal_surge', matrixId: 'primal_surge', defaultPalette: 'primal_surge' },
+  wraith_chill: { id: 'wraith_chill', matrixId: 'wraith_chill', defaultPalette: 'wraith_chill' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
