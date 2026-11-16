@@ -1582,6 +1582,41 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '苔織りの胸当て',
     colors: ['#00000000', '#1b2e1b', '#4f9d69', '#a3b18a'],
   },
+  quick_slash: {
+    id: 'quick_slash',
+    name: '疾風斬り',
+    colors: ['#00000000', '#1f2421', '#4ea8de', '#caf0f8'],
+  },
+  ember_toss: {
+    id: 'ember_toss',
+    name: '火種の投擲',
+    colors: ['#00000000', '#2b1912', '#e76f51', '#f4a261'],
+  },
+  sweeping_arc: {
+    id: 'sweeping_arc',
+    name: '薙ぎ払い',
+    colors: ['#00000000', '#1f2421', '#8d99ae', '#f4f1de'],
+  },
+  forest_breath: {
+    id: 'forest_breath',
+    name: '森の息吹',
+    colors: ['#00000000', '#1b2e1b', '#52b788', '#d8f3dc'],
+  },
+  bark_guard: {
+    id: 'bark_guard',
+    name: '樹皮の構え',
+    colors: ['#00000000', '#241914', '#6b4423', '#ddb892'],
+  },
+  sap_shot: {
+    id: 'sap_shot',
+    name: '粘液弾',
+    colors: ['#00000000', '#2b1b12', '#d97706', '#fde68a'],
+  },
+  venom_sting: {
+    id: 'venom_sting',
+    name: '毒針の一突き',
+    colors: ['#00000000', '#1e162b', '#7209b7', '#e0aaff'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1902,6 +1937,13 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   thornwood_spear: { id: 'thornwood_spear', matrixId: 'thornwood_spear', defaultPalette: 'thornwood_spear' },
   travelers_leather: { id: 'travelers_leather', matrixId: 'travelers_leather', defaultPalette: 'travelers_leather' },
   mossweave_vest: { id: 'mossweave_vest', matrixId: 'mossweave_vest', defaultPalette: 'mossweave_vest' },
+  quick_slash: { id: 'quick_slash', matrixId: 'quick_slash', defaultPalette: 'quick_slash' },
+  ember_toss: { id: 'ember_toss', matrixId: 'ember_toss', defaultPalette: 'ember_toss' },
+  sweeping_arc: { id: 'sweeping_arc', matrixId: 'sweeping_arc', defaultPalette: 'sweeping_arc' },
+  forest_breath: { id: 'forest_breath', matrixId: 'forest_breath', defaultPalette: 'forest_breath' },
+  bark_guard: { id: 'bark_guard', matrixId: 'bark_guard', defaultPalette: 'bark_guard' },
+  sap_shot: { id: 'sap_shot', matrixId: 'sap_shot', defaultPalette: 'sap_shot' },
+  venom_sting: { id: 'venom_sting', matrixId: 'venom_sting', defaultPalette: 'venom_sting' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
