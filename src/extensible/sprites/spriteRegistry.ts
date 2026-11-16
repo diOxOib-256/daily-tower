@@ -1832,6 +1832,41 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '巨像の活力剤',
     colors: ['#00000000', '#1b263b', '#2ec4b6', '#cbf3f0'],
   },
+  amber_hornet: {
+    id: 'amber_hornet',
+    name: '琥珀バチ',
+    colors: ['#00000000', '#2b1b12', '#e09f3e', '#fff3b0'],
+  },
+  rootbound_wraith: {
+    id: 'rootbound_wraith',
+    name: '根縛りの亡霊',
+    colors: ['#00000000', '#161925', '#235789', '#cbf3f0'],
+  },
+  moss_golem: {
+    id: 'moss_golem',
+    name: '岩苔のゴーレム',
+    colors: ['#00000000', '#1c2220', '#5b6e67', '#80ed99'],
+  },
+  briar_stalker: {
+    id: 'briar_stalker',
+    name: '荊棘の狩人',
+    colors: ['#00000000', '#1b2e1b', '#386641', '#a7c957'],
+  },
+  root_centipede: {
+    id: 'root_centipede',
+    name: '古根の大ムカデ',
+    colors: ['#00000000', '#2b1912', '#8c2f39', '#f4a261'],
+  },
+  amber_queen: {
+    id: 'amber_queen',
+    name: '琥珀の女王バチ',
+    colors: ['#00000000', '#2b1b12', '#f59e0b', '#fef3c7'],
+  },
+  ancient_root_warden: {
+    id: 'ancient_root_warden',
+    name: '古根の魔導樹',
+    colors: ['#00000000', '#1b263b', '#415a77', '#48cae4'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2202,6 +2237,13 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   spirit_crest: { id: 'spirit_crest', matrixId: 'spirit_crest', defaultPalette: 'spirit_crest' },
   sovereign_nectar: { id: 'sovereign_nectar', matrixId: 'sovereign_nectar', defaultPalette: 'sovereign_nectar' },
   colossus_draught: { id: 'colossus_draught', matrixId: 'colossus_draught', defaultPalette: 'colossus_draught' },
+  amber_hornet: { id: 'amber_hornet', matrixId: 'amber_hornet', defaultPalette: 'amber_hornet' },
+  rootbound_wraith: { id: 'rootbound_wraith', matrixId: 'rootbound_wraith', defaultPalette: 'rootbound_wraith' },
+  moss_golem: { id: 'moss_golem', matrixId: 'moss_golem', defaultPalette: 'moss_golem' },
+  briar_stalker: { id: 'briar_stalker', matrixId: 'briar_stalker', defaultPalette: 'briar_stalker' },
+  root_centipede: { id: 'root_centipede', matrixId: 'root_centipede', defaultPalette: 'root_centipede' },
+  amber_queen: { id: 'amber_queen', matrixId: 'amber_queen', defaultPalette: 'amber_queen' },
+  ancient_root_warden: { id: 'ancient_root_warden', matrixId: 'ancient_root_warden', defaultPalette: 'ancient_root_warden' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
