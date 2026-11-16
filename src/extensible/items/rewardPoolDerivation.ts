@@ -49,6 +49,21 @@ export const ITEM_DEBUT_OVERRIDES: Record<string, number> = {
   rootguard_plate: 37,
   wraith_chill: 37,
   warden_sap_vial: 40,
+  worldtree_greatsword: 41,
+  celestial_cleave: 41,
+  worldtree_dewstone: 41,
+  paladin_verdant_armor: 42,
+  leyline_storm: 42,
+  worldtree_grace: 43,
+  leyline_astrolabe: 43,
+  inferno_verdict: 44,
+  primordial_spear: 45,
+  primordial_bastion: 45,
+  paladin_cordial: 45,
+  apex_overdrive: 46,
+  primordial_aegis_plate: 47,
+  glacial_shackle: 47,
+  worldtree_ambrosia: 50,
 };
 
 let debutCache: Map<string, number> | null = null;

@@ -1672,6 +1672,104 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  worldtree_font: {
+    id: 'worldtree_font',
+    title: '世界樹の霊泉',
+    category: 'shrine',
+    description:
+      '世界樹の太い根の合間に、淡い翠色の光を湛えた神秘的な泉が湧き出ている。泉の縁には先人たちが捧げた金貨が静かに輝いている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'take_font_coins',
+        label: '泉の縁に供えられた金貨を譲り受ける',
+        description: '霊泉を乱さぬよう、縁に置かれた金貨だけを謹んで回収する。',
+        outcome: {
+          grantGold: 9,
+          logMessage: '泉の縁に供えられた金貨を譲り受け、9 G を手に入れた！',
+        },
+      },
+      {
+        id: 'drink_font_water',
+        label: '金貨を捧げて世界樹の霊水を飲む',
+        description: '泉に金貨を捧げ、生命力に満ちた霊水で傷を癒やす。',
+        cost: {
+          gold: 18,
+        },
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '金貨を捧げて世界樹の霊水を飲み、HPが35%回復した！',
+        },
+      },
+    ],
+  },
+
+  elder_reliquary: {
+    id: 'elder_reliquary',
+    title: '古代樹の宝物庫',
+    category: 'lore',
+    description:
+      '大樹の幹に穿たれた古い宝物庫を見つけた。台座の上には古代の魔力を宿した武具や護符が厳かに安置されている。',
+    speakerSpriteId: 'shrine',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'take_reliquary_coins',
+        label: '台座の傍らの古金貨を回収する',
+        description: '武具には触れず、周囲に納められていた資金だけを持ち帰る。',
+        outcome: {
+          grantGold: 11,
+          logMessage: '台座の傍らに納められていた古金貨を回収し、11 G を手に入れた！',
+        },
+      },
+      {
+        id: 'inherit_reliquary_weapon',
+        label: '生気を捧げて古代の武器を継承する',
+        description: '自身の体力を対価に誓いを立て、宝物庫の武器を一つ授かる。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'weapon',
+          grantGold: 5,
+          logMessage: '生気を捧げて古代の武器を継承し、さらに5 G を手に入れた！',
+        },
+      },
+    ],
+  },
+
+  worldtree_sanctuary_camp: {
+    id: 'worldtree_sanctuary_camp',
+    title: '世界樹の根の野営地',
+    category: 'rest',
+    isRestEvent: true,
+    description:
+      '巨大な根が天蓋のように覆う静謐な空間を見つけた。頂上決戦を前に、ここで最後の休息と装備の点検を行うことができる。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'rest_at_sanctuary',
+        label: '聖域の静寂の中で深い休息をとる',
+        description: '穏やかな霊気に包まれて体を休め、体力を大きく回復する。',
+        outcome: {
+          healHpPercent: 50,
+          logMessage: '聖域の静寂の中で深い休息をとり、HPが50%回復した！',
+        },
+      },
+      {
+        id: 'refill_at_sanctuary',
+        label: '携帯用の回復具を補充する',
+        description: '荷物を点検し、消耗品チャージを1回分補充する。',
+        outcome: {
+          refillConsumable: 1,
+          logMessage: '携帯用の回復具を補充し、消耗品チャージが1回復した！',
+        },
+      },
+    ],
+  },
 };
 
 
