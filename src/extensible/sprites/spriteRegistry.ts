@@ -2057,6 +2057,11 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '星屑の嵐',
     colors: ['transparent', '#0d1b2a', '#48cae4', '#e0fbfc'],
   },
+  chrono_automaton: {
+    id: 'chrono_automaton',
+    name: '刻限の自動人形',
+    colors: ['transparent', '#241c14', '#b08948', '#fef3c7'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2472,6 +2477,7 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   worldtree_ambrosia: { id: 'worldtree_ambrosia', matrixId: 'worldtree_ambrosia', defaultPalette: 'worldtree_ambrosia' },
   parchment_wraith: { id: 'parchment_wraith', matrixId: 'parchment_wraith', defaultPalette: 'parchment_wraith' },
   item_astral_storm: { id: 'item_astral_storm', matrixId: 'item_astral_storm', defaultPalette: 'item_astral_storm' },
+  chrono_automaton: { id: 'chrono_automaton', matrixId: 'chrono_automaton', defaultPalette: 'chrono_automaton' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

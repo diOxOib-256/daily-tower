@@ -9591,5 +9591,64 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  chrono_automaton: {
+    id: 'chrono_automaton',
+    name: '刻限の自動人形',
+    spriteId: 'chrono_automaton',
+    palette: 'chrono_automaton',
+    hp: 76,
+    atk: 16,
+    def: 6,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '長針の一閃',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '刻限の自動人形が鋭い長針の剣で斬りつけた！',
+          },
+          {
+            name: '歯車盾の構え',
+            type: 'buff',
+            weight: 40,
+            statusId: 'def_buff',
+            statusValue: 25,
+            statusDuration: 2,
+            logMessage: '刻限の自動人形が歯車盾を構え、防御力を大きく高めた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: '刻限の連撃',
+            type: 'debuff',
+            weight: 70,
+            damageMultiplier: 1.4,
+            statusId: 'atk_debuff',
+            statusValue: 15,
+            statusDuration: 2,
+            logMessage: '刻限の自動人形が正確な連撃を叩き込み、攻撃の勢いを削いだ！',
+          },
+          {
+            name: 'ゼンマイ過負荷',
+            type: 'buff',
+            weight: 30,
+            statusId: 'atk_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '刻限の自動人形のコアが激しく回転し、攻撃力が上昇した！',
+          },
+        ],
+      },
+    ],
+  },
 };
 

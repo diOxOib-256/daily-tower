@@ -170,4 +170,17 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'parchment_wraith', enemyStatScale: 0.60 },
     ],
   },
+  {
+    floor: 58,
+    realm: 2,
+    title: '第58層：刻限の静寂室',
+    subtitle: '歯車の音が響く書架の奥で、星灯りの休息と古の自動人形が交錯する階層',
+    encounters: [
+      { type: 'battle', enemyId: 'chrono_automaton', enemyStatScale: 0.60 },
+      { type: 'battle', enemyIds: ['chrono_automaton', 'parchment_wraith'], enemyStatScale: 0.60 },
+      { type: 'event', eventId: 'silent_alcove' },
+      { type: 'battle', enemyId: 'glass_sentinel', enemyStatScale: 0.60 },
+      { type: 'battle', enemyId: 'chrono_automaton', enemyStatScale: 0.60 },
+    ],
+  },
 ];
