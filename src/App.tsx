@@ -1098,6 +1098,54 @@ export function App() {
                             {card.item.description}
                           </p>
                         )}
+                        {card.item && (
+                          <div className="mt-2 rounded-lg border border-slate-800 bg-slate-900/70 px-2 py-1.5 text-[11px] leading-relaxed text-slate-400">
+                            {card.item.kind === 'weapon' && (
+                              <p>
+                                現在の武器：
+                                <span className="font-bold text-slate-200">{saveData.inventory.weapon.name}</span>
+                                （ATK {saveData.inventory.weapon.atk}）
+                              </p>
+                            )}
+                            {card.item.kind === 'armor' && (
+                              <p>
+                                現在の防具：
+                                <span className="font-bold text-slate-200">{saveData.inventory.armor.name}</span>
+                                （DEF {saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}）
+                              </p>
+                            )}
+                            {card.item.kind === 'skill' && (
+                              <>
+                                <p className="font-bold text-slate-500">現在のスキル</p>
+                                {saveData.inventory.skills.map((s, i) => (
+                                  <p key={i}>
+                                    {i + 1}.{' '}
+                                    {s ? (
+                                      <span className="font-bold text-slate-200">{s.name}</span>
+                                    ) : (
+                                      '（空き）'
+                                    )}
+                                  </p>
+                                ))}
+                              </>
+                            )}
+                            {card.item.kind === 'relic' && (
+                              <p>
+                                現在のレリック：
+                                <span className="font-bold text-slate-200">{saveData.inventory.relic?.name ?? 'なし'}</span>
+                              </p>
+                            )}
+                            {card.item.kind === 'consumable' && (
+                              <p>
+                                現在の消耗品：
+                                <span className="font-bold text-slate-200">{saveData.inventory.consumable?.name ?? 'なし'}</span>
+                                {saveData.inventory.consumable
+                                  ? `（残り${saveData.midFloor.consumableCharges}回）`
+                                  : ''}
+                              </p>
+                            )}
+                          </div>
+                        )}
                       </div>
 
                       <div className="mt-3 flex flex-col gap-1.5 border-t border-slate-800 pt-2.5">
