@@ -3172,7 +3172,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     maxCharges: 2,
     healPercent: 30,
     cleanse: true,
-    description: '星屑を溶かし込んだ携帯用の魔導インク瓶。飲むことで傷を癒やし精神の濁りを払う。',
+    description: '星屑を溶かし込んだ携帯用の魔導インク瓶。飲むことで傷を癒やし精神の濁りを払う。HPを30%回復＋状態異常を浄化（最大2チャージ）。',
   },
   chronos_hourglass: {
     id: 'chronos_hourglass',
@@ -3187,7 +3187,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
       value: 12,
       duration: 2,
     },
-    description: '逆回転する星砂を封じた小さな砂時計。使用者の傷を巻き戻し、光の障壁を纏わせる。',
+    description: '逆回転する星砂を封じた小さな砂時計。使用者の傷を巻き戻し、光の障壁を纏わせる。HPを30%回復＋障壁(12/2T)を付与（最大2チャージ）。',
   },
   herbal_poultice: {
     id: 'herbal_poultice',
@@ -3196,7 +3196,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     spriteId: 'herbal_poultice',
     maxCharges: 2,
     healPercent: 25,
-    description: '樹海で採れた薬草を練り上げた携帯用の湿布。使用すると体力を回復する。',
+    description: '樹海で採れた薬草を練り上げた携帯用の湿布。使用すると体力を回復する。HPを25%回復（最大2チャージ）。',
   },
   amber_tonic: {
     id: 'amber_tonic',
@@ -3206,7 +3206,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     maxCharges: 2,
     healPercent: 30,
     cleanse: true,
-    description: '樹液が結晶化した琥珀を溶かした小瓶。傷を癒やし、あらゆる毒や弱体を浄化する。',
+    description: '樹液が結晶化した琥珀を溶かした小瓶。傷を癒やし、あらゆる毒や弱体を浄化する。HPを30%回復＋状態異常を浄化（最大2チャージ）。',
   },
   frost_draught: {
     id: 'frost_draught',
@@ -3221,7 +3221,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
       value: 10,
       duration: 2,
     },
-    description: '冷気を帯びた清らかな霊水。傷を癒やし同時に氷の障壁を展開する。',
+    description: '冷気を帯びた清らかな霊水。傷を癒やし同時に氷の障壁を展開する。HPを35%回復＋障壁(10/2T)を付与（最大2チャージ）。',
   },
   dryad_elixir: {
     id: 'dryad_elixir',
@@ -3231,7 +3231,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     maxCharges: 2,
     healPercent: 45,
     cleanse: true,
-    description: '朽木の精霊が守り続けてきた聖なる雫。深手を大きく癒やしあらゆる弱体を払う。',
+    description: '朽木の精霊が守り続けてきた聖なる雫。深手を大きく癒やしあらゆる弱体を払う。HPを45%回復＋状態異常を浄化（最大2チャージ）。',
   },
   sovereign_nectar: {
     id: 'sovereign_nectar',
@@ -3241,7 +3241,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     maxCharges: 2,
     healPercent: 40,
     cleanse: true,
-    description: '胞子王が秘蔵していた濃厚な蜜薬。深い傷とあらゆる弱体を瞬時に癒やす。',
+    description: '胞子王が秘蔵していた濃厚な蜜薬。深い傷とあらゆる弱体を瞬時に癒やす。HPを40%回復＋状態異常を浄化（最大2チャージ）。',
   },
   colossus_draught: {
     id: 'colossus_draught',
@@ -3256,7 +3256,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
       value: 15,
       duration: 2,
     },
-    description: '巨像の核から抽出された高純度の霊液。体力を大きく回復し強固な障壁を張る。',
+    description: '巨像の核から抽出された高純度の霊液。体力を大きく回復し強固な障壁を張る。HPを50%回復＋障壁(15/2T)を付与（最大2チャージ）。',
   },
   royal_amber_jelly: {
     id: 'royal_amber_jelly',
@@ -3266,7 +3266,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     maxCharges: 2,
     healPercent: 55,
     cleanse: true,
-    description: '琥珀の女王バチが蓄えていた最高純度の蜜。深手を大きく癒やし弱体を浄化する。',
+    description: '琥珀の女王バチが蓄えていた最高純度の蜜。深手を大きく癒やし弱体を浄化する。HPを55%回復＋状態異常を浄化（最大2チャージ）。',
   },
   warden_sap_vial: {
     id: 'warden_sap_vial',
@@ -3281,7 +3281,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
       value: 20,
       duration: 2,
     },
-    description: '古根の魔導樹の核から滴る蒼い霊液。体力を大幅に回復し強固な魔力障壁を張る。',
+    description: '古根の魔導樹の核から滴る蒼い霊液。体力を大幅に回復し強固な魔力障壁を張る。HPを60%回復＋障壁(20/2T)を付与（最大2チャージ）。',
   },
   paladin_cordial: {
     id: 'paladin_cordial',
@@ -3291,7 +3291,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     maxCharges: 2,
     healPercent: 60,
     cleanse: true,
-    description: '世界樹の近衛騎士団に伝わる秘伝の霊薬。重傷を瞬時に癒やしあらゆる弱体を浄化する。',
+    description: '世界樹の近衛騎士団に伝わる秘伝の霊薬。重傷を瞬時に癒やしあらゆる弱体を浄化する。HPを60%回復＋状態異常を浄化（最大2チャージ）。',
   },
   worldtree_ambrosia: {
     id: 'worldtree_ambrosia',
@@ -3306,7 +3306,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
       value: 22,
       duration: 2,
     },
-    description: '世界樹の頂から採取された至高の霊露。体力を大きく回復し鉄壁の障壁を纏わせる。',
+    description: '世界樹の頂から採取された至高の霊露。体力を大きく回復し鉄壁の障壁を纏わせる。HPを65%回復＋障壁(22/2T)を付与（最大2チャージ）。',
   },
 };
 
@@ -3552,7 +3552,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'hunters_badge',
     effectId: 'hunters_badge',
     salvageGold: 14,
-    description: '樹海の狩人が持つ小さな木彫りの徽章。戦闘開始時、わずかに攻撃力を高める。',
+    description: '樹海の狩人が持つ小さな木彫りの徽章。戦闘開始時、わずかに攻撃力を高める。戦闘開始時、2ターンの間、攻撃力+2を得る。',
   },
   verdant_brooch: {
     id: 'verdant_brooch',
@@ -3561,7 +3561,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'verdant_brooch',
     effectId: 'verdant_brooch',
     salvageGold: 16,
-    description: '若葉を象った魔力のブローチ。スキルを使用するたび、わずかな障壁を得る。',
+    description: '若葉を象った魔力のブローチ。スキルを使用するたび、わずかな障壁を得る。スキルを使用するたび、4ダメージを吸収する障壁(1T)を得る。',
   },
   mist_charm: {
     id: 'mist_charm',
@@ -3570,7 +3570,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'mist_charm',
     effectId: 'mist_charm',
     salvageGold: 18,
-    description: '冷たい樹海の霧を封じた護符。戦闘開始時、敵全体の防御力をわずかに削ぐ。',
+    description: '冷たい樹海の霧を封じた護符。戦闘開始時、敵全体の防御力をわずかに削ぐ。戦闘開始時、敵の防御力を10%低下(2T)させる。',
   },
   amber_heart: {
     id: 'amber_heart',
@@ -3579,7 +3579,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'amber_heart',
     effectId: 'amber_heart',
     salvageGold: 22,
-    description: '温かな光を宿した琥珀の結晶。戦闘に勝利するたび、わずかに体力を癒やす。',
+    description: '温かな光を宿した琥珀の結晶。戦闘に勝利するたび、わずかに体力を癒やす。戦闘に勝利するたび、最大HPの8%を回復する。',
   },
   mycelial_crystal: {
     id: 'mycelial_crystal',
@@ -3588,7 +3588,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'mycelial_crystal',
     effectId: 'mycelial_crystal',
     salvageGold: 22,
-    description: '魔力を蓄えた菌糸の結晶。戦闘が長引くほど持ち主の攻撃力を引き上げる。',
+    description: '魔力を蓄えた菌糸の結晶。戦闘が長引くほど持ち主の攻撃力を引き上げる。3ターン目の開始時に一度だけ、2ターンの間、攻撃力+15%を得る。',
   },
   spirit_crest: {
     id: 'spirit_crest',
@@ -3597,7 +3597,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'spirit_crest',
     effectId: 'spirit_crest',
     salvageGold: 24,
-    description: '古樹の加護が刻まれた翠の紋章。スキルを放つたび、癒しの力が数ターンにわたり傷を癒やす。',
+    description: '古樹の加護が刻まれた翠の紋章。スキルを放つたび、癒しの力が数ターンにわたり傷を癒やす。スキルを使用するたび、再生(最大HPの4%/2T)を得る。',
   },
   hornet_stinger: {
     id: 'hornet_stinger',
@@ -3606,7 +3606,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'hornet_stinger',
     effectId: 'hornet_stinger',
     salvageGold: 26,
-    description: '琥珀バチの鋭い毒針を加工した護符。戦闘中の最初の攻撃時、敵に毒を付与する。',
+    description: '琥珀バチの鋭い毒針を加工した護符。戦闘中の最初の攻撃時、敵に毒を付与する。戦闘中の最初の通常攻撃で、敵に猛毒(5ダメージ/2T)を付与する。',
   },
   root_medallion: {
     id: 'root_medallion',
@@ -3615,7 +3615,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'root_medallion',
     effectId: 'root_medallion',
     salvageGold: 28,
-    description: '古代樹の年輪が刻まれた石のメダル。戦闘が始まると古根の生命力が宿り、数ターンにわたり傷を癒やす。',
+    description: '古代樹の年輪が刻まれた石のメダル。戦闘が始まると古根の生命力が宿り、数ターンにわたり傷を癒やす。戦闘開始時、再生(最大HPの5%/3T)を得る。',
   },
   worldtree_dewstone: {
     id: 'worldtree_dewstone',
@@ -3624,7 +3624,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'worldtree_dewstone',
     effectId: 'worldtree_dewstone',
     salvageGold: 30,
-    description: '世界樹の朝露が結晶化した翠の宝玉。戦闘中、雫の霊力が絶えず染み出し、傷を癒やし続ける。',
+    description: '世界樹の朝露が結晶化した翠の宝玉。戦闘中、雫の霊力が絶えず染み出し、傷を癒やし続ける。毎ターン開始時、再生(最大HPの3%/2T)を得る。',
   },
   leyline_astrolabe: {
     id: 'leyline_astrolabe',
