@@ -103,7 +103,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyIds: ['forest_wisp'], enemyStatScale: 0.765 },
       { type: 'battle', enemyIds: ['vine_stalker'], enemyStatScale: 0.765 },
-      { type: 'event', eventId: 'verdant_shrine' },
+      { type: 'event', eventId: 'mossy_stump_shrine' },
       { type: 'battle', enemyIds: ['shadow_wolf'], enemyStatScale: 0.765 },
     ],
     rewardPool: {
@@ -120,7 +120,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '樹海の第一関門を統べる森ゴブリンの頭領が、配下を従えて待ち受ける木造の砦',
     encounters: [
       { type: 'battle', enemyIds: ['forest_goblin', 'moss_slime'], enemyStatScale: 0.62 },
-      { type: 'event', eventId: 'wandering_herbalist' },
+      { type: 'event', eventId: 'carved_worldtree_bark' },
       { type: 'battle', enemyIds: ['thorn_sprout', 'bark_beetle'], enemyStatScale: 0.62 },
       { type: 'miniboss', enemyIds: ['goblin_chieftain'], enemyStatScale: 0.62 },
     ],
@@ -138,7 +138,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '樹皮カブトと棘の新芽が道を塞ぎ、新たな自然属性の武具が解禁される中盤の入口',
     encounters: [
       { type: 'battle', enemyIds: ['toxic_slime'], enemyStatScale: 0.67 },
-      { type: 'event', eventId: 'verdant_shrine' },
+      { type: 'event', eventId: 'emerald_spring' },
       { type: 'battle', enemyIds: ['forest_wisp'], enemyStatScale: 0.67 },
       { type: 'battle', enemyIds: ['vine_stalker'], enemyStatScale: 0.67 },
     ],
@@ -156,7 +156,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '毒と妖光が交錯する薄暗い古道で、状態異常への対処力が試される階層',
     encounters: [
       { type: 'battle', enemyIds: ['moss_slime'], enemyStatScale: 0.67 },
-      { type: 'event', eventId: 'wandering_herbalist' },
+      { type: 'event', eventId: 'sun_dapple_market' },
       { type: 'battle', enemyIds: ['bark_beetle'], enemyStatScale: 0.67 },
       { type: 'battle', enemyIds: ['shadow_wolf'], enemyStatScale: 0.67 },
     ],
@@ -282,7 +282,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '蒼い霊気を放つ朽木の精霊と焦げ木の幼体が縄張りを接し、15Fの関門が迫る密林',
     encounters: [
       { type: 'battle', enemyIds: ['hollow_dryad'], enemyStatScale: 0.65 },
-      { type: 'event', eventId: 'verdant_shrine' },
+      { type: 'event', eventId: 'crimson_pact_altar' },
       { type: 'battle', enemyIds: ['charred_sapling'], enemyStatScale: 0.65 },
       { type: 'battle', enemyIds: ['canopy_spider', 'frost_slime'], enemyStatScale: 0.65 },
     ],
@@ -300,7 +300,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '紅蓮の炎を纏う古の鬼火王が、石像の守護者と大蛇を従えて待ち受ける中盤の関門',
     encounters: [
       { type: 'battle', enemyIds: ['mossy_gargoyle', 'spore_goblin'], enemyStatScale: 0.52 },
-      { type: 'event', eventId: 'wandering_herbalist' },
+      { type: 'event', eventId: 'misty_totem_stone' },
       { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.52 },
       { type: 'miniboss', enemyIds: ['ancient_wisp_lord'], enemyStatScale: 0.5 },
     ],
@@ -318,7 +318,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '精霊の魔力と焦げ木の火の粉が交錯し、step 4 の新たな武具とスキルが解禁される階層',
     encounters: [
       { type: 'battle', enemyIds: ['hollow_dryad', 'frost_slime'], enemyStatScale: 0.4 },
-      { type: 'event', eventId: 'forest_spring' },
+      { type: 'event', eventId: 'mist_guide' },
       { type: 'battle', enemyIds: ['charred_sapling', 'spore_goblin'], enemyStatScale: 0.4 },
       { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.4 },
     ],
@@ -337,7 +337,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.36 },
       { type: 'battle', enemyIds: ['canopy_spider', 'mist_wolf'], enemyStatScale: 0.36 },
-      { type: 'event', eventId: 'mossy_forge' },
+      { type: 'event', eventId: 'mist_guide' },
       { type: 'battle', enemyIds: ['hollow_dryad', 'frost_slime'], enemyStatScale: 0.36 },
     ],
     rewardPool: {
@@ -372,7 +372,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '鋼のように硬い樹根が通路を覆い、守護者の気配が色濃く漂う決戦前夜の回廊',
     encounters: [
       { type: 'battle', enemyIds: ['charred_sapling'], enemyStatScale: 0.65 },
-      { type: 'event', eventId: 'verdant_shrine' },
+      { type: 'event', eventId: 'forest_spring' },
       { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.65 },
       { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.65 },
     ],
@@ -390,7 +390,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: 'Block 2 を締めくくる鉄樹の守護者が、聖域の最奥で挑戦者を待ち受ける決戦の場',
     encounters: [
       { type: 'battle', enemyIds: ['mossy_gargoyle'], enemyStatScale: 0.55 },
-      { type: 'event', eventId: 'wandering_herbalist' },
+      { type: 'event', eventId: 'mossy_forge' },
       { type: 'battle', enemyIds: ['deepwood_viper'], enemyStatScale: 0.55 },
       { type: 'miniboss', enemyIds: ['ironbark_sentinel'], enemyStatScale: 0.5 },
     ],
@@ -445,7 +445,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.6 },
       { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.6 },
-      { type: 'event', eventId: 'sylvan_basin' },
+      { type: 'event', eventId: 'marsh_reed_shrine' },
       { type: 'battle', enemyIds: ['fungal_shaman', 'stag_carapace'], enemyStatScale: 0.6 },
       { type: 'battle', enemyId: 'hollow_dryad', enemyStatScale: 0.6 },
     ],
@@ -457,7 +457,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '発光する菌糸に覆われた広間にて、胞子王マイコニドが挑戦者を待ち受ける第一の関門',
     encounters: [
       { type: 'battle', enemyIds: ['fungal_shaman', 'humus_slime'], enemyStatScale: 0.6 },
-      { type: 'event', eventId: 'hollow_armory' },
+      { type: 'event', eventId: 'sunken_mirror_stele' },
       { type: 'battle', enemyId: 'rime_sprite', enemyStatScale: 0.6 },
       { type: 'miniboss', enemyId: 'myconid_sovereign', enemyStatScale: 0.55 },
     ],
@@ -469,7 +469,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '古樹の魔力が濃くなり、新たな魔杖と重鎧の力が試される後半戦の入口',
     encounters: [
       { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.42 },
-      { type: 'event', eventId: 'sylvan_basin' },
+      { type: 'event', eventId: 'sunken_mirror_stele' },
       { type: 'battle', enemyIds: ['ancient_watchman', 'mist_wolf'], enemyStatScale: 0.42 },
       { type: 'battle', enemyId: 'deepwood_viper', enemyStatScale: 0.42 },
     ],
@@ -482,7 +482,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.42 },
       { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.42 },
-      { type: 'event', eventId: 'hollow_armory' },
+      { type: 'event', eventId: 'wandering_blacksmith' },
       { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.42 },
       { type: 'battle', enemyId: 'stag_carapace', enemyStatScale: 0.42 },
     ],
@@ -507,7 +507,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.65 },
       { type: 'battle', enemyId: 'feral_hound', enemyStatScale: 0.65 },
-      { type: 'event', eventId: 'sylvan_basin' },
+      { type: 'event', eventId: 'mycelium_exchange' },
       { type: 'battle', enemyId: 'blighted_lizard', enemyStatScale: 0.65 },
       { type: 'battle', enemyId: 'canopy_stalker', enemyStatScale: 0.65 },
     ],
@@ -568,7 +568,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 0.75 },
       { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 0.75 },
-      { type: 'event', eventId: 'amber_spring' },
+      { type: 'event', eventId: 'ancient_root_altar' },
       { type: 'battle', enemyId: 'rootbound_wraith', enemyStatScale: 0.75 },
       { type: 'battle', enemyId: 'amber_hornet', enemyStatScale: 0.75 },
     ],
@@ -580,7 +580,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '黄金の巣の奥にて、琥珀の女王バチが配下を従えて挑戦者を待ち受ける関門',
     encounters: [
       { type: 'battle', enemyId: 'moss_golem', enemyStatScale: 0.65 },
-      { type: 'event', eventId: 'root_altar' },
+      { type: 'event', eventId: 'mossy_ruin_tablet' },
       { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 0.65 },
       { type: 'miniboss', enemyId: 'amber_queen', enemyStatScale: 1.0 },
     ],
@@ -592,7 +592,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '鋭い茨の狩人と巨大なムカデが潜み、後半の新たな武具の力が試される深層',
     encounters: [
       { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 0.52 },
-      { type: 'event', eventId: 'amber_spring' },
+      { type: 'event', eventId: 'root_altar' },
       { type: 'battle', enemyId: 'root_centipede', enemyStatScale: 0.52 },
       { type: 'battle', enemyId: 'rootbound_wraith', enemyStatScale: 0.52 },
     ],
@@ -605,7 +605,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'cinder_treant', enemyStatScale: 0.47 },
       { type: 'battle', enemyId: 'briar_stalker', enemyStatScale: 0.47 },
-      { type: 'event', eventId: 'root_altar' },
+      { type: 'event', eventId: 'amber_appraiser' },
       { type: 'battle', enemyId: 'dire_timberwolf', enemyStatScale: 0.47 },
       { type: 'battle', enemyId: 'ancient_watchman', enemyStatScale: 0.47 },
     ],
@@ -691,7 +691,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 0.88 },
       { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 0.88 },
-      { type: 'event', eventId: 'worldtree_font' },
+      { type: 'event', eventId: 'worldtree_sap_altar' },
       { type: 'battle', enemyId: 'elderwood_specter', enemyStatScale: 0.88 },
       { type: 'battle', enemyId: 'amber_scarab', enemyStatScale: 0.88 },
     ],
@@ -703,7 +703,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '頂点への最後の門番「世界樹の近衛騎士」が長槍と大盾を構えて立ち塞がる聖殿',
     encounters: [
       { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 0.72 },
-      { type: 'event', eventId: 'elder_reliquary' },
+      { type: 'event', eventId: 'canopy_seed_stele' },
       { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 0.72 },
       { type: 'miniboss', enemyId: 'worldtree_paladin', enemyStatScale: 0.95 },
     ],
@@ -715,7 +715,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '灼熱の樹皮獣と霊脈を駆ける翼竜が現れ、Realm 1 最上位武具の力が試される階層',
     encounters: [
       { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 0.6 },
-      { type: 'event', eventId: 'worldtree_font' },
+      { type: 'event', eventId: 'elder_reliquary' },
       { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 0.6 },
       { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 0.6 },
     ],
@@ -728,7 +728,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 0.6 },
       { type: 'battle', enemyId: 'hexspore_adept', enemyStatScale: 0.6 },
-      { type: 'event', eventId: 'elder_reliquary' },
+      { type: 'event', eventId: 'twilight_anvil_forge' },
       { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 0.6 },
       { type: 'battle', enemyId: 'abyssal_moss_slime', enemyStatScale: 0.6 },
     ],
@@ -753,7 +753,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'worldtree_vanguard', enemyStatScale: 0.9 },
       { type: 'battle', enemyId: 'pyrebark_beast', enemyStatScale: 0.9 },
-      { type: 'event', eventId: 'worldtree_font' },
+      { type: 'event', eventId: 'worldtree_pilgrim_merchant' },
       { type: 'battle', enemyId: 'leylines_wyvern', enemyStatScale: 0.9 },
       { type: 'battle', enemyId: 'rimefang_wolf', enemyStatScale: 0.9 },
     ],
@@ -765,7 +765,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '樹海の塔の最上階。領域の主「原初のトレント」が立ち塞がる Realm 1 頂上決戦',
     encounters: [
       { type: 'battle', enemyId: 'abyssal_moss_slime', enemyStatScale: 0.70 },
-      { type: 'event', eventId: 'elder_reliquary' },
+      { type: 'event', eventId: 'worldtree_font' },
       { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 0.52 },
     ],
   },

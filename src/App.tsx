@@ -14,6 +14,7 @@ import { XShareButton } from './components/XShareButton';
 import { PixelSpriteCanvas } from './components/PixelSpriteCanvas';
 import { ACHIEVEMENTS } from './extensible/achievements/achievements';
 import { LATEST_AUTHORED_FLOOR, isFloorAuthored } from './extensible/realms/realmIndex';
+import { SALVAGE_GOLD } from './extensible/items/itemCatalog';
 import { useGameStore } from './store/useGameStore';
 import { applyHitFxEventToSession, extractTurnHitFx } from './utils/combatFx';
 import { computeActionPreview } from './utils/combatPreview';
@@ -763,6 +764,7 @@ export function App() {
           playerPaletteId={saveData.activeSkinPaletteId}
           playerTitle={saveData.activeTitle}
           playerCurrentHp={currentHp}
+          playerWound={saveData.midFloor.playerWound}
           playerMaxHp={playerMaxHp}
           playerAtk={saveData.inventory.weapon.atk + (saveData.inventory.armor.atkDelta ?? 0)}
           playerDef={saveData.inventory.armor.def}
@@ -1230,7 +1232,7 @@ export function App() {
                             }}
                             className="w-full rounded-lg border border-slate-700 bg-slate-900 py-1 text-[11px] font-semibold text-slate-300 transition hover:bg-slate-800 cursor-pointer"
                           >
-                            分解 (+{card.item.salvageGold} G)
+                            分解 (+{SALVAGE_GOLD} G)
                           </button>
                         )}
                       </div>
@@ -1313,7 +1315,7 @@ export function App() {
                     }}
                     className="w-full rounded-xl border border-slate-700 bg-slate-800 py-2 text-xs font-bold text-slate-200 hover:bg-slate-700 cursor-pointer"
                   >
-                    習得せず分解する (+{pendingSkillToEquip.salvageGold} G)
+                    習得せず分解する (+{SALVAGE_GOLD} G)
                   </button>
                 </div>
               </div>

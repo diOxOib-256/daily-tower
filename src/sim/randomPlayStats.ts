@@ -34,7 +34,11 @@ import {
 import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
 import { EVENT_REGISTRY } from '../extensible/events/eventRegistry';
 import { resolveRewardPool } from '../extensible/items/rewardPoolDerivation';
-import { AnyCatalogItem } from '../extensible/items/itemCatalog';
+import {
+  AnyCatalogItem,
+  SALVAGE_GOLD,
+  salvageGoldFor,
+} from '../extensible/items/itemCatalog';
 import { SKILL_CATALOG, SkillItem } from '../extensible/items/itemCatalog';
 import { REALM_METADATA } from '../extensible/realms/realmIndex';
 import { PlaytestBot } from './playtestBot';
@@ -81,7 +85,7 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
       element: save.inventory.weapon.element,
     })
   ) {
-    save.gold += item.salvageGold;
+    save.gold += SALVAGE_GOLD;
     return;
   }
   if (
@@ -91,14 +95,14 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
       maxHpBonus: save.inventory.armor.maxHpBonus,
     })
   ) {
-    save.gold += item.salvageGold;
+    save.gold += SALVAGE_GOLD;
     return;
   }
   if (item.kind === 'weapon') {
-    save.gold += save.inventory.weapon.salvageGold;
+    save.gold += SALVAGE_GOLD;
     save.inventory.weapon = item;
   } else if (item.kind === 'armor') {
-    save.gold += save.inventory.armor.salvageGold;
+    save.gold += SALVAGE_GOLD;
     const hpDiff = Math.max(0, item.maxHpBonus - save.inventory.armor.maxHpBonus);
     save.inventory.armor = item;
     const newMax = BASE_PLAYER_MAX_HP + item.maxHpBonus;
@@ -107,7 +111,7 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
       save.midFloor.playerCurrentHp + hpDiff
     );
   } else if (item.kind === 'relic') {
-    save.gold += save.inventory.relic?.salvageGold ?? 0;
+    save.gold += salvageGoldFor(save.inventory.relic);
     save.inventory.relic = item;
   } else if (item.kind === 'skill') {
     const emptyIdx = save.inventory.skills.findIndex((s) => s === null);
@@ -125,7 +129,7 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
           }
         }
       });
-      save.gold += save.inventory.skills[weakestIdx]?.salvageGold ?? 0;
+      save.gold += salvageGoldFor(save.inventory.skills[weakestIdx]);
       save.inventory.skills[weakestIdx] = item;
     }
   } else if (item.kind === 'consumable') {
@@ -360,7 +364,7 @@ export function simulateMixedRun(
           applyEquip(save, card.item);
           recordNew(floor, 'reward');
         } else {
-          save.gold += 'salvageGold' in card.item ? card.item.salvageGold : 20;
+          save.gold += SALVAGE_GOLD;
         }
       }
     }

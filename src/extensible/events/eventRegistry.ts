@@ -45,7 +45,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_spring',
         label: '湧水を飲む（HP 35%回復）',
         description: '清らかな水で傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '清涼な湧水を飲み干し、HPが35%回復した！',
@@ -53,11 +53,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_coins',
-        label: '水底の金貨を拾う（+35 G）',
+        label: '水底の金貨を拾う（+7 G）',
         description: '濡れるのを厭わず金貨を回収する。',
         outcome: {
-          grantGold: 15,
-          logMessage: '水底から輝く金貨を拾い上げ、35 G を手に入れた！',
+          grantGold: 7,
+          logMessage: '水底から輝く金貨を拾い上げ、7 G を手に入れた！',
         },
       },
     ],
@@ -98,11 +98,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'respectful_prayer',
-        label: '静かに一礼し、供え分けを受け取る（15G）',
+        label: '静かに一礼し、供え分けを受け取る（8G）',
         description: '敬意を示した旅人への、ささやかな分け前が置かれている。',
         outcome: {
-          grantGold: 15,
-          logMessage: '供え分けとして15Gを受け取った。',
+          grantGold: 8,
+          logMessage: '供え分けとして8Gを受け取った。',
         },
       },
     ],
@@ -146,7 +146,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         label: 'ふいご作業を手伝う（+25 G）',
         description: '鍛冶作業を手伝い、手間賃を受け取る。',
         outcome: {
-          grantGold: 15,
+          grantGold: 25,
           logMessage: '鍛冶師の作業を手伝い、礼として 25 G を受け取った！',
         },
       },
@@ -176,11 +176,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'meditate_under_light',
-        label: '先人の置き土産を探す（25G）',
+        label: '先人の置き土産を探す（8G）',
         description: 'かつての探求者が残した硬貨が、片隅に積まれていた。',
         outcome: {
-          grantGold: 25,
-          logMessage: '置き土産の硬貨を25G分見つけた。',
+          grantGold: 8,
+          logMessage: '置き土産の硬貨を8G分見つけた。',
         },
       },
     ],
@@ -201,7 +201,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         description: '机の上の銀貨を拾い集める（+25 G）。',
         outcome: {
           grantGold: 15,
-          logMessage: '机の上に散らばっていた銀貨を整理し、25 G を受け取った！',
+          logMessage: '机の上に散らばっていた銀貨を整理し、15 G を受け取った！',
         },
       },
       {
@@ -244,7 +244,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         description: '保守的な記録を選び取り、即座に換金可能な価値を得る（+20 G）。',
         outcome: {
           grantGold: 10,
-          logMessage: '安全な索書票を抜き取り、20 G を得た！',
+          logMessage: '安全な索書票を抜き取り、10 G を得た！',
         },
       },
       {
@@ -329,11 +329,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'rest_by_stump',
-        label: '静かに一礼し、供え分けを受け取る（15G）',
+        label: '静かに一礼し、供え分けを受け取る（8G）',
         description: '敬意を示した旅人への、ささやかな分け前が置かれている。',
         outcome: {
-          grantGold: 15,
-          logMessage: '供え分けとして15Gを受け取った。',
+          grantGold: 8,
+          logMessage: '供え分けとして8Gを受け取った。',
         },
       },
     ],
@@ -362,11 +362,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'breathe_forest_air',
-        label: '先人の置き土産を探す（25G）',
+        label: '先人の置き土産を探す（8G）',
         description: 'かつての探求者が残した硬貨が、片隅に積まれていた。',
         outcome: {
-          grantGold: 25,
-          logMessage: '置き土産の硬貨を25G分見つけた。',
+          grantGold: 8,
+          logMessage: '置き土産の硬貨を8G分見つけた。',
         },
       },
     ],
@@ -395,11 +395,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'rest_in_silent_mist',
-        label: '先人の置き土産を探す（25G）',
+        label: '先人の置き土産を探す（8G）',
         description: 'かつての探求者が残した硬貨が、片隅に積まれていた。',
         outcome: {
-          grantGold: 25,
-          logMessage: '置き土産の硬貨を25G分見つけた。',
+          grantGold: 8,
+          logMessage: '置き土産の硬貨を8G分見つけた。',
         },
       },
     ],
@@ -418,7 +418,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_foggy_spring',
         label: '古泉の水を掬って飲む（HP 35%回復）',
         description: '冷たく清らかな泉の水で傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '霧隠れの古泉を飲み干し、HPが35%回復した！',
@@ -426,11 +426,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'gather_sunken_coins',
-        label: '水底の金貨を拾い集める（+35 G）',
+        label: '水底の金貨を拾い集める（+7 G）',
         description: '冷たい水に手を伸ばし、沈んだ金貨を回収する。',
         outcome: {
-          grantGold: 15,
-          logMessage: '古泉の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+          grantGold: 7,
+          logMessage: '古泉の底から輝く金貨を拾い上げ、7 G を手に入れた！',
         },
       },
     ],
@@ -471,11 +471,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'bow_to_reed_shrine',
-        label: '静かに一礼し、供え分けを受け取る（15G）',
+        label: '静かに一礼し、供え分けを受け取る（8G）',
         description: '敬意を示した旅人への、ささやかな分け前が置かれている。',
         outcome: {
-          grantGold: 15,
-          logMessage: '供え分けとして15Gを受け取った。',
+          grantGold: 8,
+          logMessage: '供え分けとして8Gを受け取った。',
         },
       },
     ],
@@ -504,11 +504,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'rest_by_mirror_water',
-        label: '先人の置き土産を探す（25G）',
+        label: '先人の置き土産を探す（8G）',
         description: 'かつての探求者が残した硬貨が、片隅に積まれていた。',
         outcome: {
-          grantGold: 25,
-          logMessage: '置き土産の硬貨を25G分見つけた。',
+          grantGold: 8,
+          logMessage: '置き土産の硬貨を8G分見つけた。',
         },
       },
     ],
@@ -527,7 +527,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_lotus_pool',
         label: '睡蓮の湧水を飲む（HP 35%回復）',
         description: '清らかな水で傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '睡蓮の湧水を飲み干し、HPが35%回復した！',
@@ -535,11 +535,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_lotus_coins',
-        label: '水底の金貨を拾う（+35 G）',
+        label: '水底の金貨を拾う（+7 G）',
         description: '浅瀬に手を伸ばし、沈んだ金貨を回収する。',
         outcome: {
-          grantGold: 15,
-          logMessage: '睡蓮の池底から輝く金貨を拾い上げ、35 G を手に入れた！',
+          grantGold: 7,
+          logMessage: '睡蓮の池底から輝く金貨を拾い上げ、7 G を手に入れた！',
         },
       },
     ],
@@ -568,11 +568,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'rest_by_ruin_tablet',
-        label: '先人の置き土産を探す（25G）',
+        label: '先人の置き土産を探す（8G）',
         description: 'かつての探求者が残した硬貨が、片隅に積まれていた。',
         outcome: {
-          grantGold: 25,
-          logMessage: '置き土産の硬貨を25G分見つけた。',
+          grantGold: 8,
+          logMessage: '置き土産の硬貨を8G分見つけた。',
         },
       },
     ],
@@ -591,7 +591,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_hollow_basin',
         label: '石盤の雫を飲む（HP 35%回復）',
         description: '清らかな雫で傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '樹洞の清らかな雫を飲み干し、HPが35%回復した！',
@@ -599,11 +599,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_hollow_coins',
-        label: '石盤の底の金貨を拾う（+35 G）',
+        label: '石盤の底の金貨を拾う（+7 G）',
         description: '冷たい水に手を伸ばし、沈んだ金貨を回収する。',
         outcome: {
-          grantGold: 15,
-          logMessage: '石盤泉の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+          grantGold: 7,
+          logMessage: '石盤泉の底から輝く金貨を拾い上げ、7 G を手に入れた！',
         },
       },
     ],
@@ -644,11 +644,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'bow_to_root_altar',
-        label: '静かに一礼し、供え分けを受け取る（15G）',
+        label: '静かに一礼し、供え分けを受け取る（8G）',
         description: '敬意を示した旅人への、ささやかな分け前が置かれている。',
         outcome: {
-          grantGold: 15,
-          logMessage: '供え分けとして15Gを受け取った。',
+          grantGold: 8,
+          logMessage: '供え分けとして8Gを受け取った。',
         },
       },
     ],
@@ -689,11 +689,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'bow_to_worldtree_altar',
-        label: '静かに一礼し、供え分けを受け取る（15G）',
+        label: '静かに一礼し、供え分けを受け取る（8G）',
         description: '敬意を示した旅人への、ささやかな分け前が置かれている。',
         outcome: {
-          grantGold: 15,
-          logMessage: '供え分けとして15Gを受け取った。',
+          grantGold: 8,
+          logMessage: '供え分けとして8Gを受け取った。',
         },
       },
     ],
@@ -722,11 +722,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'meditate_under_canopy',
-        label: '先人の置き土産を探す（25G）',
+        label: '先人の置き土産を探す（8G）',
         description: 'かつての探求者が残した硬貨が、片隅に積まれていた。',
         outcome: {
-          grantGold: 25,
-          logMessage: '置き土産の硬貨を25G分見つけた。',
+          grantGold: 8,
+          logMessage: '置き土産の硬貨を8G分見つけた。',
         },
       },
     ],
@@ -745,7 +745,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_yggdrasil_spring',
         label: '黄金泉の水を飲む（HP 35%回復）',
         description: '清らかな樹液の泉で傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '黄金泉の霊水を飲み干し、HPが35%回復した！',
@@ -753,11 +753,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_yggdrasil_coins',
-        label: '水底の金貨を拾う（+35 G）',
+        label: '水底の金貨を拾う（+7 G）',
         description: '濡れるのを厭わず金貨を回収する。',
         outcome: {
-          grantGold: 15,
-          logMessage: '黄金泉の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+          grantGold: 7,
+          logMessage: '黄金泉の底から輝く金貨を拾い上げ、7 G を手に入れた！',
         },
       },
     ],
@@ -801,7 +801,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         label: '炉のふいごを手伝う（+25 G）',
         description: '炉に風を送り火力を保ち、手間賃を受け取る。',
         outcome: {
-          grantGold: 15,
+          grantGold: 25,
           logMessage: '炉のふいご作業を手伝い、礼として 25 G を受け取った！',
         },
       },
@@ -821,7 +821,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_cooling_water',
         label: '清涼な湧水を飲む（HP 35%回復）',
         description: '冷たい水で渇きを癒やし、煤と疲労を洗い流す。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '冷却槽の澄んだ湧水を飲み干し、HPが35%回復した！',
@@ -829,11 +829,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_slag_coins',
-        label: '槽の底の金貨を拾う（+35 G）',
+        label: '槽の底の金貨を拾う（+15 G）',
         description: '底に沈んだ金貨を素早く掬い上げる。',
         outcome: {
           grantGold: 15,
-          logMessage: '水槽の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+          logMessage: '水槽の底から輝く金貨を拾い上げ、15 G を手に入れた！',
         },
       },
     ],
@@ -897,7 +897,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_condenser_water',
         label: '凝縮水を飲む（HP 35%回復）',
         description: '清涼な蒸留水で喉を潤し、傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '冷却泉の清らかな水を飲み干し、HPが35%回復した！',
@@ -905,11 +905,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_basin_coins',
-        label: '水底の金貨を拾う（+35 G）',
+        label: '水底の金貨を拾う（+15 G）',
         description: '水盤の底に沈んだ金貨を素早く回収する。',
         outcome: {
           grantGold: 15,
-          logMessage: '水盤の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+          logMessage: '水盤の底から輝く金貨を拾い上げ、15 G を手に入れた！',
         },
       },
     ],
@@ -973,7 +973,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_geothermal_spring',
         label: '澄んだ湧水を飲む（HP 35%回復）',
         description: '温かな湧水で渇きを潤し、傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '温水溜まりの澄んだ水を飲み干し、HPが35%回復した！',
@@ -981,11 +981,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_ashen_coins',
-        label: '水底の金貨を拾う（+35 G）',
+        label: '水底の金貨を拾う（+15 G）',
         description: '灰の積もった水底から金貨を回収する。',
         outcome: {
           grantGold: 15,
-          logMessage: '黒曜の窪みの底から金貨を拾い上げ、35 G を手に入れた！',
+          logMessage: '黒曜の窪みの底から金貨を拾い上げ、15 G を手に入れた！',
         },
       },
     ],
@@ -1049,7 +1049,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_boiler_spring',
         label: '冷却水を飲む（HP 35%回復）',
         description: '清らかな蒸留水で渇きを潤し、傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '冷却水盤の澄んだ水を飲み干し、HPが35%回復した！',
@@ -1057,11 +1057,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_boiler_coins',
-        label: '水底の金貨を拾う（+35 G）',
+        label: '水底の金貨を拾う（+15 G）',
         description: '水盤の底に沈んだ金貨を素早く回収する。',
         outcome: {
           grantGold: 15,
-          logMessage: '冷却水盤の底から金貨を拾い上げ、35 G を手に入れた！',
+          logMessage: '冷却水盤の底から金貨を拾い上げ、15 G を手に入れた！',
         },
       },
     ],
@@ -1215,7 +1215,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_core_spring',
         label: '焼入れ泉の水を飲む（HP 35%回復）',
         description: '冷たく澄んだ泉水で渇きを癒やし、傷を癒やす。 泉の守り人への謝礼が必要だ。',
-        cost: { gold: 20 },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '焼入れ泉の澄んだ水を飲み干し、HPが35%回復した！',
@@ -1223,11 +1223,11 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'collect_core_coins',
-        label: '水底の金貨を拾う（+35 G）',
+        label: '水底の金貨を拾う（+15 G）',
         description: '泉の底に沈んだ金貨を素早く回収する。',
         outcome: {
           grantGold: 15,
-          logMessage: '焼入れ泉の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+          logMessage: '焼入れ泉の底から輝く金貨を拾い上げ、15 G を手に入れた！',
         },
       },
     ],
@@ -1432,9 +1432,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_spring_water',
         label: '金貨を捧げて湧水を飲む',
         description: '泉の精霊に金貨を捧げ、清らかな水で傷を癒やす。',
-        cost: {
-          gold: 12,
-        },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '金貨を捧げて湧水を飲み、HPが35%回復した！',
@@ -1499,9 +1497,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_basin_water',
         label: '金貨を捧げて霊泉の水を飲む',
         description: '泉に金貨を投げ入れ、清浄な水で体力を癒やす。',
-        cost: {
-          gold: 14,
-        },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '金貨を捧げて霊泉の水を飲み、HPが35%回復した！',
@@ -1597,9 +1593,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'offer_gold_for_amber_water',
         label: '金貨を捧げて黄金の聖水を飲む',
         description: '泉に金貨を捧げ、澄んだ聖水で深い傷を癒やす。',
-        cost: {
-          gold: 16,
-        },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '金貨を捧げて黄金の聖水を飲み、HPが35%回復した！',
@@ -1695,9 +1689,7 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
         id: 'drink_font_water',
         label: '金貨を捧げて世界樹の霊水を飲む',
         description: '泉に金貨を捧げ、生命力に満ちた霊水で傷を癒やす。',
-        cost: {
-          gold: 18,
-        },
+        cost: { gold: 150 },
         outcome: {
           healHpPercent: 35,
           logMessage: '金貨を捧げて世界樹の霊水を飲み、HPが35%回復した！',
@@ -1770,7 +1762,254 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+  sun_dapple_market: {
+    id: 'sun_dapple_market',
+    title: '木漏れ日の露店',
+    category: 'merchant',
+    description:
+      '木漏れ日の広場に、小さな露店が開かれている。旅の商人が秘薬の充填や古い防具を取り扱っている。',
+    speakerSpriteId: 'shrine',
+    palette: 'golden_shrine',
+    options: [
+      {
+        id: 'buy_refill',
+        label: '秘薬の充填を買い取る',
+        description: '秘薬の使用回数を 1 補充する。',
+        cost: { gold: 25 },
+        outcome: {
+          refillConsumable: 1,
+          logMessage: '金貨を支払い、秘薬を 1回分 補充した！',
+        },
+      },
+      {
+        id: 'buy_old_armor',
+        label: '古い防具を買い取る（防具獲得）',
+        description: '金貨を支払い、防具を受け取る。',
+        cost: { gold: 35 },
+        outcome: {
+          grantItemType: 'armor',
+          logMessage: '金貨を支払い、使い込まれた防具を受け取った！',
+        },
+      },
+      {
+        id: 'help_carry',
+        label: '荷運びを手伝う（+8 G）',
+        description: '商人の荷運びを手伝い、礼を受け取る。',
+        outcome: {
+          grantGold: 8,
+          logMessage: '荷運びを手伝い、礼として 8 G を受け取った！',
+        },
+      },
+    ],
+  },
+  mist_guide: {
+    id: 'mist_guide',
+    title: '霧の案内人',
+    category: 'lore',
+    description:
+      '霧の中から、古い地図を手にした案内人が現れた。塔の抜け道と、戦いの型を知っているという。',
+    speakerSpriteId: 'hero_mage',
+    palette: 'astral_mage',
+    options: [
+      {
+        id: 'learn_from_guide',
+        label: '礼を払い、戦いの型を授かる（スキル習得）',
+        description: '金貨を支払い、スキルを習得する。',
+        cost: { gold: 20 },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '案内人に礼を払い、新たなスキルの型を授かった！',
+        },
+      },
+      {
+        id: 'carry_maps',
+        label: '地図の束を運ぶ（+10 G）',
+        description: '案内人の地図の束を運び、礼を受け取る。',
+        outcome: {
+          grantGold: 10,
+          logMessage: '地図の束を運び、礼として 10 G を受け取った！',
+        },
+      },
+    ],
+  },
+  mycelium_exchange: {
+    id: 'mycelium_exchange',
+    title: '菌糸の交易所',
+    category: 'merchant',
+    description:
+      '巨大な菌糸の網が壁一面を覆い、その結節点に交易所の札が下がっている。胞子の香りが漂う。',
+    speakerSpriteId: 'shrine',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'buy_mycelium_relic',
+        label: '菌糸の護符を買い取る（レリック獲得）',
+        description: '金貨を支払い、レリックを受け取る。',
+        cost: { gold: 30 },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '金貨を支払い、菌糸に守られたレリックを買い取った！',
+        },
+      },
+      {
+        id: 'sell_spores',
+        label: '集めた胞子を売る（+10 G）',
+        description: '道中で集めた胞子を交易所に売る。',
+        outcome: {
+          grantGold: 10,
+          logMessage: '集めた胞子を売り、10 G を得た！',
+        },
+      },
+    ],
+  },
+  amber_appraiser: {
+    id: 'amber_appraiser',
+    title: '琥珀の鑑定士',
+    category: 'merchant',
+    description:
+      '琥珀の欠片を並べた鑑定士の小屋。秘薬の充填から掘り出し物の武器まで、値付けは確かだという。',
+    speakerSpriteId: 'shrine',
+    palette: 'golden_shrine',
+    options: [
+      {
+        id: 'buy_refill',
+        label: '秘薬の充填を依頼する',
+        description: '秘薬の使用回数を 1 補充する。',
+        cost: { gold: 20 },
+        outcome: {
+          refillConsumable: 1,
+          logMessage: '金貨を支払い、秘薬を 1回分 補充した！',
+        },
+      },
+      {
+        id: 'buy_dug_weapon',
+        label: '掘り出し物の武器を購入する（武器獲得）',
+        description: '金貨を支払い、武器を受け取る。',
+        cost: { gold: 40 },
+        outcome: {
+          grantItemType: 'weapon',
+          logMessage: '金貨を支払い、掘り出し物の武器を受け取った！',
+        },
+      },
+      {
+        id: 'sell_sap_crystal',
+        label: '樹液の結晶を買い取ってもらう（+12 G）',
+        description: '樹液の結晶を鑑定士に買い取ってもらう。',
+        outcome: {
+          grantGold: 12,
+          logMessage: '樹液の結晶を買い取ってもらい、12 G を得た！',
+        },
+      },
+    ],
+  },
+  worldtree_pilgrim_merchant: {
+    id: 'worldtree_pilgrim_merchant',
+    title: '世界樹の巡礼商人',
+    category: 'merchant',
+    description:
+      '世界樹への巡礼路を往く商人が、聖なる品々を広げている。どれも巡礼の加護を帯びているという。',
+    speakerSpriteId: 'hero_mage',
+    palette: 'astral_mage',
+    options: [
+      {
+        id: 'buy_pilgrim_relic',
+        label: '巡礼の護符を買い取る（レリック獲得）',
+        description: '金貨を支払い、レリックを受け取る。',
+        cost: { gold: 50 },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '金貨を支払い、巡礼の護符を買い取った！',
+        },
+      },
+      {
+        id: 'buy_old_scripture',
+        label: '古い聖典を買い取る（スキル習得）',
+        description: '金貨を支払い、聖典に記されたスキルを習得する。',
+        cost: { gold: 35 },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '金貨を支払い、古い聖典に記されたスキルを習得した！',
+        },
+      },
+      {
+        id: 'help_pilgrims',
+        label: '巡礼者の荷運びを手伝う（+7 G）',
+        description: '巡礼者の荷運びを手伝い、礼を受け取る。',
+        outcome: {
+          grantGold: 7,
+          logMessage: '巡礼者の荷運びを手伝い、礼として 7 G を受け取った！',
+        },
+      },
+    ],
+  },
+  astral_pedlar: {
+    id: 'astral_pedlar',
+    title: '星屑の行商人',
+    category: 'merchant',
+    description:
+      '星屑をちりばめた外套の行商人が、図書館の回廊にひっそりと店を広げている。',
+    speakerSpriteId: 'tome',
+    palette: 'arcane_tome',
+    options: [
+      {
+        id: 'buy_astral_relic',
+        label: '星屑の護符を買い取る（レリック獲得）',
+        description: '金貨を支払い、レリックを受け取る。',
+        cost: { gold: 45 },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '金貨を支払い、星屑の護符を買い取った！',
+        },
+      },
+      {
+        id: 'buy_forbidden_copy',
+        label: '禁書の写しを買い取る（スキル習得）',
+        description: '金貨を支払い、禁書の写しからスキルを習得する。',
+        cost: { gold: 30 },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '金貨を支払い、禁書の写しからスキルを習得した！',
+        },
+      },
+      {
+        id: 'sell_stardust',
+        label: '集めた星屑を売る（+7 G）',
+        description: '道中で集めた星屑を行商人に売る。',
+        outcome: {
+          grantGold: 7,
+          logMessage: '集めた星屑を売り、7 G を得た！',
+        },
+      },
+    ],
+  },
+  index_spring: {
+    id: 'index_spring',
+    title: '索引の泉',
+    category: 'shrine',
+    description:
+      '書架の合間に、索引の文字が浮かぶ小さな泉が湧いている。水は星明かりのように微かに光る。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_index_water',
+        label: '霊水を飲む（HP 35%回復）',
+        description: '最大HPの35%を回復する。',
+        cost: { gold: 150 },
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '索引の泉の霊水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_index_coins',
+        label: '水底の金貨を拾う（+10 G）',
+        description: '泉の底の金貨を拾う。',
+        outcome: {
+          grantGold: 10,
+          logMessage: '泉の底から輝く金貨を拾い上げ、10 G を手に入れた！',
+        },
+      },
+    ],
+  },
 };
-
-
-

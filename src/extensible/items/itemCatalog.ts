@@ -90,6 +90,21 @@ export type AnyCatalogItem =
   | ConsumableItem
   | RelicItem;
 
+/**
+ * Salvage payout is a flat 5G for every item (gold-scarcity rule decided
+ * 2026-11-18: per-item salvage prices had made discarding finds a real
+ * income source). The per-item `salvageGold` catalog field is retained for
+ * data compatibility but no longer determines the payout.
+ */
+export const SALVAGE_GOLD = 5;
+
+/** Gold actually paid out when the given item is salvaged (0 for no item). */
+export function salvageGoldFor(
+  item: { salvageGold?: number } | null | undefined
+): number {
+  return item ? SALVAGE_GOLD : 0;
+}
+
 export const WEAPON_CATALOG: Record<string, WeaponItem> = {
   rusty_shortsword: {
     id: 'rusty_shortsword',

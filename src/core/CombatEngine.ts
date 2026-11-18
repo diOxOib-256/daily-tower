@@ -38,6 +38,14 @@ export interface BattleSessionState {
   totalGoldReward: number;
   skillCharges: [number, number, number]; // Remaining uses in this battle for slots 0, 1, 2
   consumableCharges: number;
+  /**
+   * 重症 (wound): HP lost to damage partially becomes a wound that caps
+   * in-combat healing (skills, regen, gear effects) until it is cleared
+   * out of combat (rest, spring heals, respawn, dimensional leap).
+   * Consumable heals pierce the cap. woundRate 0 disables the mechanic.
+   */
+  playerWound: number;
+  woundRate: number;
   logs: string[];
   status: 'ongoing' | 'victory' | 'defeat';
   lastActionFx?: BattleSessionLastActionFx;
@@ -75,6 +83,47 @@ export type PlayerCommand =
 
 export const MAX_ENEMIES_PER_BATTLE = 3;
 
+/** Fraction of HP damage that becomes 重症 (wound), rounded up per hit. */
+export const WOUND_RATE = 0.5;
+
+/**
+ * HP after a wound-capped heal (battle-victory gear heals and other
+ * heals applied outside a battle session). Never lowers current HP.
+ */
+export function cappedHealHp(
+  currentHp: number,
+  maxHp: number,
+  wound: number,
+  amount: number
+): number {
+  if (amount <= 0) return currentHp;
+  const cap = Math.floor(maxHp - wound);
+  const target = Math.min(cap, currentHp + amount);
+  return target > currentHp ? target : currentHp;
+}
+
+/** Wound helpers: cap for in-combat healing given the accrued wound. */
+function woundHealCap(session: BattleSessionState): number {
+  return session.woundRate > 0
+    ? Math.floor(session.player.maxHp - session.playerWound)
+    : session.player.maxHp;
+}
+
+function applyPlayerHeal(session: BattleSessionState, amount: number): void {
+  if (amount <= 0) return;
+  const target = Math.min(
+    woundHealCap(session),
+    session.player.currentHp + amount
+  );
+  if (target > session.player.currentHp) session.player.currentHp = target;
+}
+
+function accrueWound(session: BattleSessionState, hpLost: number): void {
+  if (session.woundRate > 0 && hpLost > 0) {
+    session.playerWound += Math.ceil(hpLost * session.woundRate);
+  }
+}
+
 export class CombatEngine {
 static createBattleSession(
 playerCurrentHp: number,
@@ -82,7 +131,9 @@ playerMaxHp: number,
 consumableCharges: number,
 loadout: PlayerLoadout,
 enemyDef: EnemyDefinition | EnemyDefinition[],
-statScale = 1.0
+statScale = 1.0,
+playerWound = 0,
+woundRate = 0
 ): BattleSessionState {
 const defs = (Array.isArray(enemyDef)? enemyDef: [enemyDef]).slice(
 0,
@@ -163,6 +214,8 @@ statuses: enemyStatusesList[i],
     totalGoldReward: defs.reduce((sum, d) => sum + enemyGoldReward(d), 0),
     skillCharges,
     consumableCharges,
+    playerWound,
+    woundRate,
     logs,
     status: 'ongoing',
     lastActionFx: {
@@ -409,10 +462,12 @@ logs: [...session.logs],
     });
     next.logs.push(...pTurnStart.logs);
     if (pTurnStart.totalDamage > 0) {
+      const hpBeforeDot = next.player.currentHp;
       next.player.currentHp = Math.max(0, next.player.currentHp - pTurnStart.totalDamage);
+      accrueWound(next, hpBeforeDot - next.player.currentHp);
     }
     if (pTurnStart.totalHeal > 0) {
-      next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + pTurnStart.totalHeal);
+      applyPlayerHeal(next, pTurnStart.totalHeal);
     }
     if (next.player.currentHp <= 0) {
       next.status = 'defeat';
@@ -441,7 +496,7 @@ logs: [...session.logs],
         primary.statuses = applied.nextList;
       }
       if (res.healPlayer) {
-        next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + res.healPlayer);
+        applyPlayerHeal(next, res.healPlayer);
       }
       if (res.logMessage) next.logs.push(res.logMessage);
     }
@@ -512,7 +567,7 @@ logs: [...session.logs],
             target.currentHp = Math.max(0, target.currentHp - rRes.bonusDamage);
           }
           if (rRes.healPlayer) {
-            next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + rRes.healPlayer);
+            applyPlayerHeal(next, rRes.healPlayer);
           }
           if (rRes.applyStatusToPlayer) {
             const app = StatusEngine.applyStatus(next.player.statuses, rRes.applyStatusToPlayer);
@@ -578,7 +633,7 @@ logs: [...session.logs],
             const healAmt =
               (skill.healFlat ?? 0) +
               Math.floor((next.player.maxHp * (skill.healPercent ?? 0)) / 100);
-            next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + healAmt);
+            applyPlayerHeal(next, healAmt);
             next.logs.push(`💚 HPを ${healAmt} 回復した！`);
           }
 
@@ -632,7 +687,7 @@ logs: [...session.logs],
               target.currentHp = Math.max(0, target.currentHp - rRes.bonusDamage);
             }
             if (rRes.healPlayer) {
-              next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + rRes.healPlayer);
+              applyPlayerHeal(next, rRes.healPlayer);
             }
             if (rRes.applyStatusToPlayer) {
               const app = StatusEngine.applyStatus(next.player.statuses, rRes.applyStatusToPlayer);
@@ -741,7 +796,9 @@ logs: [...session.logs],
             }
           );
           next.player.statuses = dmgRes.nextDefenderStatuses;
+          const hpBeforeHit = next.player.currentHp;
           next.player.currentHp = Math.max(0, next.player.currentHp - dmgRes.finalHpDamage);
+          accrueWound(next, hpBeforeHit - next.player.currentHp);
           const absorbNote =
             dmgRes.shieldAbsorbed > 0 ? ` (障壁が${dmgRes.shieldAbsorbed}吸収)` : '';
           next.logs.push(

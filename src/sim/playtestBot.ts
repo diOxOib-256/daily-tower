@@ -9,6 +9,7 @@ import { RewardCard } from '../core/DropPacingEngine';
 import { EventOption, GameEventDefinition } from '../extensible/events/types';
 import {
   ArmorItem,
+  SALVAGE_GOLD,
   SkillItem,
   WeaponItem,
 } from '../extensible/items/itemCatalog';
@@ -232,7 +233,7 @@ export class PlaytestBot {
         // +36 ≈ +3 ATK, enough to try most effect weapons once.
         if (card.item.effectId) score += 36;
         action = score > 0 ? 'equip' : 'salvage';
-        if (action === 'salvage') score = card.item.salvageGold * 0.6;
+        if (action === 'salvage') score = SALVAGE_GOLD * 0.6;
       } else if (card.item?.kind === 'armor') {
         score =
           (card.item.def - ctx.armor.def) * 8 +
@@ -241,7 +242,7 @@ export class PlaytestBot {
         // Price a persistent ATK modifier at the weapon-ATK rate.
         if (card.item.atkDelta) score += card.item.atkDelta * 12;
         action = score > 0 ? 'equip' : 'salvage';
-        if (action === 'salvage') score = card.item.salvageGold * 0.6;
+        if (action === 'salvage') score = SALVAGE_GOLD * 0.6;
       } else if (card.item?.kind === 'skill') {
         const empty = ctx.skills.some((s) => s === null);
         if (empty) {
@@ -256,7 +257,7 @@ export class PlaytestBot {
             score = delta;
             action = 'equip';
           } else {
-            score = card.item.salvageGold * 0.6;
+            score = SALVAGE_GOLD * 0.6;
             action = 'salvage';
           }
         }
@@ -265,7 +266,7 @@ export class PlaytestBot {
           score = 30;
           action = 'equip';
         } else {
-          score = card.item.salvageGold * 0.6;
+          score = SALVAGE_GOLD * 0.6;
           action = 'salvage';
         }
       }

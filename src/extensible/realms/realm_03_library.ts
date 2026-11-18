@@ -115,7 +115,7 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     subtitle: '虚空の図書館の中層へと続く重厚な扉の前に、巨大な甲冑の番人が立ち塞がる',
     encounters: [
       { type: 'battle', enemyId: 'chronos_moth', enemyStatScale: 0.80 },
-      { type: 'event', eventId: 'catalog_pedestal' },
+      { type: 'event', eventId: 'starlight_archive' },
       { type: 'battle', enemyIds: ['brass_astrolabe', 'astral_owl'], enemyStatScale: 0.80 },
       { type: 'miniboss', enemyId: 'tome_warden', enemyStatScale: 1.05 },
     ],
@@ -141,7 +141,7 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'glass_sentinel', enemyStatScale: 0.75 },
       { type: 'battle', enemyIds: ['void_scribe', 'glass_sentinel'], enemyStatScale: 0.75 },
-      { type: 'event', eventId: 'catalog_pedestal' },
+      { type: 'event', eventId: 'astral_pedlar' },
       { type: 'battle', enemyIds: ['astral_owl', 'glass_sentinel'], enemyStatScale: 0.75 },
     ],
     rewardPool: {
@@ -165,7 +165,7 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'parchment_wraith', enemyStatScale: 0.60 },
       { type: 'battle', enemyIds: ['glass_sentinel', 'parchment_wraith'], enemyStatScale: 0.60 },
-      { type: 'event', eventId: 'forgotten_scriptorium' },
+      { type: 'event', eventId: 'index_spring' },
       { type: 'battle', enemyIds: ['parchment_wraith', 'parchment_wraith'], enemyStatScale: 0.60 },
       { type: 'battle', enemyId: 'parchment_wraith', enemyStatScale: 0.60 },
     ],

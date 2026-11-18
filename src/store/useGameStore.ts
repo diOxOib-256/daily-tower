@@ -4,7 +4,12 @@ import {
   COSMETIC_SHOP_CATALOG,
   CosmeticItem,
 } from '../core/AreaEngine';
-import { BattleSessionState, CombatEngine } from '../core/CombatEngine';
+import {
+  BattleSessionState,
+  CombatEngine,
+  WOUND_RATE,
+  cappedHealHp,
+} from '../core/CombatEngine';
 import { DropPacingEngine, RewardCard } from '../core/DropPacingEngine';
 import { EventEngine } from '../core/EventEngine';
 import { FloorRunner, ResolvedEncounter } from '../core/FloorRunner';
@@ -27,7 +32,12 @@ import {
 } from '../core/SaveSlotManager';
 import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
 import { EventOption } from '../extensible/events/types';
-import { AnyCatalogItem, SkillItem } from '../extensible/items/itemCatalog';
+import {
+  AnyCatalogItem,
+  SALVAGE_GOLD,
+  SkillItem,
+  salvageGoldFor,
+} from '../extensible/items/itemCatalog';
 import {
   LATEST_AUTHORED_FLOOR,
   REALM_METADATA,
@@ -161,7 +171,9 @@ function syncAchievements(save: SaveData): SaveData {
           currentSave.midFloor.consumableCharges,
           currentSave.inventory,
           enc.enemyDefs,
-          enc.statScale
+          enc.statScale,
+          currentSave.midFloor.playerWound,
+          WOUND_RATE
         );
         setBattleSession(session);
         setStage('combat');
@@ -229,7 +241,7 @@ function syncAchievements(save: SaveData): SaveData {
     baseSave: SaveData = saveData
   ) => {
     if (item.kind === 'weapon') {
-      const oldSalvage = baseSave.inventory.weapon.salvageGold;
+      const oldSalvage = salvageGoldFor(baseSave.inventory.weapon);
       const nextSave: SaveData = {
         ...baseSave,
         gold: baseSave.gold + oldSalvage,
@@ -247,7 +259,7 @@ function syncAchievements(save: SaveData): SaveData {
         advanceToNextEncounterWithSave(nextSave);
       }
     } else if (item.kind === 'armor') {
-      const oldSalvage = baseSave.inventory.armor.salvageGold;
+      const oldSalvage = salvageGoldFor(baseSave.inventory.armor);
       const hpDiff = Math.max(0, item.maxHpBonus - baseSave.inventory.armor.maxHpBonus);
       const newMaxHp = BASE_PLAYER_MAX_HP + item.maxHpBonus;
       const nextSave: SaveData = {
@@ -271,7 +283,7 @@ function syncAchievements(save: SaveData): SaveData {
         advanceToNextEncounterWithSave(nextSave);
       }
     } else if (item.kind === 'relic') {
-      const oldSalvage = baseSave.inventory.relic?.salvageGold ?? 0;
+      const oldSalvage = salvageGoldFor(baseSave.inventory.relic);
       const nextSave: SaveData = {
         ...baseSave,
         gold: baseSave.gold + oldSalvage,
@@ -345,14 +357,14 @@ function syncAchievements(save: SaveData): SaveData {
     if (slotIndex === 'salvage') {
       nextSave = {
         ...saveData,
-        gold: saveData.gold + pendingSkillToEquip.salvageGold,
+        gold: saveData.gold + SALVAGE_GOLD,
       };
       setSystemBanner(
-        `💰 「${pendingSkillToEquip.name}」を魔石分解し +${pendingSkillToEquip.salvageGold}G を獲得！`
+        `💰 「${pendingSkillToEquip.name}」を魔石分解し +${SALVAGE_GOLD}G を獲得！`
       );
     } else {
       const oldSkill = saveData.inventory.skills[slotIndex];
-      const salvage = oldSkill?.salvageGold ?? 0;
+      const salvage = salvageGoldFor(oldSkill);
       const nextSkills = [...saveData.inventory.skills] as [
         SkillItem | null,
         SkillItem | null,
@@ -447,6 +459,7 @@ function syncAchievements(save: SaveData): SaveData {
           currentFloor: leap.nextFloor,
           currentEncounterIndex: 0,
           playerCurrentHp: newMaxHp,
+          playerWound: 0,
           consumableCharges: Math.min(maxCons, baseSave.midFloor.consumableCharges + 1),
         },
         inventory: {
@@ -509,7 +522,13 @@ function syncAchievements(save: SaveData): SaveData {
       gold: saveData.gold + bonusGold,
       midFloor: {
         ...saveData.midFloor,
-        playerCurrentHp: Math.min(battleSession.player.maxHp, battleSession.player.currentHp + bonusHeal),
+        playerCurrentHp: cappedHealHp(
+          battleSession.player.currentHp,
+          battleSession.player.maxHp,
+          battleSession.playerWound,
+          bonusHeal
+        ),
+        playerWound: battleSession.playerWound,
         consumableCharges: battleSession.consumableCharges,
       },
     };
@@ -537,6 +556,17 @@ function syncAchievements(save: SaveData): SaveData {
       return;
     }
 
+    // Wound clears when resting or drinking from a spring (paid heal).
+    const eventFloorDef = FloorRunner.getFloor(saveData.midFloor.currentFloor);
+    const eventEncounter = FloorRunner.resolveEncounter(
+      eventFloorDef,
+      saveData.midFloor.currentEncounterIndex,
+      saveData.worldSeed
+    );
+    const clearsWound =
+      (eventEncounter.kind === 'event' && eventEncounter.eventDef.isRestEvent) ||
+      !!option.outcome.healHpPercent;
+
     const updatedSave: SaveData = {
       ...saveData,
       gold: res.nextState.gold,
@@ -544,6 +574,7 @@ function syncAchievements(save: SaveData): SaveData {
         ...saveData.midFloor,
         playerCurrentHp: res.nextState.currentHp,
         consumableCharges: res.nextState.consumableCharges,
+        playerWound: clearsWound ? 0 : saveData.midFloor.playerWound,
       },
     };
 
@@ -567,10 +598,10 @@ function syncAchievements(save: SaveData): SaveData {
       if (dominated && 'salvageGold' in granted) {
         const salvagedSave: SaveData = {
           ...updatedSave,
-          gold: updatedSave.gold + granted.salvageGold,
+          gold: updatedSave.gold + SALVAGE_GOLD,
         };
         setSystemBanner(
-          `📜 ${res.logMessage}（「${granted.name}」は今の装備より弱いため分解して +${granted.salvageGold}G）`
+          `📜 ${res.logMessage}（「${granted.name}」は今の装備より弱いため分解して +${SALVAGE_GOLD}G）`
         );
         advanceToNextEncounterWithSave(salvagedSave);
       } else {
@@ -613,8 +644,7 @@ function syncAchievements(save: SaveData): SaveData {
 
     if (card.item) {
       if (action === 'salvage') {
-        const salvageGold =
-          'salvageGold' in card.item ? card.item.salvageGold : 20;
+        const salvageGold = SALVAGE_GOLD;
         const nextSave: SaveData = {
           ...saveData,
           gold: saveData.gold + salvageGold,
@@ -637,6 +667,7 @@ function syncAchievements(save: SaveData): SaveData {
         currentFloor: respawnFloor,
         currentEncounterIndex: 0,
         playerCurrentHp: maxHp,
+        playerWound: 0,
       },
     };
     setSystemBanner(`🔄 第${respawnFloor}層のチェックポイントからHP全快で再出発しました。`);

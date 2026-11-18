@@ -43,6 +43,7 @@ interface BattleStage2DProps {
   playerPaletteId: string;
   playerTitle: string;
   playerCurrentHp: number;
+  playerWound?: number;
   playerMaxHp: number;
   playerAtk: number;
   playerDef: number;
@@ -152,12 +153,14 @@ function HpBar({
   color,
   label,
   previewValue,
+  woundValue,
 }: {
   value: number;
   max: number;
   color: string;
   label: string;
   previewValue?: number;
+  woundValue?: number;
 }) {
   const safeMax = Math.max(1, max);
   const pct = Math.max(0, Math.min(100, (value / safeMax) * 100));
@@ -175,6 +178,14 @@ function HpBar({
       aria-valuemax={max}
       className="relative mt-1 h-2 w-full overflow-hidden rounded bg-slate-800 sm:h-2.5"
     >
+      {woundValue !== undefined && woundValue > 0 && (
+        <div
+          className="absolute inset-y-0 right-0 border-l-2 border-rose-300/70 bg-rose-950/90"
+          style={{
+            width: `${Math.min(100, (Math.min(woundValue, safeMax) / safeMax) * 100)}%`,
+          }}
+        />
+      )}
       <div
         className="absolute inset-y-0 left-0 rounded bg-white/45 transition-[width] delay-200 duration-700 ease-out"
         style={{ width: `${pct}%` }}
@@ -331,6 +342,7 @@ export function BattleStage2D({
   playerPaletteId,
   playerTitle,
   playerCurrentHp,
+  playerWound,
   playerMaxHp,
   playerAtk,
   playerDef,
@@ -346,6 +358,7 @@ export function BattleStage2D({
   const isVolcano = realm >= 2;
 
   const hpShown = battleSession ? battleSession.player.currentHp : playerCurrentHp;
+  const woundShown = battleSession ? battleSession.playerWound : (playerWound ?? 0);
   const maxHpShown = battleSession ? battleSession.player.maxHp : playerMaxHp;
   const playerStatuses = battleSession ? battleSession.player.statuses : [];
 
@@ -631,11 +644,6 @@ export function BattleStage2D({
       )}
 
       {/* Visual Effect Overlays during attacks / hits */}
-      {motionState === 'enemy_hit' && (
-        <div className="pointer-events-none absolute right-12 bottom-28 sm:right-[calc(max(3rem,calc((100%-64rem)/2))+4rem)] z-20 flex items-center justify-center animate-ping">
-          <span className="text-4xl">💥</span>
-        </div>
-      )}
       {motionState === 'player_hit' && (
         <div className="pointer-events-none absolute left-12 bottom-28 sm:left-[calc(max(3rem,calc((100%-64rem)/2))+3rem)] z-20 flex items-center justify-center animate-ping">
           <span className="text-4xl">🩸</span>
@@ -684,7 +692,30 @@ export function BattleStage2D({
                     ? actionPreview.player.afterHp
                     : undefined
                 }
+                woundValue={woundShown > 0 ? woundShown : undefined}
               />
+              {woundShown > 0 && (
+                <div className="mt-1">
+                  <InfoTip
+                    align="left"
+                    title="🩹 重症"
+                    triggerClassName="inline-flex cursor-help items-center gap-1 rounded-md border border-rose-400/50 bg-rose-950/90 px-1.5 py-0.5 text-[10px] font-bold text-rose-200 shadow"
+                    body={
+                      <>
+                        受けたダメージの50%が重症として残ります。重症がある間、スキルや再生などの回復は「最大HP
+                        − 重症」までしか効きません。消耗品の回復は重症を超えて効きます。重症は休息・泉での回復・復活・次元跳躍で消えます。
+                        <span className="mt-1 block font-bold text-sky-300">
+                          現在の回復上限：{Math.max(0, maxHpShown - Math.floor(woundShown))}
+                        </span>
+                      </>
+                    }
+                  >
+                    <span>🩹</span>
+                    <span>重症</span>
+                    <span className="font-mono">{Math.floor(woundShown)}</span>
+                  </InfoTip>
+                </div>
+              )}
             </div>
 
             {playerStatuses.length > 0 && (
@@ -875,6 +906,19 @@ export function BattleStage2D({
                   {/* Enemy Sprite on Floor Platform (facing left towards player) */}
                   <div className="relative flex flex-col items-center">
                     <FxLayer fx={(hitFx ?? []).filter((f) => f.side === 'enemy' && f.index === idx)} align="enemy" />
+                    {(hitFx ?? []).some(
+                      (f) =>
+                        f.side === 'enemy' &&
+                        f.index === idx &&
+                        (f.kind === 'damage' ||
+                          f.kind === 'critical' ||
+                          f.kind === 'weak' ||
+                          f.kind === 'resist')
+                    ) && (
+                      <div className="pointer-events-none absolute inset-0 z-20 flex animate-ping items-center justify-center">
+                        <span className="text-4xl">💥</span>
+                      </div>
+                    )}
                     <div
                       className={`${
                         def.isBoss ? 'rpg-actor-boss' : 'rpg-actor'

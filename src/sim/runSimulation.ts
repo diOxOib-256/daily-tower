@@ -1,5 +1,5 @@
 import { AreaEngine } from '../core/AreaEngine';
-import { CombatEngine } from '../core/CombatEngine';
+import { CombatEngine, WOUND_RATE } from '../core/CombatEngine';
 import { DropPacingEngine } from '../core/DropPacingEngine';
 import { EventEngine } from '../core/EventEngine';
 import { FloorRunner } from '../core/FloorRunner';
@@ -9,7 +9,11 @@ import {
   StorageValidator,
 } from '../core/StorageValidator';
 import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
-import { AnyCatalogItem } from '../extensible/items/itemCatalog';
+import {
+  AnyCatalogItem,
+  SALVAGE_GOLD,
+  salvageGoldFor,
+} from '../extensible/items/itemCatalog';
 import { REALM_METADATA } from '../extensible/realms/realmIndex';
 import { PlaytestBot } from './playtestBot';
 
@@ -54,7 +58,7 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
       element: save.inventory.weapon.element,
     })
   ) {
-    save.gold += item.salvageGold;
+    save.gold += SALVAGE_GOLD;
     return;
   }
   if (
@@ -64,15 +68,15 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
       maxHpBonus: save.inventory.armor.maxHpBonus,
     })
   ) {
-    save.gold += item.salvageGold;
+    save.gold += SALVAGE_GOLD;
     return;
   }
   const maxHpNow = BASE_PLAYER_MAX_HP + save.inventory.armor.maxHpBonus;
   if (item.kind === 'weapon') {
-    save.gold += save.inventory.weapon.salvageGold;
+    save.gold += SALVAGE_GOLD;
     save.inventory.weapon = item;
   } else if (item.kind === 'armor') {
-    save.gold += save.inventory.armor.salvageGold;
+    save.gold += SALVAGE_GOLD;
     const hpDiff = Math.max(0, item.maxHpBonus - save.inventory.armor.maxHpBonus);
     save.inventory.armor = item;
     const newMax = BASE_PLAYER_MAX_HP + item.maxHpBonus;
@@ -82,7 +86,7 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
     );
     void maxHpNow;
   } else if (item.kind === 'relic') {
-    save.gold += save.inventory.relic?.salvageGold ?? 0;
+    save.gold += salvageGoldFor(save.inventory.relic);
     save.inventory.relic = item;
   } else if (item.kind === 'skill') {
     const emptyIdx = save.inventory.skills.findIndex((s) => s === null);
@@ -101,7 +105,7 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
           }
         }
       });
-      save.gold += save.inventory.skills[weakestIdx]?.salvageGold ?? 0;
+      save.gold += salvageGoldFor(save.inventory.skills[weakestIdx]);
       save.inventory.skills[weakestIdx] = item;
     }
   } else if (item.kind === 'consumable') {
@@ -133,6 +137,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
     floorEndHpPct: {},
   };
 
+  let wound = 0;
   let floor = 1;
   while (floor <= maxFloor) {
     const floorDef = FloorRunner.getFloor(floor);
@@ -162,6 +167,10 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
             save.gold = res.nextState.gold;
             save.midFloor.playerCurrentHp = res.nextState.currentHp;
             save.midFloor.consumableCharges = res.nextState.consumableCharges;
+            // Wound trial: rest events and spring heals clear the wound.
+            if (enc.eventDef.isRestEvent || enc.eventDef.options[optIdx].outcome.healHpPercent) {
+              wound = 0;
+            }
             if (res.grantedItem) applyEquip(save, res.grantedItem);
           }
         }
@@ -175,7 +184,9 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
         save.midFloor.consumableCharges,
         save.inventory,
         enc.enemyDefs,
-        enc.statScale
+        enc.statScale,
+        wound,
+        WOUND_RATE
       );
       result.battles += 1;
       let turns = 0;
@@ -192,6 +203,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
       }
       result.totalTurns += turns;
 
+      wound = session.playerWound;
       if (session.status === 'victory') {
         let gold = session.totalGoldReward;
         for (const eff of collectEquippedEffects(save.inventory)) {
@@ -207,7 +219,17 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
           });
           if (res.grantGold) gold += res.grantGold;
           if (res.healPlayer) {
-            session.player.currentHp = Math.min(session.player.maxHp, session.player.currentHp + res.healPlayer);
+            const healCap =
+              WOUND_RATE > 0
+                ? Math.floor(session.player.maxHp - wound)
+                : session.player.maxHp;
+            const healTarget = Math.min(
+              healCap,
+              session.player.currentHp + res.healPlayer
+            );
+            if (healTarget > session.player.currentHp) {
+              session.player.currentHp = healTarget;
+            }
           }
         }
         save.gold += gold;
@@ -226,6 +248,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
           result.endReason = 'turn_cap';
           return result;
         }
+        wound = 0;
         const respawnFloor = AreaEngine.calculateRespawnFloor(floor);
         save.midFloor.playerCurrentHp =
           BASE_PLAYER_MAX_HP + save.inventory.armor.maxHpBonus;
@@ -237,7 +260,9 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
 
     if (diedOnFloor) continue;
 
-    // Floor cleared
+    // Floor cleared (wound trial B: the wound persists across floors and
+    // clears only at rest / spring heals, respawn, and dimensional leaps)
+    if (floor % 50 === 0) wound = 0;
     result.floorsCleared = Math.max(result.floorsCleared, floor);
     const maxHpAfter = BASE_PLAYER_MAX_HP + save.inventory.armor.maxHpBonus;
     if (result.floorEndHpPct[floor] === undefined) {
@@ -281,7 +306,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
       if (choice.action === 'equip') {
         applyEquip(save, card.item);
       } else {
-        save.gold += 'salvageGold' in card.item ? card.item.salvageGold : 20;
+        save.gold += SALVAGE_GOLD;
       }
     }
 

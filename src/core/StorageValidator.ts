@@ -19,6 +19,8 @@ export interface MidFloorState {
   currentEncounterIndex: number;
   playerCurrentHp: number;
   consumableCharges: number;
+  /** 重症 (wound): accrued damage that caps in-combat healing. */
+  playerWound: number;
 }
 
 export interface SaveData {
@@ -76,6 +78,7 @@ export class StorageValidator {
         currentEncounterIndex: 0,
         playerCurrentHp: BASE_PLAYER_MAX_HP,
         consumableCharges: 2,
+        playerWound: 0,
       },
       inventory: {
         weapon: WEAPON_CATALOG.rusty_shortsword,
@@ -210,6 +213,13 @@ export class StorageValidator {
         ? Math.min(maxHp, Math.floor(rawMid.playerCurrentHp))
         : maxHp;
 
+    let playerWound =
+      typeof rawMid.playerWound === 'number' &&
+      Number.isFinite(rawMid.playerWound) &&
+      rawMid.playerWound >= 0
+        ? Math.min(maxHp, Math.floor(rawMid.playerWound))
+        : 0;
+
     const maxConsCharges = consumable?.maxCharges ?? 2;
     const consumableCharges =
       typeof rawMid.consumableCharges === 'number' &&
@@ -223,6 +233,7 @@ export class StorageValidator {
       currentFloor = AreaEngine.calculateRespawnFloor(currentFloor);
       currentEncounterIndex = 0;
       playerCurrentHp = maxHp;
+      playerWound = 0;
       healed = true;
       healNotes.push('エンカウントインデックスの不整合を検出しチェックポイントへ復帰しました。');
     }
@@ -310,6 +321,7 @@ export class StorageValidator {
           currentEncounterIndex,
           playerCurrentHp,
           consumableCharges,
+          playerWound,
         },
         inventory: {
           weapon,
