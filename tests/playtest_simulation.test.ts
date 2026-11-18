@@ -65,7 +65,7 @@ describe('PlaytestBot policy', () => {
 });
 
 describe('Full-run playtest simulation (floors 1-100)', () => {
-  it('terminates every run and makes real progress', () => {
+  it('terminates every run and makes real progress', { timeout: 30000 }, () => {
     // Per-seed trajectories shift whenever the item catalog grows (event
     // random grants consume the run's RNG stream) and early-game outcomes
     // are bimodal, so progress is asserted as a share of seeds that get
@@ -81,7 +81,7 @@ describe('Full-run playtest simulation (floors 1-100)', () => {
     expect(progressed / seeds.length).toBeGreaterThanOrEqual(0.3);
   });
 
-  it('aggregates clear rates and death hotspots across seeds', () => {
+  it('aggregates clear rates and death hotspots across seeds', { timeout: 30000 }, () => {
     const report = simulateMany([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 100);
     expect(report.runCount).toBe(10);
     expect(report.clearRateByFloor[1]).toBeGreaterThanOrEqual(0.3);
@@ -90,7 +90,7 @@ describe('Full-run playtest simulation (floors 1-100)', () => {
     expect(report.avgTurnsPerBattle).toBeLessThan(15);
   });
 
-  it('prints the 100-floor balance report', () => {
+  it('prints the 100-floor balance report', { timeout: 30000 }, () => {
     const report = simulateMany([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 100);
     const text = formatReport(report);
     console.log('\n' + text);

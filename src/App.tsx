@@ -75,6 +75,7 @@ export function App() {
     selectEventOption,
     selectFloorRewardCard,
     confirmSkillReplace,
+    cancelSkillReplace,
     respawnFromCheckpoint,
     resetSave,
     completeDimensionalLeapModal,
@@ -603,6 +604,57 @@ export function App() {
             </p>
           )}
         </div>
+
+        <div className="rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
+          <span className="block text-[10px] text-slate-400">スキル</span>
+          <div className="mt-1.5 flex flex-col gap-2">
+            {saveData.inventory.skills.map((s, i) => (
+              <div key={i}>
+                <div className="flex items-center gap-1.5 font-bold text-slate-100">
+                  {s && (
+                    <PixelSpriteCanvas
+                      spriteId={s.spriteId}
+                      scale={3}
+                      className="h-6 w-6 shrink-0"
+                    />
+                  )}
+                  <span className="truncate">{s?.name ?? '（空き）'}</span>
+                </div>
+                {s && (
+                  <p className="mt-0.5 text-[10px] leading-relaxed text-slate-400">
+                    {s.description}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
+          <div className="flex items-center justify-between gap-2">
+            <span className="block text-[10px] text-slate-400">消耗品</span>
+            <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
+              {saveData.inventory.consumable && (
+                <PixelSpriteCanvas
+                  spriteId={saveData.inventory.consumable.spriteId}
+                  scale={3}
+                  className="h-6 w-6 shrink-0"
+                />
+              )}
+              <span className="truncate">{saveData.inventory.consumable?.name ?? 'なし'}</span>
+            </span>
+            {saveData.inventory.consumable && (
+              <span className="shrink-0 text-[10px] font-bold text-emerald-300">
+                残り {saveData.midFloor.consumableCharges} 回
+              </span>
+            )}
+          </div>
+          {saveData.inventory.consumable && (
+            <p className="mt-1 text-[10px] leading-relaxed text-slate-400">
+              {saveData.inventory.consumable.description}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -1118,14 +1170,21 @@ export function App() {
                               <>
                                 <p className="font-bold text-slate-500">現在のスキル</p>
                                 {saveData.inventory.skills.map((s, i) => (
-                                  <p key={i}>
-                                    {i + 1}.{' '}
-                                    {s ? (
-                                      <span className="font-bold text-slate-200">{s.name}</span>
-                                    ) : (
-                                      '（空き）'
+                                  <div key={i}>
+                                    <p>
+                                      {i + 1}.{' '}
+                                      {s ? (
+                                        <span className="font-bold text-slate-200">{s.name}</span>
+                                      ) : (
+                                        '（空き）'
+                                      )}
+                                    </p>
+                                    {s && (
+                                      <p className="pl-3 text-[10px] text-slate-500">
+                                        {s.description}
+                                      </p>
                                     )}
-                                  </p>
+                                  </div>
                                 ))}
                               </>
                             )}
@@ -1235,16 +1294,28 @@ export function App() {
                   })}
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => {
-                    playSfx('click');
-                    confirmSkillReplace('salvage');
-                  }}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-800 py-2 text-xs font-bold text-slate-200 hover:bg-slate-700 cursor-pointer"
-                >
-                  習得せず分解する (+{pendingSkillToEquip.salvageGold} G)
-                </button>
+                <div className="flex flex-col gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playSfx('click');
+                      cancelSkillReplace();
+                    }}
+                    className="w-full rounded-xl border border-indigo-500/50 bg-indigo-950/60 py-2 text-xs font-bold text-indigo-200 hover:bg-indigo-900/70 cursor-pointer"
+                  >
+                    ⬅ 選び直す（報酬に戻る）
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playSfx('click');
+                      confirmSkillReplace('salvage');
+                    }}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-800 py-2 text-xs font-bold text-slate-200 hover:bg-slate-700 cursor-pointer"
+                  >
+                    習得せず分解する (+{pendingSkillToEquip.salvageGold} G)
+                  </button>
+                </div>
               </div>
             )}
 
@@ -1421,7 +1492,7 @@ export function App() {
         <div
           role="status"
           aria-live="polite"
-          className="anim-rise-in fixed bottom-6 left-1/2 z-50 -translate-x-1/2 flex items-center gap-2 rounded-xl border border-amber-500/60 bg-slate-900/95 px-4 py-2.5 text-xs font-bold text-amber-300 shadow-2xl backdrop-blur"
+          className="anim-rise-in pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 flex items-center gap-2 rounded-xl border border-amber-500/60 bg-slate-900/95 px-4 py-2.5 text-xs font-bold text-amber-300 shadow-2xl backdrop-blur"
         >
           <span className="text-base" aria-hidden="true">🏆</span>
           <span>実績解除「{currentToast}」</span>

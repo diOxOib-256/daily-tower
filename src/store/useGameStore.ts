@@ -380,6 +380,14 @@ function syncAchievements(save: SaveData): SaveData {
     }
   };
 
+  /** Backs out of the skill-replace prompt without changing anything: the
+   * reward cards are still in state, so the player returns to the reward
+   * selection and can pick a different card (or salvage the skill card). */
+  const cancelSkillReplace = () => {
+    setPendingSkillToEquip(null);
+    setStage('floor_reward');
+  };
+
   const advanceToNextEncounterWithSave = (baseSave: SaveData) => {
     const fDef = FloorRunner.getFloor(baseSave.midFloor.currentFloor);
     const nextIdx = baseSave.midFloor.currentEncounterIndex + 1;
@@ -801,6 +809,7 @@ function syncAchievements(save: SaveData): SaveData {
     selectEventOption,
     selectFloorRewardCard,
     confirmSkillReplace,
+    cancelSkillReplace,
     respawnFromCheckpoint,
     resetSave,
     completeDimensionalLeapModal,
