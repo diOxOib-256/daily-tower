@@ -9650,5 +9650,64 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  void_lantern: {
+    id: 'void_lantern',
+    name: '虚空のランタン',
+    spriteId: 'void_lantern',
+    palette: 'void_lantern',
+    hp: 70,
+    atk: 16,
+    def: 5,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '霊火の照射',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '虚空のランタンが冷たい霊火を放ち、体力を焼き払った！',
+          },
+          {
+            name: '幻惑の揺らめき',
+            type: 'debuff',
+            weight: 40,
+            statusId: 'atk_debuff',
+            statusValue: 15,
+            statusDuration: 2,
+            logMessage: '虚空のランタンの妖しい光に目を奪われ、攻撃力が鈍った！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: '呪炎の爆ぜ',
+            type: 'debuff',
+            weight: 70,
+            damageMultiplier: 1.35,
+            statusId: 'burn',
+            statusValue: 4,
+            statusDuration: 2,
+            logMessage: '虚空のランタンが呪いの炎を弾けさせ、火傷を負わせた！',
+          },
+          {
+            name: '虚空の灯火',
+            type: 'buff',
+            weight: 30,
+            statusId: 'shield',
+            statusValue: 14,
+            statusDuration: 2,
+            logMessage: '虚空のランタンが青白い魔力の膜を纏い、シールドを展開した！',
+          },
+        ],
+      },
+    ],
+  },
 };
 
