@@ -370,7 +370,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     element: 'fire',
     salvageGold: 6,
     effectId: 'emberbrand',
-    description: '刃に残り火を宿す短剣。通常攻撃のたび、敵に燃焼(3ダメージ/2ターン)を付与する。',
+    description: '刃に残り火を宿す短剣。通常攻撃のたび、敵に火傷(最大HP3%/2ターン)を付与する。',
   },
   dewdrinker_rapier: {
     id: 'dewdrinker_rapier',
@@ -1305,7 +1305,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 6,
-    description: '水辺の葦を一閃で薙ぎ払う斬撃。1.65倍ダメージ＋敵に毒(最大HP6%/2T)を付与（1戦2回）。',
+    description: '水辺の葦を一閃で薙ぎ払う斬撃。1.65倍ダメージ＋敵に猛毒(6ダメージ/2T)を付与（1戦2回）。',
   },
   marsh_lunge: {
     id: 'marsh_lunge',
@@ -2635,7 +2635,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 4,
     },
     salvageGold: 10,
-    description: '古代樹の尽きぬ生命力を借り受け、状態異常を払いながら4ターンにわたり回復を続ける。',
+    description: '古代樹の尽きぬ生命力を借り受け、状態異常を払いながら4ターンにわたり回復を続ける。4ターンの間、ターン開始時に最大HPの10%ずつ回復（合計40%）＋すべてのデバフを解除（1戦2回）。',
   },
   amber_aegis: {
     id: 'amber_aegis',
@@ -2754,7 +2754,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 5,
     },
     salvageGold: 10,
-    description: '世界樹の深い慈愛を受け、状態異常を浄化しながら5ターンにわたり生命力を回復し続ける。',
+    description: '世界樹の深い慈愛を受け、状態異常を浄化しながら5ターンにわたり生命力を回復し続ける。5ターンの間、ターン開始時に最大HPの8%ずつ回復（合計40%）＋すべてのデバフを解除（1戦2回）。',
   },
   primordial_bastion: {
     id: 'primordial_bastion',
@@ -2786,7 +2786,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 3,
     },
     salvageGold: 10,
-    description: '肉体の限界を超えた闘気を燃やし、3ターンの間攻撃力を極限まで高める強化奥義。',
+    description: '肉体の限界を超えた闘気を燃やし、3ターンの間攻撃力を極限まで高める強化奥義。自身の攻撃力を30%上昇(3T)させる（1戦2回）。',
   },
   glacial_shackle: {
     id: 'glacial_shackle',
@@ -2850,7 +2850,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
       value: 30,
       duration: 3,
     },
-    description: 'HP45%回復＋障壁(30)を付与する秘薬（最大3チャージ）。',
+    description: 'HP45%回復＋障壁(30/3T)を付与する秘薬（最大3チャージ）。',
   },
   sylvan_tonic: {
     id: 'sylvan_tonic',
@@ -3327,7 +3327,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'item_guardian_crest_relic',
     effectId: 'guardian_crest',
     salvageGold: 10,
-    description: '各バトルの開始時、最大HPの15%分の障壁を自動的に展開する。',
+    description: '各バトルの開始時、最大HPの15%分の障壁(3ターン)を自動的に展開する。',
   },
   berserker_idol_relic: {
     id: 'berserker_idol_relic',
@@ -3345,7 +3345,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'item_venom_gland_relic',
     effectId: 'venom_gland',
     salvageGold: 11,
-    description: 'スキルを使用するたび、敵に猛毒(8)を追加付与する。',
+    description: 'スキルを使用するたび、敵に猛毒(8ダメージ/3T)を追加付与する。',
   },
   golden_compass_relic: {
     id: 'golden_compass_relic',
@@ -3633,7 +3633,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'leyline_astrolabe',
     effectId: 'leyline_astrolabe',
     salvageGold: 32,
-    description: '樹海の魔力脈を指し示す黄金の天球儀。戦闘中、2ターン目の開始時に攻撃力を底上げする。',
+    description: '樹海の魔力脈を指し示す黄金の天球儀。戦闘中、2ターン目の開始時に攻撃力を底上げする。2ターン目の開始時に一度だけ、3ターンの間、攻撃力+4を得る。',
   },
 };
 

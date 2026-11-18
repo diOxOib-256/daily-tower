@@ -33,6 +33,17 @@ describe('skill descriptions state concrete effects', () => {
       expect(formatSkillEffect(s).length).toBeGreaterThan(0);
     }
   });
+
+  it('every skill description states its key numbers (multiplier, status value, charges)', () => {
+    const offenders: string[] = [];
+    for (const s of Object.values(SKILL_CATALOG)) {
+      if (s.damageMultiplier !== undefined && !s.description.includes(String(s.damageMultiplier))) offenders.push(`${s.id}: multiplier`);
+      if (s.applyStatus && !s.description.includes(String(s.applyStatus.value))) offenders.push(`${s.id}: status value`);
+      if (s.healPercent !== undefined && !s.description.includes(String(s.healPercent))) offenders.push(`${s.id}: heal`);
+      if (!s.description.includes(String(s.maxChargesPerBattle))) offenders.push(`${s.id}: charges`);
+    }
+    expect(offenders).toEqual([]);
+  });
 });
 
 describe('relic descriptions state concrete effects', () => {
@@ -55,6 +66,20 @@ describe('relic descriptions state concrete effects', () => {
       expect(formatRelicEffect(r.effectId).length).toBeGreaterThan(0);
     }
   });
+
+  it('every relic description states its key number', () => {
+    const offenders: string[] = [];
+    for (const r of Object.values(RELIC_CATALOG)) {
+      const spec = RELIC_EFFECT_SPECS[r.effectId];
+      if (!spec) continue;
+      const key =
+        spec.kind === 'status' ? spec.value
+        : spec.kind === 'healFlat' || spec.kind === 'gold' ? spec.amount
+        : spec.percent;
+      if (!r.description.includes(String(key))) offenders.push(`${r.id}: key number ${key}`);
+    }
+    expect(offenders).toEqual([]);
+  });
 });
 
 describe('consumable descriptions state concrete effects', () => {
@@ -69,5 +94,15 @@ describe('consumable descriptions state concrete effects', () => {
     for (const c of Object.values(CONSUMABLE_CATALOG)) {
       expect(formatConsumableEffect(c).length).toBeGreaterThan(0);
     }
+  });
+
+  it('every consumable description states its key numbers (heal, status value, charges)', () => {
+    const offenders: string[] = [];
+    for (const c of Object.values(CONSUMABLE_CATALOG)) {
+      if (c.healPercent !== undefined && !c.description.includes(String(c.healPercent))) offenders.push(`${c.id}: heal`);
+      if (c.applyStatus && !c.description.includes(String(c.applyStatus.value))) offenders.push(`${c.id}: status value`);
+      if (!c.description.includes(String(c.maxCharges))) offenders.push(`${c.id}: charges`);
+    }
+    expect(offenders).toEqual([]);
   });
 });
