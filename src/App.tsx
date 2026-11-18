@@ -15,6 +15,7 @@ import { PixelSpriteCanvas } from './components/PixelSpriteCanvas';
 import { ACHIEVEMENTS } from './extensible/achievements/achievements';
 import { LATEST_AUTHORED_FLOOR, isFloorAuthored } from './extensible/realms/realmIndex';
 import { SALVAGE_GOLD } from './extensible/items/itemCatalog';
+import { DEFEAT_TIPS } from './extensible/tips/defeatTips';
 import { useGameStore } from './store/useGameStore';
 import { applyHitFxEventToSession, extractTurnHitFx } from './utils/combatFx';
 import { computeActionPreview } from './utils/combatPreview';
@@ -192,11 +193,13 @@ export function App() {
     prevBattleStatusRef.current = battleSession?.status;
   }, [battleSession?.status]);
 
-  // Stage defeat sound effect
+  // Stage defeat sound effect + a random tip for the defeat screen
+  const [defeatTip, setDefeatTip] = useState<string | null>(null);
   const prevStageRef = useRef<string>(stage);
   useEffect(() => {
     if (stage === 'defeat' && prevStageRef.current !== 'defeat') {
       playSfx('defeat');
+      setDefeatTip(DEFEAT_TIPS[Math.floor(Math.random() * DEFEAT_TIPS.length)]);
     }
     prevStageRef.current = stage;
   }, [stage]);
@@ -1414,6 +1417,16 @@ export function App() {
                   {AreaEngine.calculateRespawnFloor(saveData.midFloor.currentFloor)}
                   層から再び挑むことができます。
                 </p>
+                {defeatTip && (
+                  <div className="mt-4 w-full max-w-md rounded-xl border border-amber-500/30 bg-amber-950/40 px-4 py-2.5">
+                    <span className="text-[10px] font-extrabold tracking-widest text-amber-300">
+                      💡 ヒント
+                    </span>
+                    <p className="mt-0.5 text-xs leading-relaxed text-amber-100/90">
+                      {defeatTip}
+                    </p>
+                  </div>
+                )}
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
                   <button
                     type="button"

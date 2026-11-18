@@ -47,10 +47,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '苔むした樹海の入口',
     subtitle: '木漏れ日が差す石畳の回廊で、樹海に住まう小動物やスライムと初めて対峙する導入階',
     encounters: [
-      { type: 'battle', enemyIds: ['moss_slime'], enemyStatScale: 1.08 },
+      { type: 'battle', enemyIds: ['moss_slime'], enemyStatScale: 1.02 },
       { type: 'event', eventId: 'verdant_shrine' },
-      { type: 'battle', enemyIds: ['forest_goblin'], enemyStatScale: 1.08 },
-      { type: 'battle', enemyIds: ['moss_slime', 'thorn_sprout'], enemyStatScale: 1.08 },
+      { type: 'battle', enemyIds: ['forest_goblin'], enemyStatScale: 1.02 },
+      { type: 'battle', enemyIds: ['moss_slime', 'thorn_sprout'], enemyStatScale: 1.02 },
     ],
     rewardPool: {
       equipmentIds: ['hunters_shortblade', 'travelers_leather'],

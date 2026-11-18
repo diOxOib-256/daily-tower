@@ -129,14 +129,14 @@ function PreviewStatusBadges({
   return (
     <div className="mt-1 flex flex-wrap items-center gap-1">
       {cleansedCount > 0 && (
-        <span className="animate-pulse inline-flex items-center gap-0.5 rounded-md border border-dashed border-emerald-400/70 bg-emerald-950/70 px-1.5 py-0.5 text-[9px] font-bold text-emerald-200 sm:text-[10px]">
+        <span className="inline-flex items-center gap-0.5 rounded-md border border-dashed border-emerald-400/70 bg-emerald-950/90 px-1.5 py-0.5 text-[9px] font-bold text-emerald-200 sm:text-[10px]">
           ✨ 浄化(-{cleansedCount})
         </span>
       )}
       {badges.map((b, i) => (
         <span
           key={`${b.statusId}-${i}`}
-          className="animate-pulse inline-flex items-center gap-0.5 rounded-md border border-dashed border-sky-400/75 bg-sky-950/75 px-1.5 py-0.5 text-[9px] font-bold text-sky-200 sm:text-[10px]"
+          className="inline-flex items-center gap-0.5 rounded-md border border-dashed border-sky-400/75 bg-sky-950/90 px-1.5 py-0.5 text-[9px] font-bold text-sky-200 sm:text-[10px]"
         >
           <span>+{b.icon}</span>
           <span>{b.name}</span>
@@ -665,7 +665,7 @@ export function BattleStage2D({
         {/* LEFT ACTOR: PLAYER */}
         <div className="anim-actor-enter-left flex shrink-0 flex-col items-center">
           {/* Player Floating HUD */}
-          <div className="relative mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 lg:p-3 shadow-xl backdrop-blur-xs">
+          <div className="relative z-30 mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 lg:p-3 shadow-xl backdrop-blur-xs">
             <div className="flex items-center justify-between gap-1">
               <span className="truncate text-[11px] sm:text-xs font-extrabold text-amber-300">
                 {playerTitle}
@@ -790,7 +790,7 @@ export function BattleStage2D({
                 >
                   {/* Enemy Floating HUD */}
                   <div
-                    className={`relative mb-2 ${
+                    className={`relative z-30 mb-2 ${
                       isMulti ? 'w-full' : 'w-40 sm:w-52 md:w-56'
                     } rounded-xl border ${
                       isTarget
