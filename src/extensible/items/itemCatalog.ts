@@ -999,7 +999,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 6,
-    description: '図書館の守護術式を展開し、あらゆる状態異常を払い除けて強固な障壁を張る。',
+    description: '図書館の守護術式を展開し、あらゆる状態異常を払い除けて強固な障壁を張る。自身に18ダメージを吸収する障壁(2T)を展開＋すべてのデバフを解除（1戦2回）。',
   },
   war_cry: {
     id: 'war_cry',
@@ -2206,7 +2206,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 8,
-    description: '星光を纏った二連撃を叩き込み、攻撃の勢いをそのまま次の行動へ繋げる。',
+    description: '星光を纏った二連撃を叩き込み、攻撃の勢いをそのまま次の行動へ繋げる。1.55倍ダメージ＋自身に攻撃強化(+15%/2T)を付与（1戦2回）。',
   },
   void_spark: {
     id: 'void_spark',
@@ -2223,7 +2223,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 6,
-    description: '虚空から小さな火種を呼び出し、敵を焼く。序盤から扱いやすい燃焼系スキルの基本型。',
+    description: '虚空から小さな火種を呼び出し、敵を焼く。序盤から扱いやすい燃焼系スキルの基本型。1.25倍ダメージ＋敵に火傷(最大HP4%/2T)を付与（1戦3回）。',
   },
   void_barrier: {
     id: 'void_barrier',
@@ -2251,7 +2251,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     maxChargesPerBattle: 3,
     damageMultiplier: 1.3,
     salvageGold: 6,
-    description: '素早い踏み込みから繰り出す基本の斬撃。使用回数が多く序盤から安定して使える。',
+    description: '素早い踏み込みから繰り出す基本の斬撃。使用回数が多く序盤から安定して使える。1.3倍ダメージ（1戦3回）。',
   },
   ember_toss: {
     id: 'ember_toss',
@@ -2268,7 +2268,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 6,
-    description: '小さな火種を投げつけ、敵を燃焼させる初歩的な火属性スキル。',
+    description: '小さな火種を投げつけ、敵を燃焼させる初歩的な火属性スキル。1.15倍ダメージ＋敵に火傷(最大HP3%/2T)を付与（1戦2回）。',
   },
   sweeping_arc: {
     id: 'sweeping_arc',
@@ -2280,7 +2280,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     maxChargesPerBattle: 2,
     damageMultiplier: 0.85,
     salvageGold: 6,
-    description: '武器を大きく横に振り抜き、複数の敵をまとめて攻撃する基本範囲技。',
+    description: '武器を大きく横に振り抜き、複数の敵をまとめて攻撃する基本範囲技。敵全体に0.85倍ダメージ（1戦2回）。',
   },
   forest_breath: {
     id: 'forest_breath',
@@ -2297,7 +2297,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 3,
     },
     salvageGold: 6,
-    description: '清浄な森の気を吸い込み、傷と毒を同時に洗い流す回復スキル。',
+    description: '清浄な森の気を吸い込み、傷と毒を同時に洗い流す回復スキル。3ターンの間、ターン開始時に最大HPの8%ずつ回復（合計24%）＋すべてのデバフを解除（1戦2回）。',
   },
   bark_guard: {
     id: 'bark_guard',
@@ -2313,7 +2313,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 6,
-    description: '硬い樹皮を模した魔力障壁を張り、敵の強い一撃を受け止める防御スキル。',
+    description: '硬い樹皮を模した魔力障壁を張り、敵の強い一撃を受け止める防御スキル。自身に12ダメージを吸収する障壁(2T)を展開（1戦2回）。',
   },
   sap_shot: {
     id: 'sap_shot',
@@ -2330,7 +2330,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 6,
-    description: '粘着質な樹液の塊をぶつけ、敵の攻撃の勢いを鈍らせる弱体スキル。',
+    description: '粘着質な樹液の塊をぶつけ、敵の攻撃の勢いを鈍らせる弱体スキル。0.9倍ダメージ＋敵の攻撃力を15%低下(2T)（1戦2回）。',
   },
   venom_sting: {
     id: 'venom_sting',
@@ -2347,7 +2347,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 6,
-    description: '毒を塗った細身の針で急所を突き、継続ダメージを与える初期毒スキル。',
+    description: '毒を塗った細身の針で急所を突き、継続ダメージを与える初期毒スキル。1.15倍ダメージ＋敵に猛毒(3ダメージ/2T)を付与（1戦2回）。',
   },
   iron_cleave: {
     id: 'iron_cleave',
@@ -2358,7 +2358,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     maxChargesPerBattle: 2,
     damageMultiplier: 1.45,
     salvageGold: 8,
-    description: '重い鉄斧を真っ直ぐ振り下ろし、敵の防具ごと断ち割る中盤向けの一撃。',
+    description: '重い鉄斧を真っ直ぐ振り下ろし、敵の防具ごと断ち割る中盤向けの一撃。1.45倍ダメージ（1戦2回）。',
   },
   gale_sweep: {
     id: 'gale_sweep',
@@ -2370,7 +2370,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     maxChargesPerBattle: 3,
     damageMultiplier: 0.85,
     salvageGold: 8,
-    description: '烈風を纏った広範囲の斬撃を連続で繰り出し、敵全体を圧倒する。',
+    description: '烈風を纏った広範囲の斬撃を連続で繰り出し、敵全体を圧倒する。敵全体に0.85倍ダメージ（1戦3回）。',
   },
   crimson_fireball: {
     id: 'crimson_fireball',
@@ -2387,7 +2387,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 8,
-    description: '高熱の火球を放ち、着弾と同時に敵を激しく燃焼させる火属性スキル。',
+    description: '高熱の火球を放ち、着弾と同時に敵を激しく燃焼させる火属性スキル。1.3倍ダメージ＋敵に火傷(最大HP4%/2T)を付与（1戦2回）。',
   },
   spirit_breeze: {
     id: 'spirit_breeze',
@@ -2403,7 +2403,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 3,
     },
     salvageGold: 8,
-    description: '森の精霊が吹かせる温かな風が、数ターンにわたって傷を癒やし続ける。',
+    description: '森の精霊が吹かせる温かな風が、数ターンにわたって傷を癒やし続ける。3ターンの間、ターン開始時に最大HPの12%ずつ回復（合計36%）（1戦2回）。',
   },
   ironbark_ward: {
     id: 'ironbark_ward',
@@ -2419,7 +2419,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 8,
-    description: '鉄木のように硬質な魔力障壁を展開し、強敵の攻撃を確実に防ぎ止める。',
+    description: '鉄木のように硬質な魔力障壁を展開し、強敵の攻撃を確実に防ぎ止める。自身に16ダメージを吸収する障壁(2T)を展開（1戦2回）。',
   },
   verdant_focus: {
     id: 'verdant_focus',
@@ -2435,7 +2435,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 3,
     },
     salvageGold: 8,
-    description: '樹海の生命力を全身に巡らせ、しばらくの間攻撃力を大きく引き上げる。',
+    description: '樹海の生命力を全身に巡らせ、しばらくの間攻撃力を大きく引き上げる。自身の攻撃力を20%上昇(3T)させる（1戦2回）。',
   },
   toxic_mist: {
     id: 'toxic_mist',
@@ -2453,7 +2453,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 8,
-    description: '濃い紫の毒霧を敵全体に浴びせ、継続的な毒ダメージを与える範囲弱体スキル。',
+    description: '濃い紫の毒霧を敵全体に浴びせ、継続的な毒ダメージを与える範囲弱体スキル。敵全体に0.75倍ダメージ＋敵全体に猛毒(4ダメージ/2T)を付与（1戦2回）。',
   },
   rending_cleave: {
     id: 'rending_cleave',
@@ -2464,7 +2464,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     maxChargesPerBattle: 2,
     damageMultiplier: 1.65,
     salvageGold: 10,
-    description: '渾身の力を込めて武器を振り下ろし、敵単体に大ダメージを与える主力斬撃。',
+    description: '渾身の力を込めて武器を振り下ろし、敵単体に大ダメージを与える主力斬撃。1.65倍ダメージ（1戦2回）。',
   },
   whirlwind_slash: {
     id: 'whirlwind_slash',
@@ -2482,7 +2482,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '嵐のような連続回転斬りで、周囲の敵すべてを同時に切り裂き、防御力を低下させる範囲技。',
+    description: '嵐のような連続回転斬りで、周囲の敵すべてを同時に切り裂き、防御力を低下させる範囲技。敵全体に0.85倍ダメージ＋敵全体の防御力を10%低下(2T)（1戦2回）。',
   },
   spore_ignition: {
     id: 'spore_ignition',
@@ -2499,7 +2499,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '引火性の胞子を散らして着火し、大ダメージとともに激しい火傷を負わせる。',
+    description: '引火性の胞子を散らして着火し、大ダメージとともに激しい火傷を負わせる。1.4倍ダメージ＋敵に火傷(最大HP5%/2T)を付与（1戦2回）。',
   },
   elder_regrowth: {
     id: 'elder_regrowth',
@@ -2516,7 +2516,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 3,
     },
     salvageGold: 10,
-    description: '古樹の生命力を呼び覚まし、状態異常を払いながら数ターンにわたり傷を癒やす。',
+    description: '古樹の生命力を呼び覚まし、状態異常を払いながら数ターンにわたり傷を癒やす。3ターンの間、ターン開始時に最大HPの12%ずつ回復（合計36%）＋すべてのデバフを解除（1戦2回）。',
   },
   shell_fortress: {
     id: 'shell_fortress',
@@ -2532,7 +2532,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '硬質な魔力甲殻を全身に展開し、強敵の必殺の一撃を受け止める防御スキル。',
+    description: '硬質な魔力甲殻を全身に展開し、強敵の必殺の一撃を受け止める防御スキル。自身に25ダメージを吸収する障壁(2T)を展開（1戦2回）。',
   },
   verdant_war_cry: {
     id: 'verdant_war_cry',
@@ -2548,7 +2548,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '闘気を解き放って戦意を高め、攻撃力を大きく引き上げる強化スキル。',
+    description: '闘気を解き放って戦意を高め、攻撃力を大きく引き上げる強化スキル。自身の攻撃力を25%上昇(2T)させる（1戦2回）。',
   },
   corrosive_haze: {
     id: 'corrosive_haze',
@@ -2566,7 +2566,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '敵全体を包む腐食性の霧を放ち、外殻や防具を脆くする範囲弱体スキル。',
+    description: '敵全体を包む腐食性の霧を放ち、外殻や防具を脆くする範囲弱体スキル。敵全体に0.7倍ダメージ＋敵全体の防御力を20%低下(2T)（1戦2回）。',
   },
   earthshatter_blow: {
     id: 'earthshatter_blow',
@@ -2583,7 +2583,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '全身の体重を乗せて武器を叩きつけ、敵単体に極大のダメージを与える必殺技。',
+    description: '全身の体重を乗せて武器を叩きつけ、敵単体に極大のダメージを与える必殺技。1.75倍ダメージ＋敵の防御力を10%低下(2T)（1戦2回）。',
   },
   briar_tempest: {
     id: 'briar_tempest',
@@ -2601,7 +2601,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '無数の毒茨を周囲に吹き荒らし、敵全体にダメージと毒を同時に与える範囲攻撃。',
+    description: '無数の毒茨を周囲に吹き荒らし、敵全体にダメージと毒を同時に与える範囲攻撃。敵全体に0.85倍ダメージ＋敵全体に猛毒(4ダメージ/2T)を付与（1戦2回）。',
   },
   cinder_burst: {
     id: 'cinder_burst',
@@ -2618,7 +2618,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '凝縮した火種を敵の目前で爆ぜさせ、大ダメージと激しい火傷を与える火属性スキル。',
+    description: '凝縮した火種を敵の目前で爆ぜさせ、大ダメージと激しい火傷を与える火属性スキル。1.5倍ダメージ＋敵に火傷(最大HP6%/2T)を付与（1戦2回）。',
   },
   warden_vitality: {
     id: 'warden_vitality',
@@ -2651,7 +2651,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '黄金の琥珀障壁を全身に展開し、あらゆる強撃を防ぐ鉄壁の防御スキル。',
+    description: '黄金の琥珀障壁を全身に展開し、あらゆる強撃を防ぐ鉄壁の防御スキル。自身に30ダメージを吸収する障壁(2T)を展開（1戦2回）。',
   },
   primal_surge: {
     id: 'primal_surge',
@@ -2667,7 +2667,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '樹海の奥底に眠る野生の力を呼び覚まし、攻撃力を限界まで引き上げる強化スキル。',
+    description: '樹海の奥底に眠る野生の力を呼び覚まし、攻撃力を限界まで引き上げる強化スキル。自身の攻撃力を30%上昇(2T)させる（1戦2回）。',
   },
   wraith_chill: {
     id: 'wraith_chill',
@@ -2685,7 +2685,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '凍てつく霊気の波を敵全体に浴びせ、攻撃の威力を大きく削ぐ範囲弱体スキル。',
+    description: '凍てつく霊気の波を敵全体に浴びせ、攻撃の威力を大きく削ぐ範囲弱体スキル。敵全体に0.75倍ダメージ＋敵全体の攻撃力を20%低下(2T)（1戦2回）。',
   },
   celestial_cleave: {
     id: 'celestial_cleave',
@@ -2702,7 +2702,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '全霊を込めた聖剣の一撃で敵を断ち割り、同時に防御を打ち砕く奥義。',
+    description: '全霊を込めた聖剣の一撃で敵を断ち割り、同時に防御を打ち砕く奥義。1.75倍ダメージ＋敵の防御力を15%低下(2T)（1戦2回）。',
   },
   leyline_storm: {
     id: 'leyline_storm',
@@ -2720,7 +2720,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '霊脈の魔力を解き放ち、敵全体を斬り刻みながら防具を脆くする範囲奥義。',
+    description: '霊脈の魔力を解き放ち、敵全体を斬り刻みながら防具を脆くする範囲奥義。敵全体に0.85倍ダメージ＋敵全体の防御力を15%低下(2T)（1戦2回）。',
   },
   inferno_verdict: {
     id: 'inferno_verdict',
@@ -2737,7 +2737,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '凝縮した紅蓮の業火を叩きつけ、大ダメージと激しい燃焼を与える火属性奥義。',
+    description: '凝縮した紅蓮の業火を叩きつけ、大ダメージと激しい燃焼を与える火属性奥義。1.6倍ダメージ＋敵に火傷(最大HP6%/2T)を付与（1戦2回）。',
   },
   worldtree_grace: {
     id: 'worldtree_grace',
@@ -2770,7 +2770,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '原初樹の揺るぎない守護を纏い、頂点ボスの猛攻をも防ぎ切る鉄壁の防御奥義。',
+    description: '原初樹の揺るぎない守護を纏い、頂点ボスの猛攻をも防ぎ切る鉄壁の防御奥義。自身に35ダメージを吸収する障壁(2T)を展開（1戦2回）。',
   },
   apex_overdrive: {
     id: 'apex_overdrive',
@@ -2804,7 +2804,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 2,
     },
     salvageGold: 10,
-    description: '凍てつく霊気の鎖で敵全体を縛り上げ、ダメージを与えつつ攻撃力を大きく削ぐ範囲弱体奥義。',
+    description: '凍てつく霊気の鎖で敵全体を縛り上げ、ダメージを与えつつ攻撃力を大きく削ぐ範囲弱体奥義。敵全体に0.8倍ダメージ＋敵全体の攻撃力を20%低下(2T)（1戦2回）。',
   },
   astral_storm: {
     id: 'astral_storm',
