@@ -32,13 +32,35 @@ describe('DropPacingEngine owned-item duplicate avoidance', () => {
     expect(card2.item?.id).toBe('flame_burst');
   });
 
-  it('falls back to gold_bonus on Card 2 when all skills in pool are owned', () => {
+  it('substitutes another category on Card 2 when all skills in pool are owned', () => {
     const floorDef = makeFloor(7);
     const [, card2] = DropPacingEngine.generateFloorRewardCards(
       floorDef,
       () => 0.5,
       { skillIds: ['power_slash', 'flame_burst'] }
     );
+    // Skills are exhausted, so Card 2 deals an unowned equipment item
+    // instead of gold (Card 1 took bark_cuirass with rng 0.5).
+    expect(card2.type).toBe('item');
+    expect(card2.item?.id).toBe('verdant_blade');
+  });
+
+  it('falls back to gold_bonus on Card 2 only when every category is exhausted', () => {
+    const floorDef = makeFloor(7);
+    const [, card2] = DropPacingEngine.generateFloorRewardCards(
+      floorDef,
+      () => 0.5,
+      {
+        skillIds: ['power_slash', 'flame_burst'],
+        weaponId: 'verdant_blade',
+        armorId: 'bark_cuirass',
+        relicId: 'vampiric_fang_relic',
+        consumableId: null,
+      }
+    );
+    // guardian_crest_relic is still unowned, so Card 1 substitutes it and
+    // Card 2 substitutes nothing else... relic pool has one left for Card 1;
+    // Card 2 then finds every pool empty or taken.
     expect(card2.type).toBe('gold_bonus');
     expect(card2.goldBonusAmount).toBe(47);
     expect(card2.title).toBe('黄金の欠片');
@@ -46,7 +68,7 @@ describe('DropPacingEngine owned-item duplicate avoidance', () => {
     expect(card2.item).toBeUndefined();
   });
 
-  it('excludes equipped weapon from Card 1 and falls back to gold_bonus when exhausted', () => {
+  it('excludes equipped weapon from Card 1 and substitutes a skill when equipment is exhausted', () => {
     const floorDef = makeFloor(3);
     // rng() === 0 would pick index 0 ('verdant_blade') if not filtered
     const [card1] = DropPacingEngine.generateFloorRewardCards(
@@ -66,8 +88,10 @@ describe('DropPacingEngine owned-item duplicate avoidance', () => {
         armorId: 'bark_cuirass',
       }
     );
-    expect(exhaustedCard1.type).toBe('gold_bonus');
-    expect(exhaustedCard1.goldBonusAmount).toBe(43);
+    // Both equipment pieces are owned, so Card 1 deals an unowned skill
+    // instead of gold.
+    expect(exhaustedCard1.type).toBe('item');
+    expect(exhaustedCard1.item?.id).toBe('power_slash');
   });
 
   it('excludes owned relic from Card 3 and falls back to unowned consumableIds when relic pool is exhausted', () => {
@@ -91,8 +115,9 @@ describe('DropPacingEngine owned-item duplicate avoidance', () => {
     expect(card3.item?.id).toBe('ambrosia_flask');
     expect(card3.subtitle).toBe('消耗品（最大3チャージ）');
 
-    // If both relic and all consumables are owned, falls back to gold_bonus
-    const [, , goldCard3] = DropPacingEngine.generateFloorRewardCards(
+    // If both relic and all consumables are owned, Card 3 substitutes an
+    // unowned equipment piece (Card 1 took verdant_blade, Card 2 power_slash)
+    const [, , substCard3] = DropPacingEngine.generateFloorRewardCards(
       makeFloor(4, {
         utilityIds: ['vampiric_fang_relic'],
         consumableIds: ['crimson_vial'],
@@ -100,6 +125,24 @@ describe('DropPacingEngine owned-item duplicate avoidance', () => {
       () => 0,
       {
         skillIds: [],
+        relicId: 'vampiric_fang_relic',
+        consumableId: 'crimson_vial',
+      }
+    );
+    expect(substCard3.type).toBe('item');
+    expect(substCard3.item?.id).toBe('bark_cuirass');
+
+    // Gold remains only when every category in the pool is exhausted
+    const [, , goldCard3] = DropPacingEngine.generateFloorRewardCards(
+      makeFloor(4, {
+        utilityIds: ['vampiric_fang_relic'],
+        consumableIds: ['crimson_vial'],
+      }),
+      () => 0,
+      {
+        skillIds: ['power_slash', 'flame_burst'],
+        weaponId: 'verdant_blade',
+        armorId: 'bark_cuirass',
         relicId: 'vampiric_fang_relic',
         consumableId: 'crimson_vial',
       }
@@ -181,7 +224,7 @@ describe('DropPacingEngine owned-item duplicate avoidance', () => {
     expect(card1.item?.id).toBe('verdant_blade');
   });
 
-  it('falls back to gold_bonus when every equipment offer is dominated', () => {
+  it('substitutes a skill on Card 1 when every equipment offer is dominated', () => {
     const floorDef = makeFloor(5, {
       equipmentIds: ['rusty_shortsword', 'leather_tunic'],
     });
@@ -192,6 +235,7 @@ describe('DropPacingEngine owned-item duplicate avoidance', () => {
       armorDef: 7,
       armorMaxHpBonus: 25,
     });
-    expect(card1.type).toBe('gold_bonus');
+    expect(card1.type).toBe('item');
+    expect(card1.item?.id).toBe('power_slash');
   });
 });

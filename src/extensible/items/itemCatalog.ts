@@ -3561,7 +3561,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'verdant_brooch',
     effectId: 'verdant_brooch',
     salvageGold: 16,
-    description: '若葉を象った魔力のブローチ。スキルを使用するたび、わずかな障壁を得る。スキルを使用するたび、4ダメージを吸収する障壁(1T)を得る。',
+    description: '若葉を象った魔力のブローチ。スキルを使用するたび、わずかな障壁を得る。スキルを使用するたび、4ダメージを吸収する障壁(2T)を得る。',
   },
   mist_charm: {
     id: 'mist_charm',

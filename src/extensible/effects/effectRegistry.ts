@@ -388,9 +388,9 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       applyStatusToPlayer: {
         statusId: 'shield',
         value: 4,
-        duration: 1,
+        duration: 2,
       },
-      logMessage: `[レリック:若葉のブローチ] 若葉の魔力が身を包み、障壁(4/1T)を展開した！`,
+      logMessage: `[レリック:若葉のブローチ] 若葉の魔力が身を包み、障壁(4/2T)を展開した！`,
     }),
   },
   mist_charm: {
