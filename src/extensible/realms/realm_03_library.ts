@@ -189,11 +189,11 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     title: '第59層：虚空灯の回廊',
     subtitle: '青白い鬼火を宿した浮遊ランタンが巡回し、60Fの関門へと続く闇の書架を照らす階層',
     encounters: [
-      { type: 'battle', enemyId: 'void_lantern', enemyStatScale: 0.60 },
-      { type: 'battle', enemyIds: ['chrono_automaton', 'void_lantern'], enemyStatScale: 0.60 },
+      { type: 'battle', enemyId: 'void_lantern', enemyStatScale: 0.80 },
+      { type: 'battle', enemyIds: ['chrono_automaton', 'void_lantern'], enemyStatScale: 0.80 },
       { type: 'event', eventId: 'catalog_pedestal' },
-      { type: 'battle', enemyId: 'void_lantern', enemyStatScale: 0.60 },
-      { type: 'battle', enemyId: 'chrono_automaton', enemyStatScale: 0.60 },
+      { type: 'battle', enemyId: 'void_lantern', enemyStatScale: 0.80 },
+      { type: 'battle', enemyId: 'chrono_automaton', enemyStatScale: 0.80 },
     ],
   },
 ];
