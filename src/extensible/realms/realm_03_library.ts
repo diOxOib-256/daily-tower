@@ -205,7 +205,7 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'void_lantern', enemyStatScale: 0.80 },
       { type: 'event', eventId: 'forgotten_scriptorium' },
       { type: 'battle', enemyId: 'void_lantern', enemyStatScale: 0.80 },
-      { type: 'miniboss', enemyId: 'starweaver_colossus', enemyStatScale: 1.00 },
+      { type: 'miniboss', enemyId: 'starweaver_colossus', enemyStatScale: 1.25 },
     ],
   },
 ];
