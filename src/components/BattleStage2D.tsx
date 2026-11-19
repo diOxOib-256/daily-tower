@@ -794,7 +794,7 @@ export function BattleStage2D({
                   {/* Enemy Floating HUD */}
                   <div
                     className={`relative z-30 mb-2 ${
-                      isMulti ? 'w-full' : 'w-40 sm:w-52 md:w-56'
+                      isMulti ? 'w-full max-w-40 sm:max-w-52 md:max-w-56' : 'w-40 sm:w-52 md:w-56'
                     } rounded-xl border ${
                       isTarget
                         ? 'border-amber-400 ring-2 ring-amber-400/60'
