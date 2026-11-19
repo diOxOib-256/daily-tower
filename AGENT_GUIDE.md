@@ -127,6 +127,10 @@ Every weapon and armor in a floor's `rewardPool.equipmentIds` MUST be at or belo
 - **Relics:** effects must compose from the existing `effectRegistry` vocabulary. Caps: on-hit heal ≤ 5% of max HP, battle-start shield ≤ 15% of max HP, buffs ≤ 25%, victory gold ≤ +20.
 - **Consumables:** healPercent 30–55, optional cleanse, self-status from registered statuses only (shield ≤ 35, atk/def buff ≤ 20%, duration ≤ 3), maxCharges 2–3. Consumables never enter the normal reward draw (miniboss item cards and event grants only).
 
+### 2.9 Speed & Opening Check (51F+ / Realm 2+)
+- Enemies appearing on floor 51 and above require a `spd` value on `EnemyDefinition` (default 10 when omitted; raw `spd` is compared without `enemyStatScale`). Guidelines: slow/heavy enemies **6–9**, standard **10–12**, fast/agile enemies **13–16**.
+- The player's speed is `BASE_PLAYER_SPD` (**10**) plus the sum of `spd` bonuses from equipped weapon, armor, relic, and skills (up to 3 slots) via `calcPlayerSpd(loadout)`. At battle start on 51F+, player speed is compared against the fastest enemy (ties favor the player): winning grants a preemptive turn (enemies skip turn-1 actions), while losing triggers an opening ambush before the player acts.
+
 ## 3. Mandatory Quality Gate Verification
 
 Before committing or completing any daily agent task, you **MUST** run and pass:

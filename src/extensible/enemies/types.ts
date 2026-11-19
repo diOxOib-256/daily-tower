@@ -28,6 +28,8 @@ export interface EnemyDefinition {
   hp: number;
   atk: number;
   def: number;
+  /** Optional speed stat for Realm 2+ (51F+) opening check; defaults to 10 in CombatEngine. */
+  spd?: number;
   /** Optional: when omitted, gold is derived from stats (see enemyGold.ts). */
   goldReward?: number;
   isBoss?: boolean;

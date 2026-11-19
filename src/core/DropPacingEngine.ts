@@ -101,16 +101,17 @@ export class DropPacingEngine {
       debuff: '弱体技',
     };
 
+    const spdPart = (spd?: number) => (spd ? ` / すばやさ +${spd}` : '');
     const makeItemCard = (slot: 1 | 2 | 3, item: AnyCatalogItem): RewardCard => {
       switch (item.kind) {
         case 'weapon':
-          return { slot, title: item.name, subtitle: `武器 (ATK +${item.atk})`, type: 'item', item };
+          return { slot, title: item.name, subtitle: `武器 (ATK +${item.atk}${spdPart(item.spd)})`, type: 'item', item };
         case 'armor':
-          return { slot, title: item.name, subtitle: `防具 (DEF +${item.def} / HP +${item.maxHpBonus})`, type: 'item', item };
+          return { slot, title: item.name, subtitle: `防具 (DEF +${item.def} / HP +${item.maxHpBonus}${spdPart(item.spd)})`, type: 'item', item };
         case 'skill':
-          return { slot, title: item.name, subtitle: `${categoryMap[item.category] ?? 'スキル'}（使用回数 ${item.maxChargesPerBattle}）`, type: 'item', item };
+          return { slot, title: item.name, subtitle: `${categoryMap[item.category] ?? 'スキル'}（使用回数 ${item.maxChargesPerBattle}${spdPart(item.spd)}）`, type: 'item', item };
         case 'relic':
-          return { slot, title: item.name, subtitle: 'レリック', type: 'item', item };
+          return { slot, title: item.name, subtitle: item.spd ? `レリック (すばやさ +${item.spd})` : 'レリック', type: 'item', item };
         case 'consumable':
           return { slot, title: item.name, subtitle: `消耗品（最大${item.maxCharges}チャージ）`, type: 'item', item };
       }

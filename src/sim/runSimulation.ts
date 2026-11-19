@@ -1,5 +1,5 @@
 import { AreaEngine } from '../core/AreaEngine';
-import { CombatEngine, WOUND_RATE } from '../core/CombatEngine';
+import { CombatEngine, WOUND_RATE, calcPlayerSpd } from '../core/CombatEngine';
 import { DropPacingEngine } from '../core/DropPacingEngine';
 import { EventEngine } from '../core/EventEngine';
 import { FloorRunner } from '../core/FloorRunner';
@@ -186,7 +186,8 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
         enc.enemyDefs,
         enc.statScale,
         wound,
-        WOUND_RATE
+        WOUND_RATE,
+        floor >= 51 ? { playerSpd: calcPlayerSpd(save.inventory) } : undefined
       );
       result.battles += 1;
       let turns = 0;

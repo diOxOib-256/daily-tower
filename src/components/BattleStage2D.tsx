@@ -47,6 +47,7 @@ interface BattleStage2DProps {
   playerMaxHp: number;
   playerAtk: number;
   playerDef: number;
+  playerSpd?: number;
   battleSession: BattleSessionState | null;
   hitFx?: HitFx[];
   actionPreview?: CombatActionPreview | null;
@@ -346,6 +347,7 @@ export function BattleStage2D({
   playerMaxHp,
   playerAtk,
   playerDef,
+  playerSpd,
   battleSession,
   hitFx,
   actionPreview = null,
@@ -672,6 +674,7 @@ export function BattleStage2D({
               </span>
               <span className="text-[9px] sm:text-[10px] font-mono text-slate-400">
                 ATK {playerAtk} / DEF {playerDef}
+                {playerSpd !== undefined ? ` / すばやさ ${playerSpd}` : ''}
               </span>
             </div>
 

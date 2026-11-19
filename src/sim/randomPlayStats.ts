@@ -22,7 +22,7 @@
  *    item vs runs that reached its median acquisition floor without it.
  */
 import { AreaEngine } from '../core/AreaEngine';
-import { CombatEngine } from '../core/CombatEngine';
+import { CombatEngine, calcPlayerSpd } from '../core/CombatEngine';
 import { DropPacingEngine } from '../core/DropPacingEngine';
 import { EventEngine } from '../core/EventEngine';
 import { FloorRunner } from '../core/FloorRunner';
@@ -244,7 +244,10 @@ export function simulateMixedRun(
         save.midFloor.consumableCharges,
         save.inventory,
         enc.enemyDefs,
-        enc.statScale
+        enc.statScale,
+        0,
+        0,
+        floor >= 51 ? { playerSpd: calcPlayerSpd(save.inventory) } : undefined
       );
       let turns = 0;
       while (session.status === 'ongoing' && turns < MAX_TURNS_PER_BATTLE) {

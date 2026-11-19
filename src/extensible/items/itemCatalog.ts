@@ -12,6 +12,8 @@ export interface WeaponItem {
   description: string;
   /** Optional combat effect (EFFECT_REGISTRY id), fired like a relic effect while equipped. */
   effectId?: string;
+  /** Optional speed bonus applied while equipped (51F+ opening check). */
+  spd?: number;
 }
 
 export interface ArmorItem {
@@ -31,6 +33,8 @@ export interface ArmorItem {
    * a battle session is created; not a status, so it never expires.
    */
   atkDelta?: number;
+  /** Optional speed bonus applied while equipped (51F+ opening check). */
+  spd?: number;
 }
 
 export interface SkillStatusPayload {
@@ -59,6 +63,8 @@ export interface SkillItem {
   applyStatus?: SkillStatusPayload;
   salvageGold: number;
   description: string;
+  /** Optional passive speed bonus applied while equipped (51F+ opening check). */
+  spd?: number;
 }
 
 export interface ConsumableItem {
@@ -81,6 +87,8 @@ export interface RelicItem {
   effectId: string;
   salvageGold: number;
   description: string;
+  /** Optional speed bonus applied while equipped (51F+ opening check). */
+  spd?: number;
 }
 
 export type AnyCatalogItem =
@@ -173,6 +181,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_astral_quill',
     atk: 18,
     element: 'fire',
+    spd: 3,
     salvageGold: 4,
     description: '虚空に青白い軌跡を残す硬質ガラスのペン先。摩擦熱で敵を焼き焦がす。',
   },
@@ -558,6 +567,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_starlight_robe',
     def: 6,
     maxHpBonus: 20,
+    spd: 2,
     salvageGold: 4,
     description: '星図の糸で織り上げられた蒼い法衣。魔力の障壁が着用者の生命力を底上げする。',
   },
@@ -1063,8 +1073,9 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 3,
     },
+    spd: 2,
     salvageGold: 8,
-    description: '時の頁を鋭くめくる一撃。1.5倍ダメージ＋敵の防御力を35%低下(3T)（1戦2回）。',
+    description: '時の頁を鋭くめくる一撃。装備中はすばやさ+2。1.5倍ダメージ＋敵の防御力を35%低下(3T)（1戦2回）。',
   },
   briar_lash: {
     id: 'briar_lash',
@@ -3377,6 +3388,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_bookmark_charm_relic',
     effectId: 'bookmark_charm',
+    spd: 4,
     salvageGold: 10,
     description: '各バトルの1ターン目の攻撃時、+15%相当の追加ダメージを与える。',
   },

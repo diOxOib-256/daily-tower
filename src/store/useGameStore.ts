@@ -8,6 +8,7 @@ import {
   BattleSessionState,
   CombatEngine,
   WOUND_RATE,
+  calcPlayerSpd,
   cappedHealHp,
 } from '../core/CombatEngine';
 import { DropPacingEngine, RewardCard } from '../core/DropPacingEngine';
@@ -173,7 +174,10 @@ function syncAchievements(save: SaveData): SaveData {
           enc.enemyDefs,
           enc.statScale,
           currentSave.midFloor.playerWound,
-          WOUND_RATE
+          WOUND_RATE,
+          currentSave.midFloor.currentFloor >= 51
+            ? { playerSpd: calcPlayerSpd(currentSave.inventory) }
+            : undefined
         );
         setBattleSession(session);
         setStage('combat');

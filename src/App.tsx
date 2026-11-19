@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AreaEngine } from './core/AreaEngine';
-import { BattleSessionState, PlayerCommand } from './core/CombatEngine';
+import { BattleSessionState, PlayerCommand, calcPlayerSpd } from './core/CombatEngine';
 import { EventEngine } from './core/EventEngine';
 import { BattleStage2D, CombatMotionState, HitFx } from './components/BattleStage2D';
 import { BestiaryModal } from './components/BestiaryModal';
@@ -551,9 +551,16 @@ export function App() {
 
   const equipmentStatusContent = (
     <div>
-      <span className="text-xs font-extrabold tracking-wider text-amber-300">
-        現在の装備
-      </span>
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-xs font-extrabold tracking-wider text-amber-300">
+          現在の装備
+        </span>
+        {saveData.midFloor.currentFloor >= 51 && (
+          <span className="text-[11px] font-bold text-cyan-300">
+            すばやさ {calcPlayerSpd(saveData.inventory)}
+          </span>
+        )}
+      </div>
       <div className="mt-2 flex flex-col gap-2 text-xs">
         <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
           <span className="block text-[10px] text-slate-400">武器</span>
@@ -567,6 +574,9 @@ export function App() {
           </span>
           <span className="shrink-0 text-[10px] font-bold text-amber-300">
             ATK +{saveData.inventory.weapon.atk}
+            {saveData.inventory.weapon.spd ? (
+              <span className="text-cyan-300"> / すばやさ +{saveData.inventory.weapon.spd}</span>
+            ) : null}
           </span>
         </div>
 
@@ -585,11 +595,14 @@ export function App() {
             {saveData.inventory.armor.atkDelta ? (
               <span className="text-red-300"> / ATK {saveData.inventory.armor.atkDelta}</span>
             ) : null}
+            {saveData.inventory.armor.spd ? (
+              <span className="text-cyan-300"> / すばやさ +{saveData.inventory.armor.spd}</span>
+            ) : null}
           </span>
         </div>
 
         <div className="rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between gap-2">
             <span className="block text-[10px] text-slate-400">レリック</span>
             <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
               {saveData.inventory.relic && (
@@ -601,6 +614,11 @@ export function App() {
               )}
               <span className="truncate">{saveData.inventory.relic?.name ?? 'なし'}</span>
             </span>
+            {saveData.inventory.relic?.spd ? (
+              <span className="shrink-0 text-[10px] font-bold text-cyan-300">
+                すばやさ +{saveData.inventory.relic.spd}
+              </span>
+            ) : null}
           </div>
           {saveData.inventory.relic && (
             <p className="mt-1 text-[10px] font-bold leading-relaxed text-fuchsia-300">
@@ -614,15 +632,22 @@ export function App() {
           <div className="mt-1.5 flex flex-col gap-2">
             {saveData.inventory.skills.map((s, i) => (
               <div key={i}>
-                <div className="flex items-center gap-1.5 font-bold text-slate-100">
-                  {s && (
-                    <PixelSpriteCanvas
-                      spriteId={s.spriteId}
-                      scale={3}
-                      className="h-6 w-6 shrink-0"
-                    />
-                  )}
-                  <span className="truncate">{s?.name ?? '（空き）'}</span>
+                <div className="flex items-center justify-between gap-1.5 font-bold text-slate-100">
+                  <span className="flex min-w-0 items-center gap-1.5">
+                    {s && (
+                      <PixelSpriteCanvas
+                        spriteId={s.spriteId}
+                        scale={3}
+                        className="h-6 w-6 shrink-0"
+                      />
+                    )}
+                    <span className="truncate">{s?.name ?? '（空き）'}</span>
+                  </span>
+                  {s?.spd ? (
+                    <span className="shrink-0 text-[10px] font-bold text-cyan-300">
+                      すばやさ +{s.spd}
+                    </span>
+                  ) : null}
                 </div>
                 {s && (
                   <p className="mt-0.5 text-[10px] leading-relaxed text-slate-400">
@@ -771,6 +796,11 @@ export function App() {
           playerMaxHp={playerMaxHp}
           playerAtk={saveData.inventory.weapon.atk + (saveData.inventory.armor.atkDelta ?? 0)}
           playerDef={saveData.inventory.armor.def}
+          playerSpd={
+            saveData.midFloor.currentFloor >= 51
+              ? calcPlayerSpd(saveData.inventory)
+              : undefined
+          }
           battleSession={shownSession}
           hitFx={hitFx}
           actionPreview={actionPreview}
@@ -1161,14 +1191,16 @@ export function App() {
                               <p>
                                 現在の武器：
                                 <span className="font-bold text-slate-200">{saveData.inventory.weapon.name}</span>
-                                （ATK {saveData.inventory.weapon.atk}）
+                                （ATK {saveData.inventory.weapon.atk}
+                                {saveData.inventory.weapon.spd ? ` / すばやさ +${saveData.inventory.weapon.spd}` : ''}）
                               </p>
                             )}
                             {card.item.kind === 'armor' && (
                               <p>
                                 現在の防具：
                                 <span className="font-bold text-slate-200">{saveData.inventory.armor.name}</span>
-                                （DEF {saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}）
+                                （DEF {saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}
+                                {saveData.inventory.armor.spd ? ` / すばやさ +${saveData.inventory.armor.spd}` : ''}）
                               </p>
                             )}
                             {card.item.kind === 'skill' && (
@@ -1179,7 +1211,10 @@ export function App() {
                                     <p>
                                       {i + 1}.{' '}
                                       {s ? (
-                                        <span className="font-bold text-slate-200">{s.name}</span>
+                                        <>
+                                          <span className="font-bold text-slate-200">{s.name}</span>
+                                          {s.spd ? `（すばやさ +${s.spd}）` : ''}
+                                        </>
                                       ) : (
                                         '（空き）'
                                       )}
@@ -1197,6 +1232,7 @@ export function App() {
                               <p>
                                 現在のレリック：
                                 <span className="font-bold text-slate-200">{saveData.inventory.relic?.name ?? 'なし'}</span>
+                                {saveData.inventory.relic?.spd ? `（すばやさ +${saveData.inventory.relic.spd}）` : ''}
                               </p>
                             )}
                             {card.item.kind === 'consumable' && (
@@ -1335,6 +1371,12 @@ export function App() {
                   <strong className="text-fuchsia-300">💎 ジェム +15</strong> と{' '}
                   <strong className="text-emerald-300">🧪 秘薬 +1回分</strong> を獲得しました。
                 </p>
+                {saveData.midFloor.currentFloor === 51 && (
+                  <p className="mt-3 max-w-md rounded-xl border border-amber-500/40 bg-amber-950/40 px-4 py-2.5 text-xs leading-relaxed text-amber-100">
+                    <strong className="block text-amber-300">🆕 新システム解放：すばやさ</strong>
+                    第51層以降は、戦闘開始時にプレイヤーと最も速い敵の「すばやさ」を比べます。相手以上なら先制して敵は1ターン目に行動できず、下回ると不意打ちを受けます。武器・防具・レリック・スキルで高められます。
+                  </p>
+                )}
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
                   <button
                     type="button"

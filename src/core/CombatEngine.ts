@@ -46,6 +46,7 @@ export interface BattleSessionState {
    */
   playerWound: number;
   woundRate: number;
+  opening: 'preemptive' | 'ambush' | null;
   logs: string[];
   status: 'ongoing' | 'victory' | 'defeat';
   lastActionFx?: BattleSessionLastActionFx;
@@ -85,6 +86,24 @@ export const MAX_ENEMIES_PER_BATTLE = 3;
 
 /** Fraction of HP damage that becomes 重症 (wound), rounded up per hit. */
 export const WOUND_RATE = 0.5;
+
+/** Base speed for the player before equipped gear bonuses (51F+ opening check). */
+export const BASE_PLAYER_SPD = 10;
+
+/** Default speed for enemies that do not specify `spd`. */
+export const DEFAULT_ENEMY_SPD = 10;
+
+/** Computes the player's total speed: BASE_PLAYER_SPD + equipped weapon/armor/relic/skills. */
+export function calcPlayerSpd(loadout: PlayerLoadout): number {
+  let total = BASE_PLAYER_SPD;
+  total += loadout.weapon.spd ?? 0;
+  total += loadout.armor.spd ?? 0;
+  total += loadout.relic?.spd ?? 0;
+  for (const skill of loadout.skills) {
+    if (skill) total += skill.spd ?? 0;
+  }
+  return total;
+}
 
 /**
  * HP after a wound-capped heal (battle-victory gear heals and other
@@ -133,7 +152,8 @@ loadout: PlayerLoadout,
 enemyDef: EnemyDefinition | EnemyDefinition[],
 statScale = 1.0,
 playerWound = 0,
-woundRate = 0
+woundRate = 0,
+opening?: { playerSpd: number }
 ): BattleSessionState {
 const defs = (Array.isArray(enemyDef)? enemyDef: [enemyDef]).slice(
 0,
@@ -154,6 +174,23 @@ defs.length > 1
 ? `⚔️ ${defs.map((d) => d.name).join(' と ')} があらわれた！`
 : `⚔️ ${defs[0].name} があらわれた！`,
 ];
+
+// Opening speed check (51F+ only; caller passes `opening` when active).
+// Compare raw enemy spd (no statScale) against playerSpd; ties favor player.
+let resolvedOpening: 'preemptive' | 'ambush' | null = null;
+if (opening !== undefined) {
+  const fastestEnemySpd = defs.reduce(
+    (max, d) => Math.max(max, d.spd ?? DEFAULT_ENEMY_SPD),
+    -Infinity
+  );
+  if (opening.playerSpd >= fastestEnemySpd) {
+    resolvedOpening = 'preemptive';
+    logs.push('⚡ 先制！ 敵は1ターン目に行動できない');
+  } else {
+    resolvedOpening = 'ambush';
+    logs.push('💥 不意打ちの気配！ 敵が先制攻撃してくる');
+  }
+}
 
 // Effective attack: weapon ATK plus the equipped armor's persistent
 // atkDelta (e.g. a cursed heavy plate at -5). Applies for the whole
@@ -216,6 +253,7 @@ statuses: enemyStatusesList[i],
     consumableCharges,
     playerWound,
     woundRate,
+    opening: resolvedOpening,
     logs,
     status: 'ongoing',
     lastActionFx: {
@@ -429,6 +467,42 @@ logs: [...session.logs],
     next.lastActionFx = lastActionFx;
 
     next.logs.push(`── ${next.turn}ターン目 ──`);
+
+    // Opening ambush: on turn 1 before the player acts, every living enemy
+    // performs a basic attack (1.0x, 5% crit, no status effects).
+    if (next.turn === 1 && next.opening === 'ambush') {
+      for (const enemy of next.enemies) {
+        if (enemy.currentHp <= 0) continue;
+        const dmgRes = CombatEngine.calculateDamage(
+          enemy,
+          next.player,
+          1.0,
+          next.turn,
+          {
+            rng,
+            critChance: 0.05,
+          }
+        );
+        next.player.statuses = dmgRes.nextDefenderStatuses;
+        const hpBeforeHit = next.player.currentHp;
+        next.player.currentHp = Math.max(0, next.player.currentHp - dmgRes.finalHpDamage);
+        accrueWound(next, hpBeforeHit - next.player.currentHp);
+        const absorbNote =
+          dmgRes.shieldAbsorbed > 0 ? ` (障壁が${dmgRes.shieldAbsorbed}吸収)` : '';
+        next.logs.push(
+          `💥 不意打ち！ ${enemy.name}の攻撃！ プレイヤーに ${dmgRes.finalHpDamage} ダメージ！${absorbNote}`
+        );
+        if (dmgRes.isCrit) {
+          next.logs.push('⚡ 会心の一撃を受けた！');
+          lastActionFx.playerCrit = true;
+        }
+        if (next.player.currentHp <= 0) {
+          next.status = 'defeat';
+          next.logs.push('💀 力尽きた…');
+          return next;
+        }
+      }
+    }
 
     // Environmental realm condition (e.g. Realm 2 Sunken Foundry burn every 3 turns)
     if (environmentalRule && next.turn % environmentalRule.everyNTurns === 0) {
@@ -765,6 +839,12 @@ logs: [...session.logs],
           next.status = 'victory';
           return next;
         }
+        continue;
+      }
+
+      // Opening preemptive: enemies skip their action on turn 1 (turn_start still ran)
+      if (next.turn === 1 && next.opening === 'preemptive') {
+        next.logs.push(`⚡ ${enemy.name}は先制されて動けない！`);
         continue;
       }
 
