@@ -17,6 +17,49 @@ dialog::backdrop {
   overscroll-behavior: contain;
 }
 
+.battle-stage-container {
+  container-type: size;
+}
+
+@container (max-height: 280px) {
+  .battle-stage-container .stage-top-bar {
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+  }
+
+  .battle-stage-container .stage-actors-row {
+    padding-bottom: 0.35rem;
+  }
+
+  .battle-stage-container .stage-hud-card {
+    margin-bottom: 0.25rem;
+    padding: 0.375rem 0.5rem;
+  }
+
+  .battle-stage-container .stage-hud-card ul button {
+    padding: 0.125rem 0.375rem;
+    font-size: 0.625rem;
+    line-height: 1.1;
+  }
+}
+
+@container (max-height: 230px) {
+  .battle-stage-container .stage-sprite {
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+
+  .battle-stage-container .stage-sprite-boss {
+    height: 3.25rem;
+    width: 3.25rem;
+  }
+
+  .battle-stage-container .stage-sprite-multi {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+
 /* Individual transform properties with mandatory base identity transforms */
 .rpg-actor {
   translate: 0px 0px;

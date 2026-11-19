@@ -135,7 +135,7 @@ export function App() {
   const [targetIndex, setTargetIndex] = useState<number>(0);
   const [showTitle, setShowTitle] = useState<boolean>(true);
   const [isMuted, setIsMuted] = useState<boolean>(() => isSfxMuted());
-  const [mobileConsoleTab, setMobileConsoleTab] = useState<'commands' | 'equipment'>('commands');
+  const [mobileConsoleTab, setMobileConsoleTab] = useState<'commands' | 'log' | 'equipment'>('commands');
 
   // Achievement unlock toast queue
   const isFirstMountRef = useRef<boolean>(true);
@@ -562,6 +562,7 @@ export function App() {
               onSwitchSlot={switchSaveSlot}
               onCreateNewSlot={(slotId, startRealm) => {
                 createNewSaveInSlot(slotId, startRealm);
+                setMobileConsoleTab('commands');
                 setShowTitle(false);
               }}
               onDeleteSlot={deleteSaveSlot}
@@ -591,8 +592,8 @@ export function App() {
   const isCurrentFloorAuthored = isFloorAuthored(saveData.midFloor.currentFloor);
 
   const equipmentStatusContent = (
-    <div>
-      <div className="flex items-center justify-between gap-2">
+    <div className="flex min-h-0 flex-1 flex-col">
+      <div className="flex shrink-0 items-center justify-between gap-2">
         <span className="text-xs font-extrabold tracking-wider text-amber-300">
           現在の装備
         </span>
@@ -602,7 +603,7 @@ export function App() {
           </span>
         )}
       </div>
-      <div className="mt-2 flex flex-col gap-2 text-xs">
+      <div className="scrollable-log mt-2 flex min-h-0 flex-1 flex-col gap-2 pr-1 text-xs">
         <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
           <span className="block text-[10px] text-slate-400">武器</span>
           <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
@@ -729,11 +730,14 @@ export function App() {
     </div>
   );
 
+  const isCombat = stage === 'combat';
+  const hasBoss = shownSession?.enemyDefs.some((d) => d.isBoss) ?? false;
+
   return (
-    <div className="anim-fade-in min-h-dvh flex flex-col bg-slate-950 text-slate-100">
+    <div className="anim-fade-in h-dvh overflow-hidden flex flex-col bg-slate-950 text-slate-100">
       {/* Compact RPG Header */}
-      <header className="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-[1760px] flex-wrap items-center justify-between gap-3 px-3 py-2.5 sm:px-5">
+      <header className="shrink-0 border-b border-slate-800/80 bg-slate-900/90 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-[1760px] flex-wrap items-center justify-between gap-1.5 px-2.5 py-1.5 sm:gap-3 sm:px-5 sm:py-2.5">
           <div className="flex flex-wrap items-center gap-2.5">
             <h1 className="text-base font-extrabold tracking-wider text-amber-400">
               DAILY TOWER
@@ -803,11 +807,17 @@ export function App() {
       </header>
 
       {/* Main 2D RPG Screen */}
-      <main className="mx-auto flex w-full max-w-[1760px] flex-1 flex-col gap-3 px-3 py-3 sm:px-5">
+      <main
+        className={`mx-auto flex w-full max-w-[1760px] flex-1 min-h-0 flex-col ${
+          isCombat
+            ? 'gap-2 overflow-hidden px-3 py-2 sm:gap-2.5 sm:px-5 sm:py-2.5'
+            : 'gap-3 overflow-y-auto px-3 py-3 sm:px-5'
+        }`}
+      >
         {storageError && (
           <div
             role="alert"
-            className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-rose-500/50 bg-rose-950/70 px-4 py-2.5 text-xs font-bold text-rose-100"
+            className="flex shrink-0 flex-wrap items-center justify-between gap-2 rounded-xl border border-rose-500/50 bg-rose-950/70 px-4 py-2 text-xs font-bold text-rose-100"
           >
             <span>⚠️ {storageError}</span>
             <button
@@ -819,58 +829,13 @@ export function App() {
             </button>
           </div>
         )}
-        {/* PC: stage column + console rail side by side; stacked on smaller screens */}
-        <div className="flex flex-col gap-3">
-        {/* 1. 2D RPG Stage Viewport (Background + Facing Characters + Motions) */}
-        <div className="relative">
-        <BattleStage2D
-          realm={floorDef.realm}
-          floor={floorDef.floor}
-          floorTitle={floorDef.title}
-          encounters={floorDef.encounters}
-          currentEncounterIndex={saveData.midFloor.currentEncounterIndex}
-          playerSpriteId={saveData.activeSkinSpriteId}
-          playerPaletteId={saveData.activeSkinPaletteId}
-          playerTitle={saveData.activeTitle}
-          playerCurrentHp={currentHp}
-          playerWound={saveData.midFloor.playerWound}
-          playerMaxHp={playerMaxHp}
-          playerAtk={saveData.inventory.weapon.atk + (saveData.inventory.armor.atkDelta ?? 0)}
-          playerDef={saveData.inventory.armor.def}
-          playerSpd={
-            saveData.midFloor.currentFloor >= 51
-              ? calcPlayerSpd(saveData.inventory)
-              : undefined
-          }
-          battleSession={shownSession}
-          hitFx={hitFx}
-          actionPreview={actionPreview}
-          activeEvent={activeEvent}
-          motionState={motionState}
-          activeSkillName={activeSkillCallout}
-          selectedTargetIndex={targetIndex}
-          onSelectTarget={setTargetIndex}
-        />
-        {stage === 'defeat' && !isAnimating && (
-          <div className="defeat-pulse pointer-events-none absolute inset-0 z-30 flex items-center justify-center rounded-2xl bg-slate-950/60">
-            <div className="anim-rise-in px-4 text-center">
-              <p className="text-4xl" aria-hidden="true">💀</p>
-              <p className="mt-1 text-2xl font-black tracking-widest text-rose-400">
-                力尽きた…
-              </p>
-              <p className="mt-1 text-xs font-bold text-slate-300">
-                {currentRealmMeta.name}（第{saveData.midFloor.currentFloor}層）で倒れた
-              </p>
-            </div>
-          </div>
-        )}
-        </div>
 
         {/* Realm Start System Notice */}
         {realmStartNoticeRealm !== null && (
           <RealmSystemNotice
             realm={realmStartNoticeRealm}
             onDismiss={dismissRealmStartNotice}
+            className="shrink-0"
           />
         )}
 
@@ -879,16 +844,65 @@ export function App() {
           <div
             role="status"
             aria-live="polite"
-            className="rounded-xl border border-amber-500/30 bg-amber-950/40 px-4 py-2 text-center text-xs font-bold text-amber-200"
+            className="shrink-0 rounded-xl border border-amber-500/30 bg-amber-950/40 px-4 py-1.5 text-center text-xs font-bold text-amber-200"
           >
             {systemBanner}
           </div>
         )}
 
+        {/* 1. 2D RPG Stage Viewport (Background + Facing Characters + Motions) */}
+        <div
+          className={`relative ${
+            isCombat
+              ? 'min-h-[200px] flex-1'
+              : 'h-[15rem] shrink-0 sm:h-[18rem] lg:h-[clamp(18rem,36dvh,24rem)]'
+          }`}
+        >
+          <BattleStage2D
+            realm={floorDef.realm}
+            floor={floorDef.floor}
+            floorTitle={floorDef.title}
+            encounters={floorDef.encounters}
+            currentEncounterIndex={saveData.midFloor.currentEncounterIndex}
+            playerSpriteId={saveData.activeSkinSpriteId}
+            playerPaletteId={saveData.activeSkinPaletteId}
+            playerTitle={saveData.activeTitle}
+            playerCurrentHp={currentHp}
+            playerWound={saveData.midFloor.playerWound}
+            playerMaxHp={playerMaxHp}
+            playerAtk={saveData.inventory.weapon.atk + (saveData.inventory.armor.atkDelta ?? 0)}
+            playerDef={saveData.inventory.armor.def}
+            playerSpd={
+              saveData.midFloor.currentFloor >= 51
+                ? calcPlayerSpd(saveData.inventory)
+                : undefined
+            }
+            battleSession={shownSession}
+            hitFx={hitFx}
+            actionPreview={actionPreview}
+            activeEvent={activeEvent}
+            motionState={motionState}
+            activeSkillName={activeSkillCallout}
+            selectedTargetIndex={targetIndex}
+            onSelectTarget={setTargetIndex}
+          />
+          {stage === 'defeat' && !isAnimating && (
+            <div className="defeat-pulse pointer-events-none absolute inset-0 z-30 flex items-center justify-center rounded-2xl bg-slate-950/60">
+              <div className="anim-rise-in px-4 text-center">
+                <p className="text-4xl" aria-hidden="true">💀</p>
+                <p className="mt-1 text-2xl font-black tracking-widest text-rose-400">
+                  力尽きた…
+                </p>
+                <p className="mt-1 text-xs font-bold text-slate-300">
+                  {currentRealmMeta.name}（第{saveData.midFloor.currentFloor}層）で倒れた
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* 2. Consoles & Panels (grid-placed on PC, tabbed on mobile) */}
-        <div className="flex gap-2 lg:hidden" role="tablist" aria-label="操作と装備の切り替え">
+        <div className="flex shrink-0 gap-1.5 lg:hidden" role="tablist" aria-label="操作・メッセージ・装備の切り替え">
           <button
             type="button"
             role="tab"
@@ -897,13 +911,29 @@ export function App() {
               playSfx('click');
               setMobileConsoleTab('commands');
             }}
-            className={`flex-1 rounded-xl border px-3 py-2 text-xs font-extrabold transition cursor-pointer ${
+            className={`flex-1 rounded-xl border px-2 py-2 text-xs font-extrabold transition cursor-pointer ${
               mobileConsoleTab === 'commands'
                 ? 'border-amber-400/70 bg-amber-500/20 text-amber-200'
                 : 'border-slate-700 bg-slate-900/80 text-slate-400 hover:text-slate-200'
             }`}
           >
-            ⚔️ コマンド・選択
+            ⚔️ コマンド
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mobileConsoleTab === 'log'}
+            onClick={() => {
+              playSfx('click');
+              setMobileConsoleTab('log');
+            }}
+            className={`flex-1 rounded-xl border px-2 py-2 text-xs font-extrabold transition cursor-pointer ${
+              mobileConsoleTab === 'log'
+                ? 'border-amber-400/70 bg-amber-500/20 text-amber-200'
+                : 'border-slate-700 bg-slate-900/80 text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            📜 メッセージ
           </button>
           <button
             type="button"
@@ -913,13 +943,13 @@ export function App() {
               playSfx('click');
               setMobileConsoleTab('equipment');
             }}
-            className={`flex-1 rounded-xl border px-3 py-2 text-xs font-extrabold transition cursor-pointer ${
+            className={`flex-1 rounded-xl border px-2 py-2 text-xs font-extrabold transition cursor-pointer ${
               mobileConsoleTab === 'equipment'
                 ? 'border-amber-400/70 bg-amber-500/20 text-amber-200'
                 : 'border-slate-700 bg-slate-900/80 text-slate-400 hover:text-slate-200'
             }`}
           >
-            🛡️ 現在の装備
+            🛡️ 装備
           </button>
         </div>
 
@@ -928,7 +958,9 @@ export function App() {
             aria-label="コマンドとメッセージウィンドウ"
             className={`${
               mobileConsoleTab === 'commands' ? 'flex' : 'hidden lg:flex'
-            } flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl`}
+            } shrink-0 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-3 py-2.5 shadow-xl sm:px-4 sm:py-3 ${
+              isCombat ? 'max-lg:max-h-[48dvh] max-lg:overflow-y-auto' : ''
+            }`}
           >
             {/* COMBAT COMMANDS */}
             {stage === 'combat' && battleSession && (
@@ -1542,51 +1574,63 @@ export function App() {
             )}
           </div>
 
-        {/* MOBILE EQUIPMENT TAB PANEL */}
-        {mobileConsoleTab === 'equipment' && (
-          <div className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl lg:hidden">
-            {equipmentStatusContent}
+        {/* Bottom strip: message log (wide) + equipment (narrow); tabbed on mobile */}
+        <div
+          className={`${
+            mobileConsoleTab === 'commands' ? 'hidden lg:grid' : 'flex flex-col lg:grid'
+          } min-h-0 gap-3 lg:grid-cols-[minmax(0,1fr)_380px] ${
+            isCombat
+              ? `max-lg:h-[40dvh] max-lg:max-h-[360px] max-lg:shrink lg:min-h-[140px] lg:grow-0 lg:shrink ${
+                  hasBoss
+                    ? 'lg:basis-[22dvh] lg:max-h-[260px]'
+                    : 'lg:basis-[26dvh] lg:max-h-[295px]'
+                }`
+              : 'max-lg:h-[320px] shrink-0 lg:h-[260px]'
+          }`}
+        >
+          {/* Message Log Panel */}
+          <div
+            className={`${
+              mobileConsoleTab === 'log' ? 'flex' : 'hidden lg:flex'
+            } min-h-0 flex-1 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl`}
+          >
+            <div className="flex min-h-0 flex-1 flex-col">
+              <span className="shrink-0 text-xs font-extrabold tracking-wider text-amber-300">
+                メッセージ
+              </span>
+              <ul className="scrollable-log mt-2 min-h-0 flex-1 space-y-1 rounded-xl border border-slate-800 bg-slate-950 p-3 text-xs font-mono text-slate-200">
+                {battleSession ? (
+                  [...battleSession.logs].reverse().map((line, i) => (
+                    <li
+                      key={i}
+                      className={
+                        line.startsWith('──')
+                          ? 'text-amber-400 font-bold pt-1'
+                          : line.includes('撃破') || line.includes('回復') || line.includes('倒した')
+                          ? 'text-emerald-300'
+                          : line.includes('🩸') || line.includes('💀')
+                          ? 'text-rose-300'
+                          : 'text-slate-200'
+                      }
+                    >
+                      {line}
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-slate-400">
+                    {activeEvent ? `${activeEvent.title}に到達した。` : '次の階層へ進む準備を整えている…'}
+                  </li>
+                )}
+              </ul>
+            </div>
           </div>
-        )}
 
-        {/* Bottom strip: message log (wide) + equipment (narrow) */}
-        <div className="grid min-h-0 gap-3 lg:flex-1 lg:grid-cols-[minmax(0,1fr)_380px]">
-        {/* Message Log Panel */}
-        <div className="flex min-h-0 flex-1 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl">
-        {/* Battle Message Window */}
-        <div className="flex min-h-0 flex-1 flex-col">
-          <span className="text-xs font-extrabold tracking-wider text-amber-300">
-            メッセージ
-          </span>
-          <ul className="scrollable-log mt-2 min-h-32 flex-1 space-y-1 rounded-xl border border-slate-800 bg-slate-950 p-3 text-xs font-mono text-slate-200">
-            {battleSession ? (
-              [...battleSession.logs].reverse().map((line, i) => (
-                <li
-                  key={i}
-                  className={
-                    line.startsWith('──')
-                      ? 'text-amber-400 font-bold pt-1'
-                      : line.includes('撃破') || line.includes('回復') || line.includes('倒した')
-                      ? 'text-emerald-300'
-                      : line.includes('🩸') || line.includes('💀')
-                      ? 'text-rose-300'
-                      : 'text-slate-200'
-                  }
-                >
-                  {line}
-                </li>
-              ))
-            ) : (
-              <li className="text-slate-400">
-                {activeEvent ? `${activeEvent.title}に到達した。` : '次の階層へ進む準備を整えている…'}
-              </li>
-            )}
-          </ul>
-        </div>
-        </div>
-
-          {/* Equipment Status (PC rail; on mobile it lives in the tab above) */}
-          <div className="hidden flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl lg:flex">
+          {/* Equipment Status Panel */}
+          <div
+            className={`${
+              mobileConsoleTab === 'equipment' ? 'flex' : 'hidden lg:flex'
+            } min-h-0 flex-1 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl`}
+          >
             {equipmentStatusContent}
           </div>
         </div>

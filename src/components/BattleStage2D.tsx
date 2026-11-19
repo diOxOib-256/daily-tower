@@ -93,7 +93,7 @@ function StatusRow({ statuses, align = 'left' }: { statuses: ActiveStatusInstanc
             <InfoTip
               align={align}
               title={`${def.icon} ${def.name}`}
-              triggerClassName={`inline-flex cursor-help items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-bold shadow sm:gap-1.5 sm:px-2 sm:py-1 sm:text-xs lg:px-2.5 lg:py-1.5 lg:text-sm ${
+              triggerClassName={`inline-flex cursor-help items-center gap-1 whitespace-nowrap rounded-md border px-1.5 py-0.5 text-[10px] font-bold shadow sm:gap-1.5 sm:px-2 sm:py-1 sm:text-xs lg:px-2.5 lg:py-1.5 lg:text-sm ${
                 isBuff
                   ? 'border-emerald-400/50 bg-emerald-950/90 text-emerald-200'
                   : 'border-rose-400/50 bg-rose-950/90 text-rose-200'
@@ -423,7 +423,6 @@ export function BattleStage2D({
   const bossKind =
     encounterType === 'apex_boss' ? 'apex' : encounterType === 'miniboss' ? 'mini' : null;
   const encounterKey = `${floor}-${currentEncounterIndex}`;
-  const hasBoss = battleSession?.enemyDefs.some((d) => d.isBoss) ?? false;
   const [introKey, setIntroKey] = useState<string | null>(null);
   useEffect(() => {
     if (!bossKind || !battleSession) return;
@@ -461,11 +460,7 @@ export function BattleStage2D({
   return (
     <div
       key={encounterKey}
-      className={`anim-stage-enter relative w-full ${
-        hasBoss
-          ? 'h-[24rem] sm:h-[26rem] md:h-[26rem] lg:h-[clamp(30rem,58dvh,40rem)]'
-          : 'h-[21rem] sm:h-[22rem] md:h-96 lg:h-[clamp(26rem,52dvh,36rem)]'
-      } rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
+      className={`anim-stage-enter battle-stage-container relative flex h-full w-full flex-col rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
         hitFx?.some(
           (f) =>
             f.side === 'player' &&
@@ -540,7 +535,7 @@ export function BattleStage2D({
       </svg>
 
       {/* Top Overlay: Floor Title & Encounter Progress Steps */}
-      <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 bg-slate-950/65 px-4 py-2.5 backdrop-blur-xs border-b border-white/10">
+      <div className="stage-top-bar relative z-10 flex shrink-0 flex-wrap items-center justify-between gap-2 bg-slate-950/65 px-3 py-1.5 backdrop-blur-xs border-b border-white/10 sm:px-4 sm:py-2">
         <div className="flex items-center gap-2">
           <span className="text-sm font-extrabold tracking-wide text-amber-300">
             {floorTitle}
@@ -663,11 +658,11 @@ export function BattleStage2D({
       )}
 
       {/* 2D STAGE ACTORS: PLAYER (LEFT) FACING ENEMY/EVENT (RIGHT) */}
-      <div className="relative z-10 flex h-[calc(100%-3rem)] items-end justify-between px-2 pb-6 sm:pb-8 sm:px-[max(3rem,calc((100%-64rem)/2))]">
+      <div className="stage-actors-row relative z-10 flex min-h-0 flex-1 items-end justify-between px-2 pb-[clamp(0.5rem,4cqh,2rem)] sm:px-[max(3rem,calc((100%-64rem)/2))]">
         {/* LEFT ACTOR: PLAYER */}
         <div className="anim-actor-enter-left flex shrink-0 flex-col items-center">
           {/* Player Floating HUD */}
-          <div className="relative z-30 mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 lg:p-3 shadow-xl backdrop-blur-xs">
+          <div className="stage-hud-card relative z-30 mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 lg:p-3 shadow-xl backdrop-blur-xs">
             <div className="flex items-center justify-between gap-1">
               <span className="truncate text-[11px] sm:text-xs font-extrabold text-amber-300">
                 {playerTitle}
@@ -747,7 +742,7 @@ export function BattleStage2D({
           {/* Player Character Sprite on Floor Platform */}
           <div className="relative flex flex-col items-center">
             <FxLayer fx={(hitFx ?? []).filter((f) => f.side === 'player')} align="player" />
-            <div className={`rpg-actor h-24 w-24 sm:h-36 sm:w-36 lg:h-44 lg:w-44 ${playerMotionClass}`}>
+            <div className={`stage-sprite rpg-actor h-[clamp(3.75rem,30cqh,11rem)] w-[clamp(3.75rem,30cqh,11rem)] ${playerMotionClass}`}>
               <PixelSpriteCanvas
                 spriteId={playerSpriteId}
                 paletteId={playerPaletteId}
@@ -793,7 +788,7 @@ export function BattleStage2D({
                 >
                   {/* Enemy Floating HUD */}
                   <div
-                    className={`relative z-30 mb-2 ${
+                    className={`stage-hud-card relative z-30 mb-2 ${
                       isMulti ? 'w-full max-w-40 sm:max-w-52 md:max-w-56' : 'w-40 sm:w-52 md:w-56'
                     } rounded-xl border ${
                       isTarget
@@ -927,10 +922,10 @@ export function BattleStage2D({
                         def.isBoss ? 'rpg-actor-boss' : 'rpg-actor'
                       } ${
                         def.isBoss
-                          ? 'h-28 w-28 sm:h-40 sm:w-40 lg:h-52 lg:w-52'
+                          ? 'stage-sprite-boss h-[clamp(4.25rem,34cqh,13rem)] w-[clamp(4.25rem,34cqh,13rem)]'
                           : isMulti
-                            ? 'h-14 w-14 sm:h-24 sm:w-24 lg:h-32 lg:w-32'
-                            : 'h-24 w-24 sm:h-36 sm:w-36 lg:h-44 lg:w-44'
+                            ? 'stage-sprite-multi h-[clamp(3rem,23cqh,8rem)] w-[clamp(3rem,23cqh,8rem)]'
+                            : 'stage-sprite h-[clamp(3.75rem,30cqh,11rem)] w-[clamp(3.75rem,30cqh,11rem)]'
                       } ${isDead ? 'motion-defeat' : enemyMotionClass}`}
                     >
                       <PixelSpriteCanvas
@@ -955,14 +950,14 @@ export function BattleStage2D({
         ) : activeEvent ? (
           <div key={activeEvent.id} className="anim-actor-enter-right flex flex-col items-center">
             <div
-              className={`mb-2 rounded-xl border bg-slate-950/85 px-3 py-1.5 text-center shadow-xl backdrop-blur-xs ${eventChipClass}`}
+              className={`stage-hud-card mb-2 rounded-xl border bg-slate-950/85 px-3 py-1.5 text-center shadow-xl backdrop-blur-xs ${eventChipClass}`}
             >
               <span className="text-[11px] sm:text-xs font-extrabold">
                 {activeEvent.title}
               </span>
             </div>
             <div className="relative flex flex-col items-center">
-              <div className="rpg-actor h-24 w-24 sm:h-36 sm:w-36 lg:h-44 lg:w-44">
+              <div className="stage-sprite rpg-actor h-[clamp(3.75rem,30cqh,11rem)] w-[clamp(3.75rem,30cqh,11rem)]">
                 <PixelSpriteCanvas
                   spriteId={activeEvent.speakerSpriteId ?? 'shrine'}
                   paletteId={activeEvent.palette ?? 'golden_shrine'}
