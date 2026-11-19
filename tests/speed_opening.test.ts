@@ -304,24 +304,24 @@ describe('すばやさ（先制・不意打ち）システム', () => {
 
   it('uses raw enemy spd without statScale and compares against the fastest enemy in multi-enemy battles', () => {
     const lo = makeLoadout();
-    const slowEnemy = ENEMY_REGISTRY.living_tome; // spd 7
-    const fastEnemy = ENEMY_REGISTRY.astral_owl; // spd 16
+    const slowEnemy = ENEMY_REGISTRY.living_tome; // spd 6
+    const fastEnemy = ENEMY_REGISTRY.astral_owl; // spd 15
 
-    // Even with statScale 2.0, slowEnemy raw spd is still 7 -> player (10) wins
+    // Even with statScale 2.0, slowEnemy raw spd is still 6 -> player (10) wins
     const scaledSlow = CombatEngine.createBattleSession(
       100, 100, 2, lo, slowEnemy, 2.0, 0, WOUND_RATE, { playerSpd: 10 }
     );
     expect(scaledSlow.opening).toBe('preemptive');
 
-    // In a group with slow (7) + fast (16), fastest is 16 -> player (15) is ambushed
+    // In a group with slow (6) + fast (15), fastest is 15 -> player (14) is ambushed
     const groupAmbush = CombatEngine.createBattleSession(
-      100, 100, 2, lo, [slowEnemy, fastEnemy], 1.0, 0, WOUND_RATE, { playerSpd: 15 }
+      100, 100, 2, lo, [slowEnemy, fastEnemy], 1.0, 0, WOUND_RATE, { playerSpd: 14 }
     );
     expect(groupAmbush.opening).toBe('ambush');
 
-    // Player with 16 ties the fastest enemy -> preemptive
+    // Player with 15 ties the fastest enemy -> preemptive
     const groupPreemptive = CombatEngine.createBattleSession(
-      100, 100, 2, lo, [slowEnemy, fastEnemy], 1.0, 0, WOUND_RATE, { playerSpd: 16 }
+      100, 100, 2, lo, [slowEnemy, fastEnemy], 1.0, 0, WOUND_RATE, { playerSpd: 15 }
     );
     expect(groupPreemptive.opening).toBe('preemptive');
   });
