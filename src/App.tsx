@@ -1216,9 +1216,9 @@ export function App() {
             }`}
           >
             {/* COMBAT COMMANDS */}
-            {stage === 'combat' && battleSession && (
+            {(stage === 'combat' || stage === 'floor_reward') && battleSession && (
               <>
-                {battleSession.status === 'victory' ? (
+                {battleSession.status === 'victory' && stage === 'combat' ? (
                   <div className="anim-rise-in flex flex-1 flex-col items-center justify-center py-4 text-center">
                     <p className="text-base font-extrabold text-emerald-300">
                       🏆 {battleSession.enemyDefs.map((d) => d.name).join(' と ')} を倒した！
@@ -1235,12 +1235,16 @@ export function App() {
                     </button>
                   </div>
                 ) : (
-                  <div className="flex flex-1 flex-col justify-between gap-2.5">
+                  <div inert={stage === 'floor_reward'} className={`flex flex-1 flex-col justify-between gap-2.5 ${stage === 'floor_reward' ? 'pointer-events-none' : ''}`}>
                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
                       <span className="text-xs font-extrabold tracking-wider text-amber-300">
                         コマンド
                       </span>
-                      {actionPreview ? (
+                      {stage === 'floor_reward' ? (
+                        <span className="rounded-md border border-amber-400/40 bg-amber-950/60 px-2 py-0.5 text-[11px] font-bold text-amber-200">
+                          🔒 踏破報酬の選択中はコマンドをロックしています
+                        </span>
+                      ) : actionPreview ? (
                         <span className="rounded-md border border-sky-400/40 bg-sky-950/60 px-2 py-0.5 text-[11px] font-bold text-sky-200">
                           🔮 プレビュー（{actionPreview.label}）：{actionPreview.summaryText}
                         </span>
@@ -1251,7 +1255,7 @@ export function App() {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
+                    <div className={`grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5 ${stage === 'floor_reward' ? 'opacity-70' : ''}`}>
                       {/* Attack Button */}
                       <button
                         type="button"
@@ -1481,15 +1485,6 @@ export function App() {
                     );
                   })}
                 </div>
-              </div>
-            )}
-
-            {/* FLOOR CLEAR REWARDS */}
-            {stage === 'floor_reward' && rewardCards && (
-              <div className="flex items-center justify-center py-1 text-center">
-                <p className="text-xs font-bold text-amber-200">
-                  🎁 ステージ上のカードから踏破報酬を1つ選んでください
-                </p>
               </div>
             )}
 
