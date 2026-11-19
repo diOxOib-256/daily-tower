@@ -196,4 +196,16 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'chrono_automaton', enemyStatScale: 0.80 },
     ],
   },
+  {
+    floor: 60,
+    realm: 2,
+    title: '第60層：星座盤の大聖堂',
+    subtitle: '虚空に巨大な星座盤が浮かぶ聖堂の最奥で、星織りの巨像が51〜60Fの最後を締めくくる階層',
+    encounters: [
+      { type: 'battle', enemyId: 'void_lantern', enemyStatScale: 0.80 },
+      { type: 'event', eventId: 'forgotten_scriptorium' },
+      { type: 'battle', enemyId: 'void_lantern', enemyStatScale: 0.80 },
+      { type: 'miniboss', enemyId: 'starweaver_colossus', enemyStatScale: 1.00 },
+    ],
+  },
 ];

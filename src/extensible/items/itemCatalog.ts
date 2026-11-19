@@ -3334,6 +3334,21 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     },
     description: '世界樹の頂から採取された至高の霊露。体力を大きく回復し鉄壁の障壁を纏わせる。HPを65%回復＋障壁(22/2T)を付与（最大2チャージ）。',
   },
+  astral_ambrosia: {
+    id: 'astral_ambrosia',
+    name: '星辰の霊薬',
+    kind: 'consumable',
+    spriteId: 'item_astral_ambrosia',
+    maxCharges: 2,
+    healPercent: 35,
+    applyStatus: {
+      target: 'self',
+      statusId: 'atk_buff',
+      value: 15,
+      duration: 2,
+    },
+    description: '星明かりの結晶を溶かし込んだ黄金の霊薬。傷を癒やすと同時に全身に星の活力を巡らせ、攻撃力を引き上げる。HPを35%回復＋2ターンの間、攻撃力+15%を得る（最大2チャージ）。',
+  },
 };
 
 export const RELIC_CATALOG: Record<string, RelicItem> = {

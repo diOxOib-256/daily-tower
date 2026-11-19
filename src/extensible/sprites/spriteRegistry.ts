@@ -2067,6 +2067,16 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '虚空のランタン',
     colors: ['transparent', '#14111f', '#4a3f6b', '#a9def9'],
   },
+  starweaver_colossus: {
+    id: 'starweaver_colossus',
+    name: '星織りの巨像',
+    colors: ['transparent', '#101321', '#3b4261', '#ffd166'],
+  },
+  item_astral_ambrosia: {
+    id: 'item_astral_ambrosia',
+    name: '星辰の霊薬',
+    colors: ['transparent', '#1a1b2e', '#f4a261', '#fefae0'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2484,6 +2494,8 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_astral_storm: { id: 'item_astral_storm', matrixId: 'item_astral_storm', defaultPalette: 'item_astral_storm' },
   chrono_automaton: { id: 'chrono_automaton', matrixId: 'chrono_automaton', defaultPalette: 'chrono_automaton' },
   void_lantern: { id: 'void_lantern', matrixId: 'void_lantern', defaultPalette: 'void_lantern' },
+  starweaver_colossus: { id: 'starweaver_colossus', matrixId: 'starweaver_colossus', defaultPalette: 'starweaver_colossus' },
+  item_astral_ambrosia: { id: 'item_astral_ambrosia', matrixId: 'item_astral_ambrosia', defaultPalette: 'item_astral_ambrosia' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

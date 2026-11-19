@@ -9720,5 +9720,66 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  starweaver_colossus: {
+    id: 'starweaver_colossus',
+    name: '星織りの巨像',
+    spriteId: 'starweaver_colossus',
+    palette: 'starweaver_colossus',
+    hp: 92,
+    atk: 17,
+    def: 7,
+    spd: 7,
+    isBoss: true,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '星環の鉄槌',
+            type: 'attack',
+            weight: 55,
+            damageMultiplier: 1.0,
+            logMessage: '星織りの巨像が星鉄の剛腕を振り下ろし、大地を揺るがせた！',
+          },
+          {
+            name: '星屑の障壁',
+            type: 'buff',
+            weight: 45,
+            statusId: 'shield',
+            statusValue: 16,
+            statusDuration: 2,
+            logMessage: '星織りの巨像が背後の星座盤を回転させ、強固な光の障壁を張った！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 50,
+        actions: [
+          {
+            name: '虚空の重圧',
+            type: 'debuff',
+            weight: 60,
+            damageMultiplier: 1.4,
+            statusId: 'def_debuff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '星織りの巨像が重力の波動を放ち、防御を押し潰した！',
+          },
+          {
+            name: '星辰の加護',
+            type: 'buff',
+            weight: 40,
+            statusId: 'atk_buff',
+            statusValue: 25,
+            statusDuration: 2,
+            logMessage: '星織りの巨像のコアが眩く輝き、攻撃力が大きく上昇した！',
+          },
+        ],
+      },
+    ],
+  },
 };
 
