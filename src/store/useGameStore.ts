@@ -31,6 +31,10 @@ import {
   saveSlotData,
   setActiveSlotId,
 } from '../core/SaveSlotManager';
+import {
+  backfillProfileFromSlots,
+  recordUnlockedRealm,
+} from '../core/PlayerProfile';
 import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
 import { EventOption } from '../extensible/events/types';
 import {
@@ -58,6 +62,10 @@ export type GameStage =
 export function useGameStore() {
   const [activeSlotId, setActiveSlotIdState] = useState<SaveSlotId>(() => getActiveSlotId());
   const [saveData, setSaveData] = useState<SaveData>(() => loadSlotSave(getActiveSlotId()));
+  const [unlockedStartRealm, setUnlockedStartRealm] = useState<number>(
+    () => backfillProfileFromSlots().unlockedStartRealm
+  );
+  const [realmStartNoticeRealm, setRealmStartNoticeRealm] = useState<number | null>(null);
 
   const [stage, setStage] = useState<GameStage>('combat');
   const [battleSession, setBattleSession] = useState<BattleSessionState | null>(null);
@@ -476,6 +484,8 @@ function syncAchievements(save: SaveData): SaveData {
         archive: [leap.archiveRecord, ...baseSave.archive],
       };
 
+      const updatedProfile = recordUnlockedRealm(leap.nextRealm);
+      setUnlockedStartRealm(updatedProfile.unlockedStartRealm);
       setSaveData(nextSave);
       setStage('dimensional_leap');
       return;
@@ -683,6 +693,7 @@ function syncAchievements(save: SaveData): SaveData {
     const fresh = StorageValidator.createDefaultSave();
     setRewardCards(null);
     setPendingSkillToEquip(null);
+    setRealmStartNoticeRealm(null);
     setSystemBanner('🌅 新たな挑戦が始まった。');
     setSaveData(fresh);
     initCurrentEncounter(fresh);
@@ -752,6 +763,7 @@ function syncAchievements(save: SaveData): SaveData {
     }
     setRewardCards(null);
     setPendingSkillToEquip(null);
+    setRealmStartNoticeRealm(null);
     setSaveData(result.save);
     initCurrentEncounter(result.save);
     const noteSuffix =
@@ -769,26 +781,43 @@ function syncAchievements(save: SaveData): SaveData {
     setStorageError(null);
   };
 
+  const dismissRealmStartNotice = () => {
+    setRealmStartNoticeRealm(null);
+  };
+
   const switchSaveSlot = (slotId: SaveSlotId) => {
     const loaded = loadSlotSave(slotId);
     setActiveSlotId(slotId);
     setActiveSlotIdState(slotId);
     setRewardCards(null);
     setPendingSkillToEquip(null);
+    setRealmStartNoticeRealm(null);
     setSaveData(loaded);
     initCurrentEncounter(loaded);
     setSystemBanner(`📁 スロット ${slotId}（第${loaded.midFloor.currentFloor}層）に切り替えました。`);
   };
 
-  const createNewSaveInSlot = (slotId: SaveSlotId) => {
-    const fresh = StorageValidator.createDefaultSave();
+  const createNewSaveInSlot = (slotId: SaveSlotId, startRealm = 1) => {
+    const normalizedRealm =
+      typeof startRealm === 'number' && Number.isFinite(startRealm) && startRealm >= 1
+        ? Math.floor(startRealm)
+        : 1;
+    const fresh =
+      normalizedRealm >= 2
+        ? StorageValidator.createSaveForRealmStart(normalizedRealm)
+        : StorageValidator.createDefaultSave();
     setActiveSlotId(slotId);
     setActiveSlotIdState(slotId);
     setRewardCards(null);
     setPendingSkillToEquip(null);
+    setRealmStartNoticeRealm(normalizedRealm >= 2 ? normalizedRealm : null);
     setSaveData(fresh);
     initCurrentEncounter(fresh);
-    setSystemBanner(`✨ スロット ${slotId} に新しい冒険データを作成しました！`);
+    setSystemBanner(
+      normalizedRealm >= 2
+        ? `✨ スロット ${slotId} に第${fresh.midFloor.currentFloor}層から新しい冒険データを作成しました！`
+        : `✨ スロット ${slotId} に新しい冒険データを作成しました！`
+    );
   };
 
   const deleteSaveSlot = (slotId: SaveSlotId) => {
@@ -801,6 +830,7 @@ function syncAchievements(save: SaveData): SaveData {
         setActiveSlotIdState(fallbackSlot);
         setRewardCards(null);
         setPendingSkillToEquip(null);
+        setRealmStartNoticeRealm(null);
         setSaveData(loaded);
         initCurrentEncounter(loaded);
         setSystemBanner(`🗑️ スロット ${slotId} を削除し、スロット ${fallbackSlot} に切り替えました。`);
@@ -808,6 +838,7 @@ function syncAchievements(save: SaveData): SaveData {
         const fresh = StorageValidator.createDefaultSave();
         setRewardCards(null);
         setPendingSkillToEquip(null);
+        setRealmStartNoticeRealm(null);
         setSaveData(fresh);
         initCurrentEncounter(fresh);
         setSystemBanner(`🗑️ スロット ${slotId} を初期化しました。`);
@@ -826,6 +857,9 @@ function syncAchievements(save: SaveData): SaveData {
   return {
     activeSlotId,
     slotSummaries,
+    unlockedStartRealm,
+    realmStartNoticeRealm,
+    dismissRealmStartNotice,
     saveData,
     playerMaxHp,
     floorDef,

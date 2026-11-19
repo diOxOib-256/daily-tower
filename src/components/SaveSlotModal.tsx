@@ -1,4 +1,5 @@
 import { useId, useRef, useState } from 'react';
+import { getSelectableStartRealms } from '../core/PlayerProfile';
 import type { SaveSlotId, SaveSlotSummary } from '../core/SaveSlotManager';
 import { playSfx } from '../utils/sound';
 import { PixelSpriteCanvas } from './PixelSpriteCanvas';
@@ -6,8 +7,9 @@ import { PixelSpriteCanvas } from './PixelSpriteCanvas';
 interface SaveSlotModalProps {
   activeSlotId: SaveSlotId;
   slotSummaries: SaveSlotSummary[];
+  unlockedStartRealm: number;
   onSwitchSlot: (slotId: SaveSlotId) => void;
-  onCreateNewSlot: (slotId: SaveSlotId) => void;
+  onCreateNewSlot: (slotId: SaveSlotId, startRealm?: number) => void;
   onDeleteSlot: (slotId: SaveSlotId) => void;
   triggerLabel?: string;
   triggerClassName?: string;
@@ -16,6 +18,7 @@ interface SaveSlotModalProps {
 export function SaveSlotModal({
   activeSlotId,
   slotSummaries,
+  unlockedStartRealm,
   onSwitchSlot,
   onCreateNewSlot,
   onDeleteSlot,
@@ -25,14 +28,20 @@ export function SaveSlotModal({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   const [confirmDeleteId, setConfirmDeleteId] = useState<SaveSlotId | null>(null);
+  const [choosingRealmForSlotId, setChoosingRealmForSlotId] = useState<SaveSlotId | null>(null);
+
+  const selectableRealms = getSelectableStartRealms(unlockedStartRealm);
+  const canChooseStartRealm = unlockedStartRealm >= 2 && selectableRealms.length >= 2;
 
   const openModal = () => {
     playSfx('click');
     setConfirmDeleteId(null);
+    setChoosingRealmForSlotId(null);
     dialogRef.current?.showModal();
   };
 
   const closeModal = () => {
+    setChoosingRealmForSlotId(null);
     dialogRef.current?.close();
   };
 
@@ -77,6 +86,7 @@ export function SaveSlotModal({
         <div className="scrollable-log mt-4 max-h-[65vh] space-y-3 overflow-y-auto pr-1 text-left">
           {slotSummaries.map((slot) => {
             const isActive = slot.slotId === activeSlotId;
+            const isChoosingRealm = !slot.exists && choosingRealmForSlotId === slot.slotId;
             return (
               <div
                 key={slot.slotId}
@@ -136,17 +146,35 @@ export function SaveSlotModal({
 
                   <div className="flex flex-wrap items-center gap-2">
                     {!slot.exists ? (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          playSfx('unlock');
-                          onCreateNewSlot(slot.slotId);
-                          closeModal();
-                        }}
-                        className="rounded-xl bg-emerald-500 px-3.5 py-2 text-xs font-black text-slate-950 transition hover:bg-emerald-400 cursor-pointer"
-                      >
-                        ✨ 新規作成して始める
-                      </button>
+                      isChoosingRealm ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            playSfx('click');
+                            setChoosingRealmForSlotId(null);
+                          }}
+                          className="rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-bold text-slate-300 transition hover:bg-slate-700 cursor-pointer"
+                        >
+                          戻る
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (canChooseStartRealm) {
+                              playSfx('click');
+                              setChoosingRealmForSlotId(slot.slotId);
+                            } else {
+                              playSfx('unlock');
+                              onCreateNewSlot(slot.slotId, 1);
+                              closeModal();
+                            }
+                          }}
+                          className="rounded-xl bg-emerald-500 px-3.5 py-2 text-xs font-black text-slate-950 transition hover:bg-emerald-400 cursor-pointer"
+                        >
+                          ✨ 新規作成して始める
+                        </button>
+                      )
                     ) : isActive ? (
                       <span className="text-xs font-bold text-amber-300/80">
                         現在選択中
@@ -201,6 +229,32 @@ export function SaveSlotModal({
                     )}
                   </div>
                 </div>
+                {isChoosingRealm && (
+                  <div className="mt-3 rounded-xl border border-emerald-500/30 bg-slate-900/90 p-3">
+                    <p className="text-xs font-bold text-emerald-300">
+                      開始する領域を選んでください
+                    </p>
+                    <div className="mt-2 flex flex-col gap-2">
+                      {selectableRealms.map((meta) => (
+                        <button
+                          key={meta.realm}
+                          type="button"
+                          onClick={() => {
+                            playSfx('unlock');
+                            onCreateNewSlot(slot.slotId, meta.realm);
+                            closeModal();
+                          }}
+                          className="flex w-full items-center justify-between rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-left text-xs font-extrabold text-slate-100 transition hover:border-emerald-400/60 hover:bg-emerald-950/50 cursor-pointer"
+                        >
+                          <span>
+                            第{meta.startFloor}層から（第{meta.realm}レルム：{meta.name}）
+                          </span>
+                          <span className="text-emerald-300">開始 ➔</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}

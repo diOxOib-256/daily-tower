@@ -55,10 +55,50 @@ function rewardClaimLabel(
   }
 }
 
+function RealmSystemNotice({
+  realm,
+  onDismiss,
+  className = '',
+}: {
+  realm: number;
+  onDismiss?: () => void;
+  className?: string;
+}) {
+  if (realm !== 2) return null;
+  return (
+    <div
+      role="status"
+      className={`rounded-xl border border-amber-500/40 bg-amber-950/40 px-4 py-2.5 text-xs leading-relaxed text-amber-100 ${className}`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <p className="flex-1">
+          <strong className="block text-amber-300">🆕 新システム解放：すばやさ</strong>
+          第51層以降は、戦闘開始時にプレイヤーと最も速い敵の「すばやさ」を比べます。相手以上なら先制して敵は1ターン目に行動できず、下回ると不意打ちを受けます。武器・防具・レリック・スキルで高められます。
+        </p>
+        {onDismiss && (
+          <button
+            type="button"
+            onClick={() => {
+              playSfx('click');
+              onDismiss();
+            }}
+            className="shrink-0 rounded-lg border border-amber-400/40 bg-amber-900/50 px-2.5 py-1 text-[11px] font-bold text-amber-200 transition hover:bg-amber-800/60 cursor-pointer"
+          >
+            確認
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function App() {
   const {
     activeSlotId,
     slotSummaries,
+    unlockedStartRealm,
+    realmStartNoticeRealm,
+    dismissRealmStartNotice,
     saveData,
     playerMaxHp,
     floorDef,
@@ -518,9 +558,10 @@ export function App() {
             <SaveSlotModal
               activeSlotId={activeSlotId}
               slotSummaries={slotSummaries}
+              unlockedStartRealm={unlockedStartRealm}
               onSwitchSlot={switchSaveSlot}
-              onCreateNewSlot={(slotId) => {
-                createNewSaveInSlot(slotId);
+              onCreateNewSlot={(slotId, startRealm) => {
+                createNewSaveInSlot(slotId, startRealm);
                 setShowTitle(false);
               }}
               onDeleteSlot={deleteSaveSlot}
@@ -824,6 +865,14 @@ export function App() {
           </div>
         )}
         </div>
+
+        {/* Realm Start System Notice */}
+        {realmStartNoticeRealm !== null && (
+          <RealmSystemNotice
+            realm={realmStartNoticeRealm}
+            onDismiss={dismissRealmStartNotice}
+          />
+        )}
 
         {/* Notification Toast Bar */}
         {systemBanner && (
@@ -1372,10 +1421,7 @@ export function App() {
                   <strong className="text-emerald-300">🧪 秘薬 +1回分</strong> を獲得しました。
                 </p>
                 {saveData.midFloor.currentFloor === 51 && (
-                  <p className="mt-3 max-w-md rounded-xl border border-amber-500/40 bg-amber-950/40 px-4 py-2.5 text-xs leading-relaxed text-amber-100">
-                    <strong className="block text-amber-300">🆕 新システム解放：すばやさ</strong>
-                    第51層以降は、戦闘開始時にプレイヤーと最も速い敵の「すばやさ」を比べます。相手以上なら先制して敵は1ターン目に行動できず、下回ると不意打ちを受けます。武器・防具・レリック・スキルで高められます。
-                  </p>
+                  <RealmSystemNotice realm={2} className="mt-3 max-w-md" />
                 )}
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
                   <button
@@ -1418,6 +1464,7 @@ export function App() {
                   <SaveSlotModal
                     activeSlotId={activeSlotId}
                     slotSummaries={slotSummaries}
+                    unlockedStartRealm={unlockedStartRealm}
                     onSwitchSlot={switchSaveSlot}
                     onCreateNewSlot={createNewSaveInSlot}
                     onDeleteSlot={deleteSaveSlot}

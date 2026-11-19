@@ -106,6 +106,56 @@ export class StorageValidator {
   }
 
   /**
+   * Creates a fresh save starting at the beginning of the specified realm
+   * (1-indexed). For realm 1, returns the exact same shape as createDefaultSave.
+   * For realm >= 2, aligns baseline gear, HP, floor, and starting gold with
+   * a post-Dimensional-Leap start while keeping default starting skills,
+   * consumable, relic, gems, archive, and freshly generated worldSeed.
+   */
+  static createSaveForRealmStart(
+    startRealm: number,
+    rng: () => number = Math.random
+  ): SaveData {
+    const base = StorageValidator.createDefaultSave(rng);
+    const normalizedRealm =
+      typeof startRealm === 'number' && Number.isFinite(startRealm) && startRealm >= 1
+        ? Math.floor(startRealm)
+        : 1;
+
+    if (normalizedRealm <= 1) {
+      return base;
+    }
+
+    const startFloor = (normalizedRealm - 1) * 50 + 1;
+    const weapon = WEAPON_CATALOG.verdant_blade;
+    const armor = ARMOR_CATALOG.bark_cuirass;
+    const maxHp = BASE_PLAYER_MAX_HP + armor.maxHpBonus;
+
+    return {
+      ...base,
+      midFloor: {
+        ...base.midFloor,
+        currentFloor: startFloor,
+        currentEncounterIndex: 0,
+        playerCurrentHp: maxHp,
+        playerWound: 0,
+      },
+      inventory: {
+        ...base.inventory,
+        weapon,
+        armor,
+      },
+      gold: 2500 * (normalizedRealm - 1),
+      playStats: {
+        maxFloorReached: startFloor,
+        battlesWon: 0,
+        enemiesDefeated: 0,
+        leaps: 0,
+      },
+    };
+  }
+
+  /**
    * Validates and self-heals a raw JSON string or object from localStorage.
    * Preserves gold, cosmeticGems, and archive even if an item ID or floor state is corrupted.
    */
