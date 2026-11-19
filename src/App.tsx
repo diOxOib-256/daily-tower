@@ -137,6 +137,48 @@ export function App() {
   const [isMuted, setIsMuted] = useState<boolean>(() => isSfxMuted());
   const [mobileConsoleTab, setMobileConsoleTab] = useState<'commands' | 'log' | 'equipment'>('commands');
 
+  // Header gold gain indicator (+N for ~2.8s when gold increases)
+  const [goldGainDelta, setGoldGainDelta] = useState<number | null>(null);
+  const prevGoldRef = useRef<number>(saveData.gold);
+  const prevGoldContextRef = useRef<string>(`${activeSlotId}:${saveData.worldSeed}`);
+  const goldGainTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const contextKey = `${activeSlotId}:${saveData.worldSeed}`;
+    if (prevGoldContextRef.current !== contextKey) {
+      prevGoldContextRef.current = contextKey;
+      prevGoldRef.current = saveData.gold;
+      setGoldGainDelta(null);
+      if (goldGainTimerRef.current !== null) {
+        window.clearTimeout(goldGainTimerRef.current);
+        goldGainTimerRef.current = null;
+      }
+      return;
+    }
+
+    const diff = saveData.gold - prevGoldRef.current;
+    prevGoldRef.current = saveData.gold;
+
+    if (diff > 0) {
+      setGoldGainDelta((prev) => (prev ?? 0) + diff);
+      if (goldGainTimerRef.current !== null) {
+        window.clearTimeout(goldGainTimerRef.current);
+      }
+      goldGainTimerRef.current = window.setTimeout(() => {
+        setGoldGainDelta(null);
+        goldGainTimerRef.current = null;
+      }, 2800);
+    }
+  }, [saveData.gold, activeSlotId, saveData.worldSeed]);
+
+  useEffect(() => {
+    return () => {
+      if (goldGainTimerRef.current !== null) {
+        window.clearTimeout(goldGainTimerRef.current);
+      }
+    };
+  }, []);
+
   // Achievement unlock toast queue
   const isFirstMountRef = useRef<boolean>(true);
   const prevAchievementsRef = useRef<Record<string, true>>(saveData.achievements ?? {});
@@ -730,7 +772,120 @@ export function App() {
     </div>
   );
 
+  const equipmentRailContent = (
+    <div className="flex min-h-0 flex-1 flex-col">
+      <div className="flex shrink-0 items-center justify-between gap-2">
+        <span className="text-xs font-extrabold tracking-wider text-amber-300">
+          現在の装備
+        </span>
+        {saveData.midFloor.currentFloor >= 51 && (
+          <span className="text-[11px] font-bold text-cyan-300">
+            すばやさ {calcPlayerSpd(saveData.inventory)}
+          </span>
+        )}
+      </div>
+      <div className="scrollable-log mt-2 flex min-h-0 flex-1 flex-col gap-2 pr-1 xl:mt-2.5 xl:gap-2.5">
+        {/* Weapon Card */}
+        <div className="flex min-h-[64px] flex-1 items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/90 px-3 py-1.5 xl:px-3.5 xl:py-2.5">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-800/90 bg-slate-900/80 xl:h-14 xl:w-14">
+            <PixelSpriteCanvas
+              spriteId={saveData.inventory.weapon.spriteId}
+              scale={5}
+              className="h-9 w-9 xl:h-12 xl:w-12"
+            />
+          </div>
+          <div className="flex min-w-0 flex-1 flex-col justify-center">
+            <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
+              <span className="text-[10px] font-bold tracking-wider text-slate-400">武器</span>
+              <span className="text-[11px] font-bold text-amber-300">
+                ATK +{saveData.inventory.weapon.atk}
+                {saveData.inventory.weapon.spd ? (
+                  <span className="text-cyan-300"> / すばやさ +{saveData.inventory.weapon.spd}</span>
+                ) : null}
+              </span>
+            </div>
+            <p className="mt-0.5 truncate text-xs font-extrabold text-slate-100 xl:text-sm">
+              {saveData.inventory.weapon.name}
+            </p>
+            <p className="mt-0.5 line-clamp-1 text-[11px] leading-snug text-slate-400 xl:mt-1 xl:line-clamp-2">
+              {saveData.inventory.weapon.description}
+            </p>
+          </div>
+        </div>
+
+        {/* Armor Card */}
+        <div className="flex min-h-[64px] flex-1 items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/90 px-3 py-1.5 xl:px-3.5 xl:py-2.5">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-800/90 bg-slate-900/80 xl:h-14 xl:w-14">
+            <PixelSpriteCanvas
+              spriteId={saveData.inventory.armor.spriteId}
+              scale={5}
+              className="h-9 w-9 xl:h-12 xl:w-12"
+            />
+          </div>
+          <div className="flex min-w-0 flex-1 flex-col justify-center">
+            <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
+              <span className="text-[10px] font-bold tracking-wider text-slate-400">防具</span>
+              <span className="text-[11px] font-bold text-sky-300">
+                DEF +{saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}
+                {saveData.inventory.armor.atkDelta ? (
+                  <span className="text-red-300"> / ATK {saveData.inventory.armor.atkDelta}</span>
+                ) : null}
+                {saveData.inventory.armor.spd ? (
+                  <span className="text-cyan-300"> / すばやさ +{saveData.inventory.armor.spd}</span>
+                ) : null}
+              </span>
+            </div>
+            <p className="mt-0.5 truncate text-xs font-extrabold text-slate-100 xl:text-sm">
+              {saveData.inventory.armor.name}
+            </p>
+            <p className="mt-0.5 line-clamp-1 text-[11px] leading-snug text-slate-400 xl:mt-1 xl:line-clamp-2">
+              {saveData.inventory.armor.description}
+            </p>
+          </div>
+        </div>
+
+        {/* Relic Card */}
+        <div className="flex min-h-[64px] flex-1 items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/90 px-3 py-1.5 xl:px-3.5 xl:py-2.5">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-800/90 bg-slate-900/80 xl:h-14 xl:w-14">
+            {saveData.inventory.relic ? (
+              <PixelSpriteCanvas
+                spriteId={saveData.inventory.relic.spriteId}
+                scale={5}
+                className="h-9 w-9 xl:h-12 xl:w-12"
+              />
+            ) : (
+              <span className="text-base font-bold text-slate-600" aria-hidden="true">
+                —
+              </span>
+            )}
+          </div>
+          <div className="flex min-w-0 flex-1 flex-col justify-center">
+            <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
+              <span className="text-[10px] font-bold tracking-wider text-slate-400">レリック</span>
+              {saveData.inventory.relic?.spd ? (
+                <span className="text-[11px] font-bold text-cyan-300">
+                  すばやさ +{saveData.inventory.relic.spd}
+                </span>
+              ) : null}
+            </div>
+            <p className="mt-0.5 truncate text-xs font-extrabold text-slate-100 xl:text-sm">
+              {saveData.inventory.relic?.name ?? 'なし'}
+            </p>
+            <p
+              className={`mt-0.5 line-clamp-1 text-[11px] leading-snug xl:mt-1 xl:line-clamp-2 ${
+                saveData.inventory.relic ? 'font-semibold text-fuchsia-300' : 'text-slate-500'
+              }`}
+            >
+              {saveData.inventory.relic?.description ?? 'レリックを未装着です'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   const isCombat = stage === 'combat';
+  const isFittedStage = stage === 'combat' || stage === 'floor_reward';
   const hasBoss = shownSession?.enemyDefs.some((d) => d.isBoss) ?? false;
 
   return (
@@ -761,7 +916,18 @@ export function App() {
 
           <div className="flex w-full flex-wrap items-center justify-between gap-2 sm:w-auto sm:justify-end sm:gap-3">
             <div className="flex shrink-0 items-center gap-2.5 whitespace-nowrap rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-1 text-xs font-bold sm:gap-3 sm:px-3">
-              <span className="text-amber-300">💰 {saveData.gold} G</span>
+              <span className="inline-flex items-center gap-1.5 text-amber-300">
+                <span>💰 {saveData.gold} G</span>
+                {goldGainDelta !== null && (
+                  <span
+                    role="status"
+                    aria-live="polite"
+                    className="anim-fade-in rounded bg-emerald-500/20 px-1.5 py-0.5 text-[11px] font-extrabold text-emerald-300"
+                  >
+                    +{goldGainDelta}
+                  </span>
+                )}
+              </span>
               <span className="text-slate-700">|</span>
               <span className="text-fuchsia-300">💎 {saveData.cosmeticGems}</span>
             </div>
@@ -809,7 +975,7 @@ export function App() {
       {/* Main 2D RPG Screen */}
       <main
         className={`mx-auto flex w-full max-w-[1760px] flex-1 min-h-0 flex-col ${
-          isCombat
+          isFittedStage
             ? 'gap-2 overflow-hidden px-3 py-2 sm:gap-2.5 sm:px-5 sm:py-2.5'
             : 'gap-3 overflow-y-auto px-3 py-3 sm:px-5'
         }`}
@@ -850,55 +1016,142 @@ export function App() {
           </div>
         )}
 
-        {/* 1. 2D RPG Stage Viewport (Background + Facing Characters + Motions) */}
+        {/* 1. Stage + PC Equipment Rail (same height, side-by-side on lg+) */}
         <div
-          className={`relative ${
-            isCombat
+          className={`grid grid-cols-1 grid-rows-[minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-3 ${
+            isFittedStage
               ? 'min-h-[200px] flex-1'
               : 'h-[15rem] shrink-0 sm:h-[18rem] lg:h-[clamp(18rem,36dvh,24rem)]'
           }`}
         >
-          <BattleStage2D
-            realm={floorDef.realm}
-            floor={floorDef.floor}
-            floorTitle={floorDef.title}
-            encounters={floorDef.encounters}
-            currentEncounterIndex={saveData.midFloor.currentEncounterIndex}
-            playerSpriteId={saveData.activeSkinSpriteId}
-            playerPaletteId={saveData.activeSkinPaletteId}
-            playerTitle={saveData.activeTitle}
-            playerCurrentHp={currentHp}
-            playerWound={saveData.midFloor.playerWound}
-            playerMaxHp={playerMaxHp}
-            playerAtk={saveData.inventory.weapon.atk + (saveData.inventory.armor.atkDelta ?? 0)}
-            playerDef={saveData.inventory.armor.def}
-            playerSpd={
-              saveData.midFloor.currentFloor >= 51
-                ? calcPlayerSpd(saveData.inventory)
-                : undefined
-            }
-            battleSession={shownSession}
-            hitFx={hitFx}
-            actionPreview={actionPreview}
-            activeEvent={activeEvent}
-            motionState={motionState}
-            activeSkillName={activeSkillCallout}
-            selectedTargetIndex={targetIndex}
-            onSelectTarget={setTargetIndex}
-          />
-          {stage === 'defeat' && !isAnimating && (
-            <div className="defeat-pulse pointer-events-none absolute inset-0 z-30 flex items-center justify-center rounded-2xl bg-slate-950/60">
-              <div className="anim-rise-in px-4 text-center">
-                <p className="text-4xl" aria-hidden="true">💀</p>
-                <p className="mt-1 text-2xl font-black tracking-widest text-rose-400">
-                  力尽きた…
-                </p>
-                <p className="mt-1 text-xs font-bold text-slate-300">
-                  {currentRealmMeta.name}（第{saveData.midFloor.currentFloor}層）で倒れた
-                </p>
+          {/* 2D RPG Stage Viewport (Background + Facing Characters + Overlays) */}
+          <div className="relative min-h-0 h-full">
+            <BattleStage2D
+              realm={floorDef.realm}
+              floor={floorDef.floor}
+              floorTitle={floorDef.title}
+              encounters={floorDef.encounters}
+              currentEncounterIndex={saveData.midFloor.currentEncounterIndex}
+              playerSpriteId={saveData.activeSkinSpriteId}
+              playerPaletteId={saveData.activeSkinPaletteId}
+              playerTitle={saveData.activeTitle}
+              playerCurrentHp={currentHp}
+              playerWound={saveData.midFloor.playerWound}
+              playerMaxHp={playerMaxHp}
+              playerAtk={saveData.inventory.weapon.atk + (saveData.inventory.armor.atkDelta ?? 0)}
+              playerDef={saveData.inventory.armor.def}
+              playerSpd={
+                saveData.midFloor.currentFloor >= 51
+                  ? calcPlayerSpd(saveData.inventory)
+                  : undefined
+              }
+              battleSession={shownSession}
+              hitFx={hitFx}
+              actionPreview={actionPreview}
+              activeEvent={activeEvent}
+              motionState={motionState}
+              activeSkillName={activeSkillCallout}
+              selectedTargetIndex={targetIndex}
+              onSelectTarget={setTargetIndex}
+            />
+
+            {/* Floor Clear Reward Overlay */}
+            {stage === 'floor_reward' && rewardCards && (
+              <div
+                role="region"
+                aria-label={`第${saveData.midFloor.currentFloor}層 踏破報酬`}
+                className="anim-fade-in absolute inset-0 z-30 flex flex-col overflow-y-auto rounded-2xl bg-slate-950/80 p-3 backdrop-blur-xs sm:p-4"
+              >
+                <div className="mx-auto my-auto flex w-full max-w-3xl flex-col gap-2.5 sm:gap-3">
+                  <h2 className="text-center text-sm font-extrabold tracking-wide text-amber-300 sm:text-base">
+                    第{saveData.midFloor.currentFloor}層 踏破報酬（1つ選択）
+                  </h2>
+
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-2.5">
+                    {rewardCards.map((card) => (
+                      <div
+                        key={card.slot}
+                        className="flex flex-col justify-between rounded-xl border border-slate-600/80 bg-slate-900/95 p-2.5 shadow-xl sm:p-3"
+                      >
+                        <div>
+                          {card.item && (
+                            <div className="mb-1.5 flex justify-center">
+                              <PixelSpriteCanvas
+                                spriteId={card.item.spriteId}
+                                scale={5}
+                                className="h-10 w-10 sm:h-12 sm:w-12"
+                              />
+                            </div>
+                          )}
+                          <h3 className="text-center text-xs font-extrabold text-slate-100 sm:text-sm">
+                            {card.title}
+                          </h3>
+                          <p className="mt-0.5 text-center text-[11px] font-semibold text-indigo-300">
+                            {card.subtitle}
+                          </p>
+                          {card.item && (
+                            <p className="mt-1.5 text-[11px] leading-snug text-slate-300">
+                              {card.item.description}
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="mt-2.5 flex flex-col gap-1.5 border-t border-slate-800 pt-2">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              playSfx('reward');
+                              selectFloorRewardCard(card, 'equip');
+                            }}
+                            className="w-full rounded-lg bg-amber-500 py-1.5 text-xs font-extrabold text-slate-950 transition hover:bg-amber-400 cursor-pointer"
+                          >
+                            {rewardClaimLabel(
+                              card,
+                              saveData.inventory.skills.every((s) => s !== null)
+                            )}
+                          </button>
+                          {card.item && 'salvageGold' in card.item && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                playSfx('reward');
+                                selectFloorRewardCard(card, 'salvage');
+                              }}
+                              className="w-full rounded-lg border border-slate-700 bg-slate-950 py-1 text-[11px] font-semibold text-slate-300 transition hover:bg-slate-800 cursor-pointer"
+                            >
+                              分解 (+{SALVAGE_GOLD} G)
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+
+            {stage === 'defeat' && !isAnimating && (
+              <div className="defeat-pulse pointer-events-none absolute inset-0 z-30 flex items-center justify-center rounded-2xl bg-slate-950/60">
+                <div className="anim-rise-in px-4 text-center">
+                  <p className="text-4xl" aria-hidden="true">💀</p>
+                  <p className="mt-1 text-2xl font-black tracking-widest text-rose-400">
+                    力尽きた…
+                  </p>
+                  <p className="mt-1 text-xs font-bold text-slate-300">
+                    {currentRealmMeta.name}（第{saveData.midFloor.currentFloor}層）で倒れた
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* PC Equipment Rail (Weapon, Armor, Relic only — same height as Stage) */}
+          <aside
+            aria-label="現在の装備"
+            className="hidden min-h-0 h-full flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-2.5 shadow-xl lg:flex xl:py-3"
+          >
+            {equipmentRailContent}
+          </aside>
         </div>
 
         {/* 2. Consoles & Panels (grid-placed on PC, tabbed on mobile) */}
@@ -966,12 +1219,9 @@ export function App() {
             {stage === 'combat' && battleSession && (
               <>
                 {battleSession.status === 'victory' ? (
-                  <div className="anim-rise-in flex flex-1 flex-col items-center justify-center py-6 text-center">
+                  <div className="anim-rise-in flex flex-1 flex-col items-center justify-center py-4 text-center">
                     <p className="text-base font-extrabold text-emerald-300">
                       🏆 {battleSession.enemyDefs.map((d) => d.name).join(' と ')} を倒した！
-                    </p>
-                    <p className="mt-1 text-xs text-amber-300">
-                      +{battleSession.totalGoldReward} G を手に入れた
                     </p>
                     <button
                       type="button"
@@ -979,7 +1229,7 @@ export function App() {
                         playSfx('click');
                         proceedAfterCombatVictory();
                       }}
-                      className="mt-4 rounded-xl bg-emerald-500 px-8 py-2.5 text-sm font-extrabold text-slate-950 shadow-lg transition hover:bg-emerald-400 cursor-pointer"
+                      className="mt-3 rounded-xl bg-emerald-500 px-8 py-2.5 text-sm font-extrabold text-slate-950 shadow-lg transition hover:bg-emerald-400 cursor-pointer"
                     >
                       先へ進む ➔
                     </button>
@@ -1236,129 +1486,10 @@ export function App() {
 
             {/* FLOOR CLEAR REWARDS */}
             {stage === 'floor_reward' && rewardCards && (
-              <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col justify-between gap-3">
-                <div>
-                  <h2 className="text-base font-extrabold text-amber-300">
-                    第{saveData.midFloor.currentFloor}層 踏破報酬（1つ選択）
-                  </h2>
-                </div>
-
-                <div className="grid gap-2.5 sm:grid-cols-3">
-                  {rewardCards.map((card) => (
-                    <div
-                      key={card.slot}
-                      className="flex flex-col justify-between rounded-xl border border-slate-700 bg-slate-950 p-3"
-                    >
-                      <div>
-                        {card.item && (
-                          <div className="mb-2 flex justify-center">
-                            <PixelSpriteCanvas spriteId={card.item.spriteId} scale={6} className="h-12 w-12" />
-                          </div>
-                        )}
-                        <h3 className="text-center text-xs font-extrabold text-slate-100">
-                          {card.title}
-                        </h3>
-                        <p className="mt-0.5 text-[11px] font-semibold text-indigo-300">
-                          {card.subtitle}
-                        </p>
-                        {card.item && (
-                          <p className="mt-1.5 text-[11px] text-slate-400">
-                            {card.item.description}
-                          </p>
-                        )}
-                        {card.item && (
-                          <div className="mt-2 rounded-lg border border-slate-800 bg-slate-900/70 px-2 py-1.5 text-[11px] leading-relaxed text-slate-400">
-                            {card.item.kind === 'weapon' && (
-                              <p>
-                                現在の武器：
-                                <span className="font-bold text-slate-200">{saveData.inventory.weapon.name}</span>
-                                （ATK {saveData.inventory.weapon.atk}
-                                {saveData.inventory.weapon.spd ? ` / すばやさ +${saveData.inventory.weapon.spd}` : ''}）
-                              </p>
-                            )}
-                            {card.item.kind === 'armor' && (
-                              <p>
-                                現在の防具：
-                                <span className="font-bold text-slate-200">{saveData.inventory.armor.name}</span>
-                                （DEF {saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}
-                                {saveData.inventory.armor.spd ? ` / すばやさ +${saveData.inventory.armor.spd}` : ''}）
-                              </p>
-                            )}
-                            {card.item.kind === 'skill' && (
-                              <>
-                                <p className="font-bold text-slate-500">現在のスキル</p>
-                                {saveData.inventory.skills.map((s, i) => (
-                                  <div key={i}>
-                                    <p>
-                                      {i + 1}.{' '}
-                                      {s ? (
-                                        <>
-                                          <span className="font-bold text-slate-200">{s.name}</span>
-                                          {s.spd ? `（すばやさ +${s.spd}）` : ''}
-                                        </>
-                                      ) : (
-                                        '（空き）'
-                                      )}
-                                    </p>
-                                    {s && (
-                                      <p className="pl-3 text-[10px] text-slate-500">
-                                        {s.description}
-                                      </p>
-                                    )}
-                                  </div>
-                                ))}
-                              </>
-                            )}
-                            {card.item.kind === 'relic' && (
-                              <p>
-                                現在のレリック：
-                                <span className="font-bold text-slate-200">{saveData.inventory.relic?.name ?? 'なし'}</span>
-                                {saveData.inventory.relic?.spd ? `（すばやさ +${saveData.inventory.relic.spd}）` : ''}
-                              </p>
-                            )}
-                            {card.item.kind === 'consumable' && (
-                              <p>
-                                現在の消耗品：
-                                <span className="font-bold text-slate-200">{saveData.inventory.consumable?.name ?? 'なし'}</span>
-                                {saveData.inventory.consumable
-                                  ? `（残り${saveData.midFloor.consumableCharges}回）`
-                                  : ''}
-                              </p>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="mt-3 flex flex-col gap-1.5 border-t border-slate-800 pt-2.5">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            playSfx('reward');
-                            selectFloorRewardCard(card, 'equip');
-                          }}
-                          className="w-full rounded-lg bg-amber-500 py-1.5 text-xs font-extrabold text-slate-950 transition hover:bg-amber-400 cursor-pointer"
-                        >
-                          {rewardClaimLabel(
-                            card,
-                            saveData.inventory.skills.every((s) => s !== null)
-                          )}
-                        </button>
-                        {card.item && 'salvageGold' in card.item && (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              playSfx('reward');
-                              selectFloorRewardCard(card, 'salvage');
-                            }}
-                            className="w-full rounded-lg border border-slate-700 bg-slate-900 py-1 text-[11px] font-semibold text-slate-300 transition hover:bg-slate-800 cursor-pointer"
-                          >
-                            分解 (+{SALVAGE_GOLD} G)
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex items-center justify-center py-1 text-center">
+                <p className="text-xs font-bold text-amber-200">
+                  🎁 ステージ上のカードから踏破報酬を1つ選んでください
+                </p>
               </div>
             )}
 
@@ -1574,18 +1705,18 @@ export function App() {
             )}
           </div>
 
-        {/* Bottom strip: message log (wide) + equipment (narrow); tabbed on mobile */}
+        {/* 3. Bottom strip: full-width message log on PC; tabbed message/equipment on mobile */}
         <div
           className={`${
-            mobileConsoleTab === 'commands' ? 'hidden lg:grid' : 'flex flex-col lg:grid'
-          } min-h-0 gap-3 lg:grid-cols-[minmax(0,1fr)_380px] ${
-            isCombat
+            mobileConsoleTab === 'commands' ? 'hidden lg:flex' : 'flex'
+          } min-h-0 flex-col ${
+            isFittedStage
               ? `max-lg:h-[40dvh] max-lg:max-h-[360px] max-lg:shrink lg:min-h-[140px] lg:grow-0 lg:shrink ${
                   hasBoss
                     ? 'lg:basis-[22dvh] lg:max-h-[260px]'
                     : 'lg:basis-[26dvh] lg:max-h-[295px]'
                 }`
-              : 'max-lg:h-[320px] shrink-0 lg:h-[260px]'
+              : 'max-lg:h-[320px] shrink-0 lg:h-[240px]'
           }`}
         >
           {/* Message Log Panel */}
@@ -1625,10 +1756,10 @@ export function App() {
             </div>
           </div>
 
-          {/* Equipment Status Panel */}
+          {/* Mobile Equipment Status Panel (PC uses the right rail next to the stage) */}
           <div
             className={`${
-              mobileConsoleTab === 'equipment' ? 'flex' : 'hidden lg:flex'
+              mobileConsoleTab === 'equipment' ? 'flex lg:hidden' : 'hidden'
             } min-h-0 flex-1 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl`}
           >
             {equipmentStatusContent}

@@ -263,7 +263,7 @@ function syncAchievements(save: SaveData): SaveData {
         },
       };
       setSystemBanner(
-        `⚔️ ${item.name} を装備！（旧武器を分解して +${oldSalvage}G 獲得）`
+        `⚔️ ${item.name} を装備！（旧武器を分解）`
       );
       if (afterStage === 'next_floor') {
         advanceToNextFloorWithSave(nextSave);
@@ -287,7 +287,7 @@ function syncAchievements(save: SaveData): SaveData {
         },
       };
       setSystemBanner(
-        `🛡️ ${item.name} を装備！（旧防具を分解して +${oldSalvage}G 獲得）`
+        `🛡️ ${item.name} を装備！（旧防具を分解）`
       );
       if (afterStage === 'next_floor') {
         advanceToNextFloorWithSave(nextSave);
@@ -305,7 +305,7 @@ function syncAchievements(save: SaveData): SaveData {
         },
       };
       setSystemBanner(
-        `🔮 レリック「${item.name}」を装着！${oldSalvage > 0 ? `（旧レリック分解 +${oldSalvage}G）` : ''}`
+        `🔮 レリック「${item.name}」を装着！${oldSalvage > 0 ? '（旧レリックを分解）' : ''}`
       );
       if (afterStage === 'next_floor') {
         advanceToNextFloorWithSave(nextSave);
@@ -372,7 +372,7 @@ function syncAchievements(save: SaveData): SaveData {
         gold: saveData.gold + SALVAGE_GOLD,
       };
       setSystemBanner(
-        `💰 「${pendingSkillToEquip.name}」を魔石分解し +${SALVAGE_GOLD}G を獲得！`
+        `✨ 「${pendingSkillToEquip.name}」を魔石分解した`
       );
     } else {
       const oldSkill = saveData.inventory.skills[slotIndex];
@@ -392,7 +392,7 @@ function syncAchievements(save: SaveData): SaveData {
         },
       };
       setSystemBanner(
-        `✨ スロット${slotIndex + 1}に「${pendingSkillToEquip.name}」を上書き習得！（+${salvage}G）`
+        `✨ スロット${slotIndex + 1}に「${pendingSkillToEquip.name}」を上書き習得！`
       );
     }
 
@@ -547,7 +547,7 @@ function syncAchievements(save: SaveData): SaveData {
       },
     };
 
-    setSystemBanner(`🪙 バトル勝利報酬：+${bonusGold} Gold を獲得！`);
+    setSystemBanner(null);
     advanceToNextEncounterWithSave(updatedSave);
   };
 
@@ -615,7 +615,7 @@ function syncAchievements(save: SaveData): SaveData {
           gold: updatedSave.gold + SALVAGE_GOLD,
         };
         setSystemBanner(
-          `📜 ${res.logMessage}（「${granted.name}」は今の装備より弱いため分解して +${SALVAGE_GOLD}G）`
+          `📜 ${res.logMessage}（「${granted.name}」は今の装備より弱いため分解）`
         );
         advanceToNextEncounterWithSave(salvagedSave);
       } else {
@@ -634,7 +634,7 @@ function syncAchievements(save: SaveData): SaveData {
         ...saveData,
         gold: saveData.gold + amount,
       };
-      setSystemBanner(`💰 黄金の欠片を換金して +${amount}G を獲得！`);
+      setSystemBanner(null);
       advanceToNextFloorWithSave(nextSave);
       return;
     }
@@ -663,7 +663,7 @@ function syncAchievements(save: SaveData): SaveData {
           ...saveData,
           gold: saveData.gold + salvageGold,
         };
-        setSystemBanner(`💰 「${card.item.name}」を分解して +${salvageGold}G を獲得！`);
+        setSystemBanner(`✨ 「${card.item.name}」を分解した`);
         advanceToNextFloorWithSave(nextSave);
       } else {
         equipCatalogItem(card.item, 'next_floor');

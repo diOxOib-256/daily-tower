@@ -624,9 +624,6 @@ export function BattleStage2D({
         <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
           <div className="anim-victory-banner rounded-2xl border border-emerald-400/50 bg-slate-950/85 px-6 py-3 text-center shadow-2xl backdrop-blur">
             <p className="text-xl font-black tracking-widest text-emerald-300">🏆 VICTORY</p>
-            <p className="mt-0.5 text-[11px] font-bold text-amber-300">
-              +{battleSession.totalGoldReward} G を手に入れた
-            </p>
           </div>
         </div>
       )}
