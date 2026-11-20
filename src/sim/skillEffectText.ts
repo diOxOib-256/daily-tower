@@ -146,6 +146,7 @@ export const RELIC_EFFECT_SPECS: Record<string, RelicEffectSpec> = {
   root_medallion: { triggerText: '戦闘開始時', kind: 'status', target: 'self', statusId: 'regen', value: 5, duration: 3 },
   worldtree_dewstone: { triggerText: '毎ターン開始時', kind: 'status', target: 'self', statusId: 'regen', value: 3, duration: 2 },
   leyline_astrolabe: { triggerText: '2ターン目の開始時に一度だけ', kind: 'status', target: 'self', statusId: 'flat_atk_up', value: 12, duration: 5 },
+  eclipse_astrolabe: { triggerText: 'スキルを使用するたび', kind: 'status', target: 'self', statusId: 'shield', value: 5, duration: 2 },
 };
 
 export function formatRelicEffect(effectId: string): string {

@@ -66,6 +66,9 @@ export const ITEM_DEBUT_OVERRIDES: Record<string, number> = {
   worldtree_ambrosia: 50,
   astral_storm: 57,
   astral_ambrosia: 60,
+  solar_lance: 61,
+  astral_mending: 61,
+  eclipse_astrolabe: 61,
 };
 
 let debutCache: Map<string, number> | null = null;

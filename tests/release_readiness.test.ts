@@ -87,7 +87,7 @@ describe('realmIndex update visibility helpers', () => {
     expect(summary.length).toBe(2);
     expect(summary[0].authoredCount).toBe(50);
     expect(summary[0].totalCount).toBe(50);
-    expect(summary[1].authoredCount).toBe(10);
+    expect(summary[1].authoredCount).toBe(11);
     expect(summary[1].totalCount).toBe(50);
   });
 });

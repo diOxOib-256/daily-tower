@@ -510,6 +510,19 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       };
     },
   },
+  eclipse_astrolabe: {
+    id: 'eclipse_astrolabe',
+    name: '星蝕の懐中時計',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'shield',
+        value: 5,
+        duration: 2,
+      },
+      logMessage: '[レリック:星蝕の懐中時計] 懐中時計の星座盤が輝き、障壁(5/2T)を展開した！',
+    }),
+  },
 };
 
 

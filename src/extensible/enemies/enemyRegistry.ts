@@ -9781,5 +9781,125 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  eclipse_scholar: {
+    id: 'eclipse_scholar',
+    name: '星蝕の学者',
+    spriteId: 'eclipse_scholar',
+    palette: 'eclipse_scholar',
+    hp: 78,
+    atk: 16,
+    def: 5,
+    spd: 10,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '星蝕の魔弾',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '星蝕の学者が虚空から星光を収束させた魔弾を放った！',
+          },
+          {
+            name: '禁書の知識',
+            type: 'buff',
+            weight: 40,
+            statusId: 'atk_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '星蝕の学者が禁書を紐解き、魔力を高めた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: '蝕の呪縛',
+            type: 'debuff',
+            weight: 65,
+            damageMultiplier: 1.4,
+            statusId: 'def_debuff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '星蝕の学者が影の呪文を唱え、防御を削ぎ落とした！',
+          },
+          {
+            name: '虚空の障壁',
+            type: 'buff',
+            weight: 35,
+            statusId: 'shield',
+            statusValue: 15,
+            statusDuration: 2,
+            logMessage: '星蝕の学者が天球儀を回転させ、光の障壁を展開した！',
+          },
+        ],
+      },
+    ],
+  },
+
+  obsidian_owl: {
+    id: 'obsidian_owl',
+    name: '黒曜の梟',
+    spriteId: 'obsidian_owl',
+    palette: 'obsidian_owl',
+    hp: 74,
+    atk: 15,
+    def: 6,
+    spd: 8,
+    weakness: 'fire',
+    resistance: 'physical',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '黒曜の急襲',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '黒曜の梟が鋭利な石の翼で切り裂いた！',
+          },
+          {
+            name: '石羽の防護',
+            type: 'buff',
+            weight: 40,
+            statusId: 'def_buff',
+            statusValue: 25,
+            statusDuration: 2,
+            logMessage: '黒曜の梟が翼を畳んで身を固め、防御力を高めた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: '共鳴の羽音',
+            type: 'debuff',
+            weight: 65,
+            damageMultiplier: 1.35,
+            statusId: 'atk_debuff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '黒曜の梟が耳を劈く羽音を響かせ、攻撃の勢いを鈍らせた！',
+          },
+          {
+            name: '魔晶の輝き',
+            type: 'buff',
+            weight: 35,
+            statusId: 'atk_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '黒曜の梟の瞳が紫に輝き、攻撃力が上昇した！',
+          },
+        ],
+      },
+    ],
+  },
 };
 

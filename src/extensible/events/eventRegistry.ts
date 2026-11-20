@@ -2012,4 +2012,35 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+  astral_archive: {
+    id: 'astral_archive',
+    title: '星図の書庫棚',
+    category: 'lore',
+    description:
+      '廊下の壁面に、鍵の掛かっていない古びた星図の書庫棚が並んでいる。棚の奥には古い金貨袋と、魔力を帯びた羊皮紙の巻物が収められている。',
+    speakerSpriteId: 'tome',
+    palette: 'arcane_tome',
+    options: [
+      {
+        id: 'collect_forgotten_coins',
+        label: '散逸した金貨を回収する',
+        description: '棚の隅に忘れられた古金貨を安全に持ち帰る。',
+        outcome: {
+          grantGold: 28,
+          logMessage: '書庫棚の隅に忘れられていた古金貨を回収し、28Gを手に入れた！',
+        },
+      },
+      {
+        id: 'decipher_forbidden_manuscript',
+        label: '禁呪の写本を解読する',
+        description: '魔力の逆流で体力を消耗しながらも、眠っていた戦闘技法の記録を習得する。',
+        cost: { hpPercent: 15 },
+        outcome: {
+          grantItemType: 'skill',
+          grantGold: 12,
+          logMessage: '禁呪の写本を解読し、新たなスキルと12Gを得た！',
+        },
+      },
+    ],
+  },
 };

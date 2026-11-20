@@ -507,6 +507,16 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     salvageGold: 32,
     description: '原初の霊木から削り出された聖なる長槍。濃密な自然魔力を纏い敵を貫く。',
   },
+  solar_lance: {
+    id: 'solar_lance',
+    name: '星陽の魔槍',
+    kind: 'weapon',
+    spriteId: 'item_solar_lance',
+    atk: 20,
+    element: 'fire',
+    salvageGold: 18,
+    description: '太陽の如き灼熱の星光を穂先に宿した魔導槍。上層書庫の強敵を貫くために鍛えられた一振り。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -2850,6 +2860,22 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     salvageGold: 8,
     description: '虚空から無数の星屑を降り注がせ、敵全体に0.85倍ダメージを与え防御力を30%低下(3T)させる範囲攻撃（1戦2回）。',
   },
+  astral_mending: {
+    id: 'astral_mending',
+    name: '星辰の癒やし',
+    kind: 'skill',
+    spriteId: 'item_astral_mending',
+    category: 'heal',
+    maxChargesPerBattle: 2,
+    applyStatus: {
+      target: 'self',
+      statusId: 'regen',
+      value: 10,
+      duration: 3,
+    },
+    salvageGold: 8,
+    description: '頭上から穏やかな星光を降り注がせ、数ターンにわたって傷を徐々に癒やす継続回復術。3ターンの間、ターン開始時に最大HPの10%ずつ回復（合計30%）（1戦2回）。',
+  },
 };
 
 export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
@@ -3676,6 +3702,15 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     effectId: 'leyline_astrolabe',
     salvageGold: 32,
     description: '樹海の魔力脈を指し示す黄金の天球儀。戦闘中、2ターン目の開始時に攻撃力を底上げする。2ターン目の開始時に一度だけ、5ターンの間、攻撃力+12を得る。',
+  },
+  eclipse_astrolabe: {
+    id: 'eclipse_astrolabe',
+    name: '星蝕の懐中時計',
+    kind: 'relic',
+    spriteId: 'item_eclipse_astrolabe',
+    effectId: 'eclipse_astrolabe',
+    salvageGold: 18,
+    description: '戦闘中にスキルを発動するたび、わずかな魔力の障壁を展開する精密な懐中時計。スキルを使用するたび、5ダメージを吸収する障壁(2T)を得る。',
   },
 };
 

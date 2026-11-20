@@ -208,4 +208,17 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'starweaver_colossus', enemyStatScale: 1.25 },
     ],
   },
+  {
+    floor: 61,
+    realm: 2,
+    title: '第61層：星蝕の上層書廊',
+    subtitle: '60Fの聖堂を抜けた先に広がる上層区画。星影を帯びた禁書の番人たちが侵入者の歩みを阻む階層',
+    encounters: [
+      { type: 'battle', enemyId: 'eclipse_scholar', enemyStatScale: 0.80 },
+      { type: 'battle', enemyIds: ['eclipse_scholar', 'eclipse_scholar'], enemyStatScale: 0.80 },
+      { type: 'event', eventId: 'astral_archive' },
+      { type: 'battle', enemyId: 'obsidian_owl', enemyStatScale: 0.80 },
+      { type: 'battle', enemyIds: ['obsidian_owl', 'obsidian_owl'], enemyStatScale: 0.80 },
+    ],
+  },
 ];

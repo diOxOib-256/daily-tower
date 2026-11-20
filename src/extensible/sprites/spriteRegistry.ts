@@ -2077,6 +2077,31 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '星辰の霊薬',
     colors: ['transparent', '#1a1b2e', '#f4a261', '#fefae0'],
   },
+  eclipse_scholar: {
+    id: 'eclipse_scholar',
+    name: '星蝕の学者',
+    colors: ['transparent', '#111324', '#2e3b6e', '#f7d060'],
+  },
+  obsidian_owl: {
+    id: 'obsidian_owl',
+    name: '黒曜の梟',
+    colors: ['transparent', '#121016', '#3d3a4b', '#c77dff'],
+  },
+  item_solar_lance: {
+    id: 'item_solar_lance',
+    name: '星陽の魔槍',
+    colors: ['transparent', '#1b1626', '#e76f51', '#ffd166'],
+  },
+  item_astral_mending: {
+    id: 'item_astral_mending',
+    name: '星辰の癒やし',
+    colors: ['transparent', '#132a2e', '#52b788', '#fefae0'],
+  },
+  item_eclipse_astrolabe: {
+    id: 'item_eclipse_astrolabe',
+    name: '星蝕の懐中時計',
+    colors: ['transparent', '#1a1f2e', '#94a3b8', '#ffd166'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2496,6 +2521,11 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   void_lantern: { id: 'void_lantern', matrixId: 'void_lantern', defaultPalette: 'void_lantern' },
   starweaver_colossus: { id: 'starweaver_colossus', matrixId: 'starweaver_colossus', defaultPalette: 'starweaver_colossus' },
   item_astral_ambrosia: { id: 'item_astral_ambrosia', matrixId: 'item_astral_ambrosia', defaultPalette: 'item_astral_ambrosia' },
+  eclipse_scholar: { id: 'eclipse_scholar', matrixId: 'eclipse_scholar', defaultPalette: 'eclipse_scholar' },
+  obsidian_owl: { id: 'obsidian_owl', matrixId: 'obsidian_owl', defaultPalette: 'obsidian_owl' },
+  item_solar_lance: { id: 'item_solar_lance', matrixId: 'item_solar_lance', defaultPalette: 'item_solar_lance' },
+  item_astral_mending: { id: 'item_astral_mending', matrixId: 'item_astral_mending', defaultPalette: 'item_astral_mending' },
+  item_eclipse_astrolabe: { id: 'item_eclipse_astrolabe', matrixId: 'item_eclipse_astrolabe', defaultPalette: 'item_eclipse_astrolabe' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
