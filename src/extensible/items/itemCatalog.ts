@@ -894,14 +894,13 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
   },
   celestial_plate: {
     id: 'celestial_plate',
-    name: '星晶の胸当て',
+    name: '星天の胸甲',
     kind: 'armor',
     spriteId: 'item_celestial_plate',
     def: 8,
-    maxHpBonus: 36,
-    spd: -1,
+    maxHpBonus: 30,
     salvageGold: 18,
-    description: '星晶を鍛え込んだ重厚な胸当て。DEF +8、最大HP +36、SPD -1。',
+    description: '星鉄と濃紺の魔導布で仕立てられた上層用の重装胸甲。星明かりの法衣を大きく上回る堅牢さと耐久力を誇る。',
   },
 };
 
@@ -2889,10 +2888,10 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
   },
   eclipse_nova: {
     id: 'eclipse_nova',
-    name: '蝕星の新星',
+    name: '星蝕の衝撃波',
     kind: 'skill',
     spriteId: 'item_eclipse_nova',
-    category: 'attack',
+    category: 'debuff',
     targetScope: 'all_enemies',
     maxChargesPerBattle: 2,
     damageMultiplier: 0.85,
@@ -2902,8 +2901,8 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 9,
-    description: '蝕星の閃光を解き放ち、敵全体に0.85倍ダメージを与え、3ターンの間ATKを25%低下させる。（戦闘中2回）',
+    salvageGold: 10,
+    description: '星蝕の波動を全方位に解き放ち、敵全体を薙ぎ払いつつ攻撃力を大きく削ぐ範囲弱体スキル。敵全体に0.85倍ダメージ＋敵全体の攻撃力を25%低下(3T)（1戦2回）。',
   },
 };
 
@@ -3743,12 +3742,12 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
   },
   chronos_compass: {
     id: 'chronos_compass',
-    name: 'クロノスの羅針盤',
+    name: '刻限の羅針盤',
     kind: 'relic',
     spriteId: 'item_chronos_compass',
     effectId: 'chronos_compass',
     salvageGold: 18,
-    description: '時の流れを刻み、偶数の節目に力を引き出す羅針盤。偶数ターン開始時、1ターンの間、攻撃力+10%を得る。',
+    description: '2ターンごとに針が輝き、持ち主の攻撃のリズムを整える精密な魔導羅針盤。偶数ターンの開始時、1ターンの間、攻撃力+10%を得る。',
   },
 };
 

@@ -2045,29 +2045,29 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
   },
   stellar_forge: {
     id: 'stellar_forge',
-    title: '星晶の鍛冶炉',
+    title: '星屑の鍛冶台',
     category: 'forge',
     description:
-      '星晶の欠片が静かに脈動する古代の鍛冶場。炉床には今なお星辰の熱が宿っている。',
+      '回廊の片隅に、蒼い星火が静かに灯り続ける石造りの鍛冶台が残されている。金床の上には打ち捨てられた星鉄の破片が並んでいる。',
     options: [
       {
-        id: 'collect_forge_gold',
-        label: '炉床の傍らの金貨を回収する（+26 G）',
-        description: '炉の隅に残された古金貨を安全に持ち帰る。',
+        id: 'salvage_star_iron_scraps',
+        label: '星鉄の破片を研ぎ出して換金する',
+        description: '余分な危険を冒さず、上質な星鉄の破片を回収して資金に換える。',
         outcome: {
           grantGold: 26,
-          logMessage: '炉床の隅に積まれていた古金貨を回収し、26 G を手に入れた！',
+          logMessage: '星鉄の破片を研ぎ出して換金し、26Gを手に入れた！',
         },
       },
       {
-        id: 'forge_celestial_armor',
-        label: '星晶の熱で防具を鍛え直す（HP 15%消費 ➔ 防具獲得 + 10 G）',
-        description: '最大HPの15%を代償に、星辰の熱で新たな防具と10Gを得る。',
+        id: 'reforge_armor_in_stellar_heat',
+        label: '炉の余熱で防具を鍛え直す',
+        description: '熱気による消耗を代償に、星鉄を打ち直して新たな防具を精製する。',
         cost: { hpPercent: 15 },
         outcome: {
           grantItemType: 'armor',
           grantGold: 10,
-          logMessage: '星晶の炉火で新たな防具を鍛え上げ、10 G を手に入れた！',
+          logMessage: '炉の余熱で防具を鍛え直し、新たな防具と10Gを得た！',
         },
       },
     ],

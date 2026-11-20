@@ -525,7 +525,7 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
   },
   chronos_compass: {
     id: 'chronos_compass',
-    name: 'クロノスの羅針盤',
+    name: '刻限の羅針盤',
     trigger: 'turn_start',
     handler: (ctx) => {
       if (ctx.turnNumber % 2 !== 0) {
@@ -537,7 +537,7 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
           value: 10,
           duration: 1,
         },
-        logMessage: '[レリック:クロノスの羅針盤] 羅針盤の針が時を刻み、攻撃力が10%上昇(1T)した！',
+        logMessage: '[レリック:刻限の羅針盤] 羅針盤の針が輝き、攻撃のリズムが整った！攻撃力が10%上昇(1T)！',
       };
     },
   },

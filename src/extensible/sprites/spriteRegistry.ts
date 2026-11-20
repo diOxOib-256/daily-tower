@@ -2159,17 +2159,17 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
   },
   item_celestial_plate: {
     id: 'item_celestial_plate',
-    name: '星晶の胸当て',
+    name: '星天の胸甲',
     colors: ['transparent', '#111625', '#8d99ae', '#ffd166'],
   },
   item_eclipse_nova: {
     id: 'item_eclipse_nova',
-    name: '蝕星の新星',
+    name: '星蝕の衝撃波',
     colors: ['transparent', '#191124', '#7b2cbf', '#e0fbfc'],
   },
   item_chronos_compass: {
     id: 'item_chronos_compass',
-    name: 'クロノスの羅針盤',
+    name: '刻限の羅針盤',
     colors: ['transparent', '#241c14', '#c9a227', '#90e0ef'],
   },
 };
