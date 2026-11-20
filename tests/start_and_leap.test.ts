@@ -95,4 +95,42 @@ describe('executeDimensionalLeap skill carry-over (2026-11-14 design)', () => {
     const leap = leapWith([null, null, null]);
     expect(leap.normalizedSkills).toEqual([null, null, null]);
   });
+
+  it('carries the player-chosen skill when carriedSkillId is given (2026-11-20)', () => {
+    const leap = AreaEngine.executeDimensionalLeap({
+      clearedFloor: 50,
+      weapon: WEAPON_CATALOG.rusty_shortsword,
+      armor: ARMOR_CATALOG.leather_tunic,
+      skills: [
+        SKILL_CATALOG.power_slash,
+        SKILL_CATALOG.aegis_stance,
+        SKILL_CATALOG.purifying_light,
+      ],
+      relicName: 'なし',
+      gold: 0,
+      carriedSkillId: 'purifying_light',
+    });
+    expect(leap.normalizedSkills).toEqual([
+      SKILL_CATALOG.purifying_light,
+      null,
+      null,
+    ]);
+  });
+
+  it('falls back to the first non-null skill for an unknown carriedSkillId', () => {
+    const leap = AreaEngine.executeDimensionalLeap({
+      clearedFloor: 50,
+      weapon: WEAPON_CATALOG.rusty_shortsword,
+      armor: ARMOR_CATALOG.leather_tunic,
+      skills: [SKILL_CATALOG.power_slash, SKILL_CATALOG.aegis_stance, null],
+      relicName: 'なし',
+      gold: 0,
+      carriedSkillId: 'no_such_skill',
+    });
+    expect(leap.normalizedSkills).toEqual([
+      SKILL_CATALOG.power_slash,
+      null,
+      null,
+    ]);
+  });
 });

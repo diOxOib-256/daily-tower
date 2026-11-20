@@ -110,6 +110,8 @@ export function App() {
     battleSession,
     rewardCards,
     pendingSkillToEquip,
+    pendingLeapSkills,
+    chooseLeapSkill,
     systemBanner,
     storageError,
     dismissStorageError,
@@ -1599,6 +1601,49 @@ export function App() {
                   >
                     習得せず分解する (+{SALVAGE_GOLD} G)
                   </button>
+                </div>
+              </div>
+            )}
+
+            {/* LEAP SKILL CHOICE */}
+            {stage === 'leap_skill_choice' && (
+              <div className="anim-rise-in flex flex-1 flex-col items-center justify-center py-4">
+                <h2 className="text-center text-lg font-extrabold text-fuchsia-300">
+                  🌀 次元跳躍：持ち越すスキルを選んでください
+                </h2>
+                <p className="mt-2 max-w-md text-center text-xs leading-relaxed text-slate-300">
+                  新しい領域へ持ち越せるスキルは
+                  <strong className="text-slate-100">1つだけ</strong>
+                  です。選ばなかったスキルは失われます。武器・防具は新しい領域の基準装備に置き換わり、レリック・所持金・ジェムはそのまま引き継がれます。
+                </p>
+                <div className="mt-4 grid w-full max-w-lg gap-2 sm:grid-cols-3">
+                  {pendingLeapSkills.map((skill) => (
+                    <button
+                      key={skill.id}
+                      type="button"
+                      onClick={() => {
+                        playSfx('click');
+                        chooseLeapSkill(skill.id);
+                      }}
+                      className="rounded-xl border border-slate-700 bg-slate-950 p-3 text-left transition hover:border-fuchsia-400 cursor-pointer"
+                    >
+                      <div className="flex items-start gap-2">
+                        <PixelSpriteCanvas
+                          spriteId={skill.spriteId}
+                          scale={3}
+                          className="mt-0.5 h-6 w-6 shrink-0"
+                        />
+                        <div className="min-w-0">
+                          <p className="font-bold text-xs text-slate-100">
+                            {skill.name}
+                          </p>
+                          <p className="mt-1 text-[11px] text-slate-400">
+                            {skill.description}
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
                 </div>
               </div>
             )}

@@ -104,6 +104,11 @@ export class AreaEngine {
     skills: [SkillItem | null, SkillItem | null, SkillItem | null];
     relicName: string;
     gold: number;
+    /** Skill the player chose to carry into the new realm (2026-11-20:
+     * the leap asks the player when they hold two or more skills). When
+     * omitted, or not among the held skills, the first non-null skill
+     * in slot order is carried, as before. */
+    carriedSkillId?: string | null;
   }): {
     nextFloor: number;
     nextRealm: number;
@@ -139,13 +144,18 @@ export class AreaEngine {
     const normalizedArmor =
       nextRealm >= 2 ? ARMOR_CATALOG.bark_cuirass : ARMOR_CATALOG.leather_tunic;
     // Carry over exactly one skill into the new realm (design:
-    // 2026-11-14): the first non-null skill in slot order, placed in
-    // slot 0; the other two slots start empty so the new realm's skill
-    // cards rebuild the kit. Previously this granted power_slash plus
-    // the slot-0 skill, which duplicated power_slash whenever it was
-    // already in slot 0.
+    // 2026-11-14), placed in slot 0; the other two slots start empty
+    // so the new realm's skill cards rebuild the kit. Since 2026-11-20
+    // the player chooses the skill when they hold two or more (the
+    // store passes carriedSkillId); without a choice the first
+    // non-null skill in slot order is carried. Previously this granted
+    // power_slash plus the slot-0 skill, which duplicated power_slash
+    // whenever it was already in slot 0.
+    const chosen = params.carriedSkillId
+      ? params.skills.find((s) => s?.id === params.carriedSkillId) ?? null
+      : null;
     const carriedSkill =
-      params.skills[0] ?? params.skills[1] ?? params.skills[2] ?? null;
+      chosen ?? params.skills[0] ?? params.skills[1] ?? params.skills[2] ?? null;
     const normalizedSkills: [SkillItem | null, SkillItem | null, SkillItem | null] = [
       carriedSkill,
       null,

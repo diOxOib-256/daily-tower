@@ -16,6 +16,7 @@ import {
 } from '../extensible/items/itemCatalog';
 import { REALM_METADATA } from '../extensible/realms/realmIndex';
 import { PlaytestBot } from './playtestBot';
+import { measuredItemPower } from './itemPower';
 
 /** Deterministic PRNG so simulation runs are reproducible per seed. */
 export function mulberry32(seed: number): () => number {
@@ -360,6 +361,19 @@ export function simulateRunFromSave(
 
     // Dimensional leap after Apex floors
     if (floor % 50 === 0) {
+      // The player chooses the carried skill at the leap (2026-11-20);
+      // the calibrated bot picks its strongest by the measured
+      // item-power table.
+      let carriedSkillId: string | undefined;
+      let bestPower = -Infinity;
+      for (const s of save.inventory.skills) {
+        if (!s) continue;
+        const p = measuredItemPower(s.id, floor) ?? 0;
+        if (p > bestPower) {
+          bestPower = p;
+          carriedSkillId = s.id;
+        }
+      }
       const leap = AreaEngine.executeDimensionalLeap({
         clearedFloor: floor,
         weapon: save.inventory.weapon,
@@ -367,6 +381,7 @@ export function simulateRunFromSave(
         skills: save.inventory.skills,
         relicName: save.inventory.relic?.name ?? 'なし',
         gold: save.gold,
+        carriedSkillId,
       });
       save.inventory.weapon = leap.normalizedWeapon;
       save.inventory.armor = leap.normalizedArmor;

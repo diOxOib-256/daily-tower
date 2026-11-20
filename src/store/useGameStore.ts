@@ -55,6 +55,7 @@ export type GameStage =
   | 'event'
   | 'floor_reward'
   | 'skill_replace_prompt'
+  | 'leap_skill_choice'
   | 'dimensional_leap'
   | 'frontier_reached'
   | 'defeat';
@@ -71,6 +72,7 @@ export function useGameStore() {
   const [battleSession, setBattleSession] = useState<BattleSessionState | null>(null);
   const [rewardCards, setRewardCards] = useState<[RewardCard, RewardCard, RewardCard] | null>(null);
   const [pendingSkillToEquip, setPendingSkillToEquip] = useState<SkillItem | null>(null);
+  const [pendingLeapSave, setPendingLeapSave] = useState<SaveData | null>(null);
   const [stageAfterSkillPrompt, setStageAfterSkillPrompt] = useState<'next_encounter' | 'next_floor'>('next_floor');
   const [systemBanner, setSystemBanner] = useState<string | null>(null);
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -447,47 +449,70 @@ function syncAchievements(save: SaveData): SaveData {
     }
   };
 
+  const completeLeap = (baseSave: SaveData, carriedSkillId?: string) => {
+    const clearedFloor = baseSave.midFloor.currentFloor;
+    const leap = AreaEngine.executeDimensionalLeap({
+      clearedFloor,
+      weapon: baseSave.inventory.weapon,
+      armor: baseSave.inventory.armor,
+      skills: baseSave.inventory.skills,
+      relicName: baseSave.inventory.relic?.name ?? 'なし',
+      gold: baseSave.gold,
+      carriedSkillId,
+    });
+
+    const newMaxHp = BASE_PLAYER_MAX_HP + leap.normalizedArmor.maxHpBonus;
+    const maxCons = baseSave.inventory.consumable?.maxCharges ?? 2;
+
+    const nextSave: SaveData = {
+      ...baseSave,
+      midFloor: {
+        currentFloor: leap.nextFloor,
+        currentEncounterIndex: 0,
+        playerCurrentHp: newMaxHp,
+        playerWound: 0,
+        consumableCharges: Math.min(maxCons, baseSave.midFloor.consumableCharges + 1),
+      },
+      inventory: {
+        ...baseSave.inventory,
+        weapon: leap.normalizedWeapon,
+        armor: leap.normalizedArmor,
+        skills: leap.normalizedSkills,
+      },
+      cosmeticGems: baseSave.cosmeticGems + leap.gemsAwarded,
+      archive: [leap.archiveRecord, ...baseSave.archive],
+    };
+
+    const updatedProfile = recordUnlockedRealm(leap.nextRealm);
+    setUnlockedStartRealm(updatedProfile.unlockedStartRealm);
+    setSaveData(nextSave);
+    setStage('dimensional_leap');
+  };
+
+  const chooseLeapSkill = (skillId: string) => {
+    if (!pendingLeapSave) return;
+    const baseSave = pendingLeapSave;
+    setPendingLeapSave(null);
+    completeLeap(baseSave, skillId);
+  };
+
   const advanceToNextFloorWithSave = (baseSave: SaveData) => {
     const clearedFloor = baseSave.midFloor.currentFloor;
     const isApexClear = clearedFloor % 50 === 0;
 
     if (isApexClear) {
-      // Trigger 50-Floor Dimensional Leap!
-      const leap = AreaEngine.executeDimensionalLeap({
-        clearedFloor,
-        weapon: baseSave.inventory.weapon,
-        armor: baseSave.inventory.armor,
-        skills: baseSave.inventory.skills,
-        relicName: baseSave.inventory.relic?.name ?? 'なし',
-        gold: baseSave.gold,
-      });
-
-      const newMaxHp = BASE_PLAYER_MAX_HP + leap.normalizedArmor.maxHpBonus;
-      const maxCons = baseSave.inventory.consumable?.maxCharges ?? 2;
-
-      const nextSave: SaveData = {
-        ...baseSave,
-        midFloor: {
-          currentFloor: leap.nextFloor,
-          currentEncounterIndex: 0,
-          playerCurrentHp: newMaxHp,
-          playerWound: 0,
-          consumableCharges: Math.min(maxCons, baseSave.midFloor.consumableCharges + 1),
-        },
-        inventory: {
-          ...baseSave.inventory,
-          weapon: leap.normalizedWeapon,
-          armor: leap.normalizedArmor,
-          skills: leap.normalizedSkills,
-        },
-        cosmeticGems: baseSave.cosmeticGems + leap.gemsAwarded,
-        archive: [leap.archiveRecord, ...baseSave.archive],
-      };
-
-      const updatedProfile = recordUnlockedRealm(leap.nextRealm);
-      setUnlockedStartRealm(updatedProfile.unlockedStartRealm);
-      setSaveData(nextSave);
-      setStage('dimensional_leap');
+      // Trigger 50-Floor Dimensional Leap! When the player holds two or
+      // more skills, let them choose which one carries over (2026-11-20);
+      // with zero or one skill there is nothing to choose.
+      const heldSkills = baseSave.inventory.skills.filter(
+        (s): s is SkillItem => s !== null
+      );
+      if (heldSkills.length >= 2) {
+        setPendingLeapSave(baseSave);
+        setStage('leap_skill_choice');
+        return;
+      }
+      completeLeap(baseSave);
       return;
     }
 
@@ -876,6 +901,12 @@ function syncAchievements(save: SaveData): SaveData {
     battleSession,
     rewardCards,
     pendingSkillToEquip,
+    pendingLeapSkills: pendingLeapSave
+      ? pendingLeapSave.inventory.skills.filter(
+          (s): s is SkillItem => s !== null
+        )
+      : [],
+    chooseLeapSkill,
     systemBanner,
     storageError,
     dismissStorageError,
