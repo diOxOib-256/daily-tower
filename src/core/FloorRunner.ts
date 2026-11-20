@@ -7,6 +7,7 @@ import {
   ALL_FLOORS,
   getFloorDefinition,
 } from '../extensible/realms/realmIndex';
+import { realmEnemyScale } from '../extensible/realms/difficulty';
 
 /**
  * Non-rest event pools by 10-floor block, derived from the authored
@@ -128,7 +129,7 @@ export class FloorRunner {
       totalEncounters: floorDef.encounters.length,
       encounterType: enc.type,
       enemyDefs,
-      statScale: enc.enemyStatScale ?? 1.0,
+      statScale: (enc.enemyStatScale ?? 1.0) * realmEnemyScale(floorDef.floor),
     };
   }
 }
