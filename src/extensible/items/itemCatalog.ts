@@ -169,7 +169,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     name: '星見の銀剣',
     kind: 'weapon',
     spriteId: 'item_stargazer_silver_sword',
-    atk: 14,
+    atk: 20,
     element: 'void',
     salvageGold: 5,
     description: '虚空の図書館の銀細工で鍛えられた、静かな星光を宿す剣。',
@@ -2844,11 +2844,11 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     applyStatus: {
       target: 'enemy',
       statusId: 'def_debuff',
-      value: 20,
-      duration: 2,
+      value: 30,
+      duration: 3,
     },
     salvageGold: 8,
-    description: '虚空から無数の星屑を降り注がせ、敵全体に0.85倍ダメージを与え防御力を20%低下(2T)させる範囲攻撃（1戦2回）。',
+    description: '虚空から無数の星屑を降り注がせ、敵全体に0.85倍ダメージを与え防御力を30%低下(3T)させる範囲攻撃（1戦2回）。',
   },
 };
 
@@ -3594,7 +3594,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'hunters_badge',
     effectId: 'hunters_badge',
     salvageGold: 14,
-    description: '樹海の狩人が持つ小さな木彫りの徽章。戦闘開始時、わずかに攻撃力を高める。戦闘開始時、2ターンの間、攻撃力+2を得る。',
+    description: '樹海の狩人が持つ小さな木彫りの徽章。戦闘開始時、わずかに攻撃力を高める。戦闘開始時、3ターンの間、攻撃力+4を得る。',
   },
   verdant_brooch: {
     id: 'verdant_brooch',
@@ -3603,7 +3603,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'verdant_brooch',
     effectId: 'verdant_brooch',
     salvageGold: 16,
-    description: '若葉を象った魔力のブローチ。スキルを使用するたび、わずかな障壁を得る。スキルを使用するたび、4ダメージを吸収する障壁(2T)を得る。',
+    description: '若葉を象った魔力のブローチ。スキルを使用するたび、わずかな障壁を得る。スキルを使用するたび、8ダメージを吸収する障壁(2T)を得る。',
   },
   mist_charm: {
     id: 'mist_charm',
