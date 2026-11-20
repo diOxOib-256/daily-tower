@@ -200,18 +200,28 @@ export function DataManagementModal({
               このゲームについて・プライバシー
             </h3>
             <ul className="mt-2 space-y-1.5 text-xs leading-relaxed text-slate-400">
-              <li>• 本作はサーバー通信を行わないクライアント完結型のWebゲームです。</li>
+              <li>• 本作は、ゲームの処理がお使いのブラウザ内で完結するWebゲームです。</li>
               <li>• セーブデータはすべてお使いのブラウザの <code className="text-slate-200">localStorage</code> のみに保存され、外部へ送信されることはありません。</li>
+              <li>• アクセス解析のため、Cloudflare Web Analytics がページの閲覧に関する統計情報（表示回数など）を収集します。セーブデータや個人を特定する情報が送信されることはありません。</li>
               <li>• シークレットモードでのプレイやブラウザの履歴・サイトデータ削除を行うと進行状況が消去されます。</li>
               <li>
                 • 不具合報告・ご意見：{' '}
                 <a
-                  href="https://github.com/ysgekzk-boop/daily-tower/issues"
+                  href="https://github.com/diOxOib-256/daily-tower/issues"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-bold text-sky-300 underline hover:text-sky-200"
                 >
                   GitHub Issues
+                </a>
+                {' '}／{' '}
+                <a
+                  href="https://x.com/Kuma6bear6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-sky-300 underline hover:text-sky-200"
+                >
+                  X（@Kuma6bear6）
                 </a>
               </li>
               <li>• ライセンス: MIT License / Daily Tower v4.0.0</li>
