@@ -938,9 +938,9 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     category: 'attack',
     maxChargesPerBattle: 2,
     targetScope: 'all_enemies',
-    damageMultiplier: 0.8,
+    damageMultiplier: 1.1,
     salvageGold: 8,
-    description: '敵全体に0.8倍ダメージを与える全体攻撃（1戦2回）。',
+    description: '敵全体に1.1倍ダメージを与える全体攻撃（1戦2回）。',
   },
   frost_lance: {
     id: 'frost_lance',
@@ -3675,7 +3675,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     spriteId: 'leyline_astrolabe',
     effectId: 'leyline_astrolabe',
     salvageGold: 32,
-    description: '樹海の魔力脈を指し示す黄金の天球儀。戦闘中、2ターン目の開始時に攻撃力を底上げする。2ターン目の開始時に一度だけ、3ターンの間、攻撃力+4を得る。',
+    description: '樹海の魔力脈を指し示す黄金の天球儀。戦闘中、2ターン目の開始時に攻撃力を底上げする。2ターン目の開始時に一度だけ、5ターンの間、攻撃力+12を得る。',
   },
 };
 

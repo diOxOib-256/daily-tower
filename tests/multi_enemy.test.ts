@@ -59,7 +59,7 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
   it('AoE skill (targetScope: all_enemies) damages every living enemy', () => {
     const loadout: PlayerLoadout = {
       ...strongLoadout,
-      weapon: WEAPON_CATALOG.rusty_shortsword, // ATK 12 -> 8 dmg each at 0.8x
+      weapon: WEAPON_CATALOG.rusty_shortsword, // ATK 12, flame_wave at 1.1x
     };
     let session = CombatEngine.createBattleSession(100, 100, 2, loadout, duo);
     session = CombatEngine.executeTurn(
@@ -69,8 +69,8 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
       undefined,
       () => 0.5
     );
-    expect(session.enemies[0].currentHp).toBe(session.enemies[0].maxHp - 10);
-    expect(session.enemies[1].currentHp).toBe(session.enemies[1].maxHp - 8);
+    expect(session.enemies[0].currentHp).toBe(session.enemies[0].maxHp - 14);
+    expect(session.enemies[1].currentHp).toBe(session.enemies[1].maxHp - 11); // 1.1x, fire weakness, def 3
   });
 
   it('single-target skill status lands only on the selected enemy', () => {

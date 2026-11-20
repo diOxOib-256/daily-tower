@@ -503,10 +503,10 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       return {
         applyStatusToPlayer: {
           statusId: 'flat_atk_up',
-          value: 4,
-          duration: 3,
+          value: 12,
+          duration: 5,
         },
-        logMessage: '[レリック:霊脈の羅針盤] 羅針盤が霊脈を指し、攻撃力+4！',
+        logMessage: '[レリック:霊脈の羅針盤] 羅針盤が霊脈を指し、攻撃力+12！',
       };
     },
   },

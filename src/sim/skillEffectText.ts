@@ -145,7 +145,7 @@ export const RELIC_EFFECT_SPECS: Record<string, RelicEffectSpec> = {
   hornet_stinger: { triggerText: '戦闘中の最初の通常攻撃で', kind: 'status', target: 'enemy', statusId: 'poison', value: 5, duration: 2 },
   root_medallion: { triggerText: '戦闘開始時', kind: 'status', target: 'self', statusId: 'regen', value: 5, duration: 3 },
   worldtree_dewstone: { triggerText: '毎ターン開始時', kind: 'status', target: 'self', statusId: 'regen', value: 3, duration: 2 },
-  leyline_astrolabe: { triggerText: '2ターン目の開始時に一度だけ', kind: 'status', target: 'self', statusId: 'flat_atk_up', value: 4, duration: 3 },
+  leyline_astrolabe: { triggerText: '2ターン目の開始時に一度だけ', kind: 'status', target: 'self', statusId: 'flat_atk_up', value: 12, duration: 5 },
 };
 
 export function formatRelicEffect(effectId: string): string {
