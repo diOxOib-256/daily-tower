@@ -220,11 +220,17 @@ export function simulateMixedRun(
           consumableMaxCharges: save.inventory.consumable?.maxCharges ?? 2,
           currentFloor: floor,
         };
-        const optIdx = PlaytestBot.chooseEventOption(enc.eventDef, state, (o) =>
-          EventEngine.canAffordOption(state, o)
+        const optIdx = PlaytestBot.chooseEventOption(
+          enc.eventDef,
+          state,
+          (o) => EventEngine.canAffordOption(state, o),
+          { worldSeed: save.worldSeed ?? 0, encounterIndex: encIdx, inventory: save.inventory }
         );
         if (optIdx >= 0) {
-          const res = EventEngine.resolveOption(state, enc.eventDef.options[optIdx], rng);
+          const chosen = enc.eventDef.options[optIdx];
+          const res = EventEngine.resolveOption(state, chosen, () =>
+            EventEngine.grantRoll(save.worldSeed ?? 0, floor, encIdx, chosen.id)
+          );
           if (res.success) {
             save.gold = res.nextState.gold;
             save.midFloor.playerCurrentHp = res.nextState.currentHp;
@@ -344,10 +350,12 @@ export function simulateMixedRun(
         }
       } else {
         const choice = PlaytestBot.chooseRewardCard(cards, {
+          floor,
           weapon: save.inventory.weapon,
           armor: save.inventory.armor,
           skills: save.inventory.skills,
-          hasRelic: Boolean(save.inventory.relic),
+          relic: save.inventory.relic,
+          consumableId: save.inventory.consumable?.id ?? null,
           consumableCharges: save.midFloor.consumableCharges,
           consumableMaxCharges: save.inventory.consumable?.maxCharges ?? 2,
           consumableHealPercent: save.inventory.consumable?.healPercent ?? 0,

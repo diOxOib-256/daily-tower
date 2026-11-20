@@ -49,8 +49,23 @@ export interface RunResult {
 const MAX_DEATHS_PER_RUN = 30;
 const MAX_TURNS_PER_BATTLE = 300;
 
+/** Item categories whose slot can be frozen for A/B item measurement. */
+export type ItemKind = AnyCatalogItem['kind'];
+
+export interface SimOptions {
+  /** Slots the bot may not change (used by the item benchmark). */
+  frozenKinds?: ReadonlySet<ItemKind>;
+  /** Called with a deep copy of the save at the start of each floor. */
+  onFloorStart?: (floor: number, save: SaveData) => void;
+}
+
 /** Applies an obtained item the way the game store does (old gear salvages). */
-function applyEquip(save: SaveData, item: AnyCatalogItem): void {
+function applyEquip(
+  save: SaveData,
+  item: AnyCatalogItem,
+  frozenKinds?: ReadonlySet<ItemKind>
+): void {
+  if (frozenKinds?.has(item.kind)) return;
   // Mirror the store: strictly-dominated granted equipment is salvaged.
   if (
     item.kind === 'weapon' &&
@@ -99,7 +114,7 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
       let weakestPower = Infinity;
       save.inventory.skills.forEach((s, i) => {
         if (s) {
-          const p = PlaytestBot.skillPower(s);
+          const p = PlaytestBot.skillValue(s, save.midFloor.currentFloor);
           if (p < weakestPower) {
             weakestPower = p;
             weakestIdx = i;
@@ -121,9 +136,27 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
  * checkpoint respawns, dimensional leaps). Deaths respawn the bot at the
  * checkpoint exactly like a player retrying.
  */
-export function simulateRun(seed: number, maxFloor = 100): RunResult {
+export function simulateRun(
+  seed: number,
+  maxFloor = 100,
+  opts: SimOptions = {}
+): RunResult {
   const rng = mulberry32(seed);
   const save = StorageValidator.createDefaultSave(rng);
+  return simulateRunFromSave(save, seed, maxFloor, rng, opts);
+}
+
+/**
+ * Runs the simulation from an existing save (used by the item benchmark
+ * to start paired runs from identical mid-tower checkpoints).
+ */
+export function simulateRunFromSave(
+  save: SaveData,
+  seed: number,
+  maxFloor: number,
+  rng: () => number,
+  opts: SimOptions = {}
+): RunResult {
   const result: RunResult = {
     seed,
     floorsCleared: 0,
@@ -139,9 +172,10 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
     floorEndHpPct: {},
   };
 
-  let wound = 0;
-  let floor = 1;
+  let wound = save.midFloor.playerWound ?? 0;
+  let floor = save.midFloor.currentFloor;
   while (floor <= maxFloor) {
+    opts.onFloorStart?.(floor, structuredClone(save));
     result.attemptsByFloor[floor] = (result.attemptsByFloor[floor] ?? 0) + 1;
     const floorDef = FloorRunner.getFloor(floor);
     const realmMeta = REALM_METADATA[floorDef.realm] ?? REALM_METADATA[1];
@@ -161,11 +195,18 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
           consumableMaxCharges: save.inventory.consumable?.maxCharges ?? 2,
           currentFloor: floor,
         };
-        const optIdx = PlaytestBot.chooseEventOption(enc.eventDef, state, (o) =>
-          EventEngine.canAffordOption(state, o)
+        const optIdx = PlaytestBot.chooseEventOption(
+          enc.eventDef,
+          state,
+          (o) => EventEngine.canAffordOption(state, o),
+          { worldSeed: save.worldSeed ?? 0, encounterIndex: encIdx, inventory: save.inventory }
         );
         if (optIdx >= 0) {
-          const res = EventEngine.resolveOption(state, enc.eventDef.options[optIdx], rng);
+          const chosen = enc.eventDef.options[optIdx];
+          // Mirror the real store: grants are deterministic per save.
+          const res = EventEngine.resolveOption(state, chosen, () =>
+            EventEngine.grantRoll(save.worldSeed ?? 0, floor, encIdx, chosen.id)
+          );
           if (res.success) {
             save.gold = res.nextState.gold;
             save.midFloor.playerCurrentHp = res.nextState.currentHp;
@@ -174,7 +215,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
             if (enc.eventDef.isRestEvent || enc.eventDef.options[optIdx].outcome.healHpPercent) {
               wound = 0;
             }
-            if (res.grantedItem) applyEquip(save, res.grantedItem);
+            if (res.grantedItem) applyEquip(save, res.grantedItem, opts.frozenKinds);
           }
         }
         continue;
@@ -290,10 +331,12 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
       armorMaxHpBonus: save.inventory.armor.maxHpBonus,
     });
     const choice = PlaytestBot.chooseRewardCard(cards, {
+      floor,
       weapon: save.inventory.weapon,
       armor: save.inventory.armor,
       skills: save.inventory.skills,
-      hasRelic: Boolean(save.inventory.relic),
+      relic: save.inventory.relic,
+      consumableId: save.inventory.consumable?.id ?? null,
       consumableCharges: save.midFloor.consumableCharges,
       consumableMaxCharges: save.inventory.consumable?.maxCharges ?? 2,
       consumableHealPercent: save.inventory.consumable?.healPercent ?? 0,
@@ -308,8 +351,8 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
     } else if (card.type === 'gold_bonus') {
       save.gold += card.goldBonusAmount ?? 0;
     } else if (card.item) {
-      if (choice.action === 'equip') {
-        applyEquip(save, card.item);
+      if (choice.action === 'equip' && !opts.frozenKinds?.has(card.item.kind)) {
+        applyEquip(save, card.item, opts.frozenKinds);
       } else {
         save.gold += SALVAGE_GOLD;
       }
