@@ -892,6 +892,17 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     salvageGold: 32,
     description: '原初樹の加護を宿した最高峰の聖鎧。過酷な頂上決戦をも耐え抜く鉄壁の守り。',
   },
+  celestial_plate: {
+    id: 'celestial_plate',
+    name: '星晶の胸当て',
+    kind: 'armor',
+    spriteId: 'item_celestial_plate',
+    def: 8,
+    maxHpBonus: 36,
+    spd: -1,
+    salvageGold: 18,
+    description: '星晶を鍛え込んだ重厚な胸当て。DEF +8、最大HP +36、SPD -1。',
+  },
 };
 
 export const SKILL_CATALOG: Record<string, SkillItem> = {
@@ -2876,6 +2887,24 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     salvageGold: 8,
     description: '頭上から穏やかな星光を降り注がせ、数ターンにわたって傷を徐々に癒やす継続回復術。3ターンの間、ターン開始時に最大HPの10%ずつ回復（合計30%）（1戦2回）。',
   },
+  eclipse_nova: {
+    id: 'eclipse_nova',
+    name: '蝕星の新星',
+    kind: 'skill',
+    spriteId: 'item_eclipse_nova',
+    category: 'attack',
+    targetScope: 'all_enemies',
+    maxChargesPerBattle: 2,
+    damageMultiplier: 0.85,
+    applyStatus: {
+      target: 'enemy',
+      statusId: 'atk_debuff',
+      value: 25,
+      duration: 3,
+    },
+    salvageGold: 9,
+    description: '蝕星の閃光を解き放ち、敵全体に0.85倍ダメージを与え、3ターンの間ATKを25%低下させる。（戦闘中2回）',
+  },
 };
 
 export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
@@ -3711,6 +3740,15 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     effectId: 'eclipse_astrolabe',
     salvageGold: 18,
     description: '戦闘中にスキルを発動するたび、わずかな魔力の障壁を展開する精密な懐中時計。スキルを使用するたび、5ダメージを吸収する障壁(2T)を得る。',
+  },
+  chronos_compass: {
+    id: 'chronos_compass',
+    name: 'クロノスの羅針盤',
+    kind: 'relic',
+    spriteId: 'item_chronos_compass',
+    effectId: 'chronos_compass',
+    salvageGold: 18,
+    description: '時の流れを刻み、偶数の節目に力を引き出す羅針盤。偶数ターン開始時、1ターンの間、攻撃力+10%を得る。',
   },
 };
 

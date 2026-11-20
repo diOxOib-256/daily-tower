@@ -221,4 +221,17 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['obsidian_owl', 'obsidian_owl'], enemyStatScale: 0.80 },
     ],
   },
+  {
+    floor: 62,
+    realm: 2,
+    title: '第62層：星晶の鍛冶廊',
+    subtitle: '星晶の熱が息づく古代の鍛冶廊。虚空の猟犬と結晶の構築体が侵入者を待ち受ける階層',
+    encounters: [
+      { type: 'battle', enemyIds: ['void_hound', 'chronos_moth'], enemyStatScale: 0.80 },
+      { type: 'battle', enemyId: 'stellar_construct', enemyStatScale: 0.80 },
+      { type: 'event', eventId: 'stellar_forge' },
+      { type: 'battle', enemyIds: ['void_hound', 'obsidian_owl'], enemyStatScale: 0.80 },
+      { type: 'battle', enemyIds: ['stellar_construct', 'eclipse_scholar'], enemyStatScale: 0.80 },
+    ],
+  },
 ];

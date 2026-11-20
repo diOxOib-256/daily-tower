@@ -69,6 +69,9 @@ export const ITEM_DEBUT_OVERRIDES: Record<string, number> = {
   solar_lance: 61,
   astral_mending: 61,
   eclipse_astrolabe: 61,
+  celestial_plate: 62,
+  eclipse_nova: 62,
+  chronos_compass: 62,
 };
 
 let debutCache: Map<string, number> | null = null;

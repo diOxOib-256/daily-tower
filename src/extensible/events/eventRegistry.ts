@@ -2043,4 +2043,33 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+  stellar_forge: {
+    id: 'stellar_forge',
+    title: '星晶の鍛冶炉',
+    category: 'forge',
+    description:
+      '星晶の欠片が静かに脈動する古代の鍛冶場。炉床には今なお星辰の熱が宿っている。',
+    options: [
+      {
+        id: 'collect_forge_gold',
+        label: '炉床の傍らの金貨を回収する（+26 G）',
+        description: '炉の隅に残された古金貨を安全に持ち帰る。',
+        outcome: {
+          grantGold: 26,
+          logMessage: '炉床の隅に積まれていた古金貨を回収し、26 G を手に入れた！',
+        },
+      },
+      {
+        id: 'forge_celestial_armor',
+        label: '星晶の熱で防具を鍛え直す（HP 15%消費 ➔ 防具獲得 + 10 G）',
+        description: '最大HPの15%を代償に、星辰の熱で新たな防具と10Gを得る。',
+        cost: { hpPercent: 15 },
+        outcome: {
+          grantItemType: 'armor',
+          grantGold: 10,
+          logMessage: '星晶の炉火で新たな防具を鍛え上げ、10 G を手に入れた！',
+        },
+      },
+    ],
+  },
 };

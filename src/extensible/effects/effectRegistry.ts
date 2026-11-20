@@ -523,6 +523,24 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: '[レリック:星蝕の懐中時計] 懐中時計の星座盤が輝き、障壁(5/2T)を展開した！',
     }),
   },
+  chronos_compass: {
+    id: 'chronos_compass',
+    name: 'クロノスの羅針盤',
+    trigger: 'turn_start',
+    handler: (ctx) => {
+      if (ctx.turnNumber % 2 !== 0) {
+        return { logMessage: '' };
+      }
+      return {
+        applyStatusToPlayer: {
+          statusId: 'atk_buff',
+          value: 10,
+          duration: 1,
+        },
+        logMessage: '[レリック:クロノスの羅針盤] 羅針盤の針が時を刻み、攻撃力が10%上昇(1T)した！',
+      };
+    },
+  },
 };
 
 

@@ -2147,6 +2147,31 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '星蝕の懐中時計',
     colors: ['transparent', '#1a1f2e', '#94a3b8', '#ffd166'],
   },
+  void_hound: {
+    id: 'void_hound',
+    name: '虚空の猟犬',
+    colors: ['transparent', '#14111f', '#3f37c9', '#90e0ef'],
+  },
+  stellar_construct: {
+    id: 'stellar_construct',
+    name: '星晶の構築体',
+    colors: ['transparent', '#161a2e', '#4cc9f0', '#f8f9fa'],
+  },
+  item_celestial_plate: {
+    id: 'item_celestial_plate',
+    name: '星晶の胸当て',
+    colors: ['transparent', '#111625', '#8d99ae', '#ffd166'],
+  },
+  item_eclipse_nova: {
+    id: 'item_eclipse_nova',
+    name: '蝕星の新星',
+    colors: ['transparent', '#191124', '#7b2cbf', '#e0fbfc'],
+  },
+  item_chronos_compass: {
+    id: 'item_chronos_compass',
+    name: 'クロノスの羅針盤',
+    colors: ['transparent', '#241c14', '#c9a227', '#90e0ef'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2577,6 +2602,11 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_solar_lance: { id: 'item_solar_lance', matrixId: 'item_solar_lance', defaultPalette: 'item_solar_lance' },
   item_astral_mending: { id: 'item_astral_mending', matrixId: 'item_astral_mending', defaultPalette: 'item_astral_mending' },
   item_eclipse_astrolabe: { id: 'item_eclipse_astrolabe', matrixId: 'item_eclipse_astrolabe', defaultPalette: 'item_eclipse_astrolabe' },
+  void_hound: { id: 'void_hound', matrixId: 'void_hound', defaultPalette: 'void_hound' },
+  stellar_construct: { id: 'stellar_construct', matrixId: 'stellar_construct', defaultPalette: 'stellar_construct' },
+  item_celestial_plate: { id: 'item_celestial_plate', matrixId: 'item_celestial_plate', defaultPalette: 'item_celestial_plate' },
+  item_eclipse_nova: { id: 'item_eclipse_nova', matrixId: 'item_eclipse_nova', defaultPalette: 'item_eclipse_nova' },
+  item_chronos_compass: { id: 'item_chronos_compass', matrixId: 'item_chronos_compass', defaultPalette: 'item_chronos_compass' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

@@ -9901,5 +9901,125 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  void_hound: {
+    id: 'void_hound',
+    name: '虚空の猟犬',
+    spriteId: 'void_hound',
+    palette: 'void_hound',
+    hp: 72,
+    atk: 16,
+    def: 4,
+    spd: 12,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '虚空の噛みつき',
+            type: 'attack',
+            weight: 65,
+            damageMultiplier: 1.0,
+            logMessage: '虚空の猟犬が影の中から飛び出し、鋭い牙で噛みついた！',
+          },
+          {
+            name: '影の威嚇',
+            type: 'debuff',
+            weight: 35,
+            statusId: 'atk_debuff',
+            statusValue: 15,
+            statusDuration: 2,
+            logMessage: '虚空の猟犬が低い唸り声を上げ、気迫で攻撃力を鈍らせた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: '裂空の牙',
+            type: 'debuff',
+            weight: 70,
+            damageMultiplier: 1.4,
+            statusId: 'poison',
+            statusValue: 4,
+            statusDuration: 2,
+            logMessage: '虚空の猟犬が毒を帯びた牙を突き立て、深く切り裂いた！',
+          },
+          {
+            name: '狩猟の本能',
+            type: 'buff',
+            weight: 30,
+            statusId: 'atk_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '虚空の猟犬の瞳が鋭く光り、攻撃力が高まった！',
+          },
+        ],
+      },
+    ],
+  },
+
+  stellar_construct: {
+    id: 'stellar_construct',
+    name: '星晶の構築体',
+    spriteId: 'stellar_construct',
+    palette: 'stellar_construct',
+    hp: 84,
+    atk: 15,
+    def: 7,
+    spd: 7,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '水晶の鉄槌',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '星晶の構築体が結晶の剛腕を振り下ろし、重い一撃を叩き込んだ！',
+          },
+          {
+            name: '結晶装甲',
+            type: 'buff',
+            weight: 40,
+            statusId: 'def_buff',
+            statusValue: 25,
+            statusDuration: 2,
+            logMessage: '星晶の構築体が周囲の結晶を纏い、防御力を大きく高めた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: 'プリズム光線',
+            type: 'debuff',
+            weight: 65,
+            damageMultiplier: 1.35,
+            statusId: 'def_debuff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '星晶の構築体が屈折した光線を放ち、防具の守りを貫いた！',
+          },
+          {
+            name: '星晶の障壁',
+            type: 'buff',
+            weight: 35,
+            statusId: 'shield',
+            statusValue: 16,
+            statusDuration: 2,
+            logMessage: '星晶の構築体が光の結晶壁を展開し、強固なシールドを張った！',
+          },
+        ],
+      },
+    ],
+  },
 };
 
