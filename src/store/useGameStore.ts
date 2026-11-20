@@ -562,7 +562,14 @@ function syncAchievements(save: SaveData): SaveData {
         consumableMaxCharges: maxCons,
         currentFloor: saveData.midFloor.currentFloor,
       },
-      option
+      option,
+      () =>
+        EventEngine.grantRoll(
+          saveData.worldSeed ?? 0,
+          saveData.midFloor.currentFloor,
+          saveData.midFloor.currentEncounterIndex,
+          option.id
+        )
     );
 
     if (!res.success) {

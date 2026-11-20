@@ -350,6 +350,7 @@ export function simulateMixedRun(
           hasRelic: Boolean(save.inventory.relic),
           consumableCharges: save.midFloor.consumableCharges,
           consumableMaxCharges: save.inventory.consumable?.maxCharges ?? 2,
+          consumableHealPercent: save.inventory.consumable?.healPercent ?? 0,
         });
         card = cards[choice.index];
         equipIt = choice.action === 'equip';

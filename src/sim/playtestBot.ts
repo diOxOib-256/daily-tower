@@ -215,6 +215,7 @@ export class PlaytestBot {
       hasRelic: boolean;
       consumableCharges: number;
       consumableMaxCharges: number;
+      consumableHealPercent: number;
     }
   ): { index: number; action: 'equip' | 'salvage' | 'take' } {
     let bestIdx = 0;
@@ -260,6 +261,18 @@ export class PlaytestBot {
             score = SALVAGE_GOLD * 0.6;
             action = 'salvage';
           }
+        }
+      } else if (card.item?.kind === 'consumable') {
+        // Swap only for a strictly larger total heal (per-use % x charges);
+        // the side effect (cleanse / status) rides along either way.
+        const curTotal = ctx.consumableHealPercent * ctx.consumableMaxCharges;
+        const newTotal = (card.item.healPercent ?? 0) * card.item.maxCharges;
+        if (newTotal > curTotal) {
+          score = 20 + (newTotal - curTotal) * 0.5;
+          action = 'equip';
+        } else {
+          score = SALVAGE_GOLD * 0.6;
+          action = 'salvage';
         }
       } else if (card.item?.kind === 'relic') {
         if (!ctx.hasRelic) {

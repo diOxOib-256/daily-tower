@@ -35,6 +35,7 @@ export interface RunResult {
   highestFloorReached: number;
   deaths: number;
   deathsByFloor: Record<number, number>;
+  attemptsByFloor: Record<number, number>;
   battles: number;
   totalTurns: number;
   goldEarned: number;
@@ -129,6 +130,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
     highestFloorReached: 1,
     deaths: 0,
     deathsByFloor: {},
+    attemptsByFloor: {},
     battles: 0,
     totalTurns: 0,
     goldEarned: 0,
@@ -140,6 +142,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
   let wound = 0;
   let floor = 1;
   while (floor <= maxFloor) {
+    result.attemptsByFloor[floor] = (result.attemptsByFloor[floor] ?? 0) + 1;
     const floorDef = FloorRunner.getFloor(floor);
     const realmMeta = REALM_METADATA[floorDef.realm] ?? REALM_METADATA[1];
     result.highestFloorReached = Math.max(result.highestFloorReached, floor);
@@ -293,6 +296,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
       hasRelic: Boolean(save.inventory.relic),
       consumableCharges: save.midFloor.consumableCharges,
       consumableMaxCharges: save.inventory.consumable?.maxCharges ?? 2,
+      consumableHealPercent: save.inventory.consumable?.healPercent ?? 0,
     });
     const card = cards[choice.index];
     if (card.type === 'potion_refill') {

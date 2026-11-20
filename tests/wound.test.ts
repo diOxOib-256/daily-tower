@@ -61,10 +61,10 @@ describe('重症 (wound) mechanic', () => {
     const next = CombatEngine.executeTurn(
       prev, { type: 'consumable' }, lo, undefined, mulberry32(5)
     );
-    // crimson_vial heals 50%: 50 + 50 = 100 before the enemy's chip hit,
+    // crimson_vial heals 45%: 50 + 45 = 95 before the enemy's chip hit,
     // well above the 60 cap that binds skill healing.
     expect(next.player.currentHp).toBeGreaterThan(60);
-    expect(next.player.currentHp).toBeGreaterThanOrEqual(95);
+    expect(next.player.currentHp).toBeGreaterThanOrEqual(90);
   });
 
   it('is fully disabled when woundRate is 0 (legacy behavior)', () => {

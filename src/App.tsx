@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AreaEngine } from './core/AreaEngine';
 import { BattleSessionState, PlayerCommand, calcPlayerSpd } from './core/CombatEngine';
 import { EventEngine } from './core/EventEngine';
+import { DropPacingEngine } from './core/DropPacingEngine';
 import { BattleStage2D, CombatMotionState, HitFx } from './components/BattleStage2D';
 import { BestiaryModal } from './components/BestiaryModal';
 import { DataManagementModal } from './components/DataManagementModal';
@@ -19,6 +20,7 @@ import { DEFEAT_TIPS } from './extensible/tips/defeatTips';
 import { useGameStore } from './store/useGameStore';
 import { applyHitFxEventToSession, extractTurnHitFx } from './utils/combatFx';
 import { computeActionPreview } from './utils/combatPreview';
+import { ELEMENT_META } from './utils/elements';
 import {
   formatArchiveXShareText,
   formatDefeatXShareText,
@@ -1415,6 +1417,24 @@ export function App() {
                       },
                       opt
                     );
+                    const grantItem = EventEngine.previewGrant(
+                      opt,
+                      saveData.midFloor.currentFloor,
+                      saveData.worldSeed ?? 0,
+                      saveData.midFloor.currentEncounterIndex
+                    );
+                    const grantDominated =
+                      grantItem?.kind === 'weapon'
+                        ? DropPacingEngine.isWeaponDominated(grantItem, {
+                            atk: saveData.inventory.weapon.atk,
+                            element: saveData.inventory.weapon.element,
+                          })
+                        : grantItem?.kind === 'armor'
+                          ? DropPacingEngine.isArmorDominated(grantItem, {
+                              def: saveData.inventory.armor.def,
+                              maxHpBonus: saveData.inventory.armor.maxHpBonus,
+                            })
+                          : false;
 
                     return (
                       <button
@@ -1466,6 +1486,22 @@ export function App() {
                           <p className="mt-0.5 text-[11px] text-slate-400">
                             {opt.description}
                           </p>
+                          {grantItem && (
+                            <>
+                              <p className="mt-1 text-[11px] font-bold text-emerald-300">
+                                🎁 獲得：{grantItem.name}
+                                {grantItem.kind === 'weapon' &&
+                                  `（ATK ${grantItem.atk}・${ELEMENT_META[grantItem.element].icon}${ELEMENT_META[grantItem.element].name}属性）`}
+                                {grantItem.kind === 'armor' &&
+                                  `（DEF ${grantItem.def}・HP+${grantItem.maxHpBonus}）`}
+                              </p>
+                              <p className="mt-0.5 text-[11px] text-slate-400">
+                                {grantDominated
+                                  ? `今の装備より弱いため、受け取ると分解（${SALVAGE_GOLD}G）になります`
+                                  : grantItem.description}
+                              </p>
+                            </>
+                          )}
                         </div>
                         <span className="ml-3 flex shrink-0 items-center gap-2">
                           {opt.cost?.gold ? (

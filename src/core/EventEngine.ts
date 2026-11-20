@@ -173,4 +173,52 @@ export class EventEngine {
     const idx = Math.floor(rng() * pool.length);
     return pool[idx] ?? pool[0];
   }
+
+  /**
+   * Deterministic [0,1) roll for an event item grant, keyed by
+   * (worldSeed, floor, encounterIndex, optionId) — the same hash family
+   * as the event draw in FloorRunner. Because the granted item depends
+   * only on these values, the UI can preview exactly which item an
+   * option will grant before the player commits, and resolveOption
+   * with this roll as its rng yields that same item.
+   */
+  static grantRoll(
+    worldSeed: number,
+    floor: number,
+    encounterIndex: number,
+    optionId: string
+  ): number {
+    let h =
+      (worldSeed >>> 0) ^
+      Math.imul(floor, 2654435761) ^
+      Math.imul(encounterIndex + 1, 40503);
+    for (let i = 0; i < optionId.length; i++) {
+      h = Math.imul(h ^ optionId.charCodeAt(i), 16777619);
+    }
+    h = Math.imul(h ^ (h >>> 15), 2246822519);
+    h ^= h >>> 13;
+    return (h >>> 0) / 4294967296;
+  }
+
+  /** The exact item an event option will grant, or undefined if it grants none. */
+  static previewGrant(
+    option: EventOption,
+    floor: number,
+    worldSeed: number,
+    encounterIndex: number
+  ): AnyCatalogItem | undefined {
+    const outcome = option.outcome;
+    if (outcome.specificItemId) {
+      return (
+        WEAPON_CATALOG[outcome.specificItemId] ??
+        ARMOR_CATALOG[outcome.specificItemId] ??
+        SKILL_CATALOG[outcome.specificItemId] ??
+        RELIC_CATALOG[outcome.specificItemId] ??
+        CONSUMABLE_CATALOG[outcome.specificItemId]
+      );
+    }
+    if (!outcome.grantItemType) return undefined;
+    const roll = EventEngine.grantRoll(worldSeed, floor, encounterIndex, option.id);
+    return EventEngine.pickRandomCatalogItem(outcome.grantItemType, () => roll, floor);
+  }
 }
