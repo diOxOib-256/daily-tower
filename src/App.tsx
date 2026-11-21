@@ -568,15 +568,27 @@ export function App() {
           resetSave();
           setShowTitle(false);
         }}
+        saveMenu={
+          <SaveSlotModal
+            activeSlotId={activeSlotId}
+            slotSummaries={slotSummaries}
+            unlockedStartRealm={unlockedStartRealm}
+            onSwitchSlot={switchSaveSlot}
+            onCreateNewSlot={(slotId, startRealm) => {
+              createNewSaveInSlot(slotId, startRealm);
+              setMobileConsoleTab('commands');
+              setShowTitle(false);
+            }}
+            onDeleteSlot={deleteSaveSlot}
+            triggerClassName="flex w-full items-center justify-center gap-1.5 rounded-2xl border border-indigo-400/50 bg-indigo-950/60 px-4 py-3 text-sm font-extrabold text-indigo-100 shadow-lg transition hover:bg-indigo-900/70 cursor-pointer"
+          />
+        }
         metaMenu={
           <>
-            <BestiaryModal
-              variant="title"
-              bestiary={saveData.bestiary}
-              achievements={saveData.achievements}
-            />
             <WardrobeArchiveModal
               variant="title"
+              focusTab="wardrobe"
+              triggerLabel="💎 挑戦者スキン"
               cosmeticGems={saveData.cosmeticGems}
               unlockedCosmetics={saveData.unlockedCosmetics}
               activeSkinSpriteId={saveData.activeSkinSpriteId}
@@ -586,13 +598,31 @@ export function App() {
               archive={saveData.archive}
               onSelectCosmetic={unlockOrEquipCosmetic}
             />
+            <WardrobeArchiveModal
+              variant="title"
+              focusTab="archive"
+              triggerLabel="📜 登頂記録"
+              cosmeticGems={saveData.cosmeticGems}
+              unlockedCosmetics={saveData.unlockedCosmetics}
+              activeSkinSpriteId={saveData.activeSkinSpriteId}
+              activeSkinPaletteId={saveData.activeSkinPaletteId}
+              activeTitle={saveData.activeTitle}
+              cosmeticCatalog={cosmeticCatalog}
+              archive={saveData.archive}
+              onSelectCosmetic={unlockOrEquipCosmetic}
+            />
+            <BestiaryModal
+              variant="title"
+              bestiary={saveData.bestiary}
+              achievements={saveData.achievements}
+            />
             <HelpModal variant="title" />
             <button
               type="button"
               onClick={toggleMute}
               aria-label={isMuted ? '効果音をONにする' : '効果音をミュートにする'}
               title={isMuted ? '効果音をONにする' : '効果音をミュートにする'}
-              className="flex w-full items-center justify-center gap-1.5 rounded-2xl border border-slate-600/60 bg-slate-800/60 px-4 py-2.5 text-sm font-bold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
+              className="col-span-2 flex w-full items-center justify-center gap-1.5 rounded-2xl border border-slate-600/60 bg-slate-800/60 px-4 py-2.5 text-sm font-bold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
             >
               <span aria-hidden="true">{isMuted ? '🔇' : '🔊'}</span>
               効果音{isMuted ? ' OFF' : ' ON'}
@@ -601,18 +631,6 @@ export function App() {
         }
         footerMenu={
           <>
-            <SaveSlotModal
-              activeSlotId={activeSlotId}
-              slotSummaries={slotSummaries}
-              unlockedStartRealm={unlockedStartRealm}
-              onSwitchSlot={switchSaveSlot}
-              onCreateNewSlot={(slotId, startRealm) => {
-                createNewSaveInSlot(slotId, startRealm);
-                setMobileConsoleTab('commands');
-                setShowTitle(false);
-              }}
-              onDeleteSlot={deleteSaveSlot}
-            />
             <UpdateLogModal variant="title" />
             <DataManagementModal
               activeSlotId={activeSlotId}

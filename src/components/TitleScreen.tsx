@@ -13,6 +13,9 @@ interface TitleScreenProps {
   playerPaletteId: string;
   onContinue: () => void;
   onReset: () => void;
+  /** Save-slot switcher, rendered directly under the start button so the
+   * separate save data per slot is obvious. */
+  saveMenu?: ReactNode;
   /** Non-combat menus (bestiary / wardrobe & records / glossary / sound) rendered under the main buttons. */
   metaMenu?: ReactNode;
   /** Utility links (update log / data management) rendered below the meta menu. */
@@ -38,6 +41,7 @@ export function TitleScreen({
   playerPaletteId,
   onContinue,
   onReset,
+  saveMenu,
   metaMenu,
   footerMenu,
 }: TitleScreenProps) {
@@ -142,6 +146,8 @@ export function TitleScreen({
               </button>
             ))}
         </div>
+
+        {saveMenu && <div className="mt-2.5 w-full max-w-sm">{saveMenu}</div>}
 
         {metaMenu && (
           <div className="mt-2.5 grid w-full max-w-sm grid-cols-2 gap-2.5">{metaMenu}</div>

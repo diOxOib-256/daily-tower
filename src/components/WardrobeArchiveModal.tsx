@@ -14,6 +14,11 @@ interface WardrobeArchiveModalProps {
   archive: RunArchiveRecord[];
   onSelectCosmetic: (item: CosmeticItem) => void;
   variant?: 'header' | 'title';
+  /** When set, this instance is a dedicated entry point: the trigger shows
+   * triggerLabel and the dialog opens on the given tab. Two instances with
+   * focusTab 'wardrobe' and 'archive' replace the combined trigger. */
+  focusTab?: 'wardrobe' | 'archive';
+  triggerLabel?: string;
 }
 
 export function WardrobeArchiveModal({
@@ -26,6 +31,8 @@ export function WardrobeArchiveModal({
   archive,
   onSelectCosmetic,
   variant = 'header',
+  focusTab,
+  triggerLabel,
 }: WardrobeArchiveModalProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const titleId = useId();
@@ -61,6 +68,7 @@ export function WardrobeArchiveModal({
   }, []);
 
   const openModal = () => {
+    if (focusTab) setActiveTab(focusTab);
     dialogRef.current?.showModal();
   };
 
@@ -82,11 +90,13 @@ export function WardrobeArchiveModal({
         onClick={openModal}
         className={
           variant === 'title'
-            ? 'flex w-full items-center justify-center gap-1.5 rounded-2xl border border-fuchsia-500/40 bg-fuchsia-950/50 px-4 py-2.5 text-sm font-bold text-fuchsia-200 transition hover:bg-fuchsia-900/60 cursor-pointer'
+            ? focusTab === 'archive'
+              ? 'flex w-full items-center justify-center gap-1.5 rounded-2xl border border-emerald-500/40 bg-emerald-950/50 px-4 py-2.5 text-sm font-bold text-emerald-200 transition hover:bg-emerald-900/60 cursor-pointer'
+              : 'flex w-full items-center justify-center gap-1.5 rounded-2xl border border-fuchsia-500/40 bg-fuchsia-950/50 px-4 py-2.5 text-sm font-bold text-fuchsia-200 transition hover:bg-fuchsia-900/60 cursor-pointer'
             : 'inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg border border-fuchsia-500/40 bg-fuchsia-950/50 px-2.5 py-1.5 text-xs font-semibold text-fuchsia-200 transition hover:bg-fuchsia-900/60 cursor-pointer sm:gap-1.5 sm:px-3'
         }
       >
-        <span>💎 聖堂・記録</span>
+        <span>{triggerLabel ?? '💎 聖堂・記録'}</span>
       </button>
 
       <dialog
