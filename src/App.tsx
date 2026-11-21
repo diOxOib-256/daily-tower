@@ -12,6 +12,7 @@ import { TitleScreen } from './components/TitleScreen';
 import { UpdateLogModal } from './components/UpdateLogModal';
 import { WardrobeArchiveModal } from './components/WardrobeArchiveModal';
 import { XShareButton } from './components/XShareButton';
+import { ShareImageButton } from './components/ShareImageButton';
 import { PixelSpriteCanvas } from './components/PixelSpriteCanvas';
 import { ACHIEVEMENTS } from './extensible/achievements/achievements';
 import { LATEST_AUTHORED_FLOOR, isFloorAuthored } from './extensible/realms/realmIndex';
@@ -587,8 +588,8 @@ export function App() {
           <>
             <WardrobeArchiveModal
               variant="title"
-              focusTab="wardrobe"
-              triggerLabel="💎 挑戦者スキン"
+              focusTab="skins"
+              triggerLabel="💎 ショップ"
               cosmeticGems={saveData.cosmeticGems}
               unlockedCosmetics={saveData.unlockedCosmetics}
               activeSkinSpriteId={saveData.activeSkinSpriteId}
@@ -646,6 +647,21 @@ export function App() {
                 maxFloorReached: saveData.playStats?.maxFloorReached,
               })}
               label="𝕏 進捗をポスト"
+            />
+            <ShareImageButton
+              text={formatProgressXShareText({
+                floor: saveData.midFloor.currentFloor,
+                realmName: currentRealmMeta.name,
+                weaponName: saveData.inventory.weapon.name,
+                activeTitle: saveData.activeTitle,
+                maxFloorReached: saveData.playStats?.maxFloorReached,
+              })}
+              floor={saveData.midFloor.currentFloor}
+              realmName={currentRealmMeta.name}
+              weaponName={saveData.inventory.weapon.name}
+              activeTitle={saveData.activeTitle}
+              spriteId={saveData.activeSkinSpriteId}
+              paletteId={saveData.activeSkinPaletteId}
             />
           </>
         }

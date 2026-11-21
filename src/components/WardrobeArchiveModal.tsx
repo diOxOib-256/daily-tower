@@ -15,9 +15,9 @@ interface WardrobeArchiveModalProps {
   onSelectCosmetic: (item: CosmeticItem) => void;
   variant?: 'header' | 'title';
   /** When set, this instance is a dedicated entry point: the trigger shows
-   * triggerLabel and the dialog opens on the given tab. Two instances with
-   * focusTab 'wardrobe' and 'archive' replace the combined trigger. */
-  focusTab?: 'wardrobe' | 'archive';
+   * triggerLabel and the dialog opens on the given tab. Instances with
+   * focusTab 'skins' and 'archive' replace the combined trigger. */
+  focusTab?: 'skins' | 'titles' | 'archive';
   triggerLabel?: string;
 }
 
@@ -36,7 +36,7 @@ export function WardrobeArchiveModal({
 }: WardrobeArchiveModalProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const titleId = useId();
-  const [activeTab, setActiveTab] = useState<'wardrobe' | 'archive'>('wardrobe');
+  const [activeTab, setActiveTab] = useState<'skins' | 'titles' | 'archive'>('skins');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -108,7 +108,7 @@ export function WardrobeArchiveModal({
         <div className="flex items-center justify-between border-b border-slate-800 pb-4">
           <div>
             <h2 id={titleId} className="text-lg font-bold text-amber-300">
-              聖堂（外見変更・登頂記録）
+              ショップ・登頂記録
             </h2>
           </div>
           <div className="flex items-center gap-3">
@@ -131,14 +131,25 @@ export function WardrobeArchiveModal({
         <div className="mt-4 flex gap-2 border-b border-slate-800 pb-3">
           <button
             type="button"
-            onClick={() => setActiveTab('wardrobe')}
+            onClick={() => setActiveTab('skins')}
             className={`rounded-lg px-4 py-1.5 text-xs font-semibold transition cursor-pointer ${
-              activeTab === 'wardrobe'
+              activeTab === 'skins'
                 ? 'bg-amber-500 text-slate-950'
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            🎨 外見・称号
+            🎨 挑戦者スキン
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('titles')}
+            className={`rounded-lg px-4 py-1.5 text-xs font-semibold transition cursor-pointer ${
+              activeTab === 'titles'
+                ? 'bg-amber-500 text-slate-950'
+                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+            }`}
+          >
+            👑 称号
           </button>
           <button
             type="button"
@@ -153,9 +164,15 @@ export function WardrobeArchiveModal({
           </button>
         </div>
 
-        {activeTab === 'wardrobe' ? (
+        {activeTab !== 'archive' ? (
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {cosmeticCatalog.map((item) => {
+            {cosmeticCatalog
+              .filter((item) =>
+                activeTab === 'titles'
+                  ? item.category === 'title'
+                  : item.category !== 'title',
+              )
+              .map((item) => {
               const isUnlocked = unlockedCosmetics.includes(item.id);
               const isEquipped =
                 (item.category === 'skin' &&
