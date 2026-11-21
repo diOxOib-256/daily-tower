@@ -72,6 +72,8 @@ export const ITEM_DEBUT_OVERRIDES: Record<string, number> = {
   celestial_plate: 62,
   eclipse_nova: 62,
   chronos_compass: 62,
+  void_greatsword: 63,
+  comet_pierce: 63,
 };
 
 let debutCache: Map<string, number> | null = null;

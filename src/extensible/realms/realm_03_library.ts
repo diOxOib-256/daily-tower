@@ -234,4 +234,17 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'stellar_construct', enemyStatScale: 0.80 },
     ],
   },
+  {
+    floor: 63,
+    realm: 2,
+    title: '第63層：星灯りの彗星廊',
+    subtitle: '黄金の尾を引く彗星の鬼火が舞い、58F以来の星灯りの小部屋で休息をとれる上層の分岐点',
+    encounters: [
+      { type: 'battle', enemyId: 'comet_wisp', enemyStatScale: 0.80 },
+      { type: 'battle', enemyIds: ['void_hound', 'comet_wisp'], enemyStatScale: 0.80 },
+      { type: 'event', eventId: 'silent_alcove' },
+      { type: 'battle', enemyId: 'stellar_construct', enemyStatScale: 0.80 },
+      { type: 'battle', enemyIds: ['obsidian_owl', 'eclipse_scholar'], enemyStatScale: 0.80 },
+    ],
+  },
 ];

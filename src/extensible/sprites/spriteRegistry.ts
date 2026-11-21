@@ -2178,6 +2178,21 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '刻限の羅針盤',
     colors: ['transparent', '#241c14', '#c9a227', '#90e0ef'],
   },
+  comet_wisp: {
+    id: 'comet_wisp',
+    name: '彗星の鬼火',
+    colors: ['transparent', '#1b1429', '#ff9f1c', '#fff3b0'],
+  },
+  item_void_greatsword: {
+    id: 'item_void_greatsword',
+    name: '虚空の大剣',
+    colors: ['transparent', '#12101c', '#4a3f6b', '#d8b4fe'],
+  },
+  item_comet_pierce: {
+    id: 'item_comet_pierce',
+    name: '彗星の一閃',
+    colors: ['transparent', '#211510', '#f4a261', '#fefae0'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2617,6 +2632,9 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_celestial_plate: { id: 'item_celestial_plate', matrixId: 'item_celestial_plate', defaultPalette: 'item_celestial_plate' },
   item_eclipse_nova: { id: 'item_eclipse_nova', matrixId: 'item_eclipse_nova', defaultPalette: 'item_eclipse_nova' },
   item_chronos_compass: { id: 'item_chronos_compass', matrixId: 'item_chronos_compass', defaultPalette: 'item_chronos_compass' },
+  comet_wisp: { id: 'comet_wisp', matrixId: 'comet_wisp', defaultPalette: 'comet_wisp' },
+  item_void_greatsword: { id: 'item_void_greatsword', matrixId: 'item_void_greatsword', defaultPalette: 'item_void_greatsword' },
+  item_comet_pierce: { id: 'item_comet_pierce', matrixId: 'item_comet_pierce', defaultPalette: 'item_comet_pierce' },
 };
 
 export function resolveSpriteImage(spriteId: string): string | undefined {

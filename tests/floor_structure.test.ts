@@ -9,8 +9,8 @@ import { REALM_03_FLOORS } from '../src/extensible/realms/realm_03_library';
 describe('Floor Structure & Pacing Quality Gate (Spec §3.1, §5.2)', () => {
   const allFloors = [...REALM_01_FLOORS, ...REALM_02_FLOORS, ...REALM_03_FLOORS];
 
-  it('defines 62 floors across Realm 1 and Realm 2', () => {
-    expect(allFloors.length).toBe(62);
+  it('defines 63 floors across Realm 1 and Realm 2', () => {
+    expect(allFloors.length).toBe(63);
   });
 
   it('validates encounter composition rules for every floor', () => {

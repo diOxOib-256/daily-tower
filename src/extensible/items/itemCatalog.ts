@@ -517,6 +517,16 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     salvageGold: 18,
     description: '太陽の如き灼熱の星光を穂先に宿した魔導槍。上層書庫の強敵を貫くために鍛えられた一振り。',
   },
+  void_greatsword: {
+    id: 'void_greatsword',
+    name: '虚空の大剣',
+    kind: 'weapon',
+    spriteId: 'item_void_greatsword',
+    atk: 20,
+    element: 'void',
+    salvageGold: 20,
+    description: '漆黒の虚空鋼を鍛え上げた重厚な両手大剣。斬りつけた空間ごと敵を断ち切る。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -2903,6 +2913,23 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     },
     salvageGold: 10,
     description: '星蝕の波動を全方位に解き放ち、敵全体を薙ぎ払いつつ攻撃力を大きく削ぐ範囲弱体スキル。敵全体に0.85倍ダメージ＋敵全体の攻撃力を25%低下(3T)（1戦2回）。',
+  },
+  comet_pierce: {
+    id: 'comet_pierce',
+    name: '彗星の一閃',
+    kind: 'skill',
+    spriteId: 'item_comet_pierce',
+    category: 'attack',
+    maxChargesPerBattle: 2,
+    damageMultiplier: 1.65,
+    applyStatus: {
+      target: 'enemy',
+      statusId: 'def_debuff',
+      value: 20,
+      duration: 2,
+    },
+    salvageGold: 10,
+    description: '彗星のような鋭い踏み込みから急所を貫き、高い単体ダメージと同時に敵の防御を粉砕する攻撃スキル。敵単体に1.65倍ダメージ＋敵の防御力を20%低下(2T)（1戦2回）。',
   },
 };
 

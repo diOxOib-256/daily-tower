@@ -10021,5 +10021,65 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  comet_wisp: {
+    id: 'comet_wisp',
+    name: '彗星の鬼火',
+    spriteId: 'comet_wisp',
+    palette: 'comet_wisp',
+    hp: 68,
+    atk: 16,
+    def: 4,
+    spd: 13,
+    weakness: 'ice',
+    resistance: 'physical',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '尾を引く星火',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '彗星の鬼火が灼熱の尾を振るい、焦がすような一撃を放った！',
+          },
+          {
+            name: '閃光の目眩まし',
+            type: 'debuff',
+            weight: 40,
+            statusId: 'atk_debuff',
+            statusValue: 15,
+            statusDuration: 2,
+            logMessage: '彗星の鬼火が眩い閃光を放ち、狙いを狂わせた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        actions: [
+          {
+            name: '彗星突撃',
+            type: 'debuff',
+            weight: 70,
+            damageMultiplier: 1.35,
+            statusId: 'burn',
+            statusValue: 4,
+            statusDuration: 2,
+            logMessage: '彗星の鬼火が光の尾を纏って突撃し、激しい火傷を負わせた！',
+          },
+          {
+            name: '星尾の加速',
+            type: 'buff',
+            weight: 30,
+            statusId: 'atk_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '彗星の鬼火の軌道が加速し、攻撃力が高まった！',
+          },
+        ],
+      },
+    ],
+  },
 };
 
