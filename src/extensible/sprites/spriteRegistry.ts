@@ -5,6 +5,7 @@ import heroCyberImage from '../../assets/sprites/hero_cyber.png';
 import heroHunterImage from '../../assets/sprites/hero_hunter.png';
 import heroCatImage from '../../assets/sprites/hero_cat.png';
 import heroSkeletonImage from '../../assets/sprites/hero_skeleton.png';
+import heroClockworkImage from '../../assets/sprites/hero_clockwork.png';
 
 export interface PaletteConfig {
   id: string;
@@ -2193,6 +2194,11 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '彗星の一閃',
     colors: ['transparent', '#211510', '#f4a261', '#fefae0'],
   },
+  clockwork_engineer: {
+    id: 'clockwork_engineer',
+    name: '刻限の時計技師',
+    colors: ['transparent', '#000000', '#261810', '#3d6e56'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -2213,6 +2219,7 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   hero_librarian: { id: 'hero_librarian', matrixId: 'hero_librarian', defaultPalette: 'star_librarian' },
   hero_cat: { id: 'hero_cat', matrixId: 'hero_cat', defaultPalette: 'cat_knight', image: heroCatImage },
   hero_skeleton: { id: 'hero_skeleton', matrixId: 'hero_skeleton', defaultPalette: 'skeleton_knight', image: heroSkeletonImage },
+  hero_clockwork: { id: 'hero_clockwork', matrixId: 'hero_clockwork', defaultPalette: 'clockwork_engineer', image: heroClockworkImage },
   hero_golem: { id: 'hero_golem', matrixId: 'hero_golem', defaultPalette: 'hero_moss_golem' },
   hero_spirit: { id: 'hero_spirit', matrixId: 'hero_spirit', defaultPalette: 'star_spirit' },
   slime: { id: 'slime', matrixId: 'slime', defaultPalette: 'emerald_slime' },
