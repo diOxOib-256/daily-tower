@@ -888,7 +888,6 @@ export function App() {
     </div>
   );
 
-  const isCombat = stage === 'combat';
   const isFittedStage = stage === 'combat' || stage === 'floor_reward';
   const hasBoss = shownSession?.enemyDefs.some((d) => d.isBoss) ?? false;
 
@@ -1215,8 +1214,10 @@ export function App() {
             aria-label="コマンドとメッセージウィンドウ"
             className={`${
               mobileConsoleTab === 'commands' ? 'flex' : 'hidden lg:flex'
-            } shrink-0 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-3 py-2.5 shadow-xl sm:px-4 sm:py-3 ${
-              isCombat ? 'max-lg:max-h-[48dvh] max-lg:overflow-y-auto' : ''
+            } flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-3 py-2.5 shadow-xl sm:px-4 sm:py-3 ${
+              isFittedStage
+                ? 'max-lg:h-[44dvh] max-lg:max-h-[380px] max-lg:shrink max-lg:overflow-y-auto lg:shrink-0'
+                : 'shrink-0'
             }`}
           >
             {/* COMBAT COMMANDS */}
@@ -1239,7 +1240,7 @@ export function App() {
                     </button>
                   </div>
                 ) : (
-                  <div inert={stage === 'floor_reward'} className={`flex flex-1 flex-col justify-between gap-2.5 ${stage === 'floor_reward' ? 'pointer-events-none' : ''}`}>
+                  <div inert={stage === 'floor_reward'} className={`flex flex-1 flex-col gap-2.5 ${stage === 'floor_reward' ? 'pointer-events-none' : ''}`}>
                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
                       <span className="text-xs font-extrabold tracking-wider text-amber-300">
                         コマンド
@@ -1392,6 +1393,14 @@ export function App() {
                   </div>
                 )}
               </>
+            )}
+
+            {stage === 'floor_reward' && !battleSession && (
+              <div className="flex flex-1 flex-col items-center justify-center py-4 text-center">
+                <span className="rounded-md border border-amber-400/40 bg-amber-950/60 px-3 py-1.5 text-xs font-bold text-amber-200">
+                  🔒 ステージ上のカードから踏破報酬を選択してください
+                </span>
+              </div>
             )}
 
             {/* EVENT DIALOGUE & CHOICES */}
@@ -1787,7 +1796,7 @@ export function App() {
             mobileConsoleTab === 'commands' ? 'hidden lg:flex' : 'flex'
           } min-h-0 flex-col ${
             isFittedStage
-              ? `max-lg:h-[40dvh] max-lg:max-h-[360px] max-lg:shrink lg:min-h-[140px] lg:grow-0 lg:shrink ${
+              ? `max-lg:h-[44dvh] max-lg:max-h-[380px] max-lg:shrink lg:min-h-[140px] lg:grow-0 lg:shrink ${
                   hasBoss
                     ? 'lg:basis-[22dvh] lg:max-h-[260px]'
                     : 'lg:basis-[26dvh] lg:max-h-[295px]'
