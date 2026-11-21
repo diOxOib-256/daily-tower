@@ -6,6 +6,7 @@ import {
   WeaponItem,
 } from '../extensible/items/itemCatalog';
 import { REALM_METADATA } from '../extensible/realms/realmIndex';
+import { EXTENSIBLE_COSMETICS } from '../extensible/cosmetics/cosmeticAdditions';
 
 export interface RunArchiveRecord {
   id: string;
@@ -33,7 +34,7 @@ export interface CosmeticItem {
   description: string;
 }
 
-export const COSMETIC_SHOP_CATALOG: CosmeticItem[] = [
+const BASE_COSMETIC_SHOP_CATALOG: CosmeticItem[] = [
   {
     id: 'skin_crimson_knight',
     name: '紅蓮の覇者スキン',
@@ -158,6 +159,16 @@ export const COSMETIC_SHOP_CATALOG: CosmeticItem[] = [
     titleText: '【次元跳躍の観測者】',
     description: '幾度もの領域リセットを乗り越えた証の称号。',
   },
+];
+
+/**
+ * The full shop catalog: the base list above plus cosmetics registered
+ * from the extensible side (daily skin pipeline). Consumers keep reading
+ * this merged list, so additions never need a core change.
+ */
+export const COSMETIC_SHOP_CATALOG: CosmeticItem[] = [
+  ...BASE_COSMETIC_SHOP_CATALOG,
+  ...EXTENSIBLE_COSMETICS,
 ];
 
 export class AreaEngine {
