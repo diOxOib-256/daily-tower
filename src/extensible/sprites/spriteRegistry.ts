@@ -1,4 +1,10 @@
 import { MATRIX_REGISTRY, PixelGrid } from './matrixRegistry';
+import heroKnightImage from '../../assets/sprites/hero_knight.png';
+import heroMageImage from '../../assets/sprites/hero_mage.png';
+import heroCyberImage from '../../assets/sprites/hero_cyber.png';
+import heroHunterImage from '../../assets/sprites/hero_hunter.png';
+import heroCatImage from '../../assets/sprites/hero_cat.png';
+import heroSkeletonImage from '../../assets/sprites/hero_skeleton.png';
 
 export interface PaletteConfig {
   id: string;
@@ -2178,16 +2184,20 @@ export interface SpriteDefinition {
   id: string;
   matrixId: keyof typeof MATRIX_REGISTRY;
   defaultPalette: keyof typeof PALETTE_REGISTRY;
+  /** Optional full-color image sprite (32x32 PNG). When set, the canvas
+   *  renderer draws the image instead of the palette matrix. Palette
+   *  overrides do not recolor image sprites. */
+  image?: string;
 }
 
 export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
-  hero_knight: { id: 'hero_knight', matrixId: 'hero_knight', defaultPalette: 'steel_knight' },
-  hero_mage: { id: 'hero_mage', matrixId: 'hero_mage', defaultPalette: 'astral_mage' },
-  hero_cyber: { id: 'hero_cyber', matrixId: 'hero_cyber', defaultPalette: 'neon_cyber' },
-  hero_hunter: { id: 'hero_hunter', matrixId: 'hero_hunter', defaultPalette: 'forest_hunter' },
+  hero_knight: { id: 'hero_knight', matrixId: 'hero_knight', defaultPalette: 'steel_knight', image: heroKnightImage },
+  hero_mage: { id: 'hero_mage', matrixId: 'hero_mage', defaultPalette: 'astral_mage', image: heroMageImage },
+  hero_cyber: { id: 'hero_cyber', matrixId: 'hero_cyber', defaultPalette: 'neon_cyber', image: heroCyberImage },
+  hero_hunter: { id: 'hero_hunter', matrixId: 'hero_hunter', defaultPalette: 'forest_hunter', image: heroHunterImage },
   hero_librarian: { id: 'hero_librarian', matrixId: 'hero_librarian', defaultPalette: 'star_librarian' },
-  hero_cat: { id: 'hero_cat', matrixId: 'hero_cat', defaultPalette: 'cat_knight' },
-  hero_skeleton: { id: 'hero_skeleton', matrixId: 'hero_skeleton', defaultPalette: 'skeleton_knight' },
+  hero_cat: { id: 'hero_cat', matrixId: 'hero_cat', defaultPalette: 'cat_knight', image: heroCatImage },
+  hero_skeleton: { id: 'hero_skeleton', matrixId: 'hero_skeleton', defaultPalette: 'skeleton_knight', image: heroSkeletonImage },
   hero_golem: { id: 'hero_golem', matrixId: 'hero_golem', defaultPalette: 'hero_moss_golem' },
   hero_spirit: { id: 'hero_spirit', matrixId: 'hero_spirit', defaultPalette: 'star_spirit' },
   slime: { id: 'slime', matrixId: 'slime', defaultPalette: 'emerald_slime' },
@@ -2608,6 +2618,10 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_eclipse_nova: { id: 'item_eclipse_nova', matrixId: 'item_eclipse_nova', defaultPalette: 'item_eclipse_nova' },
   item_chronos_compass: { id: 'item_chronos_compass', matrixId: 'item_chronos_compass', defaultPalette: 'item_chronos_compass' },
 };
+
+export function resolveSpriteImage(spriteId: string): string | undefined {
+  return SPRITE_REGISTRY[spriteId]?.image;
+}
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
   grid: PixelGrid;

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { resolveSpriteData } from '../extensible/sprites/spriteRegistry';
+import { resolveSpriteData, resolveSpriteImage } from '../extensible/sprites/spriteRegistry';
 
 interface PixelSpriteCanvasProps {
   spriteId: string;
@@ -7,6 +7,18 @@ interface PixelSpriteCanvasProps {
   scale?: number;
   flipHorizontal?: boolean;
   className?: string;
+}
+
+const imageCache = new Map<string, HTMLImageElement>();
+
+function getCachedImage(src: string): HTMLImageElement {
+  let img = imageCache.get(src);
+  if (!img) {
+    img = new Image();
+    img.src = src;
+    imageCache.set(src, img);
+  }
+  return img;
 }
 
 export function PixelSpriteCanvas({
@@ -17,9 +29,10 @@ export function PixelSpriteCanvas({
   className = '',
 }: PixelSpriteCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const imageSrc = resolveSpriteImage(spriteId);
   const { grid, palette } = resolveSpriteData(spriteId, paletteId);
-  const rows = grid.length;
-  const cols = grid[0]?.length ?? 8;
+  const rows = imageSrc ? 32 : grid.length;
+  const cols = imageSrc ? 32 : grid[0]?.length ?? 8;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,7 +40,32 @@ export function PixelSpriteCanvas({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    ctx.clearRect(0, 0, cols * scale, rows * scale);
+    const width = cols * scale;
+    const height = rows * scale;
+    ctx.clearRect(0, 0, width, height);
+
+    if (imageSrc) {
+      const img = getCachedImage(imageSrc);
+      const draw = () => {
+        ctx.clearRect(0, 0, width, height);
+        ctx.imageSmoothingEnabled = false;
+        if (flipHorizontal) {
+          ctx.save();
+          ctx.translate(width, 0);
+          ctx.scale(-1, 1);
+          ctx.drawImage(img, 0, 0, width, height);
+          ctx.restore();
+        } else {
+          ctx.drawImage(img, 0, 0, width, height);
+        }
+      };
+      if (img.complete && img.naturalWidth > 0) {
+        draw();
+        return;
+      }
+      img.addEventListener('load', draw);
+      return () => img.removeEventListener('load', draw);
+    }
 
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -39,7 +77,7 @@ export function PixelSpriteCanvas({
         ctx.fillRect(c * scale, r * scale, scale, scale);
       }
     }
-  }, [grid, palette, rows, cols, scale, flipHorizontal]);
+  }, [imageSrc, grid, palette, rows, cols, scale, flipHorizontal]);
 
   return (
     <canvas
